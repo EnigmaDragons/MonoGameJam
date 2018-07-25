@@ -3,6 +3,17 @@ MonoGameJam https://itch.io/jam/monogamejam
 
 ----
 
+### Jam Main Goals
+
+----
+
+1. Have fun!
+2. Stretch yourself and try things you haven't done before
+3. Iterate quickly, and don't worry about making things perfect
+4. As a team, we want to deliver something complete and achievable
+
+----
+
 ### Project Guidelines
 
 ----
