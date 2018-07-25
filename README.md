@@ -23,14 +23,14 @@ MonoGameJam https://itch.io/jam/monogamejam
 
 ----
 
-Project Manager - TBD
-Game Design - TBD
-Art Lead - TBD
-Character Art - TBD
-Environment Art - TBD
-Writing Story - TBD
-Programming Lead - TBD
-Programming - TBD
-Music - TBD
-Sound - TBD
-UI Design - TBD
+- Project Manager - TBD
+- Game Design - TBD
+- Art Lead - TBD
+- Character Art - TBD
+- Environment Art - TBD
+- Writing Story - TBD
+- Programming Lead - TBD
+- Programming - TBD
+- Music - TBD
+- Sound - TBD
+- UI Design - TBD
