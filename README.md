@@ -16,6 +16,7 @@ MonoGameJam https://itch.io/jam/monogamejam
 - Every ticket that is finished should result in a Git commit with the new assets
 - Any team member may create a ticket for work they think is needed
 - All tickets should have a Role label
+- You may push directly to `master` or open a PR and merge, if you prefer
 
 ----
 
