@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * http://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:40e928c9e8112f7bbdd1bd28c10e6050:c7238e562ee35d9d162f10493fb65a6b:bdf563343612dbc62b35eb797339160d$
+ * $TexturePacker:SmartUpdate:b1989e04eb2c91cf2b5a0f909ad0838e:b9f3f62531a42b6accaec59e7888a0b1:bdf563343612dbc62b35eb797339160d$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -25,6 +25,16 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Corporation_Door_Single4 = "Corporation/Door_Single4";
 		public const string Corporation_Door_Single5 = "Corporation/Door_Single5";
 		public const string Corporation_Door_Single6 = "Corporation/Door_Single6";
+		public const string Corporation_Door_Single7 = "Corporation/Door_Single7";
+		public const string Corporation_Door_Single8 = "Corporation/Door_Single8";
+		public const string Corporation_Door_SingleT2 = "Corporation/Door_SingleT2";
+		public const string Corporation_Door_SingleT3 = "Corporation/Door_SingleT3";
+		public const string Corporation_Door_SingleT4 = "Corporation/Door_SingleT4";
+		public const string Corporation_Door_SingleT5 = "Corporation/Door_SingleT5";
+		public const string Corporation_Door_SingleT6 = "Corporation/Door_SingleT6";
+		public const string Corporation_Door_SingleT7 = "Corporation/Door_SingleT7";
+		public const string Corporation_Door_SingleT8 = "Corporation/Door_SingleT8";
+		public const string Corporation_Door_SingleT9 = "Corporation/Door_SingleT9";
 		public const string Corporation_Floor_00 = "Corporation/Floor_00";
 		public const string Corporation_Floor_01 = "Corporation/Floor_01";
 		public const string Corporation_Floor_02 = "Corporation/Floor_02";
