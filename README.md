@@ -35,14 +35,14 @@ MonoGameJam https://itch.io/jam/monogamejam
 
 ----
 
-- Project Manager - TBD
-- Game Design - TBD
+- Project Manager - Silas Reinagel (TheoConfidor)
+- Game Design - Silas Reinagel (TheoConfidor)
 - Art Lead - TBD
-- Character Art - TBD
-- Environment Art - TBD
+- Character Art - (GhostShiv)
+- Environment Art - (Febucci)
 - Writing Story - TBD
-- Programming Lead - TBD
-- Programming - TBD
-- Music - TBD
-- Sound - TBD
+- Programming Lead - Noah Reinagel (ZavixDragon)
+- Programming - Félix Robidoux (DiglidiDudeNG)
+- Music - Joseph Gomes (Auvenil)
+- Sound - Joseph Gomes (Auvenil)
 - UI Design - TBD
