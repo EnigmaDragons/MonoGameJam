@@ -4,7 +4,7 @@
  * Contains references to each image within the sprite sheet.
  *
  * http://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:4e2b3928c18c63d089a5d65d842871e9:d19d36de243d0f4b81b08d208ebb92d1:bdf563343612dbc62b35eb797339160d$
+ * $TexturePacker:SmartUpdate:40e928c9e8112f7bbdd1bd28c10e6050:c7238e562ee35d9d162f10493fb65a6b:bdf563343612dbc62b35eb797339160d$
  *
  */
 namespace TexturePackerMonoGameDefinitions
@@ -35,10 +35,10 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Corporation_Floor_07 = "Corporation/Floor_07";
 		public const string Corporation_Floor_08 = "Corporation/Floor_08";
 		public const string Corporation_Floor_09 = "Corporation/Floor_09";
-		public const string Corporation_Glass_Wall_00 = "Corporation/Glass Wall_00";
-		public const string Corporation_Glass_Wall_01 = "Corporation/Glass Wall_01";
-		public const string Corporation_Glass_Wall_02 = "Corporation/Glass Wall_02";
-		public const string Corporation_Glass_Wall_03 = "Corporation/Glass Wall_03";
+		public const string Corporation_Glass_Wall_0 = "Corporation/Glass Wall_0";
+		public const string Corporation_Glass_Wall_1 = "Corporation/Glass Wall_1";
+		public const string Corporation_Glass_Wall_2 = "Corporation/Glass Wall_2";
+		public const string Corporation_Glass_Wall_3 = "Corporation/Glass Wall_3";
 		public const string Corporation_Pillow = "Corporation/Pillow";
 		public const string Corporation_Sofa = "Corporation/Sofa";
 		public const string Corporation_SurveilanceCamera1 = "Corporation/SurveilanceCamera1";
@@ -50,6 +50,7 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Corporation_TV_Wall1 = "Corporation/TV_Wall1";
 		public const string Corporation_TV_Wall2 = "Corporation/TV_Wall2";
 		public const string Corporation_TV_Wall3 = "Corporation/TV_Wall3";
+		public const string Corporation_VendingMachine = "Corporation/VendingMachine";
 		public const string Corporation_Wall_00 = "Corporation/Wall_00";
 		public const string Corporation_Wall_01 = "Corporation/Wall_01";
 		public const string Corporation_Wall_02 = "Corporation/Wall_02";
