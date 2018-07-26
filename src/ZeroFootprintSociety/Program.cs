@@ -8,6 +8,7 @@ using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.Render;
 using MonoDragons.Core.Scenes;
+using ZeroFootPrintSociety.Scenes;
 using System;
 using Control = MonoDragons.Core.Inputs.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
@@ -43,8 +44,8 @@ namespace ZeroFootPrintSociety
         {
             return new SceneFactory(new Map<string, Func<IScene>>
             {
-                { "Logo", () => new FadingInScene(new OilLogoScene()) },
-                { "Intro", () => new VolumeDemo() },
+                { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
+                { "MainMenu", () => new MainMenuScene() },
             });
         }
 
