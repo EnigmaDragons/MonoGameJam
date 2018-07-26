@@ -5,6 +5,25 @@ Kanban Board: https://zube.io/enigmadragons/monogamejam/w/workspace-1/kanban
 
 ----
 
+### Game Concept
+
+----
+
+**Genre: Tactics Game**
+**Flavor/Story: Cyberpunk: You are part of Zero-Footprint Society**
+
+Big Idea:
+- Your main character has a max amount of total steps before dead/game over
+- Must break in to a MegaCorp in order to remedy the situation/injection/trackers/etc
+
+Features:
+- UI display translucent fading footsteps behind where characters move
+- Vision-based knowledge of combat areas. Lots of fog of war
+- Player can "see-through" walls by observing visual footsteps indicators to determine where enemies are
+- Some movement-style powers/abilities
+
+----
+
 ### Jam Main Goals
 
 ----
