@@ -4,27 +4,27 @@
 # To learn how to import these sprites into your MonoGame project visit:
 # http://www.codeandweb.com/texturepacker/monogame
 #
-# Sprite sheet: CorporationSpriteSheet.png (132 x 132)
-# $TexturePacker:SmartUpdate:ac69abb325739cb243e74fa78d7486f6:145cf396cbcb8ccfecd716a797dc7156:bdf563343612dbc62b35eb797339160d$
+# Sprite sheet: CorporationSpriteSheet.png (136 x 136)
+# $TexturePacker:SmartUpdate:d1add57b9c0023612b51e95b39d238f2:145cf396cbcb8ccfecd716a797dc7156:bdf563343612dbc62b35eb797339160d$
 #
 
-Corporation/Floor_00;0;1;1;24;24;24;24;0.5;0.5
-Corporation/Floor_01;0;1;27;24;24;24;24;0.5;0.5
-Corporation/Floor_02;0;1;53;24;24;24;24;0.5;0.5
-Corporation/Floor_03;0;1;79;24;24;24;24;0.5;0.5
-Corporation/Floor_04;0;1;105;24;24;24;24;0.5;0.5
-Corporation/Floor_05;0;27;1;24;24;24;24;0.5;0.5
-Corporation/Floor_06;0;53;1;24;24;24;24;0.5;0.5
-Corporation/Floor_07;0;79;1;24;24;24;24;0.5;0.5
-Corporation/Floor_08;0;105;1;24;24;24;24;0.5;0.5
-Corporation/Floor_09;0;27;27;24;24;24;24;0.5;0.5
-Corporation/Glass Wall_00;0;27;53;24;24;24;24;0.5;0.5
-Corporation/Glass Wall_01;0;27;79;24;24;24;24;0.5;0.5
-Corporation/Glass Wall_02;0;27;105;24;24;24;24;0.5;0.5
-Corporation/Glass Wall_03;0;53;27;24;24;24;24;0.5;0.5
-Corporation/Wall_00;0;79;27;24;24;24;24;0.5;0.5
-Corporation/Wall_01;0;105;27;24;24;24;24;0.5;0.5
-Corporation/Wall_02;0;53;53;24;24;24;24;0.5;0.5
-Corporation/Wall_03;0;53;79;24;24;24;24;0.5;0.5
-Corporation/Wall_04;0;53;105;24;24;24;24;0.5;0.5
-Corporation/Wall_05;0;79;53;24;24;24;24;0.5;0.5
+Corporation/Floor_00;0;2;2;24;24;24;24;0.5;0.5
+Corporation/Floor_01;0;2;29;24;24;24;24;0.5;0.5
+Corporation/Floor_02;0;2;56;24;24;24;24;0.5;0.5
+Corporation/Floor_03;0;2;83;24;24;24;24;0.5;0.5
+Corporation/Floor_04;0;2;110;24;24;24;24;0.5;0.5
+Corporation/Floor_05;0;29;2;24;24;24;24;0.5;0.5
+Corporation/Floor_06;0;56;2;24;24;24;24;0.5;0.5
+Corporation/Floor_07;0;83;2;24;24;24;24;0.5;0.5
+Corporation/Floor_08;0;110;2;24;24;24;24;0.5;0.5
+Corporation/Floor_09;0;29;29;24;24;24;24;0.5;0.5
+Corporation/Glass Wall_00;0;29;56;24;24;24;24;0.5;0.5
+Corporation/Glass Wall_01;0;29;83;24;24;24;24;0.5;0.5
+Corporation/Glass Wall_02;0;29;110;24;24;24;24;0.5;0.5
+Corporation/Glass Wall_03;0;56;29;24;24;24;24;0.5;0.5
+Corporation/Wall_00;0;83;29;24;24;24;24;0.5;0.5
+Corporation/Wall_01;0;110;29;24;24;24;24;0.5;0.5
+Corporation/Wall_02;0;56;56;24;24;24;24;0.5;0.5
+Corporation/Wall_03;0;56;83;24;24;24;24;0.5;0.5
+Corporation/Wall_04;0;56;110;24;24;24;24;0.5;0.5
+Corporation/Wall_05;0;83;56;24;24;24;24;0.5;0.5
