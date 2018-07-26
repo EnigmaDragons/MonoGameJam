@@ -9,8 +9,8 @@
     <ProjectGuid>{DC8A0AF0-EF64-4656-9400-B0F07ADFC774}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SpaceResortMurder</RootNamespace>
-    <AssemblyName>SpaceResortMurder</AssemblyName>
+    <RootNamespace>ZeroFootPrintSociety</RootNamespace>
+    <AssemblyName>ZeroFootPrintSociety</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="Scenes\MainMenu\MainMenuScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
