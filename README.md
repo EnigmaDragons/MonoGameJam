@@ -1,5 +1,5 @@
 # EnigmaDragons MonoGameJam Entry
-Jam Link: https://itch.io/jam/monogamejam
+Jam Link: https://itch.io/jam/mgjam
 
 Kanban Board: https://zube.io/enigmadragons/monogamejam/w/workspace-1/kanban
 
