@@ -4,27 +4,54 @@
 # To learn how to import these sprites into your MonoGame project visit:
 # http://www.codeandweb.com/texturepacker/monogame
 #
-# Sprite sheet: CorporationSpriteSheet.png (136 x 136)
-# $TexturePacker:SmartUpdate:d1add57b9c0023612b51e95b39d238f2:145cf396cbcb8ccfecd716a797dc7156:bdf563343612dbc62b35eb797339160d$
+# Sprite sheet: CorporationSpriteSheet.png (212 x 212)
+# $TexturePacker:SmartUpdate:4e2b3928c18c63d089a5d65d842871e9:d19d36de243d0f4b81b08d208ebb92d1:bdf563343612dbc62b35eb797339160d$
 #
 
-Corporation/Floor_00;0;2;2;24;24;24;24;0.5;0.5
-Corporation/Floor_01;0;2;29;24;24;24;24;0.5;0.5
-Corporation/Floor_02;0;2;56;24;24;24;24;0.5;0.5
-Corporation/Floor_03;0;2;83;24;24;24;24;0.5;0.5
-Corporation/Floor_04;0;2;110;24;24;24;24;0.5;0.5
-Corporation/Floor_05;0;29;2;24;24;24;24;0.5;0.5
-Corporation/Floor_06;0;56;2;24;24;24;24;0.5;0.5
-Corporation/Floor_07;0;83;2;24;24;24;24;0.5;0.5
-Corporation/Floor_08;0;110;2;24;24;24;24;0.5;0.5
-Corporation/Floor_09;0;29;29;24;24;24;24;0.5;0.5
-Corporation/Glass Wall_00;0;29;56;24;24;24;24;0.5;0.5
-Corporation/Glass Wall_01;0;29;83;24;24;24;24;0.5;0.5
-Corporation/Glass Wall_02;0;29;110;24;24;24;24;0.5;0.5
-Corporation/Glass Wall_03;0;56;29;24;24;24;24;0.5;0.5
-Corporation/Wall_00;0;83;29;24;24;24;24;0.5;0.5
-Corporation/Wall_01;0;110;29;24;24;24;24;0.5;0.5
-Corporation/Wall_02;0;56;56;24;24;24;24;0.5;0.5
-Corporation/Wall_03;0;56;83;24;24;24;24;0.5;0.5
-Corporation/Wall_04;0;56;110;24;24;24;24;0.5;0.5
-Corporation/Wall_05;0;83;56;24;24;24;24;0.5;0.5
+Corporation/Air Vent1;0;179;132;16;9;16;9;0.5;0.5
+Corporation/Air Vent2;0;179;144;16;9;16;9;0.5;0.5
+Corporation/Air Vent3;0;179;156;16;9;16;9;0.5;0.5
+Corporation/Chair_Egg1;0;56;94;22;29;30;30;0.5;0.9655172448275862
+Corporation/Chair_Egg2;0;56;126;22;29;30;30;0.5;0.9655172448275862
+Corporation/Desk1;0;2;80;50;31;55;45;0.520000001;0.967741929032258
+Corporation/Desk2;0;2;44;50;33;55;45;0.520000001;0.9696969712121213
+Corporation/Door_Glass;0;108;2;24;42;24;42;0.5;1
+Corporation/Door_Single1;0;2;114;24;42;24;42;0.5;1
+Corporation/Door_Single2;0;135;2;24;42;24;42;0.5;1
+Corporation/Door_Single3;0;2;159;24;42;24;42;0.5;1
+Corporation/Door_Single4;0;162;2;24;42;24;42;0.5;1
+Corporation/Door_Single5;0;29;114;24;42;24;42;0.5;1
+Corporation/Door_Single6;0;29;159;24;42;24;42;0.5;1
+Corporation/Floor_00;0;155;47;24;24;24;24;0.5;0.5
+Corporation/Floor_01;0;56;158;24;24;24;24;0.5;0.5
+Corporation/Floor_02;0;81;94;24;24;24;24;0.5;0.5
+Corporation/Floor_03;0;81;121;24;24;24;24;0.5;0.5
+Corporation/Floor_04;0;56;185;24;24;24;24;0.5;0.5
+Corporation/Floor_05;0;83;148;24;24;24;24;0.5;0.5
+Corporation/Floor_06;0;83;175;24;24;24;24;0.5;0.5
+Corporation/Floor_07;0;125;70;24;24;24;24;0.5;0.5
+Corporation/Floor_08;0;152;74;24;24;24;24;0.5;0.5
+Corporation/Floor_09;0;125;97;24;24;24;24;0.5;0.5
+Corporation/Glass Wall_00;0;152;101;24;24;24;24;0.5;0.5
+Corporation/Glass Wall_01;0;125;124;24;24;24;24;0.5;0.5
+Corporation/Glass Wall_02;0;152;128;24;24;24;24;0.5;0.5
+Corporation/Glass Wall_03;0;110;151;24;24;24;24;0.5;0.5
+Corporation/Pillow;0;102;71;20;20;20;20;0.5;0.95
+Corporation/Sofa;0;55;2;50;32;59;38;0.47999999860000003;0.9687499975
+Corporation/SurveilanceCamera1;0;108;128;11;15;30;30;1;0.4
+Corporation/SurveilanceCamera2;0;179;101;16;10;30;30;1;0.7
+Corporation/Terminal_Wall1;0;108;94;14;18;16;21;0.5;0.4722222222222222
+Corporation/Terminal_Wall2;0;179;114;11;15;16;21;0.45454545454545453;0.5
+Corporation/Terminal_Wall3;0;137;151;12;18;16;21;0.5;0.5277777777777778
+Corporation/Terminal_Wall4;0;108;115;14;10;16;21;0.5;0.45
+Corporation/TV_Wall1;0;2;2;50;39;66;45;0.5000000064;0.1410256358974359
+Corporation/TV_Wall2;0;189;2;21;39;66;45;0.47619049142857134;0.1410256358974359
+Corporation/TV_Wall3;0;55;37;50;31;66;45;0.5000000064;0.17741934838709678
+Corporation/Wall_00;0;110;178;24;24;24;24;0.5;0.5
+Corporation/Wall_01;0;152;155;24;24;24;24;0.5;0.5
+Corporation/Wall_02;0;137;182;24;24;24;24;0.5;0.5
+Corporation/Wall_03;0;164;182;24;24;24;24;0.5;0.5
+Corporation/Wall_04;0;182;47;24;24;24;24;0.5;0.5
+Corporation/Wall_05;0;179;74;24;24;24;24;0.5;0.5
+Corporation/Window1;0;108;47;44;20;44;20;0.5;0.5
+Corporation/Window2;0;55;71;44;20;44;20;0.5;0.5

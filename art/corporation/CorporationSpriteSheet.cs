@@ -4,13 +4,27 @@
  * Contains references to each image within the sprite sheet.
  *
  * http://www.codeandweb.com/texturepacker
- * $TexturePacker:SmartUpdate:d1add57b9c0023612b51e95b39d238f2:145cf396cbcb8ccfecd716a797dc7156:bdf563343612dbc62b35eb797339160d$
+ * $TexturePacker:SmartUpdate:4e2b3928c18c63d089a5d65d842871e9:d19d36de243d0f4b81b08d208ebb92d1:bdf563343612dbc62b35eb797339160d$
  *
  */
 namespace TexturePackerMonoGameDefinitions
 {
 	public class Corporation SpriteSheet
 	{
+		public const string Corporation_Air_Vent1 = "Corporation/Air Vent1";
+		public const string Corporation_Air_Vent2 = "Corporation/Air Vent2";
+		public const string Corporation_Air_Vent3 = "Corporation/Air Vent3";
+		public const string Corporation_Chair_Egg1 = "Corporation/Chair_Egg1";
+		public const string Corporation_Chair_Egg2 = "Corporation/Chair_Egg2";
+		public const string Corporation_Desk1 = "Corporation/Desk1";
+		public const string Corporation_Desk2 = "Corporation/Desk2";
+		public const string Corporation_Door_Glass = "Corporation/Door_Glass";
+		public const string Corporation_Door_Single1 = "Corporation/Door_Single1";
+		public const string Corporation_Door_Single2 = "Corporation/Door_Single2";
+		public const string Corporation_Door_Single3 = "Corporation/Door_Single3";
+		public const string Corporation_Door_Single4 = "Corporation/Door_Single4";
+		public const string Corporation_Door_Single5 = "Corporation/Door_Single5";
+		public const string Corporation_Door_Single6 = "Corporation/Door_Single6";
 		public const string Corporation_Floor_00 = "Corporation/Floor_00";
 		public const string Corporation_Floor_01 = "Corporation/Floor_01";
 		public const string Corporation_Floor_02 = "Corporation/Floor_02";
@@ -25,11 +39,24 @@ namespace TexturePackerMonoGameDefinitions
 		public const string Corporation_Glass_Wall_01 = "Corporation/Glass Wall_01";
 		public const string Corporation_Glass_Wall_02 = "Corporation/Glass Wall_02";
 		public const string Corporation_Glass_Wall_03 = "Corporation/Glass Wall_03";
+		public const string Corporation_Pillow = "Corporation/Pillow";
+		public const string Corporation_Sofa = "Corporation/Sofa";
+		public const string Corporation_SurveilanceCamera1 = "Corporation/SurveilanceCamera1";
+		public const string Corporation_SurveilanceCamera2 = "Corporation/SurveilanceCamera2";
+		public const string Corporation_Terminal_Wall1 = "Corporation/Terminal_Wall1";
+		public const string Corporation_Terminal_Wall2 = "Corporation/Terminal_Wall2";
+		public const string Corporation_Terminal_Wall3 = "Corporation/Terminal_Wall3";
+		public const string Corporation_Terminal_Wall4 = "Corporation/Terminal_Wall4";
+		public const string Corporation_TV_Wall1 = "Corporation/TV_Wall1";
+		public const string Corporation_TV_Wall2 = "Corporation/TV_Wall2";
+		public const string Corporation_TV_Wall3 = "Corporation/TV_Wall3";
 		public const string Corporation_Wall_00 = "Corporation/Wall_00";
 		public const string Corporation_Wall_01 = "Corporation/Wall_01";
 		public const string Corporation_Wall_02 = "Corporation/Wall_02";
 		public const string Corporation_Wall_03 = "Corporation/Wall_03";
 		public const string Corporation_Wall_04 = "Corporation/Wall_04";
 		public const string Corporation_Wall_05 = "Corporation/Wall_05";
+		public const string Corporation_Window1 = "Corporation/Window1";
+		public const string Corporation_Window2 = "Corporation/Window2";
 	}
 }
