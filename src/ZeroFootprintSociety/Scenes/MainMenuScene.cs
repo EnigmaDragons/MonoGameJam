@@ -16,6 +16,7 @@ namespace ZeroFootPrintSociety.Scenes
 {
     public class MainMenuScene : IScene
     {
+        private readonly List<IVisual> _visuals = new List<IVisual>();
         private ClickUI _clickUi;
         private GridLayout _gridLayout; // TODO: Implement a grid layout.
 
@@ -24,6 +25,9 @@ namespace ZeroFootPrintSociety.Scenes
         public void Init()
         {
             _clickUi = new ClickUI();
+            var button = new TextButton(new Rectangle(50, 150, 150, 50), () => {}, "New Game", Color.Red, Color.LightPink, Color.DarkRed);
+            _clickUi.Add(button);
+            _visuals.Add(button);
             Input.ClearTransientBindings();
 
             // TODO: Make inputs react to menu choice.
@@ -46,11 +50,12 @@ namespace ZeroFootPrintSociety.Scenes
 
         public void Update(TimeSpan delta)
         {
-
+            _clickUi.Update(delta);
         }
 
         public void Draw()
         {
+            _visuals.ForEach(x => x.Draw());
             var pos = new Transform2(new Vector2(
                 (CurrentDisplay.GameWidth / 2) - (_gridLayout.Size.Width / 2),
                 (CurrentDisplay.GameHeight) - (_gridLayout.Size.Height)
