@@ -12,7 +12,7 @@ using System;
 using Control = MonoDragons.Core.Inputs.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
-namespace SpaceResortMurder
+namespace ZeroFootPrintSociety
 {
     public static class Program
     {
