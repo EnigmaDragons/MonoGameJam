@@ -1,5 +1,7 @@
 # EnigmaDragons MonoGameJam Entry
-MonoGameJam https://itch.io/jam/monogamejam
+Jam Link: https://itch.io/jam/monogamejam
+
+Kanban Board: https://zube.io/enigmadragons/monogamejam/w/workspace-1/kanban
 
 ----
 
@@ -46,3 +48,14 @@ MonoGameJam https://itch.io/jam/monogamejam
 - Music - Joseph Gomes (Auvenil)
 - Sound - Joseph Gomes (Auvenil)
 - UI Design - TBD
+
+----
+
+### Artist Contributions
+
+----
+
+- Post sketchs and samples as you feel like in the jam chat channel
+- All raw art artifacts should be committed into the `ArtSource` folder
+- When the finished art is committed into `ArtSource` you may close the ticket
+
