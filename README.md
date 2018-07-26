@@ -59,3 +59,5 @@ Kanban Board: https://zube.io/enigmadragons/monogamejam/w/workspace-1/kanban
 - All raw art artifacts should be committed into the `ArtSource` folder
 - When the finished art is committed into `ArtSource` you may close the ticket
 
+The sooner people see art, the better the team's ideas will be about the world, the flavor, and the design. So early reveals are great. Get the team excited about what you are creating!
+
