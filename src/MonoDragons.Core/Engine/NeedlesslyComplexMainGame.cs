@@ -71,7 +71,8 @@ namespace MonoDragons.Core.Engine
                     InitDisplayIfNeeded();
                     // @todo #1 Bug: Update the GraphicsDeviceManager in the constructor, to avoid the window being mispositioned and visibly changing size
                     CurrentDisplay.Init(_graphics, _display);
-                    Window.Position = new Point(0, 0); // Delete this once the above issue is fixed
+                    Window.Position = new Point((GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - CurrentDisplay.GameWidth) / 2, 
+                        (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - CurrentDisplay.GameHeight) / 2 - 40); // Delete this once the above issue is fixed
                     IsMouseVisible = true;
                     _sprites = new SpriteBatch(GraphicsDevice);
                     Input.SetController(_controller);
