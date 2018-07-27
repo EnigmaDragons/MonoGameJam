@@ -8,7 +8,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
 {
     public class GearStats
     {
-        public int Accuracy { get; set; }
-        public int Damage { get; set; }
+        public int Accuracy { get; set; } = 5;
+        public int Damage { get; set; } = 3;
     }
 }

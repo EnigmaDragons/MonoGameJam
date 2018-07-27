@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
@@ -28,8 +29,8 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             Map = map;
 
-            Event.Subscribe(EventSubscription.Create<OverwatchBegunEvent>(OnOverwatchBegun, this));
-            Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>(OnOverwatchTriggered, this));
+            Event.Subscribe(EventSubscription.Create<OverwatchBegun>(OnOverwatchBegun, this));
+            Event.Subscribe(EventSubscription.Create<OverwatchTriggered>(OnOverwatchTriggered, this));
             Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
             Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
             Event.Subscribe(EventSubscription.Create<TurnBegun>(OnTurnBegun, this));
@@ -56,7 +57,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Publish(new TurnEnded());
         }
 
-        private void OnOverwatchTriggered(OverwatchTriggeredEvent obj)
+        private void OnOverwatchTriggered(OverwatchTriggered obj)
         {
             // TODO: Handle triggering of overwatch.
         }
