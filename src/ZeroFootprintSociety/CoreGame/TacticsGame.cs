@@ -48,8 +48,8 @@ namespace ZeroFootPrintSociety.CoreGame
             _offset = new Transform2(
                 new Vector2(800, 450) -
                 new Vector2(
-                    _combat.CurrentCharacter.Body.CurrentTile.Transform.Location.X, 
-                    _combat.CurrentCharacter.Body.CurrentTile.Transform.Location.Y));
+                    _combat.CurrentCharacter.CurrentTile.Transform.Location.X, 
+                    _combat.CurrentCharacter.CurrentTile.Transform.Location.Y));
         }
 
         public void ShowMoveOptions()
