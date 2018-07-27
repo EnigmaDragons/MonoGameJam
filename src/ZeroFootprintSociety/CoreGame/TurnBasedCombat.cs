@@ -7,18 +7,19 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
     public class TurnBasedCombat : IVisual
     {
-        private int _index;
+        private int _activeCharacterIndex;
 
         public GameMap Map { get; }
         public List<Character> Characters { get; }
         public List<Point> AvailableMoves { get; private set; }
-        public Character CurrentCharacter => Characters[_index];
+        public Character CurrentCharacter => Characters[_activeCharacterIndex];
 
         public TurnBasedCombat(GameMap map, List<Character> characters)
         {
@@ -28,11 +29,18 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
+            Event.Subscribe(EventSubscription.Create<OverwatchBegunEvent>(OnOverwatchBegun, this));
+            Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>(OnOverwatchTriggered, this));
+
             Characters.ForEach(x => x.Init());
             Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
+            Event.Publish(new CharacterTurnBegun { Character = CurrentCharacter });
             SetAvailableMoves();
-            Event.Subscribe(EventSubscription.Create<OverwatchBegunEvent>((_event) => { }, this));
-            Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>((_event) => { }, this));
+        }
+
+        private void OnOverwatchTriggered(OverwatchTriggeredEvent obj)
+        {
+            // TODO: Handle triggering of overwatch.
         }
 
         public void OnOverwatchBegun(OverwatchBegunEvent obEvent)
@@ -44,18 +52,27 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             if (!AvailableMoves.Any(move => move.X == x && move.Y == y))
                 return;
+
+            // TODO: Path should be a sequence instead of a teleport to a single tile
+            Event.Publish(new MovementConfirmed { Character = CurrentCharacter, Path = new List<Point> { new Point(x, y) } });
             CurrentCharacter.CurrentTile = Map[x, y];
-            _index++;
-            if (_index == Characters.Count)
-                _index = 0;
+            BeginNextTurn();
+        }
+
+        private void BeginNextTurn()
+        {
+            _activeCharacterIndex++;
+            if (_activeCharacterIndex == Characters.Count)
+                _activeCharacterIndex = 0;
             SetAvailableMoves();
-            CurrentCharacter.OnTurnStart();
+            Event.Publish(new CharacterTurnBegun { Character = CurrentCharacter });
         }
 
         private void SetAvailableMoves()
         {
             AvailableMoves = TakeSteps(new Point(CurrentCharacter.CurrentTile.Column,
                 CurrentCharacter.CurrentTile.Row), CurrentCharacter.Stats.Movement);
+            Event.Publish(new MovementOptionsAvailable { AvailableMoves = AvailableMoves });
         }
 
         private List<Point> TakeSteps(Point position, int remainingMoves)

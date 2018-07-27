@@ -25,8 +25,13 @@ namespace ZeroFootPrintSociety.Tiles
             Details = details.OrderBy(x => x.ZIndex).ToList();
         }
 
+        public void OverwatchThis(Character ownerChar)
+        {
+        }
+
         public void OnCharacterSteps(Character character)
         {
+            // TODO: Include necessary properties for `OverwatchTriggeredEvent`.
             Event.Publish(new OverwatchTriggeredEvent() {FoundCharacter = character});
         }
 

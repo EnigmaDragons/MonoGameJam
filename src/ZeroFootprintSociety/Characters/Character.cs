@@ -21,14 +21,11 @@ namespace ZeroFootPrintSociety.Characters
             }
         }
 
-        public Character(CharacterBody body, CharacterData data, Action onTurnStart)
+        public Character(CharacterBody body, CharacterData data)
         {
             Body = body;
-            OnTurnStart = onTurnStart;
             Stats = data;
         }
-
-        public Action OnTurnStart { get; set; }
 
         public void Init()
         {
