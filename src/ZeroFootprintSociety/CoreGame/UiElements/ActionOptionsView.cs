@@ -31,7 +31,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             _ClickUI = clickUI;
             var menu = new ColoredRectangle { Color = Color.Green, Transform = new Transform2(new Rectangle(_menuX, _menuY, _menuWidth, _menuHeight)) };
-            var button = new TextButton(new Rectangle(_menuX + _buttonXOffset, _menuY + _actionTextHeight + _buttonMargin, _buttonWidth, _buttonHeight), () =>
+            var hideButton = new TextButton(new Rectangle(_menuX + _buttonXOffset, _menuY + _actionTextHeight + _buttonMargin, _buttonWidth, _buttonHeight), () =>
                 {
                     Event.Publish(new HideChosen());
                     HideDisplay();
@@ -39,9 +39,17 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Color.FromNonPremultiplied(0, 0, 100, 50),
                 Color.FromNonPremultiplied(0, 0, 100, 150),
                 Color.FromNonPremultiplied(0, 0, 100, 250));
+            var shootButton = new TextButton(new Rectangle(_menuX + _buttonXOffset, _menuY + _actionTextHeight + _buttonMargin, _buttonWidth, _buttonHeight), () =>
+                {
+                    Event.Publish(new ShootSelected());
+                    HideDisplay();
+                }, "Hide",
+                Color.FromNonPremultiplied(0, 0, 100, 50),
+                Color.FromNonPremultiplied(0, 0, 100, 150),
+                Color.FromNonPremultiplied(0, 0, 100, 250));
             _visuals.Add(menu);
-            _visuals.Add(button);
-            _branch.Add(button);
+            _visuals.Add(hideButton);
+            _branch.Add(hideButton);
             Event.Subscribe(EventSubscription.Create<MovementFinished>(x => PresentOptions(), this));
         }
 

@@ -26,7 +26,7 @@ namespace MonoTiled.Tiled.TmxLoading
             TileHeight = new XValue(map, "tileheight").AsInt();
             Tilesets = map.Elements(XName.Get("tileset"))
                 .Select(x => x.HasElements 
-                    ? new Tsx(device, new XValue(x, "firstgid").AsInt(), x) 
+                    ? new Tsx(device, new XValue(x, "firstgid").AsInt(), mapDir, x) 
                     : new Tsx(device, new XValue(x, "firstgid").AsInt(), mapDir, new XValue(x, "source").AsString()))
                 .ToList();
             var layers = map.Elements(XName.Get("layer")).ToList();

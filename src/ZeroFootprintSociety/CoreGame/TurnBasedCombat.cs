@@ -14,7 +14,7 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
-    public class TurnBasedCombat : IVisual
+    public class TurnBasedCombat : IAutomaton, IVisual
     {
         private int _activeCharacterIndex;
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
@@ -110,6 +110,11 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             Map.Draw(parentTransform);
             Characters.ForEach(x => x.Draw(parentTransform));
+        }
+
+        public void Update(TimeSpan delta)
+        {
+            Characters.ForEach(x => x.Update(delta));
         }
     }
 }

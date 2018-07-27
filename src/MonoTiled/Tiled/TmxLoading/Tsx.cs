@@ -15,9 +15,9 @@ namespace MonoTiled.Tiled.TmxLoading
         public Texture2D TileSource { get; }
 
         public Tsx(GraphicsDevice device, int firstId, string tsxDir, string tsxFile)
-            : this(device, firstId, XDocument.Load(Path.Combine("Content", tsxDir, tsxFile)).Element(XName.Get("tileset"))) {}
+            : this(device, firstId, tsxDir, XDocument.Load(Path.Combine("Content", tsxDir, tsxFile)).Element(XName.Get("tileset"))) {}
 
-        public Tsx(GraphicsDevice device, int firstId, XElement tileset)
+        public Tsx(GraphicsDevice device, int firstId, string tsxDir, XElement tileset)
         {
             FirstId = firstId;
             TileWidth = new XValue(tileset, "tilewidth").AsInt();
@@ -25,7 +25,7 @@ namespace MonoTiled.Tiled.TmxLoading
             Spacing = new XValueWithDefault(tileset, "spacing").AsInt();
             TileCount = new XValue(tileset, "tilecount").AsInt();
             Columns = new XValue(tileset, "columns").AsInt();
-            TileSource = new Texture2DFromPath(device, Path.Combine("Content", new XValue(tileset.Element(XName.Get("image")), "source").AsString())).Get();
+            TileSource = new Texture2DFromPath(device, Path.Combine("Content", tsxDir, new XValue(tileset.Element(XName.Get("image")), "source").AsString())).Get();
         }
     }
 }

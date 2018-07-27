@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CoreGame\Mechanics\Events\ShootSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />
     <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="CoreGame\TurnBasedCombat.cs" />
     <Compile Include="Characters\CharacterData.cs" />
     <Compile Include="CoreGame\UiElements\AvailableMovesView.cs" />
+    <Compile Include="CoreGame\UiElements\AvailableTargetsView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Scenes\DemoActionMenu.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
