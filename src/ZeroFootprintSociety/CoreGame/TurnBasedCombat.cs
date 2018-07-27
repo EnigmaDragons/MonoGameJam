@@ -16,44 +16,53 @@ namespace ZeroFootPrintSociety.CoreGame
 {
     public class TurnBasedCombat : IAutomaton, IVisual
     {
-        private int _activeCharacterIndex;
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
 
+        private CharacterTurns _turns;
+        private Character CurrentCharacter => _turns.CurrentCharacter;
+
         public GameMap Map { get; }
-        public List<Character> Characters { get; }
         public List<Point> AvailableMoves { get; private set; }
-        public Character CurrentCharacter => Characters[_activeCharacterIndex];
+        public List<Character> Characters { get; }
 
         public TurnBasedCombat(GameMap map, List<Character> characters)
         {
             Map = map;
-            Characters = characters;
+
+            Event.Subscribe(EventSubscription.Create<OverwatchBegun>(OnOverwatchBegun, this));
+            Event.Subscribe(EventSubscription.Create<OverwatchTriggered>(OnOverwatchTriggered, this));
+            Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
+            Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
+            Event.Subscribe(EventSubscription.Create<TurnBegun>(OnTurnBegun, this));
+            Characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
+            _turns = new CharacterTurns(Characters);
         }
 
         public void Init()
         {
-            Event.Subscribe(EventSubscription.Create<OverwatchBegunEvent>(OnOverwatchBegun, this));
-            Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>(OnOverwatchTriggered, this));
-            Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
-            Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
-
             Characters.ForEach(x => x.Init());
             Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
-            Event.Publish(new TurnBegun { Character = CurrentCharacter });
-            SetAvailableMoves();
+            _turns.Init();
+        }
+
+        private void OnTurnBegun(TurnBegun e)
+        {
+            AvailableMoves = TakeSteps(new Point(e.Character.CurrentTile.Column,
+                e.Character.CurrentTile.Row), e.Character.Stats.Movement);
+            Event.Publish(new MovementOptionsAvailable { AvailableMoves = AvailableMoves });
         }
 
         private void OnActionResolved(ActionResolved obj)
         {
-            BeginNextTurn();
+            Event.Publish(new TurnEnded());
         }
 
-        private void OnOverwatchTriggered(OverwatchTriggeredEvent obj)
+        private void OnOverwatchTriggered(OverwatchTriggered obj)
         {
             // TODO: Handle triggering of overwatch.
         }
 
-        public void OnOverwatchBegun(OverwatchBegunEvent obEvent)
+        public void OnOverwatchBegun(OverwatchBegun ob)
         {
             // TODO: Handle beginning of overwatch action.
         }
@@ -72,22 +81,6 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Publish(new MovementConfirmed { Character = CurrentCharacter, Path = new List<Point> { new Point(x, y) } });
             CurrentCharacter.CurrentTile = Map[x, y];
             Event.Publish(new MovementFinished());
-        }
-
-        private void BeginNextTurn()
-        {
-            _activeCharacterIndex++;
-            if (_activeCharacterIndex == Characters.Count)
-                _activeCharacterIndex = 0;
-            SetAvailableMoves();
-            Event.Publish(new TurnBegun { Character = CurrentCharacter });
-        }
-
-        private void SetAvailableMoves()
-        {
-            AvailableMoves = TakeSteps(new Point(CurrentCharacter.CurrentTile.Column,
-                CurrentCharacter.CurrentTile.Row), CurrentCharacter.Stats.Movement);
-            Event.Publish(new MovementOptionsAvailable { AvailableMoves = AvailableMoves });
         }
 
         private List<Point> TakeSteps(Point position, int remainingMoves)

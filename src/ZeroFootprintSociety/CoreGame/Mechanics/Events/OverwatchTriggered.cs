@@ -2,7 +2,7 @@
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Events
 {
-    public class OverwatchTriggeredEvent
+    public class OverwatchTriggered
     {
         public Character FoundCharacter { get; set; }
         public Character WatchingCharacter { get; set; }
