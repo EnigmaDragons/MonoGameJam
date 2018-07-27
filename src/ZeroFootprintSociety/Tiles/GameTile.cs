@@ -29,12 +29,10 @@ namespace ZeroFootPrintSociety.Tiles
 
         public void OverwatchThis(Character ownerChar)
         {
-            TriggerEvents.Subscribe(EventSubscription.Create<OverwatchEvent>((_event) => {  }, ownerChar));
         }
 
         public void OnCharacterSteps(Character character)
         {
-            TriggerEvents.Publish(new OverwatchEvent(character));
         }
 
         public void Draw(Transform2 parentTransform)

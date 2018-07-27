@@ -42,9 +42,13 @@
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\CorpSec1.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchTriggeredEvent.cs" />
+    <Compile Include="CoreGame\StateEvents\CharacterTurnBegun.cs" />
+    <Compile Include="CoreGame\StateEvents\MovementConfirmed.cs" />
+    <Compile Include="CoreGame\StateEvents\MovementOptionsAvailable.cs" />
     <Compile Include="CoreGame\TacticsGame.cs" />
     <Compile Include="CoreGame\TurnBasedCombat.cs" />
     <Compile Include="Characters\CharacterData.cs" />
+    <Compile Include="CoreGame\UiElements\AvailableMovesView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\SampleCorporationScene.cs" />
