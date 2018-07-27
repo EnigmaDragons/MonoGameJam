@@ -60,7 +60,7 @@ namespace MonoDragons.Core.Engine
 
         protected override void Initialize()
         {
-            Error.HandleAsync(() =>
+            Error.Handle(() =>
             {
                 Perf.Time($"{nameof(NeedlesslyComplexMainGame)}.Initialize", () =>
                 {
@@ -78,7 +78,7 @@ namespace MonoDragons.Core.Engine
                     _scene.Init();
                     base.Initialize();
                 });
-            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x));
         }
 
         private void InitDisplayIfNeeded()
@@ -89,35 +89,35 @@ namespace MonoDragons.Core.Engine
 
         protected override void LoadContent()
         {
-            Error.HandleAsync(() =>
+            Error.Handle(() =>
             {
                 Scene.NavigateTo(_startingViewName);
-            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x));
         }
 
         protected override void UnloadContent()
         {
-            Error.HandleAsync(() =>
+            Error.Handle(() =>
             {
                 Content.Unload();
-            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x));
         }
 
         protected override void Update(GameTime gameTime)
         {
-            Error.HandleAsync(() =>
+            Error.Handle(() =>
             {
 #if DEBUG
                 _metrics.Update(gameTime.ElapsedGameTime);
 #endif
                 _controller.Update(gameTime.ElapsedGameTime);
                 _scene.Update(gameTime.ElapsedGameTime);
-            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x));
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            Error.HandleAsync(() =>
+            Error.Handle(() =>
             {
                 _sprites.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
                 GraphicsDevice.Clear(Color.Black);
@@ -127,7 +127,7 @@ namespace MonoDragons.Core.Engine
                 _metrics.Draw(Transform2.Zero);
 #endif
                 _sprites.End();
-            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x));
         }
     }
 }

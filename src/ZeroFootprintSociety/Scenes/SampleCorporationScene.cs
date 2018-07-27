@@ -1,39 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
-using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
-using MonoTiled.Tiled.Orthographic;
-using MonoTiled.Tiled.TmxLoading;
-using ZeroFootPrintSociety.Tiles;
+using ZeroFootPrintSociety.CoreGame;
 
 namespace ZeroFootPrintSociety.Scenes
 {
     public class SampleCorporationScene : IScene
     {
-        private TileMap _tileMap;
-        private Character _character;
+        private TacticsGame _game;
 
         public void Init()
         {
-            _tileMap = new TileMapFactory().CreateMap(new Tmx(CurrentGame.GraphicsDevice, "Maps/SampleCorporate.tmx"));
-            _character = new Character("CorporateSecurity") { Position = new Vector2(100, 100)};
-            _character.Init();
+            _game = new TacticsGame("Maps/SampleCorporate.tmx");
+            _game.Init();
         }
 
         public void Update(TimeSpan delta)
         {
-            _character.Update(delta);
+            _game.Update(delta);
         }
 
         public void Draw()
         {
-            _tileMap.Draw(World.SpriteBatch);
-            _character.Draw(Transform2.Zero);
+            _game.Draw();
         }
 
-        public void Dispose()
-        {
-        }
+        public void Dispose() {}
     }
 }

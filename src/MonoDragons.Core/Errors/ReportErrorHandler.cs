@@ -16,11 +16,11 @@ namespace MonoDragons.Core.Errors
             _appDetails = appDetails;
         }
 
-        public async Task ResolveError(Exception ex)
+        public void ResolveError(Exception ex)
         {
             if (!_reportedFatalError)
                 using (var client = new HttpClient())
-                    await client.PostAsync(
+                    client.PostAsync(
                         "https://hk86vytqs1.execute-api.us-west-2.amazonaws.com/GameMetrics/ReportCrashDetail",
                         new StringContent(JsonConvert.SerializeObject(new CrashDetail
                         {
@@ -32,7 +32,7 @@ namespace MonoDragons.Core.Errors
                                 ErrorMessage = ex.Message
                             }),
                             StackTrace = ex.StackTrace
-                        }), Encoding.UTF8, "application/json"));
+                        }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
             _reportedFatalError = true;
             throw ex;
         }
