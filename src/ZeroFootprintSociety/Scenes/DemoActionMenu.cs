@@ -19,7 +19,10 @@ namespace ZeroFootPrintSociety.Scenes
         {
             _clickUI = new ClickUI();
             _actionUI = new ActionUI(_clickUI);
-            _button = new TextButton(new Rectangle(50, 50, 150, 50), () => Event.Publish(new CharacterMoved()), "Move Character", Color.AliceBlue, Color.AntiqueWhite, Color.Aqua);
+            _button = new TextButton(new Rectangle(50, 50, 150, 50), () => Event.Publish(new CharacterMoved()), "Move Character",
+                Color.FromNonPremultiplied(0, 0, 100, 50),
+                Color.FromNonPremultiplied(0, 0, 100, 150),
+                Color.FromNonPremultiplied(0, 0, 100, 250));
             _clickUI.Add(_button);
         }
 
