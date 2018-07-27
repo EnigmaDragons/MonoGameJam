@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
-using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters;
-using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 
 namespace ZeroFootPrintSociety.Tiles
 {
@@ -16,7 +14,7 @@ namespace ZeroFootPrintSociety.Tiles
         public int Row { get; }
         public Transform2 Transform { get; }
         public List<GameTileDetail> Details { get; }
-        public bool IsWalkable { get; set; } = true;
+        public bool IsWalkable => Details.All(x => !x.IsBlocking);
 
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {

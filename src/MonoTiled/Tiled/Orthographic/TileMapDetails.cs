@@ -21,7 +21,7 @@ namespace MonoTiled.Tiled.Orthographic
 
         private void AddTileset(Tsx tsx)
         {
-            for (int i = 0; i < tsx.TileCount; i++)
+            for (int i = 0; i < tsx.Tiles.Count; i++)
                 _tiles[tsx.FirstId + i] = new TileDetail(tsx.TileSource, GetTileRectangle(i, tsx));
         }
 
