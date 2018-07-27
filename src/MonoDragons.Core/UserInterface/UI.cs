@@ -31,11 +31,11 @@ namespace MonoDragons.Core.UserInterface
             };
         }
 
-        private static SpriteBatch _spriteBatch;
+        public static SpriteBatch SpriteBatch { get; set; }
 
         public static void Init(SpriteBatch spriteBatch)
         {
-            _spriteBatch = spriteBatch;
+            SpriteBatch = spriteBatch;
         }
 
         public static int OfScreenWidth(float part)
@@ -102,7 +102,7 @@ namespace MonoDragons.Core.UserInterface
 
         public static void DrawCenteredWithOffset(string imageName, Vector2 widthHeight, Vector2 offSet)
         {
-            _spriteBatch.Draw(Resources.Load<Texture2D>(imageName), null,
+            SpriteBatch.Draw(Resources.Load<Texture2D>(imageName), null,
                 new Rectangle(ScalePoint(CurrentDisplay.GameWidth / 2 / CurrentDisplay.Scale - widthHeight.X / 2 + offSet.X,
                     CurrentDisplay.GameHeight / 2 / CurrentDisplay.Scale - widthHeight.Y / 2 + offSet.Y),
                     ScalePoint(widthHeight.X, widthHeight.Y)),
@@ -112,10 +112,10 @@ namespace MonoDragons.Core.UserInterface
         public static void DrawText(string text, Vector2 position, Color color)
         {
             if (DefaultFont.ScaledFontSet.Contains(CurrentDisplay.Scale))
-                _spriteBatch.DrawString(DefaultFont.ScaledFontSet[CurrentDisplay.Scale], text, ScalePoint(position.X, position.Y).ToVector2(), color,
+                SpriteBatch.DrawString(DefaultFont.ScaledFontSet[CurrentDisplay.Scale], text, ScalePoint(position.X, position.Y).ToVector2(), color,
                     0, Vector2.Zero, 1, SpriteEffects.None, 1);
             else
-                _spriteBatch.DrawString(DefaultFont.ScaledFontSet.DefaultFont, text, ScalePoint(position.X, position.Y).ToVector2(), color,
+                SpriteBatch.DrawString(DefaultFont.ScaledFontSet.DefaultFont, text, ScalePoint(position.X, position.Y).ToVector2(), color,
                     0, Vector2.Zero, CurrentDisplay.Scale, SpriteEffects.None, 1);
         }
 
@@ -128,7 +128,7 @@ namespace MonoDragons.Core.UserInterface
 
         private static void DrawUnscaledString(string text, Vector2 position, Color color, string font)
         {
-            _spriteBatch.DrawString(Resources.Load<SpriteFont>(font), text, position, color, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+            SpriteBatch.DrawString(Resources.Load<SpriteFont>(font), text, position, color, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
         }
 
         private static void DrawStringScalingSpriteBatchIfNeeded(string text, Vector2 position, Color color, string font)
@@ -156,13 +156,13 @@ namespace MonoDragons.Core.UserInterface
 
         private static void DrawUnscaledSpriteBatchString(string text, Vector2 position, Color color, string scaledFontName)
         {
-            _spriteBatch.DrawString(Resources.Load<SpriteFont>(scaledFontName), text, ScalePoint(position.X, position.Y).ToVector2(), color,
+            SpriteBatch.DrawString(Resources.Load<SpriteFont>(scaledFontName), text, ScalePoint(position.X, position.Y).ToVector2(), color,
                     0, Vector2.Zero, 1, SpriteEffects.None, 1);
         }
 
         private static void DrawScaledSpriteBatchString(string text, Vector2 position, Color color, string font)
         {
-            _spriteBatch.DrawString(Resources.Load<SpriteFont>(font), text, ScalePoint(position.X, position.Y).ToVector2(), color,
+            SpriteBatch.DrawString(Resources.Load<SpriteFont>(font), text, ScalePoint(position.X, position.Y).ToVector2(), color,
                     0, Vector2.Zero, CurrentDisplay.Scale, SpriteEffects.None, 1);
         }
 
