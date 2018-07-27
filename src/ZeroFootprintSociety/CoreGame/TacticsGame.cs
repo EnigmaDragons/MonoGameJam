@@ -38,7 +38,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
-            Event.Subscribe(EventSubscription.Create<TurnBegun>(e => UpdateCameraPosition(), this));
+            Event.Subscribe(EventSubscription.Create<TurnBegun>(e => UpdateCameraPosition(e), this));
 
             // TODO: Make Mouse Management a separate component
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(e => _mouseAction = MouseAction.Move, this));
@@ -47,18 +47,15 @@ namespace ZeroFootPrintSociety.CoreGame
             _worldVisuals.Add(new AvailableMovesView(_combat.Map));
             _uiVisuals.Add(new ActionOptionsView(_clickUI));
             _combat.Init();
-
-            // TODO: Make Camera a separate Component
-            UpdateCameraPosition();
         }
 
-        private void UpdateCameraPosition()
+        private void UpdateCameraPosition(TurnBegun e)
         {
             _cameraOffset = new Transform2(
                 new Vector2(800, 450) -
                 new Vector2(
-                    _combat.CurrentCharacter.CurrentTile.Transform.Location.X, 
-                    _combat.CurrentCharacter.CurrentTile.Transform.Location.Y));
+                    e.Character.CurrentTile.Transform.Location.X, 
+                    e.Character.CurrentTile.Transform.Location.Y));
         }
 
         public void Update(TimeSpan delta)
