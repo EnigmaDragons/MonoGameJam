@@ -24,7 +24,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public TacticsGame(string tmx)
         {
-            _combat = new TurnBasedCombat(new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, tmx), new Size2(48, 48)), 
+            _combat = new TurnBasedCombat(new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", tmx), new Size2(48, 48)), 
                 new List<Character>
                 {
                     new CorpSec1(ShowMoveOptions),
@@ -58,7 +58,7 @@ namespace ZeroFootPrintSociety.CoreGame
             _visuals.Clear();
             _combat.AvailableMoves.ForEach(x =>
             {
-                var coloredBox = new ColoredRectangle { Transform = _combat.Map[x.X, x.Y].Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 100) };
+                var coloredBox = new ColoredRectangle { Transform = _combat.Map[x.X, x.Y].Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 20) };
                 _visuals.Add(coloredBox);
             });
         }
