@@ -2,7 +2,10 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 
 namespace ZeroFootPrintSociety.Tiles
 {
@@ -12,14 +15,26 @@ namespace ZeroFootPrintSociety.Tiles
         public int Row { get; }
         public Transform2 Transform { get; }
         public List<GameTileDetail> Details { get; }
+        public Events TriggerEvents { get; }
         public bool IsWalkable { get; set; } = true;
 
-        public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
+        public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details, Events baseEvents = null)
         {
             Column = column;
             Row = row;
             Transform = transform;
             Details = details.OrderBy(x => x.ZIndex).ToList();
+            TriggerEvents = baseEvents ?? new Events();
+        }
+
+        public void OverwatchThis(Character ownerChar)
+        {
+            TriggerEvents.Subscribe(EventSubscription.Create<OverwatchEvent>((_event) => {  }, ownerChar));
+        }
+
+        public void OnCharacterSteps(Character character)
+        {
+            TriggerEvents.Publish(new OverwatchEvent(character));
         }
 
         public void Draw(Transform2 parentTransform)

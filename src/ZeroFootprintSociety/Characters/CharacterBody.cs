@@ -20,15 +20,16 @@ namespace ZeroFootPrintSociety.Characters
         private Transform2 _size;
         private SpriteAnimation _currentAnimation;
 
-        public GameTile CurrentTile { get; set; }
-        public int Speed { get; }
-        public Action OnTurnStart { get; }
+        // TODO: Make this private and have setter and getter
+        public GameTile CurrentTile
+        {
+            get; set;
+        }
 
-        public CharacterBody(string characterPath, Vector2 offset, Action onTurnStart)
+        public CharacterBody(string characterPath, Vector2 offset)
         {
             _characterPath = characterPath;
             _offset = offset;
-            OnTurnStart = onTurnStart;
         }
 
         public void Init()

@@ -26,8 +26,8 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
-            Characters.ForEach(x => x.Body.Init());
-            Characters.ForEach(x => x.Body.CurrentTile = Map.Tiles.Random());
+            Characters.ForEach(x => x.Init());
+            Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
             SetAvailableMoves();
         }
 
@@ -35,18 +35,18 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             if (!AvailableMoves.Any(move => move.X == x && move.Y == y))
                 return;
-            CurrentCharacter.Body.CurrentTile = Map[x, y];
+            CurrentCharacter.CurrentTile = Map[x, y];
             _index++;
             if (_index == Characters.Count)
                 _index = 0;
             SetAvailableMoves();
-            CurrentCharacter.Body.OnTurnStart();
+            CurrentCharacter.OnTurnStart();
         }
 
         private void SetAvailableMoves()
         {
-            AvailableMoves = TakeSteps(new Point(CurrentCharacter.Body.CurrentTile.Column,
-                CurrentCharacter.Body.CurrentTile.Row), CurrentCharacter.Stats.Movement);
+            AvailableMoves = TakeSteps(new Point(CurrentCharacter.CurrentTile.Column,
+                CurrentCharacter.CurrentTile.Row), CurrentCharacter.Stats.Movement);
         }
 
         private List<Point> TakeSteps(Point position, int remainingMoves)
@@ -68,7 +68,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public void Draw(Transform2 parentTransform)
         {
             Map.Draw(parentTransform);
-            Characters.ForEach(x => x.Body.Draw(parentTransform));
+            Characters.ForEach(x => x.Draw(parentTransform));
         }
     }
 }
