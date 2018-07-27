@@ -13,7 +13,7 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
-    public class TurnBasedCombat : IVisual
+    public class TurnBasedCombat : IAutomaton, IVisual
     {
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
 
@@ -61,7 +61,7 @@ namespace ZeroFootPrintSociety.CoreGame
             // TODO: Handle triggering of overwatch.
         }
 
-        public void OnOverwatchBegun(OverwatchBegunEvent obEvent)
+        public void OnOverwatchBegun(OverwatchBegun ob)
         {
             // TODO: Handle beginning of overwatch action.
         }
@@ -102,6 +102,11 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             Map.Draw(parentTransform);
             Characters.ForEach(x => x.Draw(parentTransform));
+        }
+
+        public void Update(TimeSpan delta)
+        {
+            Characters.ForEach(x => x.Update(delta));
         }
     }
 }
