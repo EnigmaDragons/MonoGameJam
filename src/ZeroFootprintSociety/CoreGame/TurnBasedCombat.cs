@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame
@@ -25,21 +26,27 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
-            Characters.ForEach(x => x.Init());
-            Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
-            AvailableMoves = TakeSteps(new Point(CurrentCharacter.CurrentTile.Column, CurrentCharacter.CurrentTile.Row), CurrentCharacter.Speed);
+            Characters.ForEach(x => x.Body.Init());
+            Characters.ForEach(x => x.Body.CurrentTile = Map.Tiles.Random());
+            SetAvailableMoves();
         }
 
         public void MoveTo(int x, int y)
         {
             if (!AvailableMoves.Any(move => move.X == x && move.Y == y))
                 return;
-            CurrentCharacter.CurrentTile = Map[x, y];
+            CurrentCharacter.Body.CurrentTile = Map[x, y];
             _index++;
             if (_index == Characters.Count)
                 _index = 0;
-            AvailableMoves = TakeSteps(new Point(CurrentCharacter.CurrentTile.Column, CurrentCharacter.CurrentTile.Row), CurrentCharacter.Speed);
-            CurrentCharacter.OnTurnStart();
+            SetAvailableMoves();
+            CurrentCharacter.Body.OnTurnStart();
+        }
+
+        private void SetAvailableMoves()
+        {
+            AvailableMoves = TakeSteps(new Point(CurrentCharacter.Body.CurrentTile.Column,
+                CurrentCharacter.Body.CurrentTile.Row), CurrentCharacter.Stats.Movement);
         }
 
         private List<Point> TakeSteps(Point position, int remainingMoves)
@@ -61,7 +68,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public void Draw(Transform2 parentTransform)
         {
             Map.Draw(parentTransform);
-            Characters.ForEach(x => x.Draw(parentTransform));
+            Characters.ForEach(x => x.Body.Draw(parentTransform));
         }
     }
 }

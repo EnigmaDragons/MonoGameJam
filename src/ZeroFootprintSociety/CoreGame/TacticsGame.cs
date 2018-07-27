@@ -7,6 +7,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using MonoTiled.Tiled.TmxLoading;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame
@@ -26,16 +27,15 @@ namespace ZeroFootPrintSociety.CoreGame
             _combat = new TurnBasedCombat(new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, tmx), new Size2(48, 48)), 
                 new List<Character>
                 {
-                    new Character("CorporateSecurity", 3, ShowMoveOptions),
-                    new Character("CorporateSecurity", 4, ShowMoveOptions)
+                    new CorpSec1(ShowMoveOptions),
+                    new CorpSec1(ShowMoveOptions),
                 });
         }
 
         public void Init()
         {
             _combat.Init();
-            _offset = new Transform2(new Vector2(-_combat.CurrentCharacter.CurrentTile.Transform.Location.X, -_combat.CurrentCharacter.CurrentTile.Transform.Location.Y)) 
-                + new Transform2(new Vector2(800, 450));
+            InitOffset();
             _combat.AvailableMoves.ForEach(x =>
             {
                 var coloredBox = new ColoredRectangle { Transform = _combat.Map[x.X, x.Y].Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 100) };
@@ -43,10 +43,18 @@ namespace ZeroFootPrintSociety.CoreGame
             });
         }
 
+        private void InitOffset()
+        {
+            _offset = new Transform2(
+                new Vector2(800, 450) -
+                new Vector2(
+                    _combat.CurrentCharacter.Body.CurrentTile.Transform.Location.X, 
+                    _combat.CurrentCharacter.Body.CurrentTile.Transform.Location.Y));
+        }
+
         public void ShowMoveOptions()
         {
-            _offset = new Transform2(new Vector2(-_combat.CurrentCharacter.CurrentTile.Transform.Location.X, -_combat.CurrentCharacter.CurrentTile.Transform.Location.Y))
-                      + new Transform2(new Vector2(800, 450));
+            InitOffset();
             _visuals.Clear();
             _combat.AvailableMoves.ForEach(x =>
             {
