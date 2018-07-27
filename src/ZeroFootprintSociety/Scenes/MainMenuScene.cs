@@ -21,7 +21,7 @@ namespace ZeroFootPrintSociety.Scenes
         public void Init()
         {
             Input.ClearTransientBindings();
-            Sound.Music("Content/Music/placeholder-main-theme.mp3").Play();
+            Sound.Music("placeholder-main-theme").Play();
             _visuals.Add(new ImageBox { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
             _visuals.Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 100), Transform = new Transform2(new Size2(1920, 1080)) });
             _visuals.Add(new ImageBox { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f)-452, 180), new Size2(904, 313)) });
@@ -38,7 +38,7 @@ namespace ZeroFootPrintSociety.Scenes
                 { Keys.Escape, Control.B }, // Exit or Back
             }));
         }
-
+    
         public void Update(TimeSpan delta)
         {
             _clickUi.Update(delta);

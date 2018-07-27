@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace MonoDragons.Core.AudioSystem
 {
@@ -13,9 +14,14 @@ namespace MonoDragons.Core.AudioSystem
         public bool Mute { get; set; }
         public SoundType Type { get; }
 
-        public static Sound Music(string fileName, float volume = 1) => new Sound(fileName, true, false, volume, SoundType.Music);
-        public static Sound Ambient(string fileName, float volume = 1) => new Sound(fileName, true, false, volume, SoundType.Ambient);
-        public static Sound SoundEffect(string fileName, float volume = 1) => new Sound(fileName, false, false, volume, SoundType.Effect);
+        public static Sound Music(string musicName, float volume = 1) 
+            => new Sound(Path.Combine("Content", "Music", $"{musicName}.mp3"), true, false, volume, SoundType.Music);
+        public static Sound MusicRawPath(string fileName, float volume = 1)
+            => new Sound(fileName, true, false, volume, SoundType.Music);
+        public static Sound Ambient(string fileName, float volume = 1) 
+            => new Sound(fileName, true, false, volume, SoundType.Ambient);
+        public static Sound SoundEffect(string fileName, float volume = 1) 
+            => new Sound(fileName, false, false, volume, SoundType.Effect);
 
         public Sound(string fileName, bool looping, bool mute, float volume, SoundType type)
         {

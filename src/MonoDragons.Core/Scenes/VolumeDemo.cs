@@ -12,8 +12,8 @@ namespace MonoDragons.Core.Scenes
     {
         private readonly Sound _sound1 = Sound.SoundEffect("Content/VolumeDemo/NewObjective.mp3");
         private readonly Sound _ambience = Sound.Ambient("Content/VolumeDemo/Waves.mp3");
-        private readonly Sound _music1 = Sound.Music("Content/VolumeDemo/HackerSpaceship.mp3");
-        private readonly Sound _music2 = Sound.Music("Content/VolumeDemo/CloningRoom.mp3");
+        private readonly Sound _music1 = Sound.MusicRawPath("Content/VolumeDemo/HackerSpaceship.mp3");
+        private readonly Sound _music2 = Sound.MusicRawPath("Content/VolumeDemo/CloningRoom.mp3");
 
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private ClickUI _clickUi;
