@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
@@ -7,6 +8,7 @@ using MonoTiled.Tiled.TmxLoading;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Tiles;
+using ZeroFootPrintSociety.UIEffects;
 
 namespace ZeroFootPrintSociety.Scenes
 {

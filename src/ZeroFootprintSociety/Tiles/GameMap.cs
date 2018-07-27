@@ -7,7 +7,7 @@ using MonoDragons.Core.PhysicsEngine;
 
 namespace ZeroFootPrintSociety.Tiles
 {
-    public class GameMap : IAutomaton, IVisual
+    public class GameMap : IVisualAutomaton
     {
         private Dictionary<int, Dictionary<int, GameTile>> _tileMap = new Dictionary<int, Dictionary<int, GameTile>>();
         public GameTile this[int x, int y] => _tileMap[x][y];
