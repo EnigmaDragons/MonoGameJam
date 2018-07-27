@@ -4,7 +4,9 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.CoreGame.UiElements;
 
 namespace ZeroFootPrintSociety.CoreGame
@@ -26,12 +28,15 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
-            _combat.Init();
-            InitOffset();
             _visuals.Add(new AvailableMovesView(_combat.Map));
+            _combat.Init();
+
+            // TODO: Make Camera a separate Component
+            Event.Subscribe(EventSubscription.Create<CharacterTurnBegun>(e => UpdateCameraPosition(), this));
+            UpdateCameraPosition();
         }
 
-        private void InitOffset()
+        private void UpdateCameraPosition()
         {
             _cameraOffset = new Transform2(
                 new Vector2(800, 450) -

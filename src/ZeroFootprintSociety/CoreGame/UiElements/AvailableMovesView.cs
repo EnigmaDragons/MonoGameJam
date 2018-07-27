@@ -18,9 +18,14 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             _map = map;
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(ShowOptions, this));
-            Event.Subscribe(EventSubscription.Create<MovementConfirmed>(e => _visuals.Clear(), this));
+            Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
         }
         
+        private void OnMovementConfirmed(MovementConfirmed e)
+        {
+            _visuals.Clear();
+        }
+
         private void ShowOptions(MovementOptionsAvailable e)
         {
             e.AvailableMoves.ForEach(x =>
