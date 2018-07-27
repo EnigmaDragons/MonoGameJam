@@ -19,16 +19,14 @@ namespace MonoTiled.Tiled.TmxLoading
             return int.Parse(AsString());
         }
 
+        public bool AsBool()
+        {
+            return bool.Parse(AsString());
+        }
+
         public string AsString()
         {
-            try
-            {
-                return _element.Attribute(XName.Get(_key)).Value;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Missing Value for {_key} from element {_element.Name.LocalName}", ex);
-            }
+            return _element.Attribute(XName.Get(_key)).Value;
         }
     }
 }

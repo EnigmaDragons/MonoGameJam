@@ -55,6 +55,7 @@
     <Compile Include="Tiled\TmxLoading\TmxLayer.cs" />
     <Compile Include="Tiled\TmxLoading\TmxTile.cs" />
     <Compile Include="Tiled\TmxLoading\Tsx.cs" />
+    <Compile Include="Tiled\TmxLoading\TsxTile.cs" />
     <Compile Include="Tiled\TmxLoading\XValue.cs" />
     <Compile Include="Tiled\TmxLoading\XValueWithDefault.cs" />
   </ItemGroup>
