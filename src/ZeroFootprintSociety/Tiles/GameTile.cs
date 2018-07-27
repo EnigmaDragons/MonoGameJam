@@ -15,16 +15,14 @@ namespace ZeroFootPrintSociety.Tiles
         public int Row { get; }
         public Transform2 Transform { get; }
         public List<GameTileDetail> Details { get; }
-        public Events TriggerEvents { get; }
         public bool IsWalkable { get; set; } = true;
 
-        public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details, Events baseEvents = null)
+        public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {
             Column = column;
             Row = row;
             Transform = transform;
             Details = details.OrderBy(x => x.ZIndex).ToList();
-            TriggerEvents = baseEvents ?? new Events();
         }
 
         public void OverwatchThis(Character ownerChar)
@@ -33,6 +31,8 @@ namespace ZeroFootPrintSociety.Tiles
 
         public void OnCharacterSteps(Character character)
         {
+            // TODO: Include necessary properties for `OverwatchTriggeredEvent`.
+            Event.Publish(new OverwatchTriggeredEvent() {FoundCharacter = character});
         }
 
         public void Draw(Transform2 parentTransform)

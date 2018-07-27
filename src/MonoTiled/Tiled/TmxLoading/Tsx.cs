@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Linq;
 using Microsoft.Xna.Framework.Graphics;
-using TiledExample.Tiled;
 
 namespace MonoTiled.Tiled.TmxLoading
 {
@@ -16,10 +15,11 @@ namespace MonoTiled.Tiled.TmxLoading
         public Texture2D TileSource { get; }
 
         public Tsx(GraphicsDevice device, int firstId, string tsxDir, string tsxFile)
+            : this(device, firstId, XDocument.Load(Path.Combine("Content", tsxDir, tsxFile)).Element(XName.Get("tileset"))) {}
+
+        public Tsx(GraphicsDevice device, int firstId, XElement tileset)
         {
             FirstId = firstId;
-            var doc = XDocument.Load(Path.Combine("Content", tsxDir, tsxFile));
-            var tileset = doc.Element(XName.Get("tileset"));
             TileWidth = new XValue(tileset, "tilewidth").AsInt();
             TileHeight = new XValue(tileset, "tileheight").AsInt();
             Spacing = new XValueWithDefault(tileset, "spacing").AsInt();

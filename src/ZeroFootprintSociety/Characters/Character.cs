@@ -17,7 +17,7 @@ namespace ZeroFootPrintSociety.Characters
             set
             {
                 Body.CurrentTile = value;
-                value.OnCharacterSteps(this);
+                Body.CurrentTile.OnCharacterSteps(this);
             }
         }
 
