@@ -35,6 +35,11 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>((_event) => { }, this));
         }
 
+        public void OnOverwatchBegun(OverwatchBegunEvent obEvent)
+        {
+            // TODO: Handle beginning of overwatch action.
+        }
+
         public void MoveTo(int x, int y)
         {
             if (!AvailableMoves.Any(move => move.X == x && move.Y == y))
