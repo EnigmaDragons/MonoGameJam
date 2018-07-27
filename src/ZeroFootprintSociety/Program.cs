@@ -20,7 +20,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            LaunchGameWithScene("MainMenu");
+            LaunchGameWithScene("DemoActionUI");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -30,6 +30,7 @@ namespace ZeroFootPrintSociety
                 { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
                 { "MainMenu", () => new MainMenuScene() },
                 { "SampleLevel", () => new SampleCorporationScene() },
+                { "DemoActionUI", () => new DemoActionMenu() },
             });
         }
 
