@@ -12,12 +12,16 @@ namespace MonoDragons.Core.EventSystem
 
         public int SubscriptionCount => _eventActions.Sum(e => e.Value.Count);
 
-        public void Publish(object payload)
+        public void Publish(object payload, bool mustDisposeAsync = false)
         {
             var eventType = payload.GetType();
             if (_eventActions.ContainsKey(eventType))
                 foreach (var action in _eventActions[eventType].ToList())
-                    Task.Run(() => ((Action<object>)action)(payload));
+                {
+                    Task ranTask = Task.Run(() => ((Action<object>) action)(payload));
+                    if (mustDisposeAsync && eventType.GetInterface("IDisposable") != null)
+                        ranTask.ContinueWith((Task task) => { ((IDisposable) payload).Dispose(); });
+                }
         }
 
         public void Subscribe(EventSubscription subscription)

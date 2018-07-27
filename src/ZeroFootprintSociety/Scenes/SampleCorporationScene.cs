@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Scenes;
 using ZeroFootPrintSociety.CoreGame;
@@ -15,7 +11,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         public void Init()
         {
-            _game = new TacticsGame("Maps/SampleCorporate.tmx");
+            _game = new TacticsGame("SampleCorporate.tmx");
             _game.Init();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -15,9 +16,9 @@ namespace MonoTiled.Tiled.TmxLoading
         public List<Tsx> Tilesets { get; }
         public List<TmxLayer> Layers { get; } = new List<TmxLayer>();
 
-        public Tmx(GraphicsDevice device, string tmxPath)
+        public Tmx(GraphicsDevice device, string mapDir, string tmxFileName)
         {
-            var doc = XDocument.Load(Path.Combine("Content", tmxPath));
+            var doc = XDocument.Load(Path.Combine("Content", mapDir, tmxFileName));
             var map = doc.Element(XName.Get("map"));
             Width = new XValue(map, "width").AsInt();
             Height = new XValue(map, "height").AsInt();
@@ -26,7 +27,7 @@ namespace MonoTiled.Tiled.TmxLoading
             Tilesets = map.Elements(XName.Get("tileset"))
                 .Select(x => x.HasElements 
                     ? new Tsx(device, new XValue(x, "firstgid").AsInt(), x) 
-                    : new Tsx(device, new XValue(x, "firstgid").AsInt(), new XValue(x, "source").AsString()))
+                    : new Tsx(device, new XValue(x, "firstgid").AsInt(), mapDir, new XValue(x, "source").AsString()))
                 .ToList();
             var layers = map.Elements(XName.Get("layer")).ToList();
             for (var i = 0; i < layers.Count; i++)

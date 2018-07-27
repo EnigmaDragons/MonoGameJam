@@ -38,8 +38,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CoreGame\Mechanics\Events\OverwatchBegunEvent.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\CorpSec1.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\OverwatchTriggeredEvent.cs" />
     <Compile Include="CoreGame\TacticsGame.cs" />
     <Compile Include="CoreGame\TurnBasedCombat.cs" />
     <Compile Include="Characters\CharacterData.cs" />
@@ -110,6 +112,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Characters\CorporateSecurity-idle-right-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\CircleGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Maps\SampleCorporate.tmx">
