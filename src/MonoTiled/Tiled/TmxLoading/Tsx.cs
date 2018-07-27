@@ -16,10 +16,11 @@ namespace MonoTiled.Tiled.TmxLoading
         public Texture2D TileSource { get; }
 
         public Tsx(GraphicsDevice device, int firstId, string tsxPath)
+            : this(device, firstId, XDocument.Load($"Content/{tsxPath}").Element(XName.Get("tileset"))) {}
+
+        public Tsx(GraphicsDevice device, int firstId, XElement tileset)
         {
             FirstId = firstId;
-            var doc = XDocument.Load($"Content/{tsxPath}");
-            var tileset = doc.Element(XName.Get("tileset"));
             TileWidth = new XValue(tileset, "tilewidth").AsInt();
             TileHeight = new XValue(tileset, "tileheight").AsInt();
             Spacing = new XValueWithDefault(tileset, "spacing").AsInt();
