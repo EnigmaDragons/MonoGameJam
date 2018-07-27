@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MonoDragons.Core.Common;
-using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters.Gear;
-using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 
 namespace ZeroFootPrintSociety.Characters
 {

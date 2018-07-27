@@ -2,7 +2,7 @@
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Events
 {
-    public class OverwatchBegunEvent
+    public class OverwatchBegun
     {
         public Character WatchingCharacter { get; set; }
     }
