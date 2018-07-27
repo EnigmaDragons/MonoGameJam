@@ -1,0 +1,23 @@
+Basic Game Flow:
+
+Logo
+Main Menu
+	- New Game
+	- Load Game
+	- Combat Tutorial
+	- Options
+	- Credits
+
+Game
+	- Customize Main Character
+	- Intro Cutscene
+	- Dark Alley Level (Semi-Tutorial Level)
+	- Lethal Injection Cutscene
+	- Corporate Ground Floor Break-In Level
+	- Level-Up Interlude (New Perk)
+	- Brief Corporate Disorder Cutscene
+	- Corporate Lab Level 
+	- Ending
+
+Credits
+	
