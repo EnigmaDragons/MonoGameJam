@@ -20,12 +20,27 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
+            LaunchGameWithScene("MainMenu");
+        }
+
+        private static SceneFactory CreateSceneFactory()
+        {
+            return new SceneFactory(new Map<string, Func<IScene>>
+            {
+                { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
+                { "MainMenu", () => new MainMenuScene() },
+                { "SampleLevel", () => new SampleCorporationScene() },
+            });
+        }
+
+        private static void LaunchGameWithScene(string sceneName)
+        {
             var appDetails = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
             var fatalErrorReporter = new ReportErrorHandler(appDetails);
             Metric.AppDetails = appDetails;
             Error.HandleAsync(() =>
             {
-                using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(appDetails.Name, "SampleLevel", new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), fatalErrorReporter)))
+                using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(appDetails.Name, sceneName, new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), fatalErrorReporter)))
                     game.Run();
             }, x => fatalErrorReporter.ResolveError(x)).GetAwaiter().GetResult();
         }
@@ -38,16 +53,6 @@ namespace ZeroFootPrintSociety
                 AudioPlayer.Instance.StopAll,
                 Resources.Unload));
             return new HideViewportExternals(currentScene);
-        }
-
-        private static SceneFactory CreateSceneFactory()
-        {
-            return new SceneFactory(new Map<string, Func<IScene>>
-            {
-                { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
-                { "MainMenu", () => new MainMenuScene() },
-                { "SampleLevel", () => new SampleCorporationScene() },
-            });
         }
 
         private static IController CreateKeyboardController()

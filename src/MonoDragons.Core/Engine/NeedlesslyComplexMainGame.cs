@@ -9,6 +9,7 @@ using MonoDragons.Core.UserInterface;
 using MonoDragons.Core.Development;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.Errors;
+using System.Windows.Forms;
 
 namespace MonoDragons.Core.Engine
 {
@@ -25,7 +26,7 @@ namespace MonoDragons.Core.Engine
         private SpriteBatch _sprites;
         private Display _display;
         private Size2 _defaultScreenSize;
-
+        
         // @todo #1 fix this so we config everything before the game
         public NeedlesslyComplexMainGame(string title, string startingViewName, Size2 defaultGameSize, 
                 IScene scene, IController controller, IErrorHandler errorHandler)
@@ -56,6 +57,7 @@ namespace MonoDragons.Core.Engine
             _metrics = new Metrics();
 #endif
             Window.Title = title;
+            ((Form)Form.FromHandle(Window.Handle)).Closing += (o, e) => Environment.Exit(0);
         }
 
         protected override void Initialize()
@@ -119,10 +121,9 @@ namespace MonoDragons.Core.Engine
         {
             Error.HandleAsync(() =>
             {
-                _sprites.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
+                _sprites.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp);
                 GraphicsDevice.Clear(Color.Black);
                 _scene.Draw();
-                //World
 #if DEBUG
                 _metrics.Draw(Transform2.Zero);
 #endif

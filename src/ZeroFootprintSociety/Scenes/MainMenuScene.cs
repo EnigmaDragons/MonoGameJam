@@ -4,31 +4,30 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
-using MonoDragons.Core.UserInterface.Layouts;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.PhysicsEngine;
-using MonoDragons.Core.Render;
 using Control = MonoDragons.Core.Inputs.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.AudioSystem;
 
 namespace ZeroFootPrintSociety.Scenes
 {
-    public class MainMenuScene : IScene
+    public sealed class MainMenuScene : IScene
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
-        private ClickUI _clickUi;
-        private GridLayout _gridLayout; // TODO: Implement a grid layout.
-
-        private ColoredRectangle _backdropRect;
-
+        private ClickUI _clickUi = new ClickUI();
+        
         public void Init()
         {
-            _clickUi = new ClickUI();
-            var button = new TextButton(new Rectangle(50, 150, 150, 50), () => Scene.NavigateTo("SampleLevel"), "New Game", Color.Red, Color.LightPink, Color.DarkRed);
+            Input.ClearTransientBindings();
+            Sound.Music("Content/Music/placeholder-main-theme.mp3").Play();
+            _visuals.Add(new ImageBox { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
+            _visuals.Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 100), Transform = new Transform2(new Size2(1920, 1080)) });
+            _visuals.Add(new ImageBox { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f)-452, 180), new Size2(904, 313)) });
+            var button = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f)-150, 700, 300, 50), () => Scene.NavigateTo("SampleLevel"), "New Game", Color.Transparent, Color.LightBlue, Color.Blue);
             _clickUi.Add(button);
             _visuals.Add(button);
-            Input.ClearTransientBindings();
 
             // TODO: Make inputs react to menu choice.
             // TODO: Have cursor activity override keyboard selection (with delay between switch of input type).
@@ -38,14 +37,6 @@ namespace ZeroFootPrintSociety.Scenes
                 { Keys.Enter, Control.A }, // Confirm
                 { Keys.Escape, Control.B }, // Exit or Back
             }));
-
-            // REMOVE_ME: This is for testing stuff.
-            _gridLayout = new GridLayout(new Size2(640, 480), 1, 5);
-            _gridLayout.Add(new TextButton(new Rectangle(Point.Zero, _gridLayout.GetBlockSize(1, 1).ToPoint()), () => { }, "Text", Color.Gray, Color.LightGray, Color.DarkGray), 0, 0);
-            _gridLayout.Add(new TextButton(new Rectangle(Point.Zero, _gridLayout.GetBlockSize(1, 1).ToPoint()), () => { }, "Another Text", Color.Gray, Color.LightGray, Color.DarkGray), 0, 1);
-            
-            _backdropRect = new ColoredRectangle() {Color = Color.Blue, Transform = new Transform2(_gridLayout.Size)};
-            // END_REMOVE_ME;
         }
 
         public void Update(TimeSpan delta)
@@ -55,15 +46,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         public void Draw()
         {
-            _visuals.ForEach(x => x.Draw());
-            var pos = new Transform2(new Vector2(
-                (CurrentDisplay.GameWidth / 2) - (_gridLayout.Size.Width / 2),
-                (CurrentDisplay.GameHeight) - (_gridLayout.Size.Height)
-            ));
-            // REMOVE_ME: This is for testing stuff.   
-            _backdropRect.Draw(pos);
-            _gridLayout.Draw(pos);
-            // END_REMOVE_ME;
+            _visuals.ForEach(x => x.Draw());            
         }
 
         public void Dispose()
