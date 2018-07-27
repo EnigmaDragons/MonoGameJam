@@ -7,6 +7,8 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.CoreGame.Calculators;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.CoreGame.UiElements;
 
@@ -18,6 +20,7 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             None,
             Move,
+            Shoot,
         }
 
         private readonly ClickUI _clickUI = new ClickUI();
@@ -43,9 +46,13 @@ namespace ZeroFootPrintSociety.CoreGame
             // TODO: Make Mouse Management a separate component
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(e => _mouseAction = MouseAction.Move, this));
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(e => _mouseAction = MouseAction.None, this));
+            Event.Subscribe(EventSubscription.Create<ShootSelected>(e => _mouseAction = MouseAction.Shoot, this));
 
             _worldVisuals.Add(new AvailableMovesView(_combat.Map));
+            _worldVisuals.Add(new AvailableTargetsView());
             _uiVisuals.Add(new ActionOptionsView(_clickUI));
+            new MovementOptionsCalculator();
+            new ShootOptionsCalculator();
             _combat.Init();
         }
 
@@ -65,8 +72,7 @@ namespace ZeroFootPrintSociety.CoreGame
             if (CurrentGame.TheGame.IsActive)
             {
                 var positionOnMap = new Vector2(mouse.X - _cameraOffset.Location.X, mouse.Y - _cameraOffset.Location.Y);
-                var tilePositionOnMap = new Vector2(positionOnMap.X - (positionOnMap.X % 48), positionOnMap.Y - (positionOnMap.Y % 48));
-                var index = new Point((int)tilePositionOnMap.X / 48, (int)tilePositionOnMap.Y / 48);
+                var index = GameState.Map.MapPositionToTile(positionOnMap);
 
                 if (_combat.Map.Exists(index.X, index.Y) && mouse.LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released)
                     Target = index;
@@ -83,6 +89,8 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             if (_mouseAction.Equals(MouseAction.Move))
                 _combat.MoveTo(x, y);
+            if (_mouseAction.Equals(MouseAction.Shoot))
+                _combat.Shoot(x, y);
         }
 
         public void Draw(Transform2 parentTransform)

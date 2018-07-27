@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -24,6 +25,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private readonly ClickUIBranch _branch = new ClickUIBranch("Actions", 2);
 
         private bool _showingOptions = false;
+        private bool _shootAvailable = false;
 
         public ClickUI _ClickUI;
 
@@ -39,18 +41,22 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Color.FromNonPremultiplied(0, 0, 100, 50),
                 Color.FromNonPremultiplied(0, 0, 100, 150),
                 Color.FromNonPremultiplied(0, 0, 100, 250));
-            var shootButton = new TextButton(new Rectangle(_menuX + _buttonXOffset, _menuY + _actionTextHeight + _buttonMargin, _buttonWidth, _buttonHeight), () =>
+            var shootButton = new TextButton(new Rectangle(_menuX + _buttonXOffset, _menuY + _actionTextHeight + _buttonMargin + _buttonMargin + _buttonHeight, _buttonWidth, _buttonHeight), () =>
                 {
                     Event.Publish(new ShootSelected());
                     HideDisplay();
-                }, "Hide",
+                }, "Shoot",
                 Color.FromNonPremultiplied(0, 0, 100, 50),
                 Color.FromNonPremultiplied(0, 0, 100, 150),
-                Color.FromNonPremultiplied(0, 0, 100, 250));
+                Color.FromNonPremultiplied(0, 0, 100, 250),
+                () => _shootAvailable);
             _visuals.Add(menu);
             _visuals.Add(hideButton);
             _branch.Add(hideButton);
+            _visuals.Add(shootButton);
+            _branch.Add(shootButton);
             Event.Subscribe(EventSubscription.Create<MovementFinished>(x => PresentOptions(), this));
+            Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => _shootAvailable = x.Targets.Any(), this));
         }
 
         public void PresentOptions()

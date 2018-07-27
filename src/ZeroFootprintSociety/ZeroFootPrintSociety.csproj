@@ -38,12 +38,17 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
+    <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
+    <Compile Include="CoreGame\GameState.cs" />
     <Compile Include="CoreGame\Mechanics\Events\ShootSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />
     <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\ActionResolved.cs" />
+    <Compile Include="CoreGame\StateEvents\RangedTargetsAvailable.cs" />
+    <Compile Include="CoreGame\StateEvents\ShotConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\TurnEnded.cs" />
     <Compile Include="CoreGame\UiElements\ActionOptionsView.cs" />
     <Compile Include="CoreGame\StateEvents\MovementFinished.cs" />
