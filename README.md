@@ -58,7 +58,6 @@ Features:
 
 - Project Manager - Silas Reinagel (TheoConfidor)
 - Game Design - Silas Reinagel (TheoConfidor)
-- Art Lead - TBD
 - Character Art - (GhostShiv)
 - Environment Art - (Febucci)
 - Writing Story - TBD
@@ -66,7 +65,7 @@ Features:
 - Programming - Félix Robidoux (DiglidiDudeNG)
 - Music - Joseph Gomes (Auvenil)
 - Sound - Joseph Gomes (Auvenil)
-- UI Design - TBD
+- UI Design - (The_Dhel)
 
 ----
 
