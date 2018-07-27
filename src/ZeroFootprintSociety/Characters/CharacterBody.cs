@@ -21,10 +21,7 @@ namespace ZeroFootPrintSociety.Characters
         private SpriteAnimation _currentAnimation;
 
         // TODO: Make this private and have setter and getter
-        public GameTile CurrentTile
-        {
-            get; set;
-        }
+        public GameTile CurrentTile { get; set; }
 
         public CharacterBody(string characterPath, Vector2 offset)
         {
