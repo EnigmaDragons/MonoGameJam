@@ -31,8 +31,13 @@ namespace ZeroFootPrintSociety.CoreGame
             Characters.ForEach(x => x.Init());
             Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
             SetAvailableMoves();
-            Event.Subscribe(EventSubscription.Create<OverwatchBegunEvent>((_event) => { }, this));
-            Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>((_event) => { }, this));
+            Event.Subscribe(EventSubscription.Create<OverwatchBegunEvent>(OnOverwatchBegun, this));
+            Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>(OnOverwatchTriggered, this));
+        }
+
+        private void OnOverwatchTriggered(OverwatchTriggeredEvent obj)
+        {
+            // TODO: Handle triggering of overwatch.
         }
 
         public void OnOverwatchBegun(OverwatchBegunEvent obEvent)

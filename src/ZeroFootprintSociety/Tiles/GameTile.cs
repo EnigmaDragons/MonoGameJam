@@ -27,6 +27,7 @@ namespace ZeroFootPrintSociety.Tiles
 
         public void OnCharacterSteps(Character character)
         {
+            // TODO: Include necessary properties for `OverwatchTriggeredEvent`.
             Event.Publish(new OverwatchTriggeredEvent() {FoundCharacter = character});
         }
 
