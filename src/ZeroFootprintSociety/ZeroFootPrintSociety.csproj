@@ -38,14 +38,19 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CoreGame\ActionUI.cs" />
-    <Compile Include="CoreGame\Mechanics\Events\CharacterMoved.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />
+    <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
+    <Compile Include="CoreGame\StateEvents\ActionOptionsAvailable.cs" />
+    <Compile Include="CoreGame\StateEvents\ActionResolved.cs" />
+    <Compile Include="CoreGame\UiElements\ActionOptionsView.cs" />
+    <Compile Include="CoreGame\StateEvents\MovementFinished.cs" />
     <Compile Include="CoreGame\Mechanics\Events\HideChosen.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchBegunEvent.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\CorpSec1.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchTriggeredEvent.cs" />
-    <Compile Include="CoreGame\StateEvents\CharacterTurnBegun.cs" />
+    <Compile Include="CoreGame\StateEvents\TurnBegun.cs" />
     <Compile Include="CoreGame\StateEvents\MovementConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\MovementOptionsAvailable.cs" />
     <Compile Include="CoreGame\TacticsGame.cs" />

@@ -2,7 +2,7 @@
 
 namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
-    class CharacterTurnBegun
+    class TurnBegun
     {
         public Character Character { get; set; }
     }

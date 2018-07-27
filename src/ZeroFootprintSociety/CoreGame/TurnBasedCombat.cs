@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
@@ -7,6 +8,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Resolution;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 
@@ -15,6 +17,7 @@ namespace ZeroFootPrintSociety.CoreGame
     public class TurnBasedCombat : IVisual
     {
         private int _activeCharacterIndex;
+        private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
 
         public GameMap Map { get; }
         public List<Character> Characters { get; }
@@ -31,11 +34,18 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             Event.Subscribe(EventSubscription.Create<OverwatchBegunEvent>(OnOverwatchBegun, this));
             Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>(OnOverwatchTriggered, this));
+            Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
+            Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
 
             Characters.ForEach(x => x.Init());
             Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
-            Event.Publish(new CharacterTurnBegun { Character = CurrentCharacter });
+            Event.Publish(new TurnBegun { Character = CurrentCharacter });
             SetAvailableMoves();
+        }
+
+        private void OnActionResolved(ActionResolved obj)
+        {
+            BeginNextTurn();
         }
 
         private void OnOverwatchTriggered(OverwatchTriggeredEvent obj)
@@ -48,6 +58,11 @@ namespace ZeroFootPrintSociety.CoreGame
             // TODO: Handle beginning of overwatch action.
         }
 
+        private void OnMovementFinished(MovementFinished e)
+        {
+            Event.Publish(new ActionOptionsAvailable());
+        }
+
         public void MoveTo(int x, int y)
         {
             if (!AvailableMoves.Any(move => move.X == x && move.Y == y))
@@ -56,7 +71,7 @@ namespace ZeroFootPrintSociety.CoreGame
             // TODO: Path should be a sequence instead of a teleport to a single tile
             Event.Publish(new MovementConfirmed { Character = CurrentCharacter, Path = new List<Point> { new Point(x, y) } });
             CurrentCharacter.CurrentTile = Map[x, y];
-            BeginNextTurn();
+            Event.Publish(new MovementFinished());
         }
 
         private void BeginNextTurn()
@@ -65,7 +80,7 @@ namespace ZeroFootPrintSociety.CoreGame
             if (_activeCharacterIndex == Characters.Count)
                 _activeCharacterIndex = 0;
             SetAvailableMoves();
-            Event.Publish(new CharacterTurnBegun { Character = CurrentCharacter });
+            Event.Publish(new TurnBegun { Character = CurrentCharacter });
         }
 
         private void SetAvailableMoves()

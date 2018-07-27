@@ -5,10 +5,11 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
 
-namespace ZeroFootPrintSociety.CoreGame
+namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
-    public class ActionUI : IVisual
+    public class ActionOptionsView : IVisual
     {
         private const int _menuX = 1400;
         private const int _menuY = 650;
@@ -26,7 +27,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public ClickUI _ClickUI;
 
-        public ActionUI(ClickUI clickUI)
+        public ActionOptionsView(ClickUI clickUI)
         {
             _ClickUI = clickUI;
             var menu = new ColoredRectangle { Color = Color.Green, Transform = new Transform2(new Rectangle(_menuX, _menuY, _menuWidth, _menuHeight)) };
@@ -41,7 +42,7 @@ namespace ZeroFootPrintSociety.CoreGame
             _visuals.Add(menu);
             _visuals.Add(button);
             _branch.Add(button);
-            Event.Subscribe(EventSubscription.Create<CharacterMoved>(x => PresentOptions(), this));
+            Event.Subscribe(EventSubscription.Create<MovementFinished>(x => PresentOptions(), this));
         }
 
         public void PresentOptions()
