@@ -38,12 +38,17 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CoreGame\TacticsGame.cs" />
+    <Compile Include="CoreGame\TurnBasedCombat.cs" />
     <Compile Include="Characters\CharacterData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\SampleCorporationScene.cs" />
     <Compile Include="Tiles\Character.cs" />
+    <Compile Include="Tiles\GameMap.cs" />
     <Compile Include="Tiles\GameTile.cs" />
+    <Compile Include="Tiles\GameTileDetail.cs" />
+    <Compile Include="Tiles\GameMapFactory.cs" />
     <Compile Include="Tiles\SpriteAnimation.cs" />
     <Compile Include="Tiles\SpriteAnimationFrame.cs" />
   </ItemGroup>

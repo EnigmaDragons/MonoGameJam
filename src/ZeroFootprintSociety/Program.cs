@@ -38,11 +38,11 @@ namespace ZeroFootPrintSociety
             var appDetails = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
             var fatalErrorReporter = new ReportErrorHandler(appDetails);
             Metric.AppDetails = appDetails;
-            Error.HandleAsync(() =>
+            Error.Handle(() =>
             {
                 using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(appDetails.Name, sceneName, new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), fatalErrorReporter)))
                     game.Run();
-            }, x => fatalErrorReporter.ResolveError(x)).GetAwaiter().GetResult();
+            }, x => fatalErrorReporter.ResolveError(x));
         }
 
         private static IScene SetupScene()
