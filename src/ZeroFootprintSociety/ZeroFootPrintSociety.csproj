@@ -77,6 +77,8 @@
     <Compile Include="Tiles\GameMapFactory.cs" />
     <Compile Include="Tiles\SpriteAnimation.cs" />
     <Compile Include="Tiles\SpriteAnimationFrame.cs" />
+    <Compile Include="Tiles\TileData.cs" />
+    <Compile Include="UIEffects\BlueLightSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
