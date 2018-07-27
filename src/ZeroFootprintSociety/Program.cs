@@ -20,7 +20,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            var appDetails = new MetaAppDetails("MonoDragons.Core", "1.0", Environment.OSVersion.VersionString);
+            var appDetails = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
             var fatalErrorReporter = new ReportErrorHandler(appDetails);
             Metric.AppDetails = appDetails;
             Error.HandleAsync(() =>
@@ -46,6 +46,7 @@ namespace ZeroFootPrintSociety
             {
                 { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
                 { "MainMenu", () => new MainMenuScene() },
+                { "SampleLevel", () => new SampleCorporationScene() },
             });
         }
 

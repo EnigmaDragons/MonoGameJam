@@ -25,7 +25,7 @@ namespace ZeroFootPrintSociety.Scenes
         public void Init()
         {
             _clickUi = new ClickUI();
-            var button = new TextButton(new Rectangle(50, 150, 150, 50), () => {}, "New Game", Color.Red, Color.LightPink, Color.DarkRed);
+            var button = new TextButton(new Rectangle(50, 150, 150, 50), () => Scene.NavigateTo("SampleLevel"), "New Game", Color.Red, Color.LightPink, Color.DarkRed);
             _clickUi.Add(button);
             _visuals.Add(button);
             Input.ClearTransientBindings();

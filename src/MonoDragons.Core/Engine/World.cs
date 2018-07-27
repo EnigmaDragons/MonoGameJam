@@ -13,7 +13,7 @@ namespace MonoDragons.Core.Engine
     {
         private static readonly ColoredRectangle _darken;
         
-        private static SpriteBatch _spriteBatch;
+        public static SpriteBatch SpriteBatch;
 
         static World()
         {
@@ -26,7 +26,7 @@ namespace MonoDragons.Core.Engine
 
         public static void Init(SpriteBatch spriteBatch)
         {
-            _spriteBatch = spriteBatch;
+            SpriteBatch = spriteBatch;
             DefaultFont.Load(CurrentGame.ContentManager);
         }
 
@@ -37,13 +37,13 @@ namespace MonoDragons.Core.Engine
 
         public static void Draw(Texture2D texture, Rectangle rectangle, Color color)
         {
-            _spriteBatch.Draw(texture, ScaleRectangle(rectangle), color);
+            SpriteBatch.Draw(texture, ScaleRectangle(rectangle), color);
         }
 
         public static void Draw(string imageName, Vector2 pixelPosition)
         {
             var resource = Resources.Load<Texture2D>(imageName);
-            _spriteBatch.Draw(resource, new Rectangle(ScalePoint(pixelPosition), ScalePoint(resource.Width, resource.Height)), Color.White);
+            SpriteBatch.Draw(resource, new Rectangle(ScalePoint(pixelPosition), ScalePoint(resource.Width, resource.Height)), Color.White);
         }
 
         public static void Draw(string imageName, Transform2 transform)
@@ -53,17 +53,17 @@ namespace MonoDragons.Core.Engine
 
         public static void Draw(string imageName, Transform2 transform, Color tint)
         {
-            _spriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(transform.ToRectangle()), tint);
+            SpriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(transform.ToRectangle()), tint);
         }
 
         public static void Draw(string imageName, Rectangle rectPostion)
         {
-            _spriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(rectPostion), Color.White);
+            SpriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(rectPostion), Color.White);
         }
 
         public static void Draw(string imageName, Vector2 size, Anchor anchor)
         {
-            _spriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(new Rectangle(
+            SpriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(new Rectangle(
                     new Point(
                         anchor.AnchorFromLeft ? anchor.HorizontalOffset : (int)Math.Round(CurrentDisplay.GameWidth / CurrentDisplay.Scale - anchor.HorizontalOffset),
                         anchor.AnchorFromTop ? anchor.VerticalOffset : (int)Math.Round(CurrentDisplay.GameHeight / CurrentDisplay.Scale - anchor.VerticalOffset)),
@@ -75,20 +75,20 @@ namespace MonoDragons.Core.Engine
         {
             var resource = Resources.Load<Texture2D>(name);
             var x = transform.Rotation.Value;
-            _spriteBatch.Draw(resource, null, ScaleRectangle(transform.ToRectangle()), null, new Vector2(resource.Width / 2, resource.Height / 2),
+            SpriteBatch.Draw(resource, null, ScaleRectangle(transform.ToRectangle()), null, new Vector2(resource.Width / 2, resource.Height / 2),
                 transform.Rotation.Value * .017453292519f, new Vector2(1, 1));
         }
 
         public static void Draw(Texture2D texture, Vector2 pixelPosition)
         {
-            _spriteBatch.Draw(texture, new Rectangle(ScalePoint(pixelPosition), ScalePoint(texture.Width, texture.Height)), Color.White);
+            SpriteBatch.Draw(texture, new Rectangle(ScalePoint(pixelPosition), ScalePoint(texture.Width, texture.Height)), Color.White);
         }
 
         public static void Draw(Texture2D texture, Rectangle rectPosition)
         {
             if (texture.Height > 1 && texture.Width > 1) // Clever hack to prevent from disposing of RectangleTextures
                 Resources.Put(texture.GetHashCode().ToString(), texture);
-            _spriteBatch.Draw(texture, ScaleRectangle(rectPosition), Color.White);
+            SpriteBatch.Draw(texture, ScaleRectangle(rectPosition), Color.White);
         }
 
         public static void Draw(Texture2D texture, Transform2 transform)
@@ -100,7 +100,7 @@ namespace MonoDragons.Core.Engine
         {
             Resources.Put(texture.GetHashCode().ToString(), texture);
             var scaledRect = ScaleRectangle(rectPosition);
-            _spriteBatch.Draw(texture, null, scaledRect, null, new Vector2(scaledRect.Width / 2, scaledRect.Height / 2),
+            SpriteBatch.Draw(texture, null, scaledRect, null, new Vector2(scaledRect.Width / 2, scaledRect.Height / 2),
                 rotation.Value * .017453292519f, new Vector2(1, 1));
         }
         

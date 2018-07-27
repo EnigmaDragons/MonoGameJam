@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DC8A0AF0-EF64-4656-9400-B0F07ADFC774}</ProjectGuid>
+    <ProjectGuid>{B1054372-56EC-4A68-A421-3A9D2C9F2803}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZeroFootPrintSociety</RootNamespace>
-    <AssemblyName>ZeroFootPrintSociety</AssemblyName>
+    <RootNamespace>MonoTiled</RootNamespace>
+    <AssemblyName>MonoTiled</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -37,59 +37,54 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Scenes\MainMenuScene.cs" />
-    <Compile Include="Scenes\SampleCorporationScene.cs" />
-    <Compile Include="Scenes\TileMapScene.cs" />
-    <Compile Include="Tiles\GameTile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tiled\IntegersInText.cs" />
+    <Compile Include="Tiled\Orthographic\Tile.cs" />
+    <Compile Include="Tiled\Orthographic\TileDetail.cs" />
+    <Compile Include="Tiled\Orthographic\TileLayer.cs" />
+    <Compile Include="Tiled\Orthographic\TileMap.cs" />
+    <Compile Include="Tiled\Orthographic\TileMapFactory.cs" />
+    <Compile Include="Tiled\Orthographic\TileMapDetails.cs" />
+    <Compile Include="Tiled\Texture2DFromPath.cs" />
+    <Compile Include="Tiled\TmxLoading\Tmx.cs" />
+    <Compile Include="Tiled\TmxLoading\TmxLayer.cs" />
+    <Compile Include="Tiled\TmxLoading\TmxTile.cs" />
+    <Compile Include="Tiled\TmxLoading\Tsx.cs" />
+    <Compile Include="Tiled\TmxLoading\XValue.cs" />
+    <Compile Include="Tiled\TmxLoading\XValueWithDefault.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </MonoGameContentReference>
+    <Content Include="Content\tmw_desert_spacing.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonoDragons.Core\MonoDragons.Core.csproj">
-      <Project>{a33f8fe3-a35a-4ddf-b96c-0157224f602c}</Project>
-      <Name>MonoDragons.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MonoTiled\MonoTiled.csproj">
-      <Project>{b1054372-56ec-4a68-a421-3a9d2c9f2803}</Project>
-      <Name>MonoTiled</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Maps\SampleCorporate.tmx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.manifest" />
+    <Content Include="Content\Test.tmx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Maps\Corporate.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Content\Sample.tsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\Maps\Corporation.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

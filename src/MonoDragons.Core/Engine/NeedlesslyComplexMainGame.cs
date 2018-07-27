@@ -78,7 +78,7 @@ namespace MonoDragons.Core.Engine
                     _scene.Init();
                     base.Initialize();
                 });
-            }, x => _errorHandler.ResolveError(this, x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
         }
 
         private void InitDisplayIfNeeded()
@@ -92,7 +92,7 @@ namespace MonoDragons.Core.Engine
             Error.HandleAsync(() =>
             {
                 Scene.NavigateTo(_startingViewName);
-            }, x => _errorHandler.ResolveError(this, x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
         }
 
         protected override void UnloadContent()
@@ -100,7 +100,7 @@ namespace MonoDragons.Core.Engine
             Error.HandleAsync(() =>
             {
                 Content.Unload();
-            }, x => _errorHandler.ResolveError(this, x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
         }
 
         protected override void Update(GameTime gameTime)
@@ -112,7 +112,7 @@ namespace MonoDragons.Core.Engine
 #endif
                 _controller.Update(gameTime.ElapsedGameTime);
                 _scene.Update(gameTime.ElapsedGameTime);
-            }, x => _errorHandler.ResolveError(this, x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
         }
 
         protected override void Draw(GameTime gameTime)
@@ -127,7 +127,7 @@ namespace MonoDragons.Core.Engine
                 _metrics.Draw(Transform2.Zero);
 #endif
                 _sprites.End();
-            }, x => _errorHandler.ResolveError(this, x)).GetAwaiter().GetResult();
+            }, x => _errorHandler.ResolveError(x)).GetAwaiter().GetResult();
         }
     }
 }

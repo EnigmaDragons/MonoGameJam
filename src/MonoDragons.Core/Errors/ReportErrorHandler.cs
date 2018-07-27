@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 
 namespace MonoDragons.Core.Errors
@@ -10,48 +9,31 @@ namespace MonoDragons.Core.Errors
     public class ReportErrorHandler : IErrorHandler
     {
         private readonly MetaAppDetails _appDetails;
+        private bool _reportedFatalError = false;
 
         public ReportErrorHandler(MetaAppDetails appDetails)
         {
             _appDetails = appDetails;
         }
 
-        public async Task ResolveError(Game game, Exception ex)
-        {
-            using (var client = new HttpClient())
-                await client.PostAsync("https://hk86vytqs1.execute-api.us-west-2.amazonaws.com/GameMetrics/ReportCrashDetail", 
-                    new StringContent(JsonConvert.SerializeObject(new CrashDetail
-                    {
-                        ApplicationName = _appDetails.Name,
-                        ApplicationVersion = _appDetails.Version,
-                        ContextJson = JsonConvert.SerializeObject(new Context
-                        {
-                            OS = _appDetails.OS,
-                            ErrorMessage = ex.Message
-                        }),
-                        StackTrace = ex.StackTrace
-                    }), Encoding.UTF8, "application/json"));
-            game.Exit();
-        }
-
         public async Task ResolveError(Exception ex)
         {
-            using (var client = new HttpClient())
-            {
-                await client.PostAsync(
-                    "https://hk86vytqs1.execute-api.us-west-2.amazonaws.com/GameMetrics/ReportCrashDetail",
-                    new StringContent(JsonConvert.SerializeObject(new CrashDetail
-                    {
-                        ApplicationName = _appDetails.Name,
-                        ApplicationVersion = _appDetails.Version,
-                        ContextJson = JsonConvert.SerializeObject(new Context
+            if (!_reportedFatalError)
+                using (var client = new HttpClient())
+                    await client.PostAsync(
+                        "https://hk86vytqs1.execute-api.us-west-2.amazonaws.com/GameMetrics/ReportCrashDetail",
+                        new StringContent(JsonConvert.SerializeObject(new CrashDetail
                         {
-                            OS = _appDetails.OS,
-                            ErrorMessage = ex.Message
-                        }),
-                        StackTrace = ex.StackTrace
-                    }), Encoding.UTF8, "application/json"));
-            }
+                            ApplicationName = _appDetails.Name,
+                            ApplicationVersion = _appDetails.Version,
+                            ContextJson = JsonConvert.SerializeObject(new Context
+                            {
+                                OS = _appDetails.OS,
+                                ErrorMessage = ex.Message
+                            }),
+                            StackTrace = ex.StackTrace
+                        }), Encoding.UTF8, "application/json"));
+            _reportedFatalError = true;
             throw ex;
         }
 

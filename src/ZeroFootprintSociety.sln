@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoDragons.Core", "MonoDra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroFootPrintSociety", "ZeroFootprintSociety\ZeroFootPrintSociety.csproj", "{DC8A0AF0-EF64-4656-9400-B0F07ADFC774}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTiled", "MonoTiled\MonoTiled.csproj", "{B1054372-56EC-4A68-A421-3A9D2C9F2803}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,6 +23,10 @@ Global
 		{DC8A0AF0-EF64-4656-9400-B0F07ADFC774}.Debug|x86.Build.0 = Debug|x86
 		{DC8A0AF0-EF64-4656-9400-B0F07ADFC774}.Release|x86.ActiveCfg = Release|x86
 		{DC8A0AF0-EF64-4656-9400-B0F07ADFC774}.Release|x86.Build.0 = Release|x86
+		{B1054372-56EC-4A68-A421-3A9D2C9F2803}.Debug|x86.ActiveCfg = Debug|x86
+		{B1054372-56EC-4A68-A421-3A9D2C9F2803}.Debug|x86.Build.0 = Debug|x86
+		{B1054372-56EC-4A68-A421-3A9D2C9F2803}.Release|x86.ActiveCfg = Release|x86
+		{B1054372-56EC-4A68-A421-3A9D2C9F2803}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
