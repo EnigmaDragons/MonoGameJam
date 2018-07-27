@@ -53,7 +53,7 @@ namespace ZeroFootPrintSociety.CoreGame
             // TODO: Handle triggering of overwatch.
         }
 
-        public void OnOverwatchBegun(OverwatchBegunEvent obEvent)
+        public void OnOverwatchBegun(OverwatchBegun ob)
         {
             // TODO: Handle beginning of overwatch action.
         }

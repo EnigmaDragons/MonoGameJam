@@ -10,6 +10,7 @@ namespace ZeroFootPrintSociety.Characters
     {
         protected CharacterBody Body { get; }
         public CharacterData Stats { get; }
+        public CharacterGear Gear { get; }
 
         public GameTile CurrentTile
         {
@@ -21,10 +22,11 @@ namespace ZeroFootPrintSociety.Characters
             }
         }
 
-        public Character(CharacterBody body, CharacterData data)
+        public Character(CharacterBody body, CharacterData data, CharacterGear gear)
         {
             Body = body;
             Stats = data;
+            Gear = gear;
         }
 
         public void Init()

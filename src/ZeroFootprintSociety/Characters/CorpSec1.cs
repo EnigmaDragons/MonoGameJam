@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using ZeroFootPrintSociety.Characters.Gear;
 
 namespace ZeroFootPrintSociety.Characters
 {
@@ -9,6 +11,7 @@ namespace ZeroFootPrintSociety.Characters
             new CharacterData
             {
                 Name = "Corporate Security"
-            }) {}
+            },
+            new CharacterGear()) {}
     }
 }
