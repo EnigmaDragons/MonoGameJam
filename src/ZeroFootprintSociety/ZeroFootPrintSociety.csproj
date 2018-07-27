@@ -38,6 +38,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CoreGame\ActionUI.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\CharacterMoved.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\HideChosen.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchBegunEvent.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\CorpSec1.cs" />
@@ -46,6 +49,7 @@
     <Compile Include="CoreGame\TurnBasedCombat.cs" />
     <Compile Include="Characters\CharacterData.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Scenes\DemoActionMenu.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\SampleCorporationScene.cs" />
     <Compile Include="Characters\CharacterBody.cs" />
