@@ -41,7 +41,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public void Init()
         {
             Characters.ForEach(x => x.Init());
-            Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
+            Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random(t => t.IsWalkable));
             _turns.Init();
         }
 

@@ -48,6 +48,14 @@ namespace MonoDragons.Core.Common
             return list[Int(list.Count)];
         }
 
+        public static T Random<T>(this List<T> list, Func<T, bool> condition)
+        {
+            var elem = Random<T>(list);
+            while (!condition(elem))
+                elem = Random<T>(list);
+            return elem;
+        }
+
         public static T Between<T>(T primary, T other, double primaryWeight)
         {
             return Dbl() <= primaryWeight ? primary : other;
