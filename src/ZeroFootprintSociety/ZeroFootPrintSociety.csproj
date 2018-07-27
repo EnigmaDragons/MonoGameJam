@@ -38,10 +38,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CoreGame\Mechanics\Events\CombatEvent.cs" />
-    <Compile Include="CoreGame\Mechanics\Events\OverwatchEvent.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\OverwatchBegunEvent.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\CorpSec1.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\OverwatchTriggeredEvent.cs" />
     <Compile Include="CoreGame\TacticsGame.cs" />
     <Compile Include="CoreGame\TurnBasedCombat.cs" />
     <Compile Include="Characters\CharacterData.cs" />

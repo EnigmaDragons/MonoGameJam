@@ -3,8 +3,10 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame
@@ -29,6 +31,8 @@ namespace ZeroFootPrintSociety.CoreGame
             Characters.ForEach(x => x.Init());
             Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
             SetAvailableMoves();
+            Event.Subscribe(EventSubscription.Create<OverwatchBegunEvent>((_event) => { }, this));
+            Event.Subscribe(EventSubscription.Create<OverwatchTriggeredEvent>((_event) => { }, this));
         }
 
         public void MoveTo(int x, int y)
