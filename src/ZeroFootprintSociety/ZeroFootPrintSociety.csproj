@@ -38,6 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Characters\CharacterState.cs" />
+    <Compile Include="Characters\HealthBar.cs" />
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="CoreGame\StateEvents\MovementOptionsAvailable.cs" />
     <Compile Include="CoreGame\TacticsGame.cs" />
     <Compile Include="CoreGame\TurnBasedCombat.cs" />
-    <Compile Include="Characters\CharacterData.cs" />
+    <Compile Include="Characters\CharacterStats.cs" />
     <Compile Include="CoreGame\UiElements\AvailableMovesView.cs" />
     <Compile Include="CoreGame\UiElements\AvailableTargetsView.cs" />
     <Compile Include="Gear\RangedWeapon.cs" />

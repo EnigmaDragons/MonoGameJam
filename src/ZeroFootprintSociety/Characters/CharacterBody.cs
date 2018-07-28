@@ -20,6 +20,9 @@ namespace ZeroFootPrintSociety.Characters
         private Transform2 _size;
         private SpriteAnimation _currentAnimation;
 
+        public Transform2 Size => _size;
+        public Vector2 Offset => _offset;
+
         // TODO: Make this private and have setter and getter
         public GameTile CurrentTile { get; set; }
 
@@ -50,6 +53,10 @@ namespace ZeroFootPrintSociety.Characters
             _currentAnimation = _idleDown;
         }
 
+        public Vector2 OffsetWhatever => new Vector2(
+            CurrentTile.Transform.Location.X + ((float)(CurrentTile.Transform.Size.Width - _size.Size.Width) / 2),
+            CurrentTile.Transform.Location.Y + CurrentTile.Transform.Size.Height - _size.Size.Height);
+
         public void Update(TimeSpan delta)
         {
             _currentAnimation.Update(delta);
@@ -57,10 +64,7 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Draw(Transform2 parentTransform)
         {
-            _currentAnimation.Draw(parentTransform + _size + _offset + 
-                new Vector2(
-                    CurrentTile.Transform.Location.X + ((float)(CurrentTile.Transform.Size.Width - _size.Size.Width) / 2),
-                    CurrentTile.Transform.Location.Y + CurrentTile.Transform.Size.Height - _size.Size.Height));
+            _currentAnimation.Draw(parentTransform + _size + _offset + OffsetWhatever);
         }
     }
 }
