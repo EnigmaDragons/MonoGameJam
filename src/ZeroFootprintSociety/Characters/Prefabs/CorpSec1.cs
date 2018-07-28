@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters.Gear;
+using ZeroFootPrintSociety.Characters.Teams;
 
 namespace ZeroFootPrintSociety.Characters.Prefabs
 {
@@ -12,6 +13,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
                 Name = "Corporate Security"
             },
             new CharacterGear(new RsxCarbine(), new RsxCarbine()),
+            Team.Enemy,
             "Characters/placeholder-soldier-face.png") {}
     }
 }
