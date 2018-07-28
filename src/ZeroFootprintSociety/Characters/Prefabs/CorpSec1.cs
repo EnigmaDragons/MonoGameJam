@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters.Gear;
 
-namespace ZeroFootPrintSociety.Characters
+namespace ZeroFootPrintSociety.Characters.Prefabs
 {
     public sealed class CorpSec1 : Character
     {
