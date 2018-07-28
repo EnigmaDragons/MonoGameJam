@@ -3,7 +3,7 @@
 namespace ZeroFootPrintSociety.Characters.Teams
 {
     /// <summary>
-    /// Groups of teams as an enumerator.
+    /// Groups of teams in an Enum.
     /// It's similar to the UNIX style of assigning file permissions.
     /// </summary>
     /// <see cref="https://en.wikipedia.org/wiki/Chmod#Numerical_permissions"/>
