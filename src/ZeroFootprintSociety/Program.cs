@@ -20,7 +20,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            LaunchGameWithScene("DarkAlley");
+            LaunchGameWithScene("SampleLevel");
         }
 
         private static SceneFactory CreateSceneFactory()

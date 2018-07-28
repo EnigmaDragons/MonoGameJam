@@ -9,8 +9,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     public class AttackPreview : IVisual
     {
-        private readonly CombatantSummary _attackerSummary = new CombatantSummary();
-        private readonly CombatantSummary _defenderSummary = new CombatantSummary();
+        private readonly CombatantSummary _attackerSummary = new CombatantSummary(false);
+        private readonly CombatantSummary _defenderSummary = new CombatantSummary(true);
         private readonly TextButton _confirm;
         private readonly TextButton _cancel;
         private readonly ClickUIBranch _branch = new ClickUIBranch("Attack Preview", 2);

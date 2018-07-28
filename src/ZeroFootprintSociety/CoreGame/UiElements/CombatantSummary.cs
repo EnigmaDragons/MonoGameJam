@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
@@ -18,14 +19,14 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private readonly Label _bullets;
         private readonly Label _bulletDamage;
 
-        public CombatantSummary()
+        public CombatantSummary(bool shouldFlip)
         {
             _background = new ColoredRectangle { Color = Color.DarkBlue, Transform = new Transform2(new Size2(350, 675)) };
             _name = new Label { Transform = new Transform2(        new Rectangle(25, 25, 300, 50)), TextColor = Color.White };
-            _face = new ImageBox { Transform = new Transform2(     new Rectangle(125, 75, 100, 100)) };
+            _face = new ImageBox { Transform = new Transform2(     new Rectangle(125, 75, 100, 100)), Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None };
             _damageBarOffset =                                       new Vector2(50, 200); //250, 50
             _weaponName = new Label { Transform = new Transform2(  new Rectangle(25, 275, 300, 50)), TextColor = Color.White };
-            _weapon = new ImageBox { Transform = new Transform2(   new Rectangle(100, 350 + 4, 150, 42)) };
+            _weapon = new ImageBox { Transform = new Transform2(   new Rectangle(100, 350 + 4, 150, 42)), Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None };
             _hitChance = new Label { Transform = new Transform2(   new Rectangle(25, 425, 300, 50)), TextColor = Color.White };
             _bullets = new Label { Transform = new Transform2(     new Rectangle(25, 475, 300, 50)), TextColor = Color.White };
             _bulletDamage = new Label { Transform = new Transform2(new Rectangle(25, 525, 300, 50)), TextColor = Color.White };
