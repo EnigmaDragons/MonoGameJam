@@ -8,7 +8,7 @@ namespace ZeroFootPrintSociety.Characters
     {
         public CorpSec1() : base(
             new CharacterBody("CorporateSecurity", new Vector2(-15, -42)),
-            new CharacterData
+            new CharacterStats
             {
                 Name = "Corporate Security"
             },

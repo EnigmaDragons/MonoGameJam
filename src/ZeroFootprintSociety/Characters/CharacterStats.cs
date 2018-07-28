@@ -2,7 +2,7 @@
 
 namespace ZeroFootPrintSociety.Characters
 {
-    public sealed class CharacterData
+    public sealed class CharacterStats
     {
         private static int _unnamedCharacterNumber = 1;
 
