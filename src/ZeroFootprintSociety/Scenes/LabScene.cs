@@ -20,7 +20,7 @@ namespace ZeroFootPrintSociety.Scenes
             GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "LabLevel.tmx"), new Size2(48, 48));
             GameWorld.Characters = new List<Character>
             {
-                new CorpSec1().Initialized(GameWorld.Map[8, 10]),
+                new MainChar().Initialized(GameWorld.Map[8, 10]),
             };
             var startingCameraTile = new Point(8, 10);
             _game = new TacticsGame(
