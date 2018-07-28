@@ -8,7 +8,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     public class AttackedHealthBar : IVisual
     {
-        private readonly ColoredRectangle Background = new ColoredRectangle { Color = Color.FromNonPremultiplied(66, 66, 66, 255), Transform = new Transform2(new Size2(250, 30)) };
+        private readonly ColoredRectangle Background = new ColoredRectangle { Color = Color.FromNonPremultiplied(66, 66, 66, 255), Transform = new Transform2(new Size2(250, 25)) };
         private readonly ColoredRectangle HealthRemaining = new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 200, 83, 255) };
         private readonly ColoredRectangle PredictedDamage = new ColoredRectangle { Color = Color.FromNonPremultiplied(213, 0, 0, 255) };
 
@@ -16,9 +16,9 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             if (damage > health)
                 damage = health;
-            HealthRemaining.Transform = new Transform2(new Size2((int)Math.Floor(250 * ((double)health / maxHealth)), 30));
+            HealthRemaining.Transform = new Transform2(new Size2((int)Math.Floor(250 * ((double)health / maxHealth)), 25));
             var damageWidth = (int) Math.Ceiling(250 * ((double) damage / maxHealth));
-            PredictedDamage.Transform = new Transform2(new Vector2(HealthRemaining.Transform.Size.Width - damageWidth, 0), new Size2(damageWidth, 30));
+            PredictedDamage.Transform = new Transform2(new Vector2(HealthRemaining.Transform.Size.Width - damageWidth, 0), new Size2(damageWidth, 25));
         }
 
         public void Draw(Transform2 parentTransform)
