@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ZeroFootPrintSociety.Characters;
-using ZeroFootPrintSociety.Characters.Gear;
+﻿using ZeroFootPrintSociety.Characters;
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Events
 {
