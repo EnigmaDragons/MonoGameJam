@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
