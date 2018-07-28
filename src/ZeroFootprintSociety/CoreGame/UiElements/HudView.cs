@@ -22,6 +22,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             _clickUI.Add(menuButton);
             Add(menuButton);
             Add(new InGameMenu(_clickUI));
+            Add(new EquippedWeaponView(new Point(60, UI.OfScreenHeight(0.86f))));
         }
     }
 }
