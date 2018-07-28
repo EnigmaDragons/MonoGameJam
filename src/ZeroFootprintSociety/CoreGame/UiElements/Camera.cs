@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Inputs;
@@ -14,10 +15,10 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
     class Camera : IVisualAutomaton
     {
         private static Point ScreenCenter = new Point(CurrentDisplay.GameWidth / 2, CurrentDisplay.GameHeight / 2);
-        private readonly int XLeft = UI.OfScreenWidth(0.06f);
-        private readonly int XRight = UI.OfScreenWidth(0.94f);
-        private readonly int YTop = UI.OfScreenHeight(0.06f);
-        private readonly int YBottom = UI.OfScreenHeight(0.94f);
+        private readonly int XLeft = UI.OfScreenWidth(0.02f);
+        private readonly int XRight = UI.OfScreenWidth(0.98f);
+        private readonly int YTop = UI.OfScreenHeight(0.02f);
+        private readonly int YBottom = UI.OfScreenHeight(0.98f);
         private readonly int MouseCameraSpeed = 13;
 
         private float _transitionCompletion;
@@ -69,16 +70,18 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public void Draw(Transform2 parentTransform)
         {
 #if DEBUG
+            var color = DevText.Color;
+            var font = DevText.Font;
             if (false)
             {
-                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(ScreenCenter.ToVector2(), new Size2(2, 2)) }.Draw();
-                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(new Vector2(XLeft, 0), new Size2(1, 2000)) }.Draw();
-                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(new Vector2(XRight, 0), new Size2(1, 2000)) }.Draw();
-                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(new Vector2(0, YTop), new Size2(2000, 1)) }.Draw();
-                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(new Vector2(0, YBottom), new Size2(2000, 1)) }.Draw();
+                new ColoredRectangle { Color = color, Transform = new Transform2(ScreenCenter.ToVector2(), new Size2(2, 2)) }.Draw();
+                new ColoredRectangle { Color = color, Transform = new Transform2(new Vector2(XLeft, 0), new Size2(1, 2000)) }.Draw();
+                new ColoredRectangle { Color = color, Transform = new Transform2(new Vector2(XRight, 0), new Size2(1, 2000)) }.Draw();
+                new ColoredRectangle { Color = color, Transform = new Transform2(new Vector2(0, YTop), new Size2(2000, 1)) }.Draw();
+                new ColoredRectangle { Color = color, Transform = new Transform2(new Vector2(0, YBottom), new Size2(2000, 1)) }.Draw();
             }
-            UI.DrawText($"Mouse: X {Mouse.GetState().X} Y {Mouse.GetState().Y}", new Vector2(0, UI.OfScreenHeight(0.92f)), Color.Yellow);
-            UI.DrawText($"Cam: X {Position.X} Y {Position.Y}", new Vector2(0, UI.OfScreenHeight(0.96f)), Color.Yellow);
+            UI.DrawText($"Mouse: X {Mouse.GetState().X} Y {Mouse.GetState().Y}", new Vector2(0, 88), color, font);
+            UI.DrawText($"Cam: X {Position.X} Y {Position.Y}", new Vector2(0, 112), color, font);
 #endif
         }
     }

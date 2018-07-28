@@ -16,16 +16,20 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
         private void ResolveShot(ShotConfirmed e)
         {
-            var attackerHitChance = e.Attacker.Stats.AccuracyPercent + e.Attacker.Gear.EquippedWeapon.AccuracyPercent - e.Defender.Stats.Agility;
-            var defenderHitChance = e.Defender.Stats.AccuracyPercent + e.Defender.Gear.EquippedWeapon.AccuracyPercent - e.Attacker.Stats.Agility;
             var distance = e.Attacker.CurrentTile.Position.TileDistance(e.Defender.CurrentTile.Position);
-            for (var i = 0; i < e.Attacker.Gear.EquippedWeapon.NumShotsPerAttack; i++)
+            var attackerWeapon = e.Attacker.Gear.EquippedWeapon.AsRanged();
+            var attackerHitChance = e.Attacker.Stats.AccuracyPercent + attackerWeapon.AccuracyPercent - e.Defender.Stats.Agility;
+            for (var i = 0; i < attackerWeapon.NumShotsPerAttack; i++)
                 if (_random.Next(0, 100) < attackerHitChance)
-                    e.Defender.State.RemainingHealth -= (int)(e.Attacker.Gear.EquippedWeapon.DamagePerHit * e.Attacker.Gear.EquippedWeapon.EffectiveRanges[distance]);
-            if (e.Defender.State.RemainingHealth > 0 && e.Defender.Gear.EquippedWeapon.EffectiveRanges.ContainsKey(distance))
-                for (var i = 0; i < e.Defender.Gear.EquippedWeapon.NumShotsPerAttack; i++)
-                    if (_random.Next(0, 100) < defenderHitChance)
-                        e.Attacker.State.RemainingHealth -= (int)(e.Defender.Gear.EquippedWeapon.DamagePerHit * e.Defender.Gear.EquippedWeapon.EffectiveRanges[distance]);
+                    e.Defender.State.RemainingHealth -= (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]);
+            if (e.Defender.Gear.EquippedWeapon.IsRanged && e.Defender.State.RemainingHealth > 0 && e.Defender.Gear.EquippedWeapon.AsRanged().EffectiveRanges.ContainsKey(distance))
+            {
+                var defenderWeapon = e.Defender.Gear.EquippedWeapon.AsRanged();
+                var defenderHitChance = e.Defender.Stats.AccuracyPercent + defenderWeapon.AccuracyPercent - e.Attacker.Stats.Agility;
+                    for (var i = 0; i < defenderWeapon.NumShotsPerAttack; i++)
+                        if (_random.Next(0, 100) < defenderHitChance)
+                            e.Attacker.State.RemainingHealth -= (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]);
+            }
             Event.Publish(new ActionResolved());
         }
     }

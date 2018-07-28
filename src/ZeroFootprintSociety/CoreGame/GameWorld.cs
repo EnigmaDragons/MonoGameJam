@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MonoDragons.Core.Engine;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.Tiles;
@@ -12,5 +13,13 @@ namespace ZeroFootPrintSociety.CoreGame
         public static CharacterTurns Turns { get; set; }
         public static Character CurrentCharacter => Turns.CurrentCharacter;
         public static List<IVisual> Highlights { get; } = new List<IVisual>();
+
+        internal static void Clear()
+        {
+            Map = null;
+            Turns = null;
+            Characters.Clear();
+            Highlights.Clear();
+        }
     }
 }

@@ -39,7 +39,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Characters\CharacterState.cs" />
-    <Compile Include="Characters\Gear\Carbine.cs" />
+    <Compile Include="Characters\Gear\RsxCarbine.cs" />
+    <Compile Include="Characters\Gear\Weapon.cs" />
     <Compile Include="Characters\HealthBar.cs" />
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
@@ -75,6 +76,8 @@
     <Compile Include="CoreGame\UiElements\AvailableMovesView.cs" />
     <Compile Include="CoreGame\UiElements\AvailableTargetsView.cs" />
     <Compile Include="CoreGame\UiElements\Camera.cs" />
+    <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
+    <Compile Include="CoreGame\UiElements\EquippedWeaponView.cs" />
     <Compile Include="CoreGame\UiElements\HudView.cs" />
     <Compile Include="CoreGame\UiElements\InGameMenu.cs" />
     <Compile Include="CoreGame\UiElements\UiEvents\MenuDismissed.cs" />
@@ -154,6 +157,9 @@
     <Content Include="Content\Characters\CorporateSecurity-idle-right-2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\placeholder-soldier-face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Effects\CircleGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -167,6 +173,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\title-placeholder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\weapon-panel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\rsxcarbine.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

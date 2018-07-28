@@ -1,11 +1,10 @@
 ﻿using MonoDragons.Core.Common;
 
-namespace ZeroFootPrintSociety.Gear
+namespace ZeroFootPrintSociety.Characters.Gear
 {
-    public abstract class RangedWeapon
+    public abstract class RangedWeapon : Weapon
     {
-        public abstract string Name { get; }
-        public abstract string Image { get; }
+        public override bool IsRanged => true;
 
         public abstract int Accuracy { get; } // Account * 5 = Hit Chance
         public int AccuracyPercent => Accuracy * 5;

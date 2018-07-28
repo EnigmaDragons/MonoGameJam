@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ZeroFootPrintSociety.Gear;
+using ZeroFootPrintSociety.Characters.Gear;
 
 namespace ZeroFootPrintSociety.Characters
 {
     public class CharacterGear
     {
-        private readonly List<RangedWeapon> _weapons = new List<RangedWeapon>(2);
+        private readonly List<Weapon> _weapons = new List<Weapon>(2);
 
-        public IEnumerable<RangedWeapon> Weapons => _weapons.AsEnumerable();
-        public RangedWeapon EquippedWeapon => Weapons.First();
+        public IEnumerable<Weapon> Weapons => _weapons.AsEnumerable();
+        public Weapon EquippedWeapon => Weapons.First();
 
-        public CharacterGear(RangedWeapon equippedWeapon, RangedWeapon standByWeapon = null)
+        public CharacterGear(Weapon equippedWeapon, Weapon standByWeapon = null)
         {
             _weapons.Add(equippedWeapon);
             _weapons.Add(standByWeapon);

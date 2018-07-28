@@ -12,16 +12,18 @@ namespace ZeroFootPrintSociety.Characters
         public CharacterStats Stats { get; }
         public CharacterGear Gear { get; }
         public CharacterState State { get; }
+        public string FaceImage { get; }
 
-        private readonly HealthBar _healthBar = new HealthBar(20);
+        private readonly HealthBar _healthBar = new HealthBar(42);
 
         public GameTile CurrentTile => Body.CurrentTile;
 
-        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear)
+        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, string faceImage)
         {
             Stats = stats;
             Body = body;
             Gear = gear;
+            FaceImage = faceImage;
             State = new CharacterState(stats);
         }
 
@@ -35,7 +37,7 @@ namespace ZeroFootPrintSociety.Characters
         public void Draw(Transform2 parentTransform)
         {
             Body.Draw(parentTransform);
-            _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(2, -Body.Transform.Size.Height));
+            _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
         }
 
         public void Update(TimeSpan delta)

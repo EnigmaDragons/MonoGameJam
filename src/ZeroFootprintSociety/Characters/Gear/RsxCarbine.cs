@@ -1,12 +1,11 @@
 ﻿using MonoDragons.Core.Common;
-using ZeroFootPrintSociety.Gear;
 
 namespace ZeroFootPrintSociety.Characters.Gear
 {
     class RsxCarbine : RangedWeapon
     {
         public override string Name { get; } = "RSX-167 Carbine";
-        public override string Image { get; } = "";
+        public override string Image { get; } = "Weapons/RsxCarbine";
 
         public override int Accuracy { get; } = 14;
         public override int NumShotsPerAttack { get; } = 1;

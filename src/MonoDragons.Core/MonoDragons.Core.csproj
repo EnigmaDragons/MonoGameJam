@@ -55,6 +55,7 @@
     <Compile Include="AudioSystem\SoundType.cs" />
     <Compile Include="Common\MathExtensions.cs" />
     <Compile Include="Common\Metric.cs" />
+    <Compile Include="Development\DevTextColor.cs" />
     <Compile Include="Engine\IInitializable.cs" />
     <Compile Include="Errors\Error.cs" />
     <Compile Include="Common\Map.cs" />
