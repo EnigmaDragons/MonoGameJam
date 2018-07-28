@@ -14,6 +14,7 @@ namespace ZeroFootPrintSociety.Characters
         public CharacterGear Gear { get; }
         public CharacterState State { get; }
         public string FaceImage { get; }
+        public CharacterTeam Team { get; }
 
         private readonly HealthBar _healthBar = new HealthBar(42);
         private readonly DamageNumbersView _damageNumbers;

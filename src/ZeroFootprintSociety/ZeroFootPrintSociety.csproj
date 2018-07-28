@@ -39,8 +39,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Characters\CharacterState.cs" />
+    <Compile Include="Characters\CharacterTeam.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
+    <Compile Include="Characters\Teams\TeamGroup.cs" />
+    <Compile Include="Characters\Teams\Team.cs" />
     <Compile Include="Characters\Ui\HealthBar.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotFired.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotHit.cs" />
@@ -60,6 +63,7 @@
     <Compile Include="CoreGame\StateEvents\ShotProposed.cs" />
     <Compile Include="CoreGame\StateEvents\TargetInspected.cs" />
     <Compile Include="CoreGame\StateEvents\TurnEnded.cs" />
+    <Compile Include="CoreGame\Mechanics\TeamLogic.cs" />
     <Compile Include="CoreGame\UiElements\ActionOptionsView.cs" />
     <Compile Include="CoreGame\StateEvents\MovementFinished.cs" />
     <Compile Include="CoreGame\Mechanics\Events\HideChosen.cs" />

@@ -9,7 +9,7 @@ namespace ZeroFootPrintSociety.Characters
         private readonly List<Weapon> _weapons = new List<Weapon>(2);
 
         public IEnumerable<Weapon> Weapons => _weapons.AsEnumerable();
-        public Weapon EquippedWeapon => Weapons.First();
+        public Weapon EquippedWeapon => _weapons.First();
 
         public CharacterGear(Weapon equippedWeapon, Weapon standByWeapon = null)
         {
