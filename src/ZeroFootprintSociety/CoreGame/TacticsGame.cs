@@ -5,15 +5,16 @@ using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
-using MonoDragons.Core.UserInterface;
+using MonoDragons.Core.Scenes;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.CoreGame.UiElements;
+using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
-    public class TacticsGame : IAutomaton, IVisual
+    public class TacticsGame : SceneContainer
     {
         private enum MouseAction
         {
@@ -22,8 +23,6 @@ namespace ZeroFootPrintSociety.CoreGame
             Shoot,
         }
 
-        private readonly ClickUI _clickUI = new ClickUI();
-        private readonly List<IVisual> _uiVisuals = new List<IVisual>();
         private readonly TurnBasedCombat _combat;
         private readonly List<object> _objects = new List<object>();
 
@@ -33,6 +32,7 @@ namespace ZeroFootPrintSociety.CoreGame
         private MouseAction _mouseAction = MouseAction.None;
         private Point Target;
         private GameDrawMaster _drawMaster = new GameDrawMaster();
+        private bool _shouldIgnoreClicks;
 
         public TacticsGame(TurnBasedCombat combatEngine)
         {
@@ -41,19 +41,24 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
+            base.GetOffset = () => _cameraOffset;
             Event.Subscribe(EventSubscription.Create<TurnBegun>(e => UpdateCameraPosition(e), this));
 
             // TODO: Make Mouse Management a separate component
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(e => _mouseAction = MouseAction.Move, this));
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(e => _mouseAction = MouseAction.None, this));
             Event.Subscribe(EventSubscription.Create<ShootSelected>(e => _mouseAction = MouseAction.Shoot, this));
+            Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _shouldIgnoreClicks = true, this));
+            Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
-            _uiVisuals.Add(new ActionOptionsView(_clickUI));
-            _objects.Add(new AvailableMovesView(_combat.Map));
+            _objects.Add(new AvailableMovesView(GameWorld.Map));
             _objects.Add(new AvailableTargetsView());
             _objects.Add(new MovementOptionsCalculator());
             _objects.Add(new ShootOptionsCalculator());
             _combat.Init();
+            Add(_drawMaster);
+            Add(_combat);
+            Add(new HudView());
         }
 
         private void UpdateCameraPosition(TurnBegun e)
@@ -65,10 +70,8 @@ namespace ZeroFootPrintSociety.CoreGame
                     GameWorld.CurrentCharacter.CurrentTile.Transform.Location.Y));
         }
 
-        public void Update(TimeSpan delta)
+        public new void Update(TimeSpan delta)
         {
-            _clickUI.Update(delta);
-            _combat.Update(delta);
             var mouse = Mouse.GetState();
             if (CurrentGame.TheGame.IsActive)
             {
@@ -84,21 +87,17 @@ namespace ZeroFootPrintSociety.CoreGame
 
                 _lastMouseState = mouse;
             }
-            _combat.Update(delta);
+            base.Update(delta);
         }
 
         private void InvokeClickAction(int x, int y)
         {
+            if (_shouldIgnoreClicks)
+                return;
             if (_mouseAction.Equals(MouseAction.Move))
                 _combat.MoveTo(x, y);
             if (_mouseAction.Equals(MouseAction.Shoot))
                 _combat.Shoot(x, y);
-        }
-
-        public void Draw(Transform2 parentTransform)
-        {
-            _drawMaster.Draw(parentTransform + _cameraOffset);
-            _uiVisuals.ForEach(x => x.Draw());
         }
     }
 }

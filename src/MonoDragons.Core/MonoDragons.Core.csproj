@@ -66,6 +66,7 @@
     <Compile Include="Errors\ReportErrorHandler.cs" />
     <Compile Include="Errors\IErrorHandler.cs" />
     <Compile Include="Engine\TimerTask.cs" />
+    <Compile Include="Scenes\SceneContainer.cs" />
     <Compile Include="Scenes\VolumeDemo.cs" />
     <Compile Include="Text\ScaledSpriteFontSet.cs" />
     <Compile Include="UserInterface\ActiveElementChanged.cs" />
