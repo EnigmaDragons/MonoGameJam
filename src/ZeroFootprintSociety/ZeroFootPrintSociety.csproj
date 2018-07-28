@@ -67,7 +67,7 @@
     <Compile Include="Characters\CharacterGear.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\RangedAction.cs" />
     <Compile Include="Characters\Character.cs" />
-    <Compile Include="Characters\CorpSec1.cs" />
+    <Compile Include="Characters\Prefabs\CorpSec1.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchTriggered.cs" />
     <Compile Include="CoreGame\StateEvents\TurnBegun.cs" />
     <Compile Include="CoreGame\Mechanics\Events\WeaponSwitched.cs" />
