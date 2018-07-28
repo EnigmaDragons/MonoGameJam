@@ -70,6 +70,18 @@ namespace MonoDragons.Core.Engine
                     size.ToPoint())),
                 Color.White);
         }
+
+        public static void DrawWithSpriteEffects(string imageName, Transform2 transform, Color tint, SpriteEffects effects)
+        {
+            SpriteBatch.Draw(texture: Resources.Load<Texture2D>(imageName), 
+                destinationRectangle: ScaleRectangle(transform.ToRectangle()), 
+                sourceRectangle: null, 
+                color: tint, 
+                rotation: 0.0f, 
+                origin: null, 
+                effects: effects, 
+                layerDepth: 0.0f);
+        }
         
         public static void DrawRotatedFromCenter(string name, Transform2 transform)
         {
