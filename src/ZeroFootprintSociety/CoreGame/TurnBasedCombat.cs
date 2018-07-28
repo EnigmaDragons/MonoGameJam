@@ -14,7 +14,7 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
-    public class TurnBasedCombat : IAutomaton, IVisual
+    public class TurnBasedCombat : IVisualAutomaton
     {
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
 
