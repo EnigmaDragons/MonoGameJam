@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
@@ -9,14 +11,22 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
     public class RangedAction
     {
         private static readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
+        private Queue<Action> _eventQueue = new Queue<Action>();
 
         public RangedAction()
         {
-            Event.Subscribe(EventSubscription.Create<TargetInspected>(PreviewShot, this));
+            Event.Subscribe(EventSubscription.Create<RangedTargetInspected>(PreviewShot, this));
             Event.Subscribe(EventSubscription.Create<ShotConfirmed>(ResolveShot, this));
+            Event.Subscribe(EventSubscription.Create<ShotAnimationsFinished>(AdvanceQueue, this));
         }
 
-        private void PreviewShot(TargetInspected e)
+        private void AdvanceQueue(ShotAnimationsFinished e)
+        {
+            if (_eventQueue.Count > 0)
+                _eventQueue.Dequeue().Invoke();
+        }
+
+        private void PreviewShot(RangedTargetInspected e)
         {
             var distance = e.Attacker.CurrentTile.Position.TileDistance(e.Defender.CurrentTile.Position);
             var attackerWeapon = e.Attacker.Gear.EquippedWeapon.AsRanged();
@@ -53,22 +63,27 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                     Event.Publish(new ShotMissed { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
                 }
             }
-            if (e.Proposed.Defender.State.RemainingHealth > 0)
+
+            _eventQueue.Enqueue(() =>
             {
-                for (var i = 0; i < e.Proposed.DefenderBullets; i++)
+                if (e.Proposed.Defender.State.RemainingHealth > 0)
                 {
-                    if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
+                    for (var i = 0; i < e.Proposed.DefenderBullets; i++)
                     {
-                        e.Proposed.Attacker.State.RemainingHealth -= e.Proposed.DefenderBulletDamage;
-                        Event.Publish(new ShotHit { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, DamageAmount = e.Proposed.AttackerBulletDamage });
-                    }
-                    else
-                    {
-                        Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
+                        if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
+                        {
+                            e.Proposed.Attacker.State.RemainingHealth -= e.Proposed.DefenderBulletDamage;
+                            Event.Publish(new ShotHit { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, DamageAmount = e.Proposed.AttackerBulletDamage });
+                        }
+                        else
+                        {
+                            Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
+                        }
                     }
                 }
-            }
-            Event.Publish(new ActionResolved());
+            });
+
+            _eventQueue.Enqueue(() => Event.Publish(new ActionResolved()));
         }
     }
 }

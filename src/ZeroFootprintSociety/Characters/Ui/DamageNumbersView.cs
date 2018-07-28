@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 
 namespace ZeroFootPrintSociety.Characters.Ui
 {
@@ -56,7 +57,7 @@ namespace ZeroFootPrintSociety.Characters.Ui
             if (_isDisplayingDamage && _numbers.Count == 0)
             {
                 _isDisplayingDamage = false;
-                Event.Publish(new ActionResolved());
+                Event.Publish(new ShotAnimationsFinished());
             }
 
             var numbers = _numbers.ToList();

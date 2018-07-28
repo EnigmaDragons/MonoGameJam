@@ -2,7 +2,7 @@
 
 namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
-    public class TargetInspected
+    public class RangedTargetInspected
     {
         public Character Attacker { get; set; }
         public Character Defender { get; set; }

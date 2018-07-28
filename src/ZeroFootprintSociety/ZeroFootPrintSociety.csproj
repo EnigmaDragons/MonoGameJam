@@ -90,6 +90,7 @@
     <Compile Include="CoreGame\UiElements\UiEvents\MenuDismissed.cs" />
     <Compile Include="CoreGame\UiElements\UiEvents\MenuRequested.cs" />
     <Compile Include="Characters\Gear\RangedWeapon.cs" />
+    <Compile Include="CoreGame\UiElements\UiEvents\ShotAnimationsFinished.cs" />
     <Compile Include="PhsyicsMath\VectorMath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Scenes\DemoActionMenu.cs" />
