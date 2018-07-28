@@ -12,8 +12,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     public class ActionOptionsView : IVisual
     {
-        private const int _menuX = 1400;
-        private const int _menuY = 650;
+        private const int _menuX = 1200;
+        private const int _menuY = 600;
         private const int _menuWidth = 150;
         private const int _menuHeight = 200;
         private const int _actionTextHeight = 50;
