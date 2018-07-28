@@ -14,16 +14,16 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private readonly Label _label;
 
         public EquippedWeaponView(Point position) 
-            : base(new Rectangle(100, 200, 150, 42), true, 1)
+            : base(new Rectangle(position.X, position.Y, 220, 84), true, 1)
         {
-            _weaponArt = new ImageBox { Transform = new Transform2(new Rectangle(position.X + 20, position.Y + 8, 150, 42)) };
+            _weaponArt = new ImageBox { Transform = new Transform2(new Rectangle(position.X + 40, position.Y + 8, 150, 42)) };
             _label = new Label
             {
                 Font = "Fonts/12",
-                Transform = new Transform2(new Rectangle(position.X, position.Y + 40, 180, 60)),
+                Transform = new Transform2(new Rectangle(position.X, position.Y + 40, 220, 60)),
                 TextColor = Color.FromNonPremultiplied(255, 255, 255, 180)
             };
-            _visuals.Add(new ImageBox { Image = "UI/weapon-panel.png", Alpha = 180, Transform = new Transform2(new Rectangle(position.X, position.Y, 180, 84)) });
+            _visuals.Add(new ImageBox { Image = "UI/weapon-panel.png", Alpha = 180, Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 84)) });
             _visuals.Add(_weaponArt);
             _visuals.Add(_label);
         }

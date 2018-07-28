@@ -12,16 +12,18 @@ namespace ZeroFootPrintSociety.Characters
         public CharacterStats Stats { get; }
         public CharacterGear Gear { get; }
         public CharacterState State { get; }
+        public string FaceImage { get; }
 
         private readonly HealthBar _healthBar = new HealthBar(42);
 
         public GameTile CurrentTile => Body.CurrentTile;
 
-        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear)
+        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, string faceImage)
         {
             Stats = stats;
             Body = body;
             Gear = gear;
+            FaceImage = faceImage;
             State = new CharacterState(stats);
         }
 

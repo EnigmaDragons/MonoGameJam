@@ -11,6 +11,7 @@ namespace ZeroFootPrintSociety.Characters
             {
                 Name = "Corporate Security"
             },
-            new CharacterGear(new RsxCarbine(), new RsxCarbine())) {}
+            new CharacterGear(new RsxCarbine(), new RsxCarbine()),
+            "Characters/placeholder-soldier-face.png") {}
     }
 }
