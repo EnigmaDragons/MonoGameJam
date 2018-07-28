@@ -38,13 +38,8 @@ namespace ZeroFootPrintSociety.Characters
             _characterPath = characterPath;
             _offset = offset;
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
+            Event.Subscribe(EventSubscription.Create<ShotProposed>(UpdateFacing, this));
             Event.Subscribe(EventSubscription.Create<ShotFired>(UpdateFacing, this));
-        }
-
-        private void UpdateFacing(ShotFired obj)
-        {
-            if (obj.Attacker.Body.Equals(this))
-                SetFacing(obj.Target.Body.Transform.Location);
         }
 
         private void OnMovementConfirmed(MovementConfirmed movement)
@@ -93,16 +88,27 @@ namespace ZeroFootPrintSociety.Characters
             }
         }
 
-        private void FaceToward(Transform2 t)
+        private void UpdateFacing(ShotProposed obj)
         {
-            if (t.Location.X < CurrentTileLocation.X)
-                _currentAnimation = _idleLeft;
-            if (t.Location.X > CurrentTileLocation.X)
-                _currentAnimation = _idleRight;
-            if (t.Location.Y < CurrentTileLocation.Y)
-                _currentAnimation = _idleUp;
-            if (t.Location.Y > CurrentTileLocation.Y)
-                _currentAnimation = _idleDown;
+            if (obj.Attacker.Body.Equals(this))
+                FaceToward(obj.Defender);
+        }
+
+        private void UpdateFacing(ShotFired obj)
+        {
+            if (obj.Attacker.Body.Equals(this))
+                FaceToward(obj.Target);
+        }
+
+        private void FaceToward(Character other)
+        {
+            var delta = other.CurrentTile.Position - CurrentTile.Position;
+            var useDeltaY = Math.Abs(delta.Y) > Math.Abs(delta.X);
+            
+            if (useDeltaY)
+                _currentAnimation = delta.Y > 0 ? _idleDown : _idleUp;
+            else
+                _currentAnimation = delta.X > 0 ? _idleRight : _idleLeft;
         }
 
         private void SetFacing(Vector2 pastLocation)
