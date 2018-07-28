@@ -53,6 +53,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             for (var i = 0; i < e.Proposed.AttackerBullets; i++)
             {
+                Event.Publish(new ShotFired { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
                 if (_random.Next(0, 100) < e.Proposed.AttackerHitChance)
                 {
                     e.Proposed.Defender.State.RemainingHealth -= e.Proposed.AttackerBulletDamage;
@@ -70,6 +71,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 {
                     for (var i = 0; i < e.Proposed.DefenderBullets; i++)
                     {
+                        Event.Publish(new ShotFired { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
                         if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
                         {
                             e.Proposed.Attacker.State.RemainingHealth -= e.Proposed.DefenderBulletDamage;

@@ -5,9 +5,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.PhsyicsMath;
 using ZeroFootPrintSociety.Tiles;
@@ -26,7 +28,7 @@ namespace ZeroFootPrintSociety.Characters
         private SpriteAnimation _currentAnimation;
 
         private List<Point> _path = new List<Point>();
-
+        
         public Vector2 CurrentTileLocation { get; private set; }
         public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];
         public Transform2 Transform { get; private set; }
@@ -36,6 +38,13 @@ namespace ZeroFootPrintSociety.Characters
             _characterPath = characterPath;
             _offset = offset;
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
+            Event.Subscribe(EventSubscription.Create<ShotFired>(UpdateFacing, this));
+        }
+
+        private void UpdateFacing(ShotFired obj)
+        {
+            if (obj.Attacker.Body.Equals(this))
+                SetFacing(obj.Target.Body.Transform.Location);
         }
 
         private void OnMovementConfirmed(MovementConfirmed movement)
@@ -82,6 +91,18 @@ namespace ZeroFootPrintSociety.Characters
                 if (!_path.Any())
                     Event.Publish(new MovementFinished());
             }
+        }
+
+        private void FaceToward(Transform2 t)
+        {
+            if (t.Location.X < CurrentTileLocation.X)
+                _currentAnimation = _idleLeft;
+            if (t.Location.X > CurrentTileLocation.X)
+                _currentAnimation = _idleRight;
+            if (t.Location.Y < CurrentTileLocation.Y)
+                _currentAnimation = _idleUp;
+            if (t.Location.Y > CurrentTileLocation.Y)
+                _currentAnimation = _idleDown;
         }
 
         private void SetFacing(Vector2 pastLocation)

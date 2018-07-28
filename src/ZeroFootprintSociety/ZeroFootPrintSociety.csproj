@@ -42,6 +42,7 @@
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
     <Compile Include="Characters\Ui\HealthBar.cs" />
+    <Compile Include="CoreGame\ActionEvents\ShotFired.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotHit.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotMissed.cs" />
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />

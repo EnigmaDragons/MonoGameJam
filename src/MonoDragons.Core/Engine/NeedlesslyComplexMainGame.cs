@@ -10,6 +10,7 @@ using MonoDragons.Core.Development;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.Errors;
 using System.Windows.Forms;
+using Microsoft.Xna.Framework.Input;
 
 namespace MonoDragons.Core.Engine
 {
@@ -112,6 +113,8 @@ namespace MonoDragons.Core.Engine
             {
 #if DEBUG
                 _metrics.Update(gameTime.ElapsedGameTime);
+                if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+                    Environment.Exit(0);
 #endif
                 _controller.Update(gameTime.ElapsedGameTime);
                 _scene.Update(gameTime.ElapsedGameTime);

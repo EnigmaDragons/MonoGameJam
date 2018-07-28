@@ -41,7 +41,7 @@ namespace ZeroFootPrintSociety
             Metric.AppDetails = appDetails;
             Error.Handle(() =>
             {
-                using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(appDetails.Name, sceneName, new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), fatalErrorReporter)))
+                using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(appDetails.Name, sceneName, new Display(1600, 900, true), SetupScene(), CreateKeyboardController(), fatalErrorReporter)))
                     game.Run();
             }, x => fatalErrorReporter.ResolveError(x));
         }
