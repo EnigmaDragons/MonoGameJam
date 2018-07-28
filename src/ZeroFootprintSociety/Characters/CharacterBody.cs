@@ -38,7 +38,6 @@ namespace ZeroFootPrintSociety.Characters
             _characterPath = characterPath;
             _offset = offset;
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
-            Event.Subscribe(EventSubscription.Create<ShotProposed>(UpdateFacing, this));
             Event.Subscribe(EventSubscription.Create<ShotFired>(UpdateFacing, this));
         }
 
@@ -86,12 +85,6 @@ namespace ZeroFootPrintSociety.Characters
                 if (!_path.Any())
                     Event.Publish(new MovementFinished());
             }
-        }
-
-        private void UpdateFacing(ShotProposed obj)
-        {
-            if (obj.Attacker.Body.Equals(this))
-                FaceToward(obj.Defender);
         }
 
         private void UpdateFacing(ShotFired obj)
