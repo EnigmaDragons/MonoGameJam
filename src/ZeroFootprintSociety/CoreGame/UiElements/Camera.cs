@@ -14,10 +14,10 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
     class Camera : IVisualAutomaton
     {
         private static Point ScreenCenter = new Point(CurrentDisplay.GameWidth / 2, CurrentDisplay.GameHeight / 2);
-        private readonly int XLeft = UI.OfScreenWidth(0.10f);
-        private readonly int XRight = UI.OfScreenWidth(0.90f);
-        private readonly int YTop = UI.OfScreenHeight(0.10f);
-        private readonly int YBottom = UI.OfScreenHeight(0.90f);
+        private readonly int XLeft = UI.OfScreenWidth(0.06f);
+        private readonly int XRight = UI.OfScreenWidth(0.94f);
+        private readonly int YTop = UI.OfScreenHeight(0.06f);
+        private readonly int YBottom = UI.OfScreenHeight(0.94f);
         private readonly int MouseCameraSpeed = 13;
 
         private float _transitionCompletion;

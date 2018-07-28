@@ -16,7 +16,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             Add(_clickUI);
             Add(new ActionOptionsView(_clickUI));
             var menuButton = new ExpandingImageButton("UI/placeholder-menu-button.png", "UI/placeholder-menu-button.png", "UI/placeholder-menu-button.png",
-                    new Transform2(new Vector2(UI.OfScreenWidth(0.92f), UI.OfScreenHeight(0.03f)), new Size2(64, 64)),
+                    new Transform2(new Vector2(UI.OfScreenWidth(0.87f), UI.OfScreenHeight(0.07f)), new Size2(64, 64)),
                     new Size2(16, 16),
                     () => Event.Publish(new MenuRequested()));
             _clickUI.Add(menuButton);
