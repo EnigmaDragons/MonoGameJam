@@ -42,6 +42,7 @@
     <Compile Include="Characters\CharacterTeam.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
+    <Compile Include="Characters\Teams\Teams.cs" />
     <Compile Include="Characters\Teams\TeamGroup.cs" />
     <Compile Include="Characters\Teams\Team.cs" />
     <Compile Include="Characters\Ui\HealthBar.cs" />

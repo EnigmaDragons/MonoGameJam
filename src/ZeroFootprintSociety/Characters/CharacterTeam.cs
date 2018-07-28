@@ -18,9 +18,6 @@ namespace ZeroFootPrintSociety.Characters
         public CharacterTeam(Team team)
         {
             Team = Team;
-            Team.CanShootAt();
         }
-
-
     }
 }

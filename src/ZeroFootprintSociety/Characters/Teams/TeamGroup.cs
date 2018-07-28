@@ -1,4 +1,6 @@
-﻿namespace ZeroFootPrintSociety.Characters.Teams
+﻿using System.Collections.Generic;
+
+namespace ZeroFootPrintSociety.Characters.Teams
 {
     /// <summary>
     /// Groups of teams as an enumerator.
@@ -15,5 +17,31 @@
         FriendliesAndEnemies = 5,
         NeutralsAndEnemies = 6,
         All = 7
+    }
+
+    public static class TeamGroupEnumExtensions
+    {
+        public static bool Includes(this TeamGroup teamGroup, Team subjectTeam)
+            => subjectTeam.IsIncludedIn(teamGroup);
+
+        public static List<Team> AsTeamList(this TeamGroup teamGroup)
+        {
+            List<Team> teamList = new List<Team>();
+
+            bool isAll = teamGroup == TeamGroup.All,
+                isFrAndEn = teamGroup == TeamGroup.FriendliesAndEnemies,
+                isFrAndNe = teamGroup == TeamGroup.FriendliesAndNeutrals,
+                isNeAndEn = teamGroup == TeamGroup.NeutralsAndEnemies;
+
+
+            if (isAll || teamGroup == TeamGroup.Friendlies || isFrAndEn || isFrAndNe)
+                teamList.Add(Team.Friendly);
+            if (isAll || teamGroup == TeamGroup.Neutrals || isFrAndNe || isNeAndEn)
+                teamList.Add(Team.Neutral);
+            if (isAll || teamGroup == TeamGroup.Enemies || isFrAndEn || isNeAndEn)
+                teamList.Add(Team.Enemy);
+
+            return teamList;
+        }
     }
 }
