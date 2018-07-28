@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Resolution;
@@ -14,7 +13,7 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
-    public class TurnBasedCombat : IAutomaton, IVisual
+    public class TurnBasedCombat : IAutomaton
     {
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
 
@@ -85,12 +84,6 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Publish(new ShotConfirmed());
             Event.Publish(new ActionResolved());
         } 
-
-        public void Draw(Transform2 parentTransform)
-        {
-            Map.Draw(parentTransform);
-            Characters.ForEach(x => x.Draw(parentTransform));
-        }
 
         public void Update(TimeSpan delta)
         {

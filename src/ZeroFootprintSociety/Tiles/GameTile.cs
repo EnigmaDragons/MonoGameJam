@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters;
 
 namespace ZeroFootPrintSociety.Tiles
 {
-    public class GameTile : IVisual
+    public class GameTile
     {
         public Point Position { get; }
         public Transform2 Transform { get; }
@@ -34,9 +34,10 @@ namespace ZeroFootPrintSociety.Tiles
             // Event.Publish(new OverwatchTriggeredEvent() {FoundCharacter = character});
         }
 
-        public void Draw(Transform2 parentTransform)
+        public void Draw(int layer, Transform2 parentTransform)
         {
-            Details.ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect, Color.White));
+            Details.Where(x => x.ZIndex == layer)
+                .ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect, Color.White));
         }
     }
 }

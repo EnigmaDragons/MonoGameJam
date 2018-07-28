@@ -70,7 +70,7 @@ namespace ZeroFootPrintSociety.Characters
             _currentAnimation.Update(delta);
             if (_path.Any())
             {
-                var targetLocation = GameState.Map[_path.First()].Transform.Location;
+                var targetLocation = GameWorld.Map[_path.First()].Transform.Location;
                 CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds);
                 if (CurrentTileLocation.X == targetLocation.X && CurrentTileLocation.Y == targetLocation.Y)
                     _path.RemoveAt(0);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
@@ -25,14 +24,15 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private readonly ClickUI _clickUI = new ClickUI();
         private readonly List<IVisual> _uiVisuals = new List<IVisual>();
-        private readonly List<IVisual> _worldVisuals = new List<IVisual>();
         private readonly TurnBasedCombat _combat;
+        private readonly List<object> _objects = new List<object>();
 
         private Transform2 _cameraOffset;
 
         private MouseState _lastMouseState;
         private MouseAction _mouseAction = MouseAction.None;
         private Point Target;
+        private GameDrawMaster _drawMaster = new GameDrawMaster();
 
         public TacticsGame(TurnBasedCombat combatEngine)
         {
@@ -48,11 +48,11 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(e => _mouseAction = MouseAction.None, this));
             Event.Subscribe(EventSubscription.Create<ShootSelected>(e => _mouseAction = MouseAction.Shoot, this));
 
-            _worldVisuals.Add(new AvailableMovesView(_combat.Map));
-            _worldVisuals.Add(new AvailableTargetsView());
             _uiVisuals.Add(new ActionOptionsView(_clickUI));
-            new MovementOptionsCalculator();
-            new ShootOptionsCalculator();
+            _objects.Add(new AvailableMovesView(_combat.Map));
+            _objects.Add(new AvailableTargetsView());
+            _objects.Add(new MovementOptionsCalculator());
+            _objects.Add(new ShootOptionsCalculator());
             _combat.Init();
         }
 
@@ -61,8 +61,8 @@ namespace ZeroFootPrintSociety.CoreGame
             _cameraOffset = new Transform2(
                 new Vector2(800, 450) -
                 new Vector2(
-                    GameState.CurrentCharacter.CurrentTile.Transform.Location.X, 
-                    GameState.CurrentCharacter.CurrentTile.Transform.Location.Y));
+                    GameWorld.CurrentCharacter.CurrentTile.Transform.Location.X, 
+                    GameWorld.CurrentCharacter.CurrentTile.Transform.Location.Y));
         }
 
         public void Update(TimeSpan delta)
@@ -73,7 +73,7 @@ namespace ZeroFootPrintSociety.CoreGame
             if (CurrentGame.TheGame.IsActive)
             {
                 var positionOnMap = new Vector2(mouse.X - _cameraOffset.Location.X, mouse.Y - _cameraOffset.Location.Y);
-                var index = GameState.Map.MapPositionToTile(positionOnMap);
+                var index = GameWorld.Map.MapPositionToTile(positionOnMap);
 
                 if (_combat.Map.Exists(index.X, index.Y) && mouse.LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released)
                     Target = index;
@@ -97,8 +97,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Draw(Transform2 parentTransform)
         {
-            _combat.Draw(parentTransform + _cameraOffset);
-            _worldVisuals.ToList().ForEach(x => x.Draw(parentTransform + _cameraOffset));
+            _drawMaster.Draw(parentTransform + _cameraOffset);
             _uiVisuals.ForEach(x => x.Draw());
         }
     }

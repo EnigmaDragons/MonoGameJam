@@ -43,7 +43,8 @@
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
-    <Compile Include="CoreGame\GameState.cs" />
+    <Compile Include="CoreGame\GameWorld.cs" />
+    <Compile Include="CoreGame\GameDrawMaster.cs" />
     <Compile Include="CoreGame\Mechanics\Events\ShootSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />

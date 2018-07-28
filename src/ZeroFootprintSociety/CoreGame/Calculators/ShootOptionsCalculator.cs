@@ -19,7 +19,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         public void CalculateTargets(MovementFinished e)
         {
-            Event.Publish(new RangedTargetsAvailable { Targets = GameState.Characters.Where(x => x != GameState.CurrentCharacter && CanShoot(GameState.CurrentCharacter, x)).ToList() });
+            Event.Publish(new RangedTargetsAvailable { Targets = GameWorld.Characters.Where(x => x != GameWorld.CurrentCharacter && CanShoot(GameWorld.CurrentCharacter, x)).ToList() });
         }
 
         private bool CanShoot(Character attacker, Character target)
@@ -57,8 +57,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             while (currentSpot.X != point2.X || currentSpot.Y != point2.Y)
             {
                 currentSpot = currentSpot.MoveTowards(point2, 0.1);
-                var tile = GameState.Map.MapPositionToTile(currentSpot);
-                if (!GameState.Map.Exists(tile) || !GameState.Map[tile].IsWalkable)
+                var tile = GameWorld.Map.MapPositionToTile(currentSpot);
+                if (!GameWorld.Map.Exists(tile) || !GameWorld.Map[tile].IsWalkable)
                     return false;
             }
             return true;

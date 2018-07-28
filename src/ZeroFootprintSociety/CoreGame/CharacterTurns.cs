@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
-            GameState.CurrentCharacter = CurrentCharacter;
+            GameWorld.CurrentCharacter = CurrentCharacter;
             Event.Publish(new TurnBegun());
         }
 
@@ -32,7 +32,7 @@ namespace ZeroFootPrintSociety.CoreGame
             _activeCharacterIndex++;
             if (_activeCharacterIndex == Characters.Count)
                 _activeCharacterIndex = 0;
-            GameState.CurrentCharacter = CurrentCharacter;
+            GameWorld.CurrentCharacter = CurrentCharacter;
             Event.Publish(new TurnBegun());
         }
     }

@@ -20,7 +20,13 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(e => _availableTargets = e.Targets, this));
             Event.Subscribe(EventSubscription.Create<ShootSelected>(ShowOptions, this));
-            Event.Subscribe(EventSubscription.Create<ShotConfirmed>(x => _visuals.Clear(), this));
+            Event.Subscribe(EventSubscription.Create<ShotConfirmed>(ClearOptions, this));
+        }
+
+        private void ClearOptions(ShotConfirmed e)
+        {
+            _visuals.Clear();
+            GameWorld.Highlights.Remove(this);
         }
 
         private void ShowOptions(ShootSelected e)
@@ -30,6 +36,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 var coloredBox = new ColoredRectangle { Transform = x.CurrentTile.Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 50) };
                 _visuals.Add(coloredBox);
             });
+            GameWorld.Highlights.Add(this);
         }
 
         public void Draw(Transform2 parentTransform)
