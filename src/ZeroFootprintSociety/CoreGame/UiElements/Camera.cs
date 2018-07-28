@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Inputs;
@@ -12,7 +13,12 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     class Camera : IVisualAutomaton
     {
-        private Point ScreenCenter = new Point(CurrentDisplay.GameWidth / 2, CurrentDisplay.GameHeight / 2);
+        private static Point ScreenCenter = new Point(CurrentDisplay.GameWidth / 2, CurrentDisplay.GameHeight / 2);
+        private readonly int XLeft = UI.OfScreenWidth(0.10f);
+        private readonly int XRight = UI.OfScreenWidth(0.90f);
+        private readonly int YTop = UI.OfScreenHeight(0.10f);
+        private readonly int YBottom = UI.OfScreenHeight(0.90f);
+        private readonly int MouseCameraSpeed = 13;
 
         private float _transitionCompletion;
         private Point _destination;
@@ -26,10 +32,26 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         public void Update(TimeSpan delta)
         {
-            if (_destination != Position)
+            if (_transitionCompletion < 1f)
             {
                 _transitionCompletion += 0.04f;
-                Position = Vector2.Lerp(Position.ToVector2(), _destination.ToVector2(), _transitionCompletion).ToPoint(); 
+                Position = Vector2.Lerp(Position.ToVector2(), _destination.ToVector2(), _transitionCompletion).ToPoint();
+                return;
+            }
+
+            UpdateCameraBasedOnMousePosition();
+        }
+
+        private void UpdateCameraBasedOnMousePosition()
+        {
+            if (CurrentGame.TheGame.IsActive)
+            {
+                var mouse = Mouse.GetState();
+                var _hDir = mouse.X < XLeft ? HorizontalDirection.Left : mouse.X > XRight ? HorizontalDirection.Right : HorizontalDirection.None;
+                var targetX = Position.X + (MouseCameraSpeed * (int)_hDir);
+                var _vDir = mouse.Y < YTop ? VerticalDirection.Up : mouse.Y > YBottom ? VerticalDirection.Down : VerticalDirection.None;
+                var targetY = Position.Y + (MouseCameraSpeed * (int)_vDir);
+                Position = new Point(targetX, targetY);
             }
         }
 
@@ -48,7 +70,14 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
 #if DEBUG
             if (false)
+            {
                 new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(ScreenCenter.ToVector2(), new Size2(2, 2)) }.Draw();
+                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(new Vector2(XLeft, 0), new Size2(1, 2000)) }.Draw();
+                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(new Vector2(XRight, 0), new Size2(1, 2000)) }.Draw();
+                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(new Vector2(0, YTop), new Size2(2000, 1)) }.Draw();
+                new ColoredRectangle { Color = Color.Yellow, Transform = new Transform2(new Vector2(0, YBottom), new Size2(2000, 1)) }.Draw();
+            }
+            UI.DrawText($"Mouse: X {Mouse.GetState().X} Y {Mouse.GetState().Y}", new Vector2(0, UI.OfScreenHeight(0.92f)), Color.Yellow);
             UI.DrawText($"Cam: X {Position.X} Y {Position.Y}", new Vector2(0, UI.OfScreenHeight(0.96f)), Color.Yellow);
 #endif
         }
