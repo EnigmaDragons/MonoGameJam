@@ -24,10 +24,12 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         private bool CanShoot(Character attacker, Character target)
         {
-            return attacker.Gear.EquippedWeapon.IsRanged 
+            return !AreSameTeam(attacker, target) && attacker.Gear.EquippedWeapon.IsRanged 
                 && attacker.Gear.EquippedWeapon.AsRanged().EffectiveRanges.ContainsKey(attacker.CurrentTile.Position.TileDistance(target.CurrentTile.Position)) 
                 && CornersThatHaveLineOfSightOfOtherCorners(attacker.CurrentTile, target.CurrentTile).Any(x => x >= 2);
         }
+
+        private bool AreSameTeam(Character attacker, Character target) => attacker.Team == target.Team;
 
         private List<int> CornersThatHaveLineOfSightOfOtherCorners(GameTile tile, GameTile tile2)
         {
