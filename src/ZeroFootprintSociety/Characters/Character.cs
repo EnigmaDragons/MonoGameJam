@@ -22,14 +22,14 @@ namespace ZeroFootPrintSociety.Characters
 
         public GameTile CurrentTile => Body.CurrentTile;
 
-        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team, string faceImage = "")
+        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team = Team.Neutral, string faceImage = "")
         {
             Stats = stats;
             Body = body;
             Gear = gear;
             FaceImage = faceImage;
             State = new CharacterState(stats);
-            Team = Team.Neutral;
+            Team = team;
 
             _damageNumbers = new DamageNumbersView(this);
         }
