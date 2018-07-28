@@ -30,7 +30,7 @@ namespace ZeroFootPrintSociety
                 { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
                 { "MainMenu", () => new MainMenuScene() },
                 { "SampleLevel", () => new SampleCorporationScene() },
-                { "SampleLab", () => new SampleLabScene() },
+                { "SampleLab", () => new LabScene() },
                 { "DarkAlley", () => new DarkAlleyScene() },
             });
         }

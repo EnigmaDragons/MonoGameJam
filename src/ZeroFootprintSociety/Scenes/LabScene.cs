@@ -11,13 +11,13 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.Scenes
 {
-    class SampleLabScene : SimpleScene
+    class LabScene : SimpleScene
     {
         private TacticsGame _game;
 
         public override void Init()
         {
-            GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "SampleLab.tmx"), new Size2(48, 48));
+            GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "LabLevel.tmx"), new Size2(48, 48));
             GameWorld.Characters = new List<Character>
             {
                 new CorpSec1().Initialized(GameWorld.Map[8, 10]),

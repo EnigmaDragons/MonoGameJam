@@ -83,6 +83,10 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                         }
                     }
                 }
+                else
+                {
+                    Event.Publish(new ShotAnimationsFinished());
+                }
             });
 
             _eventQueue.Enqueue(() => Event.Publish(new ActionResolved()));
