@@ -84,6 +84,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
                 _lastMouseState = mouse;
             }
+            _combat.Update(delta);
         }
 
         private void InvokeClickAction(int x, int y)

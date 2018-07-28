@@ -23,14 +23,13 @@ namespace ZeroFootPrintSociety.Characters
         private SpriteAnimation _idleUp;
         private SpriteAnimation _idleLeft;
         private SpriteAnimation _idleRight;
-        private Transform2 _transform;
         private SpriteAnimation _currentAnimation;
 
         private List<Point> _path = new List<Point>();
-        private Vector2 _currentTileLocation;
 
-        // TODO: Make this private and have setter and getter
+        public Vector2 CurrentTileLocation { get; private set; }
         public GameTile CurrentTile { get; set; }
+        public Transform2 Transform { get; private set; }
 
         public CharacterBody(string characterPath, Vector2 offset)
         {
@@ -61,8 +60,8 @@ namespace ZeroFootPrintSociety.Characters
                 new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-right-1.png"), scale, duration),
                 new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-right-2.png"), scale, duration));
             var sprite = Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-down-1.png");
-            _transform = new Transform2(new Vector2((float)(CurrentTile.Transform.Size.Width - sprite.Width) / 2, sprite.Height - sprite.Height), new Size2(sprite.Width, sprite.Height));
-            _currentTileLocation = CurrentTile.Transform.Location;
+            Transform = new Transform2(new Vector2((float)(CurrentTile.Transform.Size.Width - sprite.Width) / 2, sprite.Height - sprite.Height), new Size2(sprite.Width, sprite.Height));
+            CurrentTileLocation = CurrentTile.Transform.Location;
             _currentAnimation = _idleDown;
         }
 
@@ -72,8 +71,8 @@ namespace ZeroFootPrintSociety.Characters
             if (_path.Any())
             {
                 var targetLocation = GameState.Map[_path.First()].Transform.Location;
-                _currentTileLocation = _currentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds);
-                if (_currentTileLocation.X == targetLocation.X && _currentTileLocation.Y == targetLocation.Y)
+                CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds);
+                if (CurrentTileLocation.X == targetLocation.X && CurrentTileLocation.Y == targetLocation.Y)
                     _path.RemoveAt(0);
                 if (!_path.Any())
                     Event.Publish(new MovementFinished());
@@ -82,7 +81,7 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Draw(Transform2 parentTransform)
         {
-            _currentAnimation.Draw(parentTransform + _transform + _offset + _currentTileLocation);
+            _currentAnimation.Draw(parentTransform + Transform + _offset + CurrentTileLocation);
         }
     }
 }

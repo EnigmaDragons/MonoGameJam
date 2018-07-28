@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
@@ -11,8 +10,11 @@ namespace ZeroFootPrintSociety.Characters
     public abstract class Character: IVisualAutomaton
     {
         protected CharacterBody Body { get; }
-        public CharacterData Stats { get; }
+        public CharacterStats Stats { get; }
         public CharacterGear Gear { get; }
+        public CharacterState State { get; }
+
+        private readonly HealthBar _healthBar = new HealthBar(20);
 
         public GameTile CurrentTile
         {
@@ -24,11 +26,12 @@ namespace ZeroFootPrintSociety.Characters
             }
         }
 
-        public Character(CharacterBody body, CharacterData data, CharacterGear gear)
+        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear)
         {
+            Stats = stats;
             Body = body;
-            Stats = data;
             Gear = gear;
+            State = new CharacterState(stats);
         }
 
         public void Move(List<Point> points) => Body.Move(points);
@@ -36,16 +39,20 @@ namespace ZeroFootPrintSociety.Characters
         public void Init(GameTile tile)
         {
             Body.Init(tile);
+            State.Init();
+            _healthBar.Init();
         }
 
         public void Draw(Transform2 parentTransform)
         {
             Body.Draw(parentTransform);
+            _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(2, -Body.Transform.Size.Height));
         }
 
         public void Update(TimeSpan delta)
         {
             Body.Update(delta);
+            _healthBar.Update(State.PercentLeft);
         }
     }
 }
