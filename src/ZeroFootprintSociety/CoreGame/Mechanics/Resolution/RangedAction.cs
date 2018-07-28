@@ -11,25 +11,42 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
         public RangedAction()
         {
+            Event.Subscribe(EventSubscription.Create<TargetInspected>(PreviewShot, this));
             Event.Subscribe(EventSubscription.Create<ShotConfirmed>(ResolveShot, this));
+        }
+
+        private void PreviewShot(TargetInspected e)
+        {
+            var distance = e.Attacker.CurrentTile.Position.TileDistance(e.Defender.CurrentTile.Position);
+            var attackerWeapon = e.Attacker.Gear.EquippedWeapon.AsRanged();
+            var proposed = new ShotProposed
+            {
+                Attacker = e.Attacker,
+                Defender = e.Defender,
+                AttackerHitChance = e.Attacker.Stats.AccuracyPercent + attackerWeapon.AccuracyPercent - e.Defender.Stats.Agility,
+                AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]),
+            };
+            if (e.Defender.Gear.EquippedWeapon.IsRanged)
+            {
+                var defenderWeapon = e.Defender.Gear.EquippedWeapon.AsRanged();
+                proposed.DefenderHitChance = e.Defender.Stats.AccuracyPercent + defenderWeapon.AccuracyPercent - e.Attacker.Stats.Agility;
+                if (defenderWeapon.EffectiveRanges.ContainsKey(distance))
+                    proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]);
+            }
+            proposed.AttackerDamage = proposed.DefenderHitChance * proposed.DefenderBullets * proposed.DefenderBulletDamage / 100;
+            proposed.DefenderDamage = proposed.AttackerHitChance * proposed.AttackerBullets * proposed.AttackerBulletDamage / 108;
+            Event.Publish(proposed);
         }
 
         private void ResolveShot(ShotConfirmed e)
         {
-            var distance = e.Attacker.CurrentTile.Position.TileDistance(e.Defender.CurrentTile.Position);
-            var attackerWeapon = e.Attacker.Gear.EquippedWeapon.AsRanged();
-            var attackerHitChance = e.Attacker.Stats.AccuracyPercent + attackerWeapon.AccuracyPercent - e.Defender.Stats.Agility;
-            for (var i = 0; i < attackerWeapon.NumShotsPerAttack; i++)
-                if (_random.Next(0, 100) < attackerHitChance)
-                    e.Defender.State.RemainingHealth -= (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]);
-            if (e.Defender.Gear.EquippedWeapon.IsRanged && e.Defender.State.RemainingHealth > 0 && e.Defender.Gear.EquippedWeapon.AsRanged().EffectiveRanges.ContainsKey(distance))
-            {
-                var defenderWeapon = e.Defender.Gear.EquippedWeapon.AsRanged();
-                var defenderHitChance = e.Defender.Stats.AccuracyPercent + defenderWeapon.AccuracyPercent - e.Attacker.Stats.Agility;
-                    for (var i = 0; i < defenderWeapon.NumShotsPerAttack; i++)
-                        if (_random.Next(0, 100) < defenderHitChance)
-                            e.Attacker.State.RemainingHealth -= (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]);
-            }
+            for (var i = 0; i < e.Proposed.AttackerBullets; i++)
+                if (_random.Next(0, 100) < e.Proposed.AttackerHitChance)
+                    e.Proposed.Defender.State.RemainingHealth -= e.Proposed.AttackerBulletDamage;
+            if (e.Proposed.Defender.State.RemainingHealth > 0)
+                for (var i = 0; i < e.Proposed.DefenderBullets; i++)
+                    if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
+                        e.Proposed.Attacker.State.RemainingHealth -= e.Proposed.DefenderBulletDamage;
             Event.Publish(new ActionResolved());
         }
     }

@@ -77,7 +77,7 @@ namespace ZeroFootPrintSociety.CoreGame
             if (!Targets.Any(target => target.CurrentTile.Position.X == x && target.CurrentTile.Position.Y == y))
                 return;
 
-            Event.Publish(new ShotConfirmed { Attacker = GameWorld.CurrentCharacter, Defender = Targets.First(target => target.CurrentTile.Position.X == x && target.CurrentTile.Position.Y == y) });
+            Event.Publish(new TargetInspected { Attacker = GameWorld.CurrentCharacter, Defender = Targets.First(target => target.CurrentTile.Position.X == x && target.CurrentTile.Position.Y == y) });
         } 
 
         public void Update(TimeSpan delta)
