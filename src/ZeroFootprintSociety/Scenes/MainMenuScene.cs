@@ -39,10 +39,18 @@ namespace ZeroFootPrintSociety.Scenes
                     GameWorld.Clear();
                     Scene.NavigateTo("SampleLab");
                 }, "Lab", Color.Transparent, Color.LightBlue, Color.Blue);
+            var darkAlley = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f) - 150, 840, 300, 50),
+                () =>
+                {
+                    GameWorld.Clear();
+                    Scene.NavigateTo("DarkAlley");
+                }, "DarkAlley", Color.Transparent, Color.LightBlue, Color.Blue);
             _clickUi.Add(button);
             _clickUi.Add(lab);
+            _clickUi.Add(darkAlley);
             _visuals.Add(button);
             _visuals.Add(lab);
+            _visuals.Add(darkAlley);
         }
 
     

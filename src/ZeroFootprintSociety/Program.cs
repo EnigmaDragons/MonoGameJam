@@ -31,6 +31,7 @@ namespace ZeroFootPrintSociety
                 { "MainMenu", () => new MainMenuScene() },
                 { "SampleLevel", () => new SampleCorporationScene() },
                 { "SampleLab", () => new SampleLabScene() },
+                { "DarkAlley", () => new DarkAlleyScene() },
             });
         }
 
