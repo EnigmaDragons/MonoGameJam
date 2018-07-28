@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using MonoDragons.Core.Common;
@@ -24,6 +25,11 @@ namespace MonoDragons.Core.EventSystem
         public static void SubscribeForever(EventSubscription subscription)
         {
             PersistentEvents.Subscribe(subscription);
+        }
+
+        public static void Subscribe<T>(Action<T> onEvent, object owner)
+        {
+            Subscribe(EventSubscription.Create<T>(onEvent, owner));
         }
 
         public static void Subscribe(EventSubscription subscription)

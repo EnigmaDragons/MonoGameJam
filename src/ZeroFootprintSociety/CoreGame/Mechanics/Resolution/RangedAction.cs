@@ -1,5 +1,6 @@
 ﻿using System;
 using MonoDragons.Core.EventSystem;
+using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 
@@ -41,12 +42,32 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         private void ResolveShot(ShotConfirmed e)
         {
             for (var i = 0; i < e.Proposed.AttackerBullets; i++)
+            {
                 if (_random.Next(0, 100) < e.Proposed.AttackerHitChance)
+                {
                     e.Proposed.Defender.State.RemainingHealth -= e.Proposed.AttackerBulletDamage;
+                    Event.Publish(new ShotHit { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender, DamageAmount = e.Proposed.AttackerBulletDamage });
+                }
+                else
+                {
+                    Event.Publish(new ShotMissed { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
+                }
+            }
             if (e.Proposed.Defender.State.RemainingHealth > 0)
+            {
                 for (var i = 0; i < e.Proposed.DefenderBullets; i++)
+                {
                     if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
+                    {
                         e.Proposed.Attacker.State.RemainingHealth -= e.Proposed.DefenderBulletDamage;
+                        Event.Publish(new ShotHit { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, DamageAmount = e.Proposed.AttackerBulletDamage });
+                    }
+                    else
+                    {
+                        Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
+                    }
+                }
+            }
             Event.Publish(new ActionResolved());
         }
     }

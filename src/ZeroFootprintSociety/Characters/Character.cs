@@ -2,11 +2,12 @@
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.Characters.Ui;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.Characters
 {
-    public abstract class Character: IVisualAutomaton
+    public abstract class Character : IVisualAutomaton
     {
         public CharacterBody Body { get; }
         public CharacterStats Stats { get; }
@@ -15,6 +16,7 @@ namespace ZeroFootPrintSociety.Characters
         public string FaceImage { get; }
 
         private readonly HealthBar _healthBar = new HealthBar(42);
+        private readonly DamageNumbersView _damageNumbers;
 
         public GameTile CurrentTile => Body.CurrentTile;
 
@@ -25,6 +27,7 @@ namespace ZeroFootPrintSociety.Characters
             Gear = gear;
             FaceImage = faceImage;
             State = new CharacterState(stats);
+            _damageNumbers = new DamageNumbersView(this);
         }
 
         public void Init(GameTile tile)
@@ -38,12 +41,14 @@ namespace ZeroFootPrintSociety.Characters
         {
             Body.Draw(parentTransform);
             _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
+            _damageNumbers.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
         }
 
         public void Update(TimeSpan delta)
         {
             Body.Update(delta);
             _healthBar.Update(State.PercentLeft);
+            _damageNumbers.Update(delta);
         }
     }
 }

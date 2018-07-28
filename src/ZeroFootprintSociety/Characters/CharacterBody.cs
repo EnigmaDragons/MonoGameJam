@@ -43,7 +43,6 @@ namespace ZeroFootPrintSociety.Characters
             if (GameWorld.Turns.CurrentCharacter.Body == this)
             {
                 _path = movement.Path;
-
             }
         }
 

@@ -41,7 +41,9 @@
     <Compile Include="Characters\CharacterState.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
-    <Compile Include="Characters\HealthBar.cs" />
+    <Compile Include="Characters\Ui\HealthBar.cs" />
+    <Compile Include="CoreGame\ActionEvents\ShotHit.cs" />
+    <Compile Include="CoreGame\ActionEvents\ShotMissed.cs" />
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="CoreGame\UiElements\AvailableTargetsView.cs" />
     <Compile Include="CoreGame\UiElements\Camera.cs" />
     <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
+    <Compile Include="Characters\Ui\DamageNumbersView.cs" />
     <Compile Include="CoreGame\UiElements\EquippedWeaponView.cs" />
     <Compile Include="CoreGame\UiElements\HudView.cs" />
     <Compile Include="CoreGame\UiElements\InGameMenu.cs" />
