@@ -30,23 +30,23 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         private List<int> CornersThatHaveLineOfSightOfOtherCorners(GameTile tile, GameTile tile2)
         {
             var result = new List<int>();
-            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X, tile.Transform.Location.Y), tile2));
-            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width, tile.Transform.Location.Y), tile2));
-            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width, tile.Transform.Location.Y), tile2));
-            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width, tile.Transform.Location.Y + tile.Transform.Size.Height), tile2));
+            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + 0.1f), tile2));
+            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + 0.1f), tile2));
+            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f), tile2));
+            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f), tile2));
             return result;
         }
 
         private int CornersInLineOfSight(Vector2 corner, GameTile tile)
         {
             var seenCorners = 0;
-            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X, tile.Transform.Location.Y)))
+            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + 0.1f)))
                 seenCorners++;
-            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X, tile.Transform.Location.Y + tile.Transform.Size.Height)))
+            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height -0.1f)))
                 seenCorners++;
-            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width, tile.Transform.Location.Y)))
+            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + 0.1f)))
                 seenCorners++;
-            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width, tile.Transform.Location.Y + tile.Transform.Size.Height)))
+            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f)))
                 seenCorners++;
             return seenCorners;
         }
@@ -58,7 +58,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             {
                 currentSpot = currentSpot.MoveTowards(point2, 0.1);
                 var tile = GameWorld.Map.MapPositionToTile(currentSpot);
-                if (!GameWorld.Map.Exists(tile) || !GameWorld.Map[tile].IsWalkable)
+                if (!GameWorld.Map.Exists(tile) || GameWorld.Map[tile].IsBlocking)
                     return false;
             }
             return true;
