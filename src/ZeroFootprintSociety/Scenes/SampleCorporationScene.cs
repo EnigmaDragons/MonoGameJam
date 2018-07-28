@@ -4,9 +4,10 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoTiled.Tiled.TmxLoading;
 using ZeroFootPrintSociety.Characters;
-using Prefabs = ZeroFootPrintSociety.Characters.Prefabs;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Tiles;
+using Microsoft.Xna.Framework;
+using ZeroFootPrintSociety.Characters.Prefabs;
 
 namespace ZeroFootPrintSociety.Scenes
 {
@@ -19,13 +20,15 @@ namespace ZeroFootPrintSociety.Scenes
             GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "SampleCorporate.tmx"), new Size2(48, 48));
             GameWorld.Characters = new List<Character>
             {
-                new Prefabs.CorpSec1(),
-                new Prefabs.CorpSec1(),
+                new CorpSec1().Initialized(GameWorld.Map[14, 14]),
+                new CorpSec1().Initialized(GameWorld.Map[18, 18]),
             };
+            var startingCameraTile = new Point(10, 10);
             _game = new TacticsGame(
                 new TurnBasedCombat(
                     GameWorld.Map,
-                    GameWorld.Characters));
+                    GameWorld.Characters), 
+                startingCameraTile);
             _game.Init();
             Add(_game);
         } 

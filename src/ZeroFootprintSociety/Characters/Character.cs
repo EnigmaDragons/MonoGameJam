@@ -9,6 +9,8 @@ namespace ZeroFootPrintSociety.Characters
 {
     public abstract class Character : IVisualAutomaton
     {
+        public bool IsInitialized { get; internal set; }
+
         public CharacterBody Body { get; }
         public CharacterStats Stats { get; }
         public CharacterGear Gear { get; }
@@ -35,6 +37,13 @@ namespace ZeroFootPrintSociety.Characters
             Body.Init(tile);
             State.Init();
             _healthBar.Init();
+            IsInitialized = true;
+        }
+
+        public Character Initialized(GameTile tile)
+        {
+            Init(tile);
+            return this;
         }
 
         public void Draw(Transform2 parentTransform)

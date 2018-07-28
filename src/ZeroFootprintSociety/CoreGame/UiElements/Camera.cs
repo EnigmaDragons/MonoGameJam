@@ -61,6 +61,11 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             MoveTo(transform.Location.ToPoint() - ScreenCenter + new Point(transform.Size.Width / 2, transform.Size.Height / 2));
         }
 
+        public void Init(Point startingCameraTile)
+        {
+            Position = GameWorld.Map.TileToWorldPosition(startingCameraTile);
+        }
+
         private void MoveTo(Point position)
         {
             _transitionCompletion = 0f;

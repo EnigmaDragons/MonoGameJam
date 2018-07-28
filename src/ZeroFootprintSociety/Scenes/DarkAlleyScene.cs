@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
@@ -19,13 +20,13 @@ namespace ZeroFootPrintSociety.Scenes
             GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "DarkAlleyLevel.tmx"), new Size2(48, 48));
             GameWorld.Characters = new List<Character>
             {
-                new CorpSec1(),
-                new CorpSec1(),
+                new CorpSec1().Initialized(GameWorld.Map[12, 40])
             };
+            var startingCameraTile = new Point(0, 20); ; 
             _game = new TacticsGame(
                 new TurnBasedCombat(
                     GameWorld.Map,
-                    GameWorld.Characters));
+                    GameWorld.Characters), startingCameraTile);
             _game.Init();
             Add(_game);
         }

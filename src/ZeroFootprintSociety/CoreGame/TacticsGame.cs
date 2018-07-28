@@ -24,6 +24,7 @@ namespace ZeroFootPrintSociety.CoreGame
         }
 
         private readonly TurnBasedCombat _combat;
+        private readonly Point _startingCameraTile;
         private readonly Camera _camera = new Camera();
         private readonly List<object> _objects = new List<object>();
         
@@ -33,9 +34,10 @@ namespace ZeroFootPrintSociety.CoreGame
         private GameDrawMaster _drawMaster = new GameDrawMaster();
         private bool _shouldIgnoreClicks;
 
-        public TacticsGame(TurnBasedCombat combatEngine)
+        public TacticsGame(TurnBasedCombat combatEngine, Point startingCameraTile)
         {
             _combat = combatEngine;
+            _startingCameraTile = startingCameraTile;
         }
 
         public void Init()
@@ -58,6 +60,8 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(_combat);
             Add(new HudView());
             Add(_camera);
+
+            _camera.Init(_startingCameraTile);
         }
 
         public override void Update(TimeSpan delta)
@@ -78,6 +82,12 @@ namespace ZeroFootPrintSociety.CoreGame
                 _lastMouseState = mouse;
             }
             base.Update(delta);
+        }
+
+        public override void Draw(Transform2 parentTransform)
+        {
+
+            base.Draw(parentTransform);
         }
 
         private void InvokeClickAction(int x, int y)

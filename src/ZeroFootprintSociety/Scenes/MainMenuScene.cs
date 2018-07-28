@@ -1,70 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
-using MonoDragons.Core.Common;
 using MonoDragons.Core.PhysicsEngine;
-using Control = MonoDragons.Core.Inputs.Control;
-using Keys = Microsoft.Xna.Framework.Input.Keys;
-using MonoDragons.Core.Engine;
 using MonoDragons.Core.AudioSystem;
 using ZeroFootPrintSociety.CoreGame;
 
 namespace ZeroFootPrintSociety.Scenes
 {
-    public sealed class MainMenuScene : IScene
+    public sealed class MainMenuScene : ClickUiScene
     {
-        private readonly List<IVisual> _visuals = new List<IVisual>();
-        private ClickUI _clickUi = new ClickUI();
-
-        public void Init()
+        public override void Init()
         {
             Input.ClearTransientBindings();
             Sound.Music("placeholder-main-theme").Play();
-            _visuals.Add(new ImageBox { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
-            _visuals.Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 100), Transform = new Transform2(new Size2(1920, 1080)) });
-            _visuals.Add(new ImageBox { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });
+            Add(new ImageBox { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
+            Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 100), Transform = new Transform2(new Size2(1920, 1080)) });
+            Add(new ImageBox { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });
             var button = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
                 () =>
                 {
                     GameWorld.Clear();
                     Scene.NavigateTo("SampleLevel");
-                }, "New Game", Color.Transparent, Color.LightBlue, Color.Blue);
-
+                }, "Sample Corp", Color.Transparent, Color.LightBlue, Color.Blue);
             var lab = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f) - 150, 770, 300, 50),
                 () =>
                 {
                     GameWorld.Clear();
                     Scene.NavigateTo("SampleLab");
-                }, "Lab", Color.Transparent, Color.LightBlue, Color.Blue);
+                }, "Sample Lab", Color.Transparent, Color.LightBlue, Color.Blue);
             var darkAlley = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f) - 150, 840, 300, 50),
                 () =>
                 {
                     GameWorld.Clear();
                     Scene.NavigateTo("DarkAlley");
-                }, "DarkAlley", Color.Transparent, Color.LightBlue, Color.Blue);
-            _clickUi.Add(button);
-            _clickUi.Add(lab);
-            _clickUi.Add(darkAlley);
-            _visuals.Add(button);
-            _visuals.Add(lab);
-            _visuals.Add(darkAlley);
+                }, "Dark Alley", Color.Transparent, Color.LightBlue, Color.Blue);
+            AddClickable(button);
+            AddClickable(lab);
+            AddClickable(darkAlley);
         }
 
-    
-        public void Update(TimeSpan delta)
-        {
-            _clickUi.Update(delta);
-        }
-
-        public void Draw()
-        {
-            _visuals.ForEach(x => x.Draw());            
-        }
-
-        public void Dispose()
+        public override void Dispose()
         {
         }
     }
