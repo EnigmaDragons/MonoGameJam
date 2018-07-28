@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ZeroFootPrintSociety.CoreGame.Mechanics.CombatResolution;
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 {

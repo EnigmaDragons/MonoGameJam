@@ -24,7 +24,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         private bool CanShoot(Character attacker, Character target)
         {
-            return CornersThatHaveLineOfSightOfOtherCorners(attacker.CurrentTile, target.CurrentTile).Any(x => x >= 2);
+            return attacker.Gear.EquippedWeapon.EffectiveRanges.ContainsKey(attacker.CurrentTile.Position.TileDistance(target.CurrentTile.Position)) 
+                && CornersThatHaveLineOfSightOfOtherCorners(attacker.CurrentTile, target.CurrentTile).Any(x => x >= 2);
         }
 
         private List<int> CornersThatHaveLineOfSightOfOtherCorners(GameTile tile, GameTile tile2)
