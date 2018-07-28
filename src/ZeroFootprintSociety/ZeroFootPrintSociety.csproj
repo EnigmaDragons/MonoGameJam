@@ -83,6 +83,7 @@
     <Compile Include="CoreGame\UiElements\AvailableMovesView.cs" />
     <Compile Include="CoreGame\UiElements\AvailableTargetsView.cs" />
     <Compile Include="CoreGame\UiElements\Camera.cs" />
+    <Compile Include="CoreGame\UiElements\CombatantSummary.cs" />
     <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
     <Compile Include="CoreGame\UiElements\EquippedWeaponView.cs" />
