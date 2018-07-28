@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.Characters.Teams;
 using ZeroFootPrintSociety.Characters.Ui;
 using ZeroFootPrintSociety.Tiles;
 
@@ -14,20 +15,22 @@ namespace ZeroFootPrintSociety.Characters
         public CharacterGear Gear { get; }
         public CharacterState State { get; }
         public string FaceImage { get; }
-        public CharacterTeam Team { get; }
+        public Team Team { get; }
 
         private readonly HealthBar _healthBar = new HealthBar(42);
         private readonly DamageNumbersView _damageNumbers;
 
         public GameTile CurrentTile => Body.CurrentTile;
 
-        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, string faceImage)
+        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team, string faceImage = "")
         {
             Stats = stats;
             Body = body;
             Gear = gear;
             FaceImage = faceImage;
             State = new CharacterState(stats);
+            Team = Team.Neutral;
+
             _damageNumbers = new DamageNumbersView(this);
         }
 

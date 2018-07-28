@@ -43,5 +43,20 @@ namespace ZeroFootPrintSociety.Characters.Teams
 
             return teamList;
         }
+
+        public static Team? AsSingleTeam(this TeamGroup teamGroup)
+        {
+            switch (teamGroup)
+            {
+                case TeamGroup.Friendlies:
+                    return Team.Friendly;
+                case TeamGroup.Neutrals:
+                    return Team.Neutral;
+                case TeamGroup.Enemies:
+                    return Team.Enemy;
+                default:
+                    return null;
+            }
+        }
     }
 }
