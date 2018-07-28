@@ -11,7 +11,7 @@ namespace ZeroFootPrintSociety.Characters
 {
     class HealthBar : IVisual
     {
-        private const int DEFAULT_HEIGHT = 2;
+        private const int DEFAULT_HEIGHT = 4;
 
         public int MaxWidth;
 

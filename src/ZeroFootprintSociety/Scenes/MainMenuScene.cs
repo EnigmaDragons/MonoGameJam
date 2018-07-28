@@ -10,6 +10,7 @@ using Control = MonoDragons.Core.Inputs.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.AudioSystem;
+using ZeroFootPrintSociety.CoreGame;
 
 namespace ZeroFootPrintSociety.Scenes
 {
@@ -25,7 +26,12 @@ namespace ZeroFootPrintSociety.Scenes
             _visuals.Add(new ImageBox { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
             _visuals.Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 100), Transform = new Transform2(new Size2(1920, 1080)) });
             _visuals.Add(new ImageBox { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f)-452, 180), new Size2(904, 313)) });
-            var button = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f)-150, 700, 300, 50), () => Scene.NavigateTo("SampleLevel"), "New Game", Color.Transparent, Color.LightBlue, Color.Blue);
+            var button = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f)-150, 700, 300, 50), 
+                () => 
+                {
+                    GameWorld.Clear();
+                    Scene.NavigateTo("SampleLevel");
+                }, "New Game", Color.Transparent, Color.LightBlue, Color.Blue);
             _clickUi.Add(button);
             _visuals.Add(button);
 
