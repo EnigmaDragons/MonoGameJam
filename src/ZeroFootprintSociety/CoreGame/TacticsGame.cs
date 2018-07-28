@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
@@ -24,12 +25,14 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private readonly TurnBasedCombat _combat;
         private readonly Camera _camera = new Camera();
-
+        private readonly List<object> _objects = new List<object>();
+        
         private MouseState _lastMouseState;
         private MouseAction _mouseAction = MouseAction.None;
         private Point Target;
+        private GameDrawMaster _drawMaster = new GameDrawMaster();
         private bool _shouldIgnoreClicks;
-        
+
         public TacticsGame(TurnBasedCombat combatEngine)
         {
             _combat = combatEngine;
@@ -46,14 +49,13 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _shouldIgnoreClicks = true, this));
             Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
-            new MovementOptionsCalculator();
-            new ShootOptionsCalculator();
-
+            _objects.Add(new AvailableMovesView(GameWorld.Map));
+            _objects.Add(new AvailableTargetsView());
+            _objects.Add(new MovementOptionsCalculator());
+            _objects.Add(new ShootOptionsCalculator());
             _combat.Init();
+            Add(_drawMaster);
             Add(_combat);
-
-            Add(new AvailableMovesView(GameState.Map));
-            Add(new AvailableTargetsView());
             Add(new HudView());
             Add(_camera);
         }
@@ -64,7 +66,7 @@ namespace ZeroFootPrintSociety.CoreGame
             if (CurrentGame.TheGame.IsActive)
             {
                 var positionOnMap = mouse.Position + _camera.Position;
-                var index = GameState.Map.MapPositionToTile(positionOnMap.ToVector2());
+                var index = GameWorld.Map.MapPositionToTile(positionOnMap.ToVector2());
 
                 if (_combat.Map.Exists(index.X, index.Y) && mouse.LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released)
                     Target = index;

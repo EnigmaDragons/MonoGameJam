@@ -17,16 +17,16 @@ namespace ZeroFootPrintSociety.Scenes
 
         public void Init()
         {
-            GameState.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "SampleCorporate.tmx"), new Size2(48, 48));
-            GameState.Characters = new List<Character>
+            GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "SampleCorporate.tmx"), new Size2(48, 48));
+            GameWorld.Characters = new List<Character>
             {
                 new CorpSec1(),
                 new CorpSec1(),
             };
             _game = new TacticsGame(
                 new TurnBasedCombat(
-                    GameState.Map,
-                    GameState.Characters));
+                    GameWorld.Map,
+                    GameWorld.Characters));
             _game.Init();
         }
 

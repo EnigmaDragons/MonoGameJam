@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using MonoDragons.Core.Engine;
-using MonoDragons.Core.PhysicsEngine;
 
 namespace ZeroFootPrintSociety.Tiles
 {
-    public class GameMap : IVisualAutomaton
+    public class GameMap
     {
         private Dictionary<int, Dictionary<int, GameTile>> _tileMap = new Dictionary<int, Dictionary<int, GameTile>>();
         public GameTile this[int x, int y] => _tileMap[x][y];
@@ -22,7 +20,7 @@ namespace ZeroFootPrintSociety.Tiles
                     _tileMap[x.Position.X] = new Dictionary<int, GameTile>();
                 _tileMap[x.Position.X][x.Position.Y] = x;
             });
-            Tiles = _tileMap.Values.SelectMany(x => x.Values).ToList();
+            Tiles = _tileMap.Values.SelectMany(x => x.Values).OrderBy(x => x.Position.X).ThenBy(x => x.Position.Y).ToList();
         }
 
         public bool Exists(Point point) => Exists(point.X, point.Y);
@@ -32,15 +30,6 @@ namespace ZeroFootPrintSociety.Tiles
         {
             var tilePositionOnMap = new Vector2(position.X - (position.X % 48), position.Y - (position.Y % 48));
             return new Point((int)tilePositionOnMap.X / 48, (int)tilePositionOnMap.Y / 48);
-        }
-
-        public void Update(TimeSpan delta)
-        {
-        }
-
-        public void Draw(Transform2 parentTransform)
-        {
-            Tiles.ForEach(x => x.Draw(parentTransform));
         }
     }
 }

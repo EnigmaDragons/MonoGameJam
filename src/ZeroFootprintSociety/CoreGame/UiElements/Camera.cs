@@ -20,8 +20,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         public Camera()
         {
-            Event.Subscribe(EventSubscription.Create<TurnBegun>(e => CenterOn(GameState.CurrentCharacter.CurrentTile.Transform), this));
-            Input.On(Control.Select, () => CenterOn(GameState.CurrentCharacter.CurrentTile.Transform));
+            Event.Subscribe(EventSubscription.Create<TurnBegun>(e => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform), this));
+            Input.On(Control.Select, () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform));
         }
 
         public void Update(TimeSpan delta)

@@ -25,6 +25,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private void OnMovementConfirmed(MovementConfirmed e)
         {
             _visuals.Clear();
+            GameWorld.Highlights.Remove(this);
         }
 
         private void ShowOptions(MovementOptionsAvailable e)
@@ -34,6 +35,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 var coloredBox = new ColoredRectangle { Transform = _map[x.Last().X, x.Last().Y].Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 20) };
                 _visuals.Add(coloredBox);
             });
+            GameWorld.Highlights.Add(this);
         }
 
         public void Draw(Transform2 parentTransform)

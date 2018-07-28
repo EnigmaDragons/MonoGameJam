@@ -16,7 +16,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         void CalculateMovement(TurnBegun e)
         {
-            Event.Publish(new MovementOptionsAvailable { AvailableMoves = TakeSteps(new List<Point> { GameState.CurrentCharacter.CurrentTile.Position  }, GameState.CurrentCharacter.Stats.Movement) });
+            Event.Publish(new MovementOptionsAvailable { AvailableMoves = TakeSteps(new List<Point> { GameWorld.Turns.CurrentCharacter.CurrentTile.Position  }, GameWorld.Turns.CurrentCharacter.Stats.Movement) });
         }
 
         private List<List<Point>> TakeSteps(List<Point> pathToHere, int remainingMoves)
@@ -32,7 +32,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 new Point(position.X, position.Y - 1),
                 new Point(position.X, position.Y + 1)
             };
-            var immidiateMoves = directions.Where(x => GameState.Map.Exists(x.X, x.Y) && GameState.Map[x.X, x.Y].IsWalkable).ToList();
+            var immidiateMoves = directions.Where(x => GameWorld.Map.Exists(x.X, x.Y) && GameWorld.Map[x.X, x.Y].IsWalkable).ToList();
             var immidiatePathes = immidiateMoves.Select(x => pathToHere.Concat(new List<Point> {x}).ToList()).ToList();
             var extraPaths = immidiatePathes.SelectMany(x => TakeSteps(x, remainingMoves - 1));
             var results = new List<List<Point>>();
