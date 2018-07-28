@@ -11,7 +11,7 @@ namespace ZeroFootPrintSociety.Characters.Ui
 {
     class HealthBar : IVisual
     {
-        private const int DEFAULT_HEIGHT = 4;
+        private const int HEIGHT = 4;
 
         public int MaxWidth;
 
@@ -31,11 +31,12 @@ namespace ZeroFootPrintSociety.Characters.Ui
             DamageRectangle.Transform = _MakeDamageTranform();
         }
 
-        private Transform2 _MakeHealthTransform(int? width = null) 
-            => new Transform2(new Size2(width ?? MaxWidth, DEFAULT_HEIGHT));
+        private Transform2 _MakeHealthTransform(int? width = null)
+            => new Transform2(new Size2(MathHelper.Clamp(width ?? MaxWidth, 0, MaxWidth), HEIGHT));
 
-        private Transform2 _MakeDamageTranform(int? damagePos = null, int? damageWidth = null) 
-            => new Transform2(new Rectangle(damagePos ?? MaxWidth, 0, damageWidth ?? 0, DEFAULT_HEIGHT));
+        private Transform2 _MakeDamageTranform(int? damagePos = null, int damageWidth = 0)
+            => new Transform2(new Rectangle(MathHelper.Clamp(damagePos ?? MaxWidth, 0, MaxWidth), 0,
+                MathHelper.Clamp(damageWidth, 0, MaxWidth), HEIGHT));
 
         public void Update(float percentLeft)
         {
