@@ -10,6 +10,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public static GameMap Map { get; set; } 
         public static List<Character> Characters { get; set; }
         public static CharacterTurns Turns { get; set; }
+        public static Character CurrentCharacter => Turns.CurrentCharacter;
         public static List<IVisual> Highlights { get; } = new List<IVisual>();
     }
 }
