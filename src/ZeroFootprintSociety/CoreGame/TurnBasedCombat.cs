@@ -71,10 +71,10 @@ namespace ZeroFootPrintSociety.CoreGame
             if (!AvailableMoves.Any(move => move.Last().X == x && move.Last().Y == y))
                 return;
 
-            // TODO: Path should be a sequence instead of a teleport to a single tile
-            Event.Publish(new MovementConfirmed { Path = new List<Point> { new Point(x, y) } });
+            var path = AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y);
+            Event.Publish(new MovementConfirmed { Path = path });
             CurrentCharacter.CurrentTile = Map[x, y];
-            CurrentCharacter.Move(AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y));
+            CurrentCharacter.Move(path);
         }
 
         public void Shoot(int x, int y)

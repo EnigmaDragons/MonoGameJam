@@ -23,8 +23,7 @@ namespace ZeroFootPrintSociety.CoreGame
         }
 
         private readonly TurnBasedCombat _combat;
-
-        private Transform2 _cameraOffset;
+        private readonly Camera _camera = new Camera();
 
         private MouseState _lastMouseState;
         private MouseAction _mouseAction = MouseAction.None;
@@ -38,8 +37,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
-            base.GetOffset = () => _cameraOffset;
-            Event.Subscribe(EventSubscription.Create<TurnBegun>(e => UpdateCameraPosition(e), this));
+            base.GetOffset = () => new Transform2(-_camera.Position.ToVector2());
 
             // TODO: Make Mouse Management a separate component
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(e => _mouseAction = MouseAction.Move, this));
@@ -57,15 +55,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new AvailableMovesView(GameState.Map));
             Add(new AvailableTargetsView());
             Add(new HudView());
-        }
-
-        private void UpdateCameraPosition(TurnBegun e)
-        {
-            _cameraOffset = new Transform2(
-                new Vector2(800, 450) -
-                new Vector2(
-                    GameState.CurrentCharacter.CurrentTile.Transform.Location.X, 
-                    GameState.CurrentCharacter.CurrentTile.Transform.Location.Y));
+            Add(_camera);
         }
 
         public new void Update(TimeSpan delta)
@@ -73,8 +63,8 @@ namespace ZeroFootPrintSociety.CoreGame
             var mouse = Mouse.GetState();
             if (CurrentGame.TheGame.IsActive)
             {
-                var positionOnMap = new Vector2(mouse.X - _cameraOffset.Location.X, mouse.Y - _cameraOffset.Location.Y);
-                var index = GameState.Map.MapPositionToTile(positionOnMap);
+                var positionOnMap = mouse.Position + _camera.Position;
+                var index = GameState.Map.MapPositionToTile(positionOnMap.ToVector2());
 
                 if (_combat.Map.Exists(index.X, index.Y) && mouse.LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released)
                     Target = index;

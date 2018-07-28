@@ -28,6 +28,7 @@ namespace ZeroFootPrintSociety.Characters
         private List<Point> _path = new List<Point>();
 
         public Vector2 CurrentTileLocation { get; private set; }
+        // TODO: Current Tile should always be accurately updated
         public GameTile CurrentTile { get; set; }
         public Transform2 Transform { get; private set; }
 
