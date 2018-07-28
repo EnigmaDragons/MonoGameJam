@@ -10,16 +10,14 @@ namespace ZeroFootPrintSociety.Tiles
 {
     public class GameTile : IVisual
     {
-        public int Column { get; }
-        public int Row { get; }
+        public Point Position { get; }
         public Transform2 Transform { get; }
         public List<GameTileDetail> Details { get; }
         public bool IsWalkable => Details.All(x => !x.IsBlocking);
 
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {
-            Column = column;
-            Row = row;
+            Position = new Point(column, row);
             Transform = transform;
             Details = details.OrderBy(x => x.ZIndex).ToList();
         }

@@ -23,6 +23,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public GameMap Map { get; }
         public List<Point> AvailableMoves { get; private set; }
+        public List<Character> Targets { get; private set; }
         public List<Character> Characters { get; }
 
         public TurnBasedCombat(GameMap map, List<Character> characters)
@@ -33,7 +34,8 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<OverwatchTriggered>(OnOverwatchTriggered, this));
             Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
             Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
-            Event.Subscribe(EventSubscription.Create<TurnBegun>(OnTurnBegun, this));
+            Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(x => AvailableMoves = x.AvailableMoves, this));
+            Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => Targets = x.Targets, this));
             Characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
             _turns = new CharacterTurns(Characters);
         }
@@ -41,15 +43,8 @@ namespace ZeroFootPrintSociety.CoreGame
         public void Init()
         {
             Characters.ForEach(x => x.Init());
-            Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random());
+            Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random(t => t.IsWalkable));
             _turns.Init();
-        }
-
-        private void OnTurnBegun(TurnBegun e)
-        {
-            AvailableMoves = TakeSteps(new Point(e.Character.CurrentTile.Column,
-                e.Character.CurrentTile.Row), e.Character.Stats.Movement);
-            Event.Publish(new MovementOptionsAvailable { AvailableMoves = AvailableMoves });
         }
 
         private void OnActionResolved(ActionResolved obj)
@@ -80,24 +75,17 @@ namespace ZeroFootPrintSociety.CoreGame
             // TODO: Path should be a sequence instead of a teleport to a single tile
             Event.Publish(new MovementConfirmed { Character = CurrentCharacter, Path = new List<Point> { new Point(x, y) } });
             CurrentCharacter.CurrentTile = Map[x, y];
-            Event.Publish(new MovementFinished());
+            Event.Publish(new MovementFinished { Character = CurrentCharacter });
         }
 
-        private List<Point> TakeSteps(Point position, int remainingMoves)
+        public void Shoot(int x, int y)
         {
-            if (remainingMoves == 0)
-                return new List<Point>();
-            var directions = new List<Point>
-            {
-                new Point(position.X - 1, position.Y),
-                new Point(position.X + 1, position.Y),
-                new Point(position.X, position.Y - 1),
-                new Point(position.X, position.Y + 1)
-            };
-            var immidiateMoves = directions.Where(x => Map.Exists(x.X, x.Y) && Map[x.X, x.Y].IsWalkable).ToList();
-            var extraMoves = immidiateMoves.SelectMany(x => TakeSteps(x, remainingMoves - 1));
-            return immidiateMoves.Concat(extraMoves).Distinct().ToList();
-        }
+            if (!Targets.Any(target => target.CurrentTile.Position.X == x && target.CurrentTile.Position.Y == y))
+                return;
+
+            Event.Publish(new ShotConfirmed());
+            Event.Publish(new ActionResolved());
+        } 
 
         public void Draw(Transform2 parentTransform)
         {
