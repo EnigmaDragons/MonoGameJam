@@ -75,12 +75,26 @@ namespace ZeroFootPrintSociety.Characters
             if (_path.Any())
             {
                 var targetLocation = GameWorld.Map[_path.First()].Transform.Location;
+                var pastLocation = CurrentTileLocation;
                 CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds);
+                SetFacing(pastLocation);
                 if (CurrentTileLocation.X == targetLocation.X && CurrentTileLocation.Y == targetLocation.Y)
                     _path.RemoveAt(0);
                 if (!_path.Any())
                     Event.Publish(new MovementFinished());
             }
+        }
+
+        private void SetFacing(Vector2 pastLocation)
+        {
+            if (pastLocation.X < CurrentTileLocation.X)
+                _currentAnimation = _idleRight;
+            if (pastLocation.X > CurrentTileLocation.X)
+                _currentAnimation = _idleLeft;
+            if (pastLocation.Y < CurrentTileLocation.Y)
+                _currentAnimation = _idleDown;
+            if (pastLocation.Y > CurrentTileLocation.Y)
+                _currentAnimation = _idleUp;
         }
 
         public void Draw(Transform2 parentTransform)
