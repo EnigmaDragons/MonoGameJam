@@ -36,7 +36,8 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(x => AvailableMoves = x.AvailableMoves, this));
             Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => Targets = x.Targets, this));
             Characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
-            _turns = new CharacterTurns(Characters);
+            _turns = new CharacterTurns();
+            GameWorld.Turns = _turns;
         }
 
         public void Init()
@@ -67,13 +68,8 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void MoveTo(int x, int y)
         {
-            if (!AvailableMoves.Any(move => move.Last().X == x && move.Last().Y == y))
-                return;
-
-            // TODO: Path should be a sequence instead of a teleport to a single tile
-            Event.Publish(new MovementConfirmed { Path = new List<Point> { new Point(x, y) } });
-            CurrentCharacter.CurrentTile = Map[x, y];
-            CurrentCharacter.Move(AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y));
+            if (AvailableMoves.Any(move => move.Last().X == x && move.Last().Y == y))
+                Event.Publish(new MovementConfirmed { Path = AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y) });
         }
 
         public void Shoot(int x, int y)

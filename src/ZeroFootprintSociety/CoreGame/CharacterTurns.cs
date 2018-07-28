@@ -2,28 +2,25 @@
 using MonoDragons.Core.EventSystem;
 using System.Collections.Generic;
 using System.Linq;
-using MonoDragons.Core.Common;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
-    class CharacterTurns : IInitializable
+    public class CharacterTurns : IInitializable
     {
         private int _activeCharacterIndex;
 
-        public List<Character> Characters { get; }
         public Character CurrentCharacter => Characters[_activeCharacterIndex];
+        public List<Character> Characters => GameWorld.Characters.OrderByDescending(x => x.Stats.Agility).ToList();
 
-        public CharacterTurns(List<Character> characters)
+        public CharacterTurns()
         {
-            Characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
             Event.Subscribe(EventSubscription.Create<TurnEnded>(BeginNextTurn, this));
         }
 
         public void Init()
         {
-            GameWorld.CurrentCharacter = CurrentCharacter;
             Event.Publish(new TurnBegun());
         }
 
@@ -32,7 +29,6 @@ namespace ZeroFootPrintSociety.CoreGame
             _activeCharacterIndex++;
             if (_activeCharacterIndex == Characters.Count)
                 _activeCharacterIndex = 0;
-            GameWorld.CurrentCharacter = CurrentCharacter;
             Event.Publish(new TurnBegun());
         }
     }

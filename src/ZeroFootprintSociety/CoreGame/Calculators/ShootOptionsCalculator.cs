@@ -19,7 +19,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         public void CalculateTargets(MovementFinished e)
         {
-            Event.Publish(new RangedTargetsAvailable { Targets = GameWorld.Characters.Where(x => x != GameWorld.CurrentCharacter && CanShoot(GameWorld.CurrentCharacter, x)).ToList() });
+            Event.Publish(new RangedTargetsAvailable { Targets = GameWorld.Characters.Where(x => x != GameWorld.Turns.CurrentCharacter && CanShoot(GameWorld.Turns.CurrentCharacter, x)).ToList() });
         }
 
         private bool CanShoot(Character attacker, Character target)

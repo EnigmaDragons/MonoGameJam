@@ -28,23 +28,28 @@ namespace ZeroFootPrintSociety.Characters
         private List<Point> _path = new List<Point>();
 
         public Vector2 CurrentTileLocation { get; private set; }
-        public GameTile CurrentTile { get; set; }
+        public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];
         public Transform2 Transform { get; private set; }
 
         public CharacterBody(string characterPath, Vector2 offset)
         {
             _characterPath = characterPath;
             _offset = offset;
+            Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
         }
 
-        public void Move(List<Point> path)
+        private void OnMovementConfirmed(MovementConfirmed movement)
         {
-            _path = path;
+            if (GameWorld.Turns.CurrentCharacter.Body == this)
+            {
+                _path = movement.Path;
+
+            }
         }
 
         public void Init(GameTile currentTile)
         {
-            CurrentTile = currentTile;
+            CurrentTileLocation = currentTile.Transform.Location;
             const float duration = 0.5f;
             const float scale = 1f;
             _idleDown = new SpriteAnimation(
@@ -61,7 +66,6 @@ namespace ZeroFootPrintSociety.Characters
                 new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-right-2.png"), scale, duration));
             var sprite = Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-down-1.png");
             Transform = new Transform2(new Vector2((float)(CurrentTile.Transform.Size.Width - sprite.Width) / 2, sprite.Height - sprite.Height), new Size2(sprite.Width, sprite.Height));
-            CurrentTileLocation = CurrentTile.Transform.Location;
             _currentAnimation = _idleDown;
         }
 
