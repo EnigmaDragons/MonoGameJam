@@ -19,15 +19,17 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private static readonly int GameHeight = CurrentDisplay.GameHeight;
         private static readonly Point ScreenCenter = new Point(GameWidth / 2, GameHeight / 2);
 
+        private const int TileOverage = 5;
+        private const int MouseCameraSpeed = 13;
+
         private readonly int XLeft = UI.OfScreenWidth(0.02f);
         private readonly int XRight = UI.OfScreenWidth(0.98f);
         private readonly int YTop = UI.OfScreenHeight(0.02f);
         private readonly int YBottom = UI.OfScreenHeight(0.98f);
-        private readonly int MouseCameraSpeed = 13;
-        private readonly int MinMapX = GameWorld.Map.MinX * TileData.RenderWidth;
-        private readonly int MaxMapX = GameWorld.Map.MaxX * TileData.RenderWidth;
-        private readonly int MinMapY = GameWorld.Map.MinY * TileData.RenderHeight;
-        private readonly int MaxMapY = GameWorld.Map.MaxY * TileData.RenderHeight;
+        private readonly int MinMapX = (GameWorld.Map.MinX - TileOverage) * TileData.RenderWidth;
+        private readonly int MaxMapX = (GameWorld.Map.MaxX + TileOverage) * TileData.RenderWidth;
+        private readonly int MinMapY = (GameWorld.Map.MinY - TileOverage) * TileData.RenderHeight;
+        private readonly int MaxMapY = (GameWorld.Map.MaxY + TileOverage) * TileData.RenderHeight;
 
         private float _transitionCompletion;
         private Point _destination;

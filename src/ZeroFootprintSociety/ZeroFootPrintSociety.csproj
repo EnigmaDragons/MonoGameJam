@@ -101,7 +101,7 @@
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Scenes\SampleCorporationScene.cs" />
     <Compile Include="Characters\CharacterBody.cs" />
-    <Compile Include="Scenes\SampleLabScene.cs" />
+    <Compile Include="Scenes\LabScene.cs" />
     <Compile Include="Tiles\GameMap.cs" />
     <Compile Include="Tiles\GameTile.cs" />
     <Compile Include="Tiles\GameTileDetail.cs" />
@@ -179,13 +179,7 @@
     <Content Include="Content\Maps\DarkAlley.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Maps\LabFloors.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Maps\LabObjects.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Maps\LabWalls.png">
+    <Content Include="Content\Maps\Lab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Maps\SampleCorporate.tmx">
@@ -218,17 +212,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Maps\LabFloors.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Maps\LabObjects.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Maps\LabWalls.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\Maps\DarkAlleyLevel.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -238,6 +221,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Maps\DarkAlley.tsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Maps\Lab.tsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Maps\LabLevel.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
