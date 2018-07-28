@@ -9,17 +9,25 @@ using MonoDragons.Core.Render;
 using MonoDragons.Core.UserInterface;
 using System;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     class Camera : IVisualAutomaton
     {
-        private static Point ScreenCenter = new Point(CurrentDisplay.GameWidth / 2, CurrentDisplay.GameHeight / 2);
+        private static readonly int GameWidth = CurrentDisplay.GameWidth;
+        private static readonly int GameHeight = CurrentDisplay.GameHeight;
+        private static readonly Point ScreenCenter = new Point(GameWidth / 2, GameHeight / 2);
+
         private readonly int XLeft = UI.OfScreenWidth(0.02f);
         private readonly int XRight = UI.OfScreenWidth(0.98f);
         private readonly int YTop = UI.OfScreenHeight(0.02f);
         private readonly int YBottom = UI.OfScreenHeight(0.98f);
         private readonly int MouseCameraSpeed = 13;
+        private readonly int MinMapX = GameWorld.Map.MinX * TileData.RenderWidth;
+        private readonly int MaxMapX = GameWorld.Map.MaxX * TileData.RenderWidth;
+        private readonly int MinMapY = GameWorld.Map.MinY * TileData.RenderHeight;
+        private readonly int MaxMapY = GameWorld.Map.MaxY * TileData.RenderHeight;
 
         private float _transitionCompletion;
         private Point _destination;
@@ -36,7 +44,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             if (_transitionCompletion < 1f)
             {
                 _transitionCompletion += 0.04f;
-                Position = Vector2.Lerp(Position.ToVector2(), _destination.ToVector2(), _transitionCompletion).ToPoint();
+                SetPosition(Vector2.Lerp(Position.ToVector2(), _destination.ToVector2(), _transitionCompletion).ToPoint());
                 return;
             }
 
@@ -52,7 +60,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 var targetX = Position.X + (MouseCameraSpeed * (int)_hDir);
                 var _vDir = mouse.Y < YTop ? VerticalDirection.Up : mouse.Y > YBottom ? VerticalDirection.Down : VerticalDirection.None;
                 var targetY = Position.Y + (MouseCameraSpeed * (int)_vDir);
-                Position = new Point(targetX, targetY);
+                SetPosition(new Point(targetX, targetY));
             }
         }
 
@@ -63,7 +71,14 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         public void Init(Point startingCameraTile)
         {
-            Position = GameWorld.Map.TileToWorldPosition(startingCameraTile);
+            SetPosition(GameWorld.Map.TileToWorldPosition(startingCameraTile));
+        }
+
+        private void SetPosition(Point raw)
+        {
+            var clampedX = Math.Min(Math.Max(raw.X, MinMapX), MaxMapX - GameWidth);
+            var clampedY = Math.Min(Math.Max(raw.Y, MinMapY), MaxMapY - GameHeight);
+            Position = new Point(clampedX, clampedY);
         }
 
         private void MoveTo(Point position)
