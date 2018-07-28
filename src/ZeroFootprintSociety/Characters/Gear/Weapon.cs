@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZeroFootPrintSociety.Characters.Gear
 {
-    public class GearStats
+    class Weapon
     {
-        public int Accuracy { get; set; } = 5;
-        public int Damage { get; set; } = 3;
     }
 }

@@ -12,6 +12,6 @@ namespace ZeroFootPrintSociety.Characters
             {
                 Name = "Corporate Security"
             },
-            new CharacterGear(new GearStats(), new GearStats())) {}
+            new CharacterGear(new RsxCarbine(), new RsxCarbine())) {}
     }
 }
