@@ -5,6 +5,6 @@ namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
     class MovementOptionsAvailable
     {
-        public List<Point> AvailableMoves { get; internal set; }
+        public List<List<Point>> AvailableMoves { get; internal set; }
     }
 }

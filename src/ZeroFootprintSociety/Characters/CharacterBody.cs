@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.PhsyicsMath;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.Characters
@@ -17,8 +23,11 @@ namespace ZeroFootPrintSociety.Characters
         private SpriteAnimation _idleUp;
         private SpriteAnimation _idleLeft;
         private SpriteAnimation _idleRight;
-        private Transform2 _size;
+        private Transform2 _transform;
         private SpriteAnimation _currentAnimation;
+
+        private List<Point> _path = new List<Point>();
+        private Vector2 _currentTileLocation;
 
         // TODO: Make this private and have setter and getter
         public GameTile CurrentTile { get; set; }
@@ -29,8 +38,14 @@ namespace ZeroFootPrintSociety.Characters
             _offset = offset;
         }
 
-        public void Init()
+        public void Move(List<Point> path)
         {
+            _path = path;
+        }
+
+        public void Init(GameTile currentTile)
+        {
+            CurrentTile = currentTile;
             const float duration = 0.5f;
             const float scale = 1f;
             _idleDown = new SpriteAnimation(
@@ -46,21 +61,28 @@ namespace ZeroFootPrintSociety.Characters
                 new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-right-1.png"), scale, duration),
                 new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-right-2.png"), scale, duration));
             var sprite = Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-down-1.png");
-            _size = new Transform2(new Size2(sprite.Width, sprite.Height));
+            _transform = new Transform2(new Vector2((float)(CurrentTile.Transform.Size.Width - sprite.Width) / 2, sprite.Height - sprite.Height), new Size2(sprite.Width, sprite.Height));
+            _currentTileLocation = CurrentTile.Transform.Location;
             _currentAnimation = _idleDown;
         }
 
         public void Update(TimeSpan delta)
         {
             _currentAnimation.Update(delta);
+            if (_path.Any())
+            {
+                var targetLocation = GameState.Map[_path.First()].Transform.Location;
+                _currentTileLocation = _currentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds);
+                if (_currentTileLocation.X == targetLocation.X && _currentTileLocation.Y == targetLocation.Y)
+                    _path.RemoveAt(0);
+                if (!_path.Any())
+                    Event.Publish(new MovementFinished());
+            }
         }
 
         public void Draw(Transform2 parentTransform)
         {
-            _currentAnimation.Draw(parentTransform + _size + _offset + 
-                new Vector2(
-                    CurrentTile.Transform.Location.X + ((float)(CurrentTile.Transform.Size.Width - _size.Size.Width) / 2),
-                    CurrentTile.Transform.Location.Y + CurrentTile.Transform.Size.Height - _size.Size.Height));
+            _currentAnimation.Draw(parentTransform + _transform + _offset + _currentTileLocation);
         }
     }
 }

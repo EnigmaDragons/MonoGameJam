@@ -61,13 +61,14 @@ namespace ZeroFootPrintSociety.CoreGame
             _cameraOffset = new Transform2(
                 new Vector2(800, 450) -
                 new Vector2(
-                    e.Character.CurrentTile.Transform.Location.X, 
-                    e.Character.CurrentTile.Transform.Location.Y));
+                    GameState.CurrentCharacter.CurrentTile.Transform.Location.X, 
+                    GameState.CurrentCharacter.CurrentTile.Transform.Location.Y));
         }
 
         public void Update(TimeSpan delta)
         {
             _clickUI.Update(delta);
+            _combat.Update(delta);
             var mouse = Mouse.GetState();
             if (CurrentGame.TheGame.IsActive)
             {

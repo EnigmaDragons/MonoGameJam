@@ -1,5 +1,7 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Tiles;
@@ -29,9 +31,11 @@ namespace ZeroFootPrintSociety.Characters
             Gear = gear;
         }
 
-        public void Init()
+        public void Move(List<Point> points) => Body.Move(points);
+
+        public void Init(GameTile tile)
         {
-            Body.Init();
+            Body.Init(tile);
         }
 
         public void Draw(Transform2 parentTransform)
