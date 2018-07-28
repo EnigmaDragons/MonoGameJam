@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ZeroFootPrintSociety.CoreGame.Mechanics.CombatResolution;
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 {
@@ -8,7 +9,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             return new List<object>
             {
-                new HideAction()
+                new HideAction(),
+                new RangedAction()
             };
         }
     }

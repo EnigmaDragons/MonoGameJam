@@ -58,8 +58,7 @@
     <Compile Include="CoreGame\Mechanics\Events\HideChosen.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchBegun.cs" />
     <Compile Include="Characters\CharacterGear.cs" />
-    <Compile Include="Characters\Gear\GearStats.cs" />
-    <Compile Include="CoreGame\Mechanics\CombatResolution\RangedResolver.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\RangedAction.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\CorpSec1.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchTriggered.cs" />
@@ -79,7 +78,7 @@
     <Compile Include="CoreGame\UiElements\InGameMenu.cs" />
     <Compile Include="CoreGame\UiElements\UiEvents\MenuDismissed.cs" />
     <Compile Include="CoreGame\UiElements\UiEvents\MenuRequested.cs" />
-    <Compile Include="Gear\RangedWeapon.cs" />
+    <Compile Include="Characters\Gear\RangedWeapon.cs" />
     <Compile Include="PhsyicsMath\VectorMath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Scenes\DemoActionMenu.cs" />
