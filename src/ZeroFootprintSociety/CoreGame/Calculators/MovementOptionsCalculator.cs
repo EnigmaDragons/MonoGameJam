@@ -16,7 +16,13 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         void CalculateMovement(TurnBegun e)
         {
-            Event.Publish(new MovementOptionsAvailable { AvailableMoves = TakeSteps(new List<Point> { GameWorld.Turns.CurrentCharacter.CurrentTile.Position  }, GameWorld.Turns.CurrentCharacter.Stats.Movement) });
+            var basePath = new List<Point> { GameWorld.Turns.CurrentCharacter.CurrentTile.Position };
+            Event.Publish(new MovementOptionsAvailable
+            {
+                
+                AvailableMoves = TakeSteps(basePath, GameWorld.Turns.CurrentCharacter.Stats.Movement)
+                    .Concat(new List<List<Point>> { basePath }).ToList()
+            });
         }
 
         private List<List<Point>> TakeSteps(List<Point> pathToHere, int remainingMoves)
