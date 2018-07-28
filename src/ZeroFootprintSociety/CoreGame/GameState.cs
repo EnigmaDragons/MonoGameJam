@@ -8,5 +8,6 @@ namespace ZeroFootPrintSociety.CoreGame
     {
         public static GameMap Map { get; set; } 
         public static List<Character> Characters { get; set; }
+        public static Character CurrentCharacter { get; set; }
     }
 }

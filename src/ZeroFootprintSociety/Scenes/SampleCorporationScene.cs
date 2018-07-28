@@ -8,7 +8,6 @@ using MonoTiled.Tiled.TmxLoading;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Tiles;
-using ZeroFootPrintSociety.UIEffects;
 
 namespace ZeroFootPrintSociety.Scenes
 {

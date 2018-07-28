@@ -64,8 +64,8 @@ namespace ZeroFootPrintSociety.CoreGame
             _cameraOffset = new Transform2(
                 new Vector2(800, 450) -
                 new Vector2(
-                    e.Character.CurrentTile.Transform.Location.X, 
-                    e.Character.CurrentTile.Transform.Location.Y));
+                    GameState.CurrentCharacter.CurrentTile.Transform.Location.X, 
+                    GameState.CurrentCharacter.CurrentTile.Transform.Location.Y));
         }
 
         public new void Update(TimeSpan delta)

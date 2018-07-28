@@ -4,6 +4,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using System.Collections.Generic;
+using System.Linq;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 
@@ -30,7 +31,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             e.AvailableMoves.ForEach(x =>
             {
-                var coloredBox = new ColoredRectangle { Transform = _map[x.X, x.Y].Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 20) };
+                var coloredBox = new ColoredRectangle { Transform = _map[x.Last().X, x.Last().Y].Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 20) };
                 _visuals.Add(coloredBox);
             });
         }

@@ -22,7 +22,7 @@ namespace ZeroFootPrintSociety.CoreGame
         private Character CurrentCharacter => _turns.CurrentCharacter;
 
         public GameMap Map { get; }
-        public List<Point> AvailableMoves { get; private set; }
+        public List<List<Point>> AvailableMoves { get; private set; }
         public List<Character> Targets { get; private set; }
         public List<Character> Characters { get; }
 
@@ -42,8 +42,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
-            Characters.ForEach(x => x.Init());
-            Characters.ForEach(x => x.CurrentTile = Map.Tiles.Random(t => t.IsWalkable));
+            Characters.ForEach(x => x.Init(Map.Tiles.Random(t => t.IsWalkable)));
             _turns.Init();
         }
 
@@ -69,13 +68,13 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void MoveTo(int x, int y)
         {
-            if (!AvailableMoves.Any(move => move.X == x && move.Y == y))
+            if (!AvailableMoves.Any(move => move.Last().X == x && move.Last().Y == y))
                 return;
 
             // TODO: Path should be a sequence instead of a teleport to a single tile
-            Event.Publish(new MovementConfirmed { Character = CurrentCharacter, Path = new List<Point> { new Point(x, y) } });
+            Event.Publish(new MovementConfirmed { Path = new List<Point> { new Point(x, y) } });
             CurrentCharacter.CurrentTile = Map[x, y];
-            Event.Publish(new MovementFinished { Character = CurrentCharacter });
+            CurrentCharacter.Move(AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y));
         }
 
         public void Shoot(int x, int y)
