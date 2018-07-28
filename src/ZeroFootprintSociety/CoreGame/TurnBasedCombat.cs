@@ -28,6 +28,8 @@ namespace ZeroFootPrintSociety.CoreGame
         public TurnBasedCombat(GameMap map, List<Character> characters)
         {
             Map = map;
+            if (characters.Any(x => !x.IsInitialized))
+                throw new InvalidOperationException("All Characters must be initialized before Level begins.");
 
             Event.Subscribe(EventSubscription.Create<OverwatchBegun>(OnOverwatchBegun, this));
             Event.Subscribe(EventSubscription.Create<OverwatchTriggered>(OnOverwatchTriggered, this));
@@ -42,7 +44,6 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
-            Characters.ForEach(x => x.Init(Map.Tiles.Random(t => t.Details.All(detail => !detail.IsBlocking))));
             _turns.Init();
         }
 

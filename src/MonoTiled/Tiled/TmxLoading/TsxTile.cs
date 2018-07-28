@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Xna.Framework;
 
@@ -10,16 +8,16 @@ namespace MonoTiled.Tiled.TmxLoading
     {
         public int ID { get; private set; }
         public Rectangle SourceRect { get; private set; }
-        public Dictionary<string, bool> CustomBools { get; private set; }
+        public DictionaryWithDefault<string, bool> CustomBools { get; private set; }
 
         public TsxTile(int id, Rectangle sourceRect)
         {
-            Construct(id, sourceRect, new Dictionary<string, bool>());
+            Construct(id, sourceRect, new DictionaryWithDefault<string, bool>(false));
         }
 
         public TsxTile(int id, Rectangle sourceRect, XElement tile)
         {
-            var customBools = new Dictionary<string, bool>();
+            var customBools = new DictionaryWithDefault<string, bool>(false);
             tile.Element(XName.Get("properties"))
                 .Elements(XName.Get("property"))
                 .Where(x => new XValue(x, "type").AsString() == "bool")
@@ -28,7 +26,7 @@ namespace MonoTiled.Tiled.TmxLoading
             Construct(id, sourceRect, customBools);
         }
 
-        private void Construct(int id, Rectangle sourceRect, Dictionary<string, bool> customBools)
+        private void Construct(int id, Rectangle sourceRect, DictionaryWithDefault<string, bool> customBools)
         {
             ID = id;
             SourceRect = sourceRect;

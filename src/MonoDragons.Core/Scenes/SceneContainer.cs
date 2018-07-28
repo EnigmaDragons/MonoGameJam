@@ -31,13 +31,13 @@ namespace MonoDragons.Core.Scenes
             Add((IAutomaton)obj);
         }
         
-        public void Draw(Transform2 parentTransform)
+        public virtual void Draw(Transform2 parentTransform)
         {
             var t = _useAbsolutePosition ? Transform2.Zero : parentTransform + GetOffset();
             _visuals.ForEach(x => x.Draw(t));
         }
 
-        public void Update(TimeSpan delta)
+        public virtual void Update(TimeSpan delta)
         {
             _automata.ForEach(x => x.Update(delta));
         }

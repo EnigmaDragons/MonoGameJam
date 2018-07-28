@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 
@@ -8,6 +7,8 @@ namespace ZeroFootPrintSociety.Tiles
     public class GameMap
     {
         private Dictionary<int, Dictionary<int, GameTile>> _tileMap = new Dictionary<int, Dictionary<int, GameTile>>();
+        private readonly int RenderSize = TileData.RenderHeight;
+
         public GameTile this[int x, int y] => _tileMap[x][y];
         public GameTile this[Point point] => _tileMap[point.X][point.Y];
         public List<GameTile> Tiles { get; }
@@ -28,8 +29,13 @@ namespace ZeroFootPrintSociety.Tiles
 
         public Point MapPositionToTile(Vector2 position)
         {
-            var tilePositionOnMap = new Vector2(position.X - (position.X % 48), position.Y - (position.Y % 48));
-            return new Point((int)tilePositionOnMap.X / 48, (int)tilePositionOnMap.Y / 48);
+            var tilePositionOnMap = new Vector2(position.X - (position.X % RenderSize), position.Y - (position.Y % RenderSize));
+            return new Point((int)tilePositionOnMap.X / RenderSize, (int)tilePositionOnMap.Y / RenderSize);
+        }
+
+        public Point TileToWorldPosition(Point startingCameraTile)
+        {
+            return new Point(startingCameraTile.X * RenderSize, startingCameraTile.Y * RenderSize);
         }
     }
 }
