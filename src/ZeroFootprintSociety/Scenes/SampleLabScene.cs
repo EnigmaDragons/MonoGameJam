@@ -4,6 +4,7 @@ using MonoDragons.Core.Scenes;
 using MonoTiled.Tiled.TmxLoading;
 using System.Collections.Generic;
 using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.Characters.Prefabs;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Tiles;
 

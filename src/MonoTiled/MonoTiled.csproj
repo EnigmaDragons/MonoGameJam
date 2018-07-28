@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tiled\DictionaryWithDefault.cs" />
     <Compile Include="Tiled\IntegersInText.cs" />
     <Compile Include="Tiled\Orthographic\Tile.cs" />
     <Compile Include="Tiled\Orthographic\TileDetail.cs" />
