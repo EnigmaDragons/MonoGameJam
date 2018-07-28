@@ -6,6 +6,7 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoTiled.Tiled.TmxLoading;
 using ZeroFootPrintSociety.Characters;
+using Prefabs = ZeroFootPrintSociety.Characters.Prefabs;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Tiles;
 
@@ -20,8 +21,8 @@ namespace ZeroFootPrintSociety.Scenes
             GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "SampleCorporate.tmx"), new Size2(48, 48));
             GameWorld.Characters = new List<Character>
             {
-                new CorpSec1(),
-                new CorpSec1(),
+                new Prefabs.CorpSec1(),
+                new Prefabs.CorpSec1(),
             };
             _game = new TacticsGame(
                 new TurnBasedCombat(
