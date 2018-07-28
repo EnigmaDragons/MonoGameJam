@@ -60,7 +60,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(_camera);
         }
 
-        public new void Update(TimeSpan delta)
+        public override void Update(TimeSpan delta)
         {
             var mouse = Mouse.GetState();
             if (CurrentGame.TheGame.IsActive)

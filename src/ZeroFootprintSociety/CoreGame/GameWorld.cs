@@ -18,8 +18,8 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             Map = null;
             Turns = null;
-            Characters.Clear();
-            Highlights.Clear();
+            Characters?.Clear();
+            Highlights?.Clear();
         }
     }
 }
