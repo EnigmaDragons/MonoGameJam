@@ -60,7 +60,7 @@
     <Compile Include="CoreGame\Mechanics\Events\HideChosen.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchBegun.cs" />
     <Compile Include="Characters\CharacterGear.cs" />
-    <Compile Include="CoreGame\Mechanics\CombatResolution\RangedResolver.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\RangedAction.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\CorpSec1.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchTriggered.cs" />

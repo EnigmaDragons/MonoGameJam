@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters.Gear;
 
 namespace ZeroFootPrintSociety.Characters
