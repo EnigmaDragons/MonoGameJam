@@ -22,7 +22,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public GameMap Map { get; }
         public List<List<Point>> AvailableMoves { get; private set; }
-        public List<Character> Targets { get; private set; }
+        public List<Target> Targets { get; private set; }
         public List<Character> Characters { get; }
 
         public TurnBasedCombat(GameMap map, List<Character> characters)
@@ -75,10 +75,18 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Shoot(int x, int y)
         {
-            if (!Targets.Any(target => target.CurrentTile.Position.X == x && target.CurrentTile.Position.Y == y))
+            if (!Targets.Any(target => target.Character.CurrentTile.Position.X == x && target.Character.CurrentTile.Position.Y == y))
                 return;
 
-            Event.Publish(new RangedTargetInspected { Attacker = GameWorld.CurrentCharacter, Defender = Targets.First(target => target.CurrentTile.Position.X == x && target.CurrentTile.Position.Y == y) });
+            var attackTarget = Targets.First(target => target.Character.CurrentTile.Position.X == x && target.Character.CurrentTile.Position.Y == y);
+            Event.Publish(new RangedTargetInspected
+            {
+                Attacker = GameWorld.CurrentCharacter,
+                Defender = attackTarget.Character,
+                AttackerBlockChance = attackTarget.TargetterBlockChance,
+                DefenderBlockChance = attackTarget.TargetBlockChance
+            });
+
         } 
 
         public void Update(TimeSpan delta)

@@ -16,7 +16,8 @@ namespace ZeroFootPrintSociety.Tiles
         public Transform2 Transform { get; }
         public List<GameTileDetail> Details { get; }
         public bool IsWalkable => Details.All(x => !x.IsBlocking) && GameWorld.Characters.All(x => x.CurrentTile != this);
-        public bool IsBlocking => Details.Any(x => x.IsBlocking);
+        public Cover Cover => Details.OrderByDescending(x => (int)x.Cover).First().Cover;
+
 
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {

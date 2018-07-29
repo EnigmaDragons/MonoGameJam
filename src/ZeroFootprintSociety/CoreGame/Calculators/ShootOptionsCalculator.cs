@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.EventSystem;
@@ -19,53 +18,80 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         public void CalculateTargets(MovementFinished e)
         {
-            Event.Publish(new RangedTargetsAvailable { Targets = GameWorld.Characters.Where(x => x != GameWorld.Turns.CurrentCharacter && CanShoot(GameWorld.Turns.CurrentCharacter, x)).ToList() });
+            var targetsAvailable = new RangedTargetsAvailable
+            {
+                Targets = GameWorld.Characters
+                    .Where(x => x != GameWorld.Turns.CurrentCharacter && CanShoot(GameWorld.Turns.CurrentCharacter, x))
+                    .Select(x => new Target
+                    {
+                        Character = x,
+                        CoverToThem = BestShot(GameWorld.Turns.CurrentCharacter, x),
+                        CoverFromThem = CanShoot(x, GameWorld.Turns.CurrentCharacter)
+                            ? BestShot(x, GameWorld.Turns.CurrentCharacter)
+                            : new List<CoverProvided>(),
+                    }).ToList()
+            };
+            targetsAvailable.Targets.ForEach(x =>
+            {
+                x.TargetBlockChance = x.CoverToThem.Sum(y => (int) y.Cover);
+                x.TargetterBlockChance = x.CoverFromThem.Sum(y => (int)y.Cover);
+            });
+            Event.Publish(targetsAvailable);
         }
 
         private bool CanShoot(Character attacker, Character target)
         {
-            return !AreSameTeam(attacker, target) && attacker.Gear.EquippedWeapon.IsRanged 
-                && attacker.Gear.EquippedWeapon.AsRanged().EffectiveRanges.ContainsKey(attacker.CurrentTile.Position.TileDistance(target.CurrentTile.Position)) 
-                && CornersThatHaveLineOfSightOfOtherCorners(attacker.CurrentTile, target.CurrentTile).Any(x => x >= 2);
+            return !AreSameTeam(attacker, target) 
+                && attacker.Gear.EquippedWeapon.IsRanged
+                && attacker.Gear.EquippedWeapon.AsRanged().EffectiveRanges.ContainsKey(attacker.CurrentTile.Position.TileDistance(target.CurrentTile.Position));
         }
 
         private bool AreSameTeam(Character attacker, Character target) => attacker.Team == target.Team;
 
-        private List<int> CornersThatHaveLineOfSightOfOtherCorners(GameTile tile, GameTile tile2)
+        private List<CoverProvided> BestShot(Character attacker, Character target)
         {
-            var result = new List<int>();
-            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + 0.1f), tile2));
-            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + 0.1f), tile2));
-            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f), tile2));
-            result.Add(CornersInLineOfSight(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f), tile2));
-            return result;
+            return OptimalShot(CoversFromEachCorner(attacker.CurrentTile, target.CurrentTile));
         }
 
-        private int CornersInLineOfSight(Vector2 corner, GameTile tile)
+        private List<CoverProvided> OptimalShot(List<List<CoverProvided>> options)
         {
-            var seenCorners = 0;
-            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + 0.1f)))
-                seenCorners++;
-            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height -0.1f)))
-                seenCorners++;
-            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + 0.1f)))
-                seenCorners++;
-            if (InLineOfSight(corner, new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f)))
-                seenCorners++;
-            return seenCorners;
+            return options.OrderBy(covers => covers.Sum(x => (int) x.Cover)).First();
         }
 
-        private bool InLineOfSight(Vector2 point1, Vector2 point2)
+        private List<List<CoverProvided>> CoversFromEachCorner(GameTile tile, GameTile tile2)
         {
-            var currentSpot = point1;
+            return new List<List<CoverProvided>>
+            {
+                CoversFromThisCorner(new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + 0.1f), tile2),
+                CoversFromThisCorner(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + 0.1f), tile2),
+                CoversFromThisCorner(new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f), tile2),
+                CoversFromThisCorner(new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f), tile2)
+            };
+        }
+
+        private List<CoverProvided> CoversFromThisCorner(Vector2 corner, GameTile tile)
+        {
+            return new List<CoverProvided>
+            {
+                CoverProvidedBetween(corner, new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + 0.1f)),
+                CoverProvidedBetween(corner, new Vector2(tile.Transform.Location.X + 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height -0.1f)),
+                CoverProvidedBetween(corner, new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + 0.1f)),
+                CoverProvidedBetween(corner, new Vector2(tile.Transform.Location.X + tile.Transform.Size.Width - 0.1f, tile.Transform.Location.Y + tile.Transform.Size.Height - 0.1f))
+            };
+        }
+
+        private CoverProvided CoverProvidedBetween(Vector2 point1, Vector2 point2)
+        {
+            var currentCover = new CoverProvided { Cover = Cover.None };
+            var currentSpot = point1.MoveTowards(point2, 0.1);
             while (currentSpot.X != point2.X || currentSpot.Y != point2.Y)
             {
-                currentSpot = currentSpot.MoveTowards(point2, 0.1);
                 var tile = GameWorld.Map.MapPositionToTile(currentSpot);
-                if (!GameWorld.Map.Exists(tile) || GameWorld.Map[tile].IsBlocking)
-                    return false;
+                if (GameWorld.Map.Exists(tile) && GameWorld.Map[tile].Cover > currentCover.Cover)
+                    currentCover = new CoverProvided { Cover = GameWorld.Map[tile].Cover, Provider = GameWorld.Map[tile] };
+                currentSpot = currentSpot.MoveTowards(point2, 0.1);
             }
-            return true;
+            return currentCover;
         }
     }
 }

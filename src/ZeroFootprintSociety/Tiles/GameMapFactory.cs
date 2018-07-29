@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.PhysicsEngine;
@@ -32,7 +33,8 @@ namespace ZeroFootPrintSociety.Tiles
                         tsxMap[layerAndTile.Tile.TextureId].TileSource,
                         tileMap[layerAndTile.Tile.TextureId].SourceRect,
                         layerAndTile.Layer.ZIndex,
-                        tileMap[layerAndTile.Tile.TextureId].CustomBools["Blocking"])).ToList())).ToList());
+                        tileMap[layerAndTile.Tile.TextureId].CustomBools["Blocking"],
+                        (Cover)Enum.Parse(typeof(Cover), tileMap[layerAndTile.Tile.TextureId].CustomStrings["Cover"], true))).ToList())).ToList());
         }
     }
 }

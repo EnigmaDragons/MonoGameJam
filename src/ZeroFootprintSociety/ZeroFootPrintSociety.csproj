@@ -43,15 +43,18 @@
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
+    <Compile Include="Characters\Target.cs" />
     <Compile Include="Characters\Teams\TeamGroup.cs" />
     <Compile Include="Characters\Teams\Team.cs" />
     <Compile Include="Characters\Ui\HealthBar.cs" />
+    <Compile Include="CoreGame\ActionEvents\ShotBlocked.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotFired.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotHit.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotMissed.cs" />
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
+    <Compile Include="CoreGame\CoverProvided.cs" />
     <Compile Include="CoreGame\GameWorld.cs" />
     <Compile Include="CoreGame\GameDrawMaster.cs" />
     <Compile Include="CoreGame\Mechanics\Events\ShootSelected.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Scenes\SampleCorporationScene.cs" />
     <Compile Include="Characters\CharacterBody.cs" />
     <Compile Include="Scenes\LabScene.cs" />
+    <Compile Include="Tiles\Cover.cs" />
     <Compile Include="Tiles\GameMap.cs" />
     <Compile Include="Tiles\GameTile.cs" />
     <Compile Include="Tiles\GameTileDetail.cs" />
@@ -218,6 +222,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\placeholder-menu-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\shield-placeholder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\title-placeholder.png">

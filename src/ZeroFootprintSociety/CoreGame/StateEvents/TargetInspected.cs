@@ -6,5 +6,7 @@ namespace ZeroFootPrintSociety.CoreGame.StateEvents
     {
         public Character Attacker { get; set; }
         public Character Defender { get; set; }
+        public int AttackerBlockChance { get; set; }
+        public int DefenderBlockChance { get; set; }
     }
 }

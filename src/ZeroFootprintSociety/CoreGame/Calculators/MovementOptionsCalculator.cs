@@ -19,7 +19,6 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             var basePath = new List<Point> { GameWorld.Turns.CurrentCharacter.CurrentTile.Position };
             Event.Publish(new MovementOptionsAvailable
             {
-                
                 AvailableMoves = TakeSteps(basePath, GameWorld.Turns.CurrentCharacter.Stats.Movement)
                     .Concat(new List<List<Point>> { basePath }).ToList()
             });

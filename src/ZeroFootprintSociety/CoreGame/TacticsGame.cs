@@ -70,24 +70,19 @@ namespace ZeroFootPrintSociety.CoreGame
             if (CurrentGame.TheGame.IsActive)
             {
                 var positionOnMap = mouse.Position + _camera.Position;
-                var index = GameWorld.Map.MapPositionToTile(positionOnMap.ToVector2());
+                var tilePoint = GameWorld.Map.MapPositionToTile(positionOnMap.ToVector2());
+                GameWorld.HoveredTile = tilePoint;
 
-                if (_combat.Map.Exists(index.X, index.Y) && mouse.LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released)
-                    Target = index;
-                else if (_combat.Map.Exists(Target.X, Target.Y) && Target == index && mouse.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
-                    InvokeClickAction(index.X, index.Y);
+                if (_combat.Map.Exists(tilePoint.X, tilePoint.Y) && mouse.LeftButton == ButtonState.Pressed && _lastMouseState.LeftButton == ButtonState.Released)
+                    Target = tilePoint;
+                else if (_combat.Map.Exists(Target.X, Target.Y) && Target == tilePoint && mouse.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
+                    InvokeClickAction(tilePoint.X, tilePoint.Y);
                 else if (mouse.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
                     Target = new Point(-1, -1);
 
                 _lastMouseState = mouse;
             }
             base.Update(delta);
-        }
-
-        public override void Draw(Transform2 parentTransform)
-        {
-
-            base.Draw(parentTransform);
         }
 
         private void InvokeClickAction(int x, int y)

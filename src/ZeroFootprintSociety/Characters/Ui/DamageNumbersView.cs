@@ -23,6 +23,7 @@ namespace ZeroFootPrintSociety.Characters.Ui
         {
             Event.Subscribe<ShotHit>(OnShotHit, this);
             Event.Subscribe<ShotMissed>(OnShotMissed, this);
+            Event.Subscribe<ShotBlocked>(OnShotBlocked, this);
             _owner = owner;
         }
 
@@ -36,6 +37,12 @@ namespace ZeroFootPrintSociety.Characters.Ui
         {
             if (e.Target.Equals(_owner))
                 Add("Miss");
+        }
+
+        private void OnShotBlocked(ShotBlocked e)
+        {
+            if (e.Target.Equals(_owner))
+                Add("Block");
         }
 
         private void Add(string text)

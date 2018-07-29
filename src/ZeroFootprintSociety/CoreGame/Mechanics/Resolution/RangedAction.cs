@@ -36,6 +36,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 Defender = e.Defender,
                 AttackerHitChance = e.Attacker.Stats.AccuracyPercent + attackerWeapon.AccuracyPercent - e.Defender.Stats.Agility,
                 AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]),
+                AttackerBlockChance = e.AttackerBlockChance
             };
             if (e.Defender.Gear.EquippedWeapon.IsRanged)
             {
@@ -45,7 +46,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                     proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]);
             }
             proposed.AttackerDamage = proposed.DefenderHitChance * proposed.DefenderBullets * proposed.DefenderBulletDamage / 100;
-            proposed.DefenderDamage = proposed.AttackerHitChance * proposed.AttackerBullets * proposed.AttackerBulletDamage / 108;
+            proposed.DefenderDamage = proposed.AttackerHitChance * proposed.AttackerBullets * proposed.AttackerBulletDamage / 100;
+            proposed.DefenderBlockChance = e.DefenderBlockChance;
             Event.Publish(proposed);
         }
 
@@ -54,14 +56,21 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             for (var i = 0; i < e.Proposed.AttackerBullets; i++)
             {
                 Event.Publish(new ShotFired { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
-                if (_random.Next(0, 100) < e.Proposed.AttackerHitChance)
+                if (_random.Next(0, 100) < e.Proposed.DefenderBlockChance)
                 {
-                    e.Proposed.Defender.State.RemainingHealth -= e.Proposed.AttackerBulletDamage;
-                    Event.Publish(new ShotHit { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender, DamageAmount = e.Proposed.AttackerBulletDamage });
+                    Event.Publish(new ShotBlocked { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
                 }
                 else
                 {
-                    Event.Publish(new ShotMissed { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
+                    if (_random.Next(0, 100) < e.Proposed.AttackerHitChance)
+                    {
+                        e.Proposed.Defender.State.RemainingHealth -= e.Proposed.AttackerBulletDamage;
+                        Event.Publish(new ShotHit { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender, DamageAmount = e.Proposed.AttackerBulletDamage });
+                    }
+                    else
+                    {
+                        Event.Publish(new ShotMissed { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
+                    }
                 }
             }
 
@@ -72,14 +81,21 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                     for (var i = 0; i < e.Proposed.DefenderBullets; i++)
                     {
                         Event.Publish(new ShotFired { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
-                        if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
+                        if (_random.Next(0, 100) < e.Proposed.DefenderBlockChance)
                         {
-                            e.Proposed.Attacker.State.RemainingHealth -= e.Proposed.DefenderBulletDamage;
-                            Event.Publish(new ShotHit { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, DamageAmount = e.Proposed.AttackerBulletDamage });
+                            Event.Publish(new ShotBlocked { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
                         }
                         else
                         {
-                            Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
+                            if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
+                            {
+                                e.Proposed.Attacker.State.RemainingHealth -= e.Proposed.DefenderBulletDamage;
+                                Event.Publish(new ShotHit { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, DamageAmount = e.Proposed.AttackerBulletDamage });
+                            }
+                            else
+                            {
+                                Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
+                            }
                         }
                     }
                 }
