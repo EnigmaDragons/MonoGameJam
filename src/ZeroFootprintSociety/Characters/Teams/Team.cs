@@ -33,7 +33,7 @@ namespace ZeroFootPrintSociety.Characters
                 case TeamGroup.Enemies:
                     return ((int)subjectTeam) + 2 == (int)teamGroup;
                 default:
-                    throw new Exception($"Given multi-team TeamGroup {teamGroup.ToString()} isn't implemented for extension method 'IsPartOfTeamGroup'.");
+                    throw new Exception($"Given multi-team TeamGroup {teamGroup.ToString()} isn't implemented for extension method 'IsIncludedIn'.");
             }
         }
 
