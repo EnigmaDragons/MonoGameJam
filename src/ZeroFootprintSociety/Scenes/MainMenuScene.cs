@@ -14,9 +14,9 @@ namespace ZeroFootPrintSociety.Scenes
         {
             Input.ClearTransientBindings();
             Sound.Music("placeholder-main-theme").Play();
-            Add(new ImageBox { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
+            Add(new WorldImage { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 100), Transform = new Transform2(new Size2(1920, 1080)) });
-            Add(new ImageBox { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });
+            Add(new WorldImage { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });
             var button = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
                 () =>
                 {

@@ -126,6 +126,18 @@ namespace MonoDragons.Core.UserInterface
             else DrawStringScalingSpriteBatchIfNeeded(text, position, color, font);
         }
 
+        public static void DrawWithSpriteEffects(string imageName, Transform2 transform, Color tint, SpriteEffects effects)
+        {
+            SpriteBatch.Draw(texture: Resources.Load<Texture2D>(imageName),
+                destinationRectangle: ScaleRectangle(transform.ToRectangle()),
+                sourceRectangle: null,
+                color: tint,
+                rotation: 0.0f,
+                origin: null,
+                effects: effects,
+                layerDepth: 0.0f);
+        }
+
         private static void DrawUnscaledString(string text, Vector2 position, Color color, string font)
         {
             SpriteBatch.DrawString(Resources.Load<SpriteFont>(font), text, position, color, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
@@ -209,9 +221,24 @@ namespace MonoDragons.Core.UserInterface
             return new Vector2(area.Location.X + area.Width - size.X, area.Location.Y + (area.Height / 2) - (size.Y / 2));
         }
 
+        private static Rectangle ScaleRectangle(Rectangle rectangle)
+        {
+            return new Rectangle(ScalePoint(rectangle.Location), ScalePoint(rectangle.Size));
+        }
+
         private static Point ScalePoint(float x, float y)
         {
-            return new Point((int)Math.Round(x * CurrentDisplay.Scale), (int)Math.Round(y * CurrentDisplay.Scale));
+            return ScalePoint(new Vector2(x, y));
+        }
+
+        private static Point ScalePoint(Vector2 vector)
+        {
+            return new Point((int)Math.Round(vector.X * CurrentDisplay.Scale), (int)Math.Round(vector.Y * CurrentDisplay.Scale));
+        }
+
+        private static Point ScalePoint(Point point)
+        {
+            return ScalePoint(point.ToVector2());
         }
     }
 }

@@ -11,15 +11,10 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     class InGameMenu : IVisual
     {
-        private const int _menuX = 500;
-        private const int _menuY = 300;
         private const int _menuWidth = 600;
         private const int _menuHeight = 400;
-        private const int _actionTextHeight = 50;
-        private const int _buttonWidth = 400;
-        private const int _buttonHeight = 35;
-        private const int _buttonMargin = 10;
-        private int _buttonXOffset => (_menuWidth - _buttonWidth) / 2;
+        private readonly int _menuX = UI.OfScreenWidth(0.5f) - (_menuWidth / 2);
+        private readonly int _menuY = UI.OfScreenHeight(0.3f);
 
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly ClickUIBranch _interceptLayer = new ClickUIBranch("MenuBack", 9);
@@ -32,29 +27,20 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public InGameMenu(ClickUI clickUi)
         {
             _clickUI = clickUi;
-            var menu = new ColoredRectangle { Color = Color.SkyBlue, Transform = new Transform2(new Rectangle(_menuX, _menuY, _menuWidth, _menuHeight)) };
-            var closeButton = new TextButton(new Rectangle(_menuX + _buttonXOffset, _menuY + _actionTextHeight + _buttonMargin, _buttonWidth, _buttonHeight), () =>
-                {
-                    HideDisplay();
-                }, "Close Menu",
-                    Color.FromNonPremultiplied(0, 0, 100, 50),
-                    Color.FromNonPremultiplied(0, 0, 100, 150),
-                    Color.FromNonPremultiplied(0, 0, 100, 250));
+            var ctx = new Buttons.MenuContext { X = _menuX, Y = _menuY, Width = _menuWidth, FirstButtonYOffset = 50 };
 
-            var mainMenuButton = new TextButton(new Rectangle(_menuX + _buttonXOffset, _menuY + _actionTextHeight + _buttonMargin + _buttonMargin + _buttonHeight, _buttonWidth, _buttonHeight), () =>
+            var menu = new UiImage
             {
-                Scene.NavigateTo("MainMenu");
-            }, "MainMenu",
-                Color.FromNonPremultiplied(0, 0, 100, 50),
-                Color.FromNonPremultiplied(0, 0, 100, 150),
-                Color.FromNonPremultiplied(0, 0, 100, 250));
+                Transform = new Transform2(new Rectangle(_menuX, _menuY, _menuWidth, _menuHeight)),
+                Image = "UI/menu-wide-panel.png"
+            };
 
-            _visuals.Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 100), Transform = new Transform2(new Size2(1920, 1080)) });
+            var mainMenuButton = Buttons.Text(ctx, 3, "Return to Main Menu", () =>  Scene.NavigateTo("MainMenu"), () => true);
+
+            _visuals.Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 160), Transform = new Transform2(new Size2(1920, 1080)) });
             _visuals.Add(menu);
-            _visuals.Add(closeButton);
             _visuals.Add(mainMenuButton);
-            _interceptLayer.Add(new ScreenClickable(() => { }));
-            _branch.Add(closeButton);
+            _interceptLayer.Add(new ScreenClickable(HideDisplay));
             _branch.Add(mainMenuButton);
             Event.Subscribe(EventSubscription.Create<MenuRequested>(x => PresentOptions(), this));
         }

@@ -6,7 +6,7 @@ using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
 {
-    public sealed class ImageBox : IVisual
+    public sealed class WorldImage : IVisual
     {
         public Transform2 Transform { get; set; }
         public string Image { get; set; } = "none";
