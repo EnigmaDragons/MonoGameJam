@@ -75,6 +75,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             _hidden = true;
             _clickUI.Remove(_branch);
+            Event.Publish(new ActionCancelled());
         }
 
         public void Draw(Transform2 parentTransform)

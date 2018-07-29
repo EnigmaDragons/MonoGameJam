@@ -59,6 +59,7 @@
     <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
+    <Compile Include="CoreGame\StateEvents\ActionCancelled.cs" />
     <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\ActionResolved.cs" />
     <Compile Include="CoreGame\StateEvents\RangedTargetsAvailable.cs" />
@@ -218,6 +219,30 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Music\placeholder-main-theme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\cancel-hover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\cancel-press.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\cancel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\confirm-hover.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\confirm-press.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\confirm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\menu-tall-panel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\menu-wide-panel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\placeholder-menu-button.png">
