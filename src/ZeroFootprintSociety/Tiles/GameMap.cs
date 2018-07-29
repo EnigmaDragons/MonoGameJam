@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.PhysicsEngine;
 
 namespace ZeroFootPrintSociety.Tiles
 {
@@ -52,9 +53,14 @@ namespace ZeroFootPrintSociety.Tiles
             return new Point((int)tilePositionOnMap.X / RenderSize, (int)tilePositionOnMap.Y / RenderSize);
         }
 
-        public Point TileToWorldPosition(Point startingCameraTile)
+        public Point TileToWorldPosition(Point tile)
         {
-            return new Point(startingCameraTile.X * RenderSize, startingCameraTile.Y * RenderSize);
+            return new Point(tile.X * RenderSize, tile.Y * RenderSize);
+        }
+
+        public Transform2 TileToWorldTransform(Point tile)
+        {
+            return new Transform2(TileToWorldPosition(tile).ToVector2());
         }
     }
 }

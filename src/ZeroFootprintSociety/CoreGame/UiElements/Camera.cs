@@ -8,6 +8,7 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Render;
 using MonoDragons.Core.UserInterface;
 using System;
+using System.Linq;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 
@@ -38,6 +39,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public Camera()
         {
             Event.Subscribe(EventSubscription.Create<TurnBegun>(e => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform), this));
+            Event.Subscribe<MovementConfirmed>(e => CenterOn(GameWorld.Map.TileToWorldTransform(e.Path.Last())), this);
             Input.On(Control.Select, () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform));
         }
 
