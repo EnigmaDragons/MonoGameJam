@@ -16,7 +16,7 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
-    partial class Camera : IVisualAutomaton
+    class Camera : IVisualAutomaton
     {
         private static readonly int GameWidth = CurrentDisplay.GameWidth;
         private static readonly int GameHeight = CurrentDisplay.GameHeight;
