@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters.Ui;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
@@ -40,15 +42,8 @@ namespace ZeroFootPrintSociety.Characters
 
             _damageNumbers = new DamageNumbersView(this);
 
-            Event.Subscribe<TurnBegun>(_ =>
-            {
-                if (GameWorld.CurrentCharacter == this)
-                {
-                    State.IsHiding = false;
-                    State.IsOverwatching = false;
-                    State.OverwatchedTiles.Clear();
-                }
-            }, this);
+            Event.Subscribe<TurnBegun>(OnTurnBegan, this);
+            Event.Subscribe<OverwatchTilesAvailable>(UpdateOverwatch, this);
             Event.Subscribe<ShotHit>(OnShotHit, this);
             Event.Subscribe<ShotAnimationsFinished>(OnShotsResolved, this);
         }
@@ -71,6 +66,22 @@ namespace ZeroFootPrintSociety.Characters
         {
             Init(tile);
             return this;
+        }
+
+        public void OnTurnBegan(TurnBegun e)
+        {
+            if (GameWorld.CurrentCharacter == this)
+            {
+                State.IsHiding = false;
+                State.IsOverwatching = false;
+                State.OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
+            }
+        }
+
+        public void UpdateOverwatch(OverwatchTilesAvailable e)
+        {
+            if (GameWorld.CurrentCharacter == this)
+                State.OverwatchedTiles = e.OverwatchedTiles;
         }
 
         private void OnShotHit(ShotHit e)

@@ -334,13 +334,13 @@
  <tile id="55">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="Light"/>
+   <property name="Cover" value="None"/>
   </properties>
  </tile>
  <tile id="56">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="Light"/>
+   <property name="Cover" value="None"/>
   </properties>
  </tile>
  <tile id="57">
