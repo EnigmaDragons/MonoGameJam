@@ -29,7 +29,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             _clickUI = clickUI;
             var ctx = new Buttons.MenuContext { X = _menuX, Y = _menuY, Width = _menuWidth, FirstButtonYOffset = 30 };
 
-            var menu = new WorldImage
+            var menu = new UiImage
             {
                 Transform = new Transform2(new Rectangle(_menuX, _menuY, _menuWidth, _menuHeight)),
                 Image = "UI/menu-tall-panel.png"
@@ -51,7 +51,6 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             Event.Subscribe(EventSubscription.Create<ActionCancelled>(x => PresentOptions(), this));
             Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => _shootAvailable = x.Targets.Any(), this));
         }
-
 
         private void Select(object option)
         {

@@ -174,6 +174,7 @@
     <Compile Include="UserInterface\ClickableUIElement.cs" />
     <Compile Include="UserInterface\ClickUI.cs" />
     <Compile Include="UserInterface\UiImage.cs" />
+    <Compile Include="UserInterface\UIMathExtensions.cs" />
     <Compile Include="UserInterface\WorldImage.cs" />
     <Compile Include="Text\DefaultFont.cs" />
     <Compile Include="UserInterface\ImageButton.cs" />
