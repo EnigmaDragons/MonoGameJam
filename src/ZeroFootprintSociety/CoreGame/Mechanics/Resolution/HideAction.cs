@@ -8,10 +8,10 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
     {
         public HideAction()
         {
-            Event.Subscribe(EventSubscription.Create<HideChosen>(OnHideChosen, this));
+            Event.Subscribe(EventSubscription.Create<HideSelected>(OnHideChosen, this));
         }
 
-        private void OnHideChosen(HideChosen e)
+        private void OnHideChosen(HideSelected e)
         {
             Event.Publish(new ActionConfirmed());
             // TODO: Add Hide game state update

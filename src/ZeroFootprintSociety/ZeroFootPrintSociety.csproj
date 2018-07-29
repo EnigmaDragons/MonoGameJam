@@ -56,12 +56,14 @@
     <Compile Include="CoreGame\GameDrawMaster.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Events\ShootSelected.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\ActionProposal.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
     <Compile Include="CoreGame\StateEvents\ActionCancelled.cs" />
     <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\ActionResolved.cs" />
+    <Compile Include="CoreGame\StateEvents\ActionSelected.cs" />
     <Compile Include="CoreGame\StateEvents\RangedTargetsAvailable.cs" />
     <Compile Include="CoreGame\StateEvents\ShotConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\ShotProposed.cs" />
@@ -69,7 +71,7 @@
     <Compile Include="CoreGame\StateEvents\TurnEnded.cs" />
     <Compile Include="CoreGame\UiElements\ActionOptionsView.cs" />
     <Compile Include="CoreGame\StateEvents\MovementFinished.cs" />
-    <Compile Include="CoreGame\Mechanics\Events\HideChosen.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\HideSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchBegun.cs" />
     <Compile Include="Characters\CharacterGear.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\RangedAction.cs" />

@@ -35,7 +35,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Image = "UI/menu-tall-panel.png"
             };
 
-            var hideButton = Buttons.Text(ctx, 0, "Hide", () => Select(new HideChosen()), () => true);
+            var hideButton = Buttons.Text(ctx, 0, "Hide", () => Select(new HideSelected()), () => true);
             var shootButton = Buttons.Text(ctx, 1, "Shoot", () => Select(new ShootSelected()), () => _shootAvailable);
             var overwatchButton = Buttons.Text(ctx, 2, "Overwatch", () => Select(new OverwatchSelected()), 
                 () => GameWorld.CurrentCharacter.Gear.EquippedWeapon.IsRanged);

@@ -8,6 +8,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             return new List<object>
             {
+                new ActionProposal(),
                 new HideAction(),
                 new RangedAction(),
                 new OverwatchAction()
