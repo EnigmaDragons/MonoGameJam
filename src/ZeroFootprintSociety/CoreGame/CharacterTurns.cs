@@ -33,8 +33,12 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Publish(new TurnBegun());
         }
 
-        internal static void OnCharacterDeath(CharacterDeceases _event)
+        private void OnCharacterDeath(CharacterDeceases _event)
         {
+            var charIndex = Characters.IndexOf(_event.Character);
+            _activeCharacterIndex = charIndex >= _activeCharacterIndex 
+                ? _activeCharacterIndex 
+                : _activeCharacterIndex - 1;
             GameWorld.Characters.Remove(_event.Character);   
         }
     }
