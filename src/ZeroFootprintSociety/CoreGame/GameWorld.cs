@@ -23,6 +23,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Turns = null;
             Characters?.Clear();
             Highlights.Clear();
+            HoveredTile = Point.Zero;
         }
     }
 }

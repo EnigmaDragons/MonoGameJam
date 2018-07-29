@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 
-namespace ZeroFootPrintSociety.CoreGame.Mechanics.Events
+namespace ZeroFootPrintSociety.CoreGame
 {
     public class OverwatchTilesAvailable
     {

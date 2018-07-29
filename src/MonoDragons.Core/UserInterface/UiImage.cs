@@ -8,7 +8,7 @@ namespace MonoDragons.Core.UserInterface
 {
     public sealed class UiImage : IVisual
     {
-        public Transform2 Transform { get; set; }
+        public Transform2 Transform { get; set; } = Transform2.Zero;
         public string Image { get; set; } = "none";
         public Func<bool> IsActive { get; set; } = () => true;
         public int Alpha { get; set; } = 255;

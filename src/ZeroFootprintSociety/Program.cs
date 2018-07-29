@@ -17,10 +17,13 @@ namespace ZeroFootPrintSociety
 {
     public static class Program
     {
+        static MetaAppDetails AppMeta = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
+        static ReportErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+
         [STAThread]
         static void Main()
         {
-            LaunchGameWithScene("SampleLevel");
+            RunGame("SampleLevel");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -35,16 +38,17 @@ namespace ZeroFootPrintSociety
             });
         }
 
-        private static void LaunchGameWithScene(string sceneName)
+        private static void RunGame(string sceneName)
         {
-            var appDetails = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
-            var fatalErrorReporter = new ReportErrorHandler(appDetails);
-            Metric.AppDetails = appDetails;
-            Error.Handle(() =>
+            try
             {
-                using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(appDetails.Name, sceneName, new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), fatalErrorReporter)))
+                using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(AppMeta.Name, sceneName, new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), FatalErrorHandler)))
                     game.Run();
-            }, x => fatalErrorReporter.ResolveError(x));
+            }
+            catch(Exception e)
+            {
+                FatalErrorHandler.ResolveError(e);
+            }
         }
 
         private static IScene SetupScene()

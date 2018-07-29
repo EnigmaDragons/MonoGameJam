@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ZeroFootPrintSociety.Characters;
 
-namespace ZeroFootPrintSociety.CoreGame.StateEvents
+namespace ZeroFootPrintSociety.CoreGame
 {
     public class RangedTargetsAvailable
     {

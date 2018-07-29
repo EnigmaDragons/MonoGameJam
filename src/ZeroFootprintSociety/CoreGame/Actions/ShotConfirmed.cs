@@ -1,4 +1,4 @@
-﻿namespace ZeroFootPrintSociety.CoreGame.StateEvents
+﻿namespace ZeroFootPrintSociety.CoreGame
 {
     public class ShotConfirmed
     {
