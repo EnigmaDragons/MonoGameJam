@@ -33,8 +33,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             };
             targetsAvailable.Targets.ForEach(x =>
             {
-                x.TargetBlockChance = x.CoverToThem.Sum(y => (int) y.Cover);
-                x.TargetterBlockChance = x.CoverFromThem.Sum(y => (int)y.Cover);
+                x.TargetBlockChance = x.CoverToThem.Sum(y => (int) y.Cover) * (x.Character.State.IsHiding ? 2 : 1);
+                x.TargetterBlockChance = x.CoverFromThem.Sum(y => (int)y.Cover) * (GameWorld.CurrentCharacter.State.IsHiding ? 2 : 1);
             });
             Event.Publish(targetsAvailable);
         }

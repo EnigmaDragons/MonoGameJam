@@ -9,6 +9,7 @@ namespace ZeroFootPrintSociety.Characters
         private readonly CharacterStats _stats;
         private readonly Character _itself;
         private int _remainingHealth = 0;
+        public bool IsHiding = false;
 
         public int RemainingHealth
         {

@@ -53,6 +53,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
             _objects.Add(new AvailableMovesView(GameWorld.Map));
             _objects.Add(new AvailableTargetsView());
+            _objects.Add(new HideUI());
             _objects.Add(new MovementOptionsCalculator());
             _objects.Add(new ShootOptionsCalculator());
             _combat.Init();

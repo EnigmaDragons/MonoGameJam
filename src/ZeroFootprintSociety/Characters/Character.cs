@@ -1,9 +1,12 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters.Teams;
 using ZeroFootPrintSociety.Characters.Ui;
+using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.Characters
@@ -34,6 +37,12 @@ namespace ZeroFootPrintSociety.Characters
             Team = team;
 
             _damageNumbers = new DamageNumbersView(this);
+
+            Event.Subscribe<TurnBegun>(_ =>
+            {
+                if (GameWorld.CurrentCharacter == this)
+                    State.IsHiding = false;
+            }, this);
         }
 
         public void Init(GameTile tile)

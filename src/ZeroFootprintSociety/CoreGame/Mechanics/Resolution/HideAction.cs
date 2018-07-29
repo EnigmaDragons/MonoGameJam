@@ -13,9 +13,11 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
         private void OnHideChosen(HideSelected e)
         {
-            Event.Publish(new ActionConfirmed());
-            // TODO: Add Hide game state update
-            Event.Publish(new ActionResolved());
+            Event.Publish(new ActionSelected(() =>
+            {
+                GameWorld.CurrentCharacter.State.IsHiding = true;
+                Event.Publish(new ActionResolved());
+            }));
         }
     }
 }
