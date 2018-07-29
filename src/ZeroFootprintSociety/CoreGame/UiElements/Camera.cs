@@ -23,6 +23,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         private const int TileOverage = 5;
         private const int MouseCameraSpeed = 13;
+        private const int KeyboardCameraSpeed = 7;
 
         private readonly int XLeft = UI.OfScreenWidth(0.02f);
         private readonly int XRight = UI.OfScreenWidth(0.98f);
@@ -60,6 +61,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             }
 
             UpdateCameraBasedOnMousePosition();
+            UpdateCameraBasedOnArrowKeys();
         }
 
         private void UpdateCameraBasedOnMousePosition()
@@ -71,6 +73,22 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 var targetX = Position.X + (MouseCameraSpeed * (int)_hDir);
                 var _vDir = mouse.Y < YTop ? VerticalDirection.Up : mouse.Y > YBottom ? VerticalDirection.Down : VerticalDirection.None;
                 var targetY = Position.Y + (MouseCameraSpeed * (int)_vDir);
+                SetPosition(new Point(targetX, targetY));
+            }
+        }
+
+        private void UpdateCameraBasedOnArrowKeys()
+        {
+            if (CurrentGame.TheGame.IsActive)
+            {
+                KeyboardState keys = Keyboard.GetState();
+                // Add both Keyboard Up and Down status.
+                int _up = keys.IsKeyDown(Keys.Up) ? (int) VerticalDirection.Up : 0,
+                    _down = keys.IsKeyDown(Keys.Down) ? (int) VerticalDirection.Down : 0,
+                    _left = keys.IsKeyDown(Keys.Left) ? (int) HorizontalDirection.Left : 0,
+                    _right = keys.IsKeyDown(Keys.Right) ? (int) HorizontalDirection.Right : 0;
+                var targetX = Position.X + (KeyboardCameraSpeed * (_left + _right));
+                var targetY = Position.Y + (KeyboardCameraSpeed * (_up + _down));
                 SetPosition(new Point(targetX, targetY));
             }
         }
