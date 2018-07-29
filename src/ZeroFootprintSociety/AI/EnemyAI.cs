@@ -13,6 +13,9 @@ namespace ZeroFootPrintSociety.AI
         {
             Add(new AIThinkingDelay());
             Add(new GoNowhereAIMovement());
+            Add(new AIActionSelector());
+            Add(new AIShootingTargetSelector());
+            Add(new AIActionConfirmer());
         }
 
         private void Add(IAutomaton a) => _automata.Add(a);

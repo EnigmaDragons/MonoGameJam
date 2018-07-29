@@ -30,7 +30,6 @@ namespace ZeroFootPrintSociety.CoreGame
             if (characters.Any(x => !x.IsInitialized))
                 throw new InvalidOperationException("All Characters must be initialized before Level begins.");
 
-            Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
             Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(x => AvailableMoves = x.AvailableMoves, this));
             Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => Targets = x.Targets, this));
@@ -47,11 +46,6 @@ namespace ZeroFootPrintSociety.CoreGame
         private void OnActionResolved(ActionResolved obj)
         {
             Event.Publish(new TurnEnded());
-        }
-
-        private void OnMovementFinished(MovementFinished e)
-        {
-            Event.Publish(new ActionOptionsAvailable());
         }
 
         public void MoveTo(int x, int y)
@@ -73,7 +67,6 @@ namespace ZeroFootPrintSociety.CoreGame
                 AttackerBlockChance = attackTarget.CoverFromThem.BlockChance,
                 DefenderBlockChance = attackTarget.CoverToThem.BlockChance
             });
-
         } 
 
         public void Update(TimeSpan delta)

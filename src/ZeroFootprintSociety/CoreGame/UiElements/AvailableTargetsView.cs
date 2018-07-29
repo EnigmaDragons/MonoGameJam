@@ -21,11 +21,11 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly List<IAutomaton> _automata = new List<IAutomaton>();
         private readonly Dictionary<Point, List<IVisual>> _targetVisuals = new Dictionary<Point, List<IVisual>>();
-        private List<Target> _availableTargets = new List<Target>();
+        //private List<Target> _availableTargets = new List<Target>();
 
         public AvailableTargetsView()
         {
-            Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(e => _availableTargets = e.Targets, this));
+            //Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(e => _availableTargets = e.Targets, this));
             Event.Subscribe(EventSubscription.Create<ShootSelected>(ShowOptions, this));
             Event.Subscribe(EventSubscription.Create<ActionCancelled>(e => ClearOptions(), this));
             Event.Subscribe(EventSubscription.Create<ActionConfirmed>(e => ClearOptions(), this));
@@ -41,7 +41,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         private void ShowOptions(ShootSelected e)
         {
-            _availableTargets.ForEach(x =>
+            e.AvailableTargets.ForEach(x =>
             {
                 _visuals.Add(new ColoredRectangle { Transform = x.Character.CurrentTile.Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 35) });
                 var anim = new TileRotatingEdgesAnim(x.Character.CurrentTile.Position, Color.FromNonPremultiplied(255, 20, 20, 255));

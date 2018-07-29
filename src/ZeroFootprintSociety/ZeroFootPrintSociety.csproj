@@ -38,6 +38,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AI\AIActionConfirmer.cs" />
+    <Compile Include="AI\AIActionSelector.cs" />
+    <Compile Include="AI\AIShootingTargetSelector.cs" />
     <Compile Include="AI\Flow\AIActionQueued.cs" />
     <Compile Include="AI\Flow\AIActorBase.cs" />
     <Compile Include="AI\Flow\AIThinkingDelay.cs" />

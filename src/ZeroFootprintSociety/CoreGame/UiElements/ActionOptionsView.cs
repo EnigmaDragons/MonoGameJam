@@ -5,7 +5,6 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
-using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -35,9 +34,9 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Image = "UI/menu-tall-panel.png"
             };
 
-            var hideButton = Buttons.Text(ctx, 0, "Hide", () => Select(new HideSelected()), () => _options.ContainsKey(ActionType.Hide));
-            var shootButton = Buttons.Text(ctx, 1, "Shoot", () => Select(new ShootSelected()), () => _options.ContainsKey(ActionType.Shoot));
-            var overwatchButton = Buttons.Text(ctx, 2, "Overwatch", () => Select(new OverwatchSelected()), () => _options.ContainsKey(ActionType.Overwatch));
+            var hideButton = Buttons.Text(ctx, 0, "Hide", () => Select(ActionType.Hide), () => _options.ContainsKey(ActionType.Hide));
+            var shootButton = Buttons.Text(ctx, 1, "Shoot", () => Select(ActionType.Shoot), () => _options.ContainsKey(ActionType.Shoot));
+            var overwatchButton = Buttons.Text(ctx, 2, "Overwatch", () => Select(ActionType.Overwatch), () => _options.ContainsKey(ActionType.Overwatch));
 
             _visuals.Add(menu);
             _visuals.Add(hideButton);
@@ -46,14 +45,14 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             _branch.Add(overwatchButton);
             _visuals.Add(shootButton);
             _branch.Add(shootButton);
-            Event.Subscribe(EventSubscription.Create<ActionOptionsAvailable>(UpdateOptions, this));
-            Event.Subscribe(EventSubscription.Create<ActionCancelled>(x => PresentOptions(), this));
+            Event.Subscribe<ActionOptionsAvailable>(UpdateOptions, this);
+            Event.Subscribe<ActionSelected>(e => HideDisplay(), this);
+            Event.Subscribe<ActionCancelled>(x => PresentOptions(), this);
         }
 
-        private void Select(object option)
+        private void Select(ActionType actionType)
         {
-            Event.Publish(option);
-            HideDisplay();
+            _options[actionType].Invoke();
         }
 
         private void UpdateOptions(ActionOptionsAvailable e)
