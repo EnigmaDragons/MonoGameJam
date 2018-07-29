@@ -15,7 +15,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public MovementPathHighlights()
         {
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
-            Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
+            Event.Subscribe(EventSubscription.Create<MovementFinished>(_ => OnMovementFinished(), this));
+            Event.Subscribe(EventSubscription.Create<TurnEnded>(_ => OnMovementFinished(), this));
         }
 
         private void OnMovementConfirmed(MovementConfirmed e)
@@ -29,7 +30,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             Add(new TileRotatingEdgesAnim(destination, Color.FromNonPremultiplied(110, 170, 255, 255)).Initialized());
         }
 
-        private void OnMovementFinished(MovementFinished e)
+        private void OnMovementFinished()
         {
             Clear();
         }

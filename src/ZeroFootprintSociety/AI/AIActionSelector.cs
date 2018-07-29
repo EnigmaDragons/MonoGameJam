@@ -16,10 +16,10 @@ namespace ZeroFootPrintSociety.AI
             IfAITurn(() =>
             {
                 var o = e.Options;
-                if (o.ContainsKey(ActionType.Shoot))
+                if (o.ContainsKey(ActionType.Overwatch))
+                    o[ActionType.Overwatch].Invoke();
+                else if (o.ContainsKey(ActionType.Shoot))
                     o[ActionType.Shoot].Invoke();
-                //else if (o.ContainsKey(ActionType.Overwatch)) 
-                //    o[ActionType.Overwatch].Invoke();
                 else if (o.ContainsKey(ActionType.Pass))
                     o[ActionType.Pass].Invoke();
                 else

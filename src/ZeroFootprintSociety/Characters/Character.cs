@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -50,8 +51,11 @@ namespace ZeroFootPrintSociety.Characters
 
         private void OnShotsResolved(ShotAnimationsFinished e)
         {
-            if (State.RemainingHealth <= 0)
+            if (State.RemainingHealth <= 0 && !State.IsDeceased)
+            {
+                State.IsDeceased = true;
                 Event.Publish(new CharacterDeceased { Character = this });
+            }
         }
 
         public void Init(GameTile tile)

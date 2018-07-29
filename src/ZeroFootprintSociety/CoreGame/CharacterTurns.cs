@@ -38,6 +38,8 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private void OnCharacterDeath(CharacterDeceased _event)
         {
+            if (CurrentCharacter == _event.Character)
+                Event.Publish(new ActionResolved());
             var charIndex = _characters.IndexOf(_event.Character);
             _activeCharacterIndex = charIndex >= _activeCharacterIndex 
                 ? _activeCharacterIndex 
