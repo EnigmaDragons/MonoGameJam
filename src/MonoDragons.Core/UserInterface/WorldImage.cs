@@ -6,6 +6,8 @@ using MonoDragons.Core.PhysicsEngine;
 
 namespace MonoDragons.Core.UserInterface
 {
+    // TODO: Remove this after the jam
+    [Obsolete("Not actually obsolete. But don't use this unless you are drawing a sprite.")]
     public sealed class WorldImage : IVisual
     {
         public Transform2 Transform { get; set; }

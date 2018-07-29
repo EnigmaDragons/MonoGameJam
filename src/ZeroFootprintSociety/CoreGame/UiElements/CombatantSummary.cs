@@ -8,7 +8,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     public class CombatantSummary : IVisual
     {
-        private readonly ColoredRectangle _background;
+        private readonly UiImage _background;
         private readonly Label _name;
         private readonly UiImage _face;
         private readonly AttackedHealthBar _damageBar = new AttackedHealthBar();
@@ -21,7 +21,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         public CombatantSummary(bool shouldFlip)
         {
-            _background = new ColoredRectangle { Color = Color.DarkBlue, Transform = new Transform2(new Size2(350, 675)) };
+            _background = new UiImage { Image = "UI/menu-tall-panel.png", Transform = new Transform2(new Size2(350, 600)) };
             _name = new Label { Transform = new Transform2(        new Rectangle(25, 25, 300, 50)), TextColor = Color.White };
             _face = new UiImage { Transform = new Transform2(     new Rectangle(125, 75, 100, 100)), Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None };
             _damageBarOffset =                                       new Vector2(50, 200); //250, 50
