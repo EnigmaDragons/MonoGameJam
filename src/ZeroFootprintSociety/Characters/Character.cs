@@ -30,7 +30,7 @@ namespace ZeroFootPrintSociety.Characters
             Body = body;
             Gear = gear;
             FaceImage = faceImage;
-            State = new CharacterState(stats);
+            State = new CharacterState(stats, this);
             Team = team;
 
             _damageNumbers = new DamageNumbersView(this);

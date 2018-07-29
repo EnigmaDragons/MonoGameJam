@@ -17,6 +17,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public CharacterTurns()
         {
             Event.Subscribe(EventSubscription.Create<TurnEnded>(BeginNextTurn, this));
+            Event.Subscribe(EventSubscription.Create<CharacterDeceases>(OnCharacterDeath, this));
         }
 
         public void Init()
@@ -30,6 +31,11 @@ namespace ZeroFootPrintSociety.CoreGame
             if (_activeCharacterIndex == Characters.Count)
                 _activeCharacterIndex = 0;
             Event.Publish(new TurnBegun());
+        }
+
+        internal static void OnCharacterDeath(CharacterDeceases _event)
+        {
+            GameWorld.Characters.Remove(_event.Character);   
         }
     }
 }
