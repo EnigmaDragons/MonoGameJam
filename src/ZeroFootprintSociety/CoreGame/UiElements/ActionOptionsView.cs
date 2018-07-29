@@ -50,9 +50,23 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Color.FromNonPremultiplied(0, 0, 100, 150),
                 Color.FromNonPremultiplied(0, 0, 100, 250),
                 () => _shootAvailable);
+
+            var overwatchButton = new TextButton(new Rectangle(_menuX + _buttonXOffset, _menuY + _actionTextHeight 
+                + _buttonMargin + _buttonMargin + _buttonHeight
+                + _buttonMargin + _buttonMargin + _buttonHeight, _buttonWidth, _buttonHeight), () =>
+            {
+                Event.Publish(new OverwatchSelected());
+                HideDisplay();
+            }, "Overwatch",
+                Color.FromNonPremultiplied(0, 0, 100, 50),
+                Color.FromNonPremultiplied(0, 0, 100, 150),
+                Color.FromNonPremultiplied(0, 0, 100, 250),
+                () => GameWorld.CurrentCharacter.Gear.EquippedWeapon.IsRanged);
             _visuals.Add(menu);
             _visuals.Add(hideButton);
             _branch.Add(hideButton);
+            _visuals.Add(overwatchButton);
+            _branch.Add(overwatchButton);
             _visuals.Add(shootButton);
             _branch.Add(shootButton);
             Event.Subscribe(EventSubscription.Create<MovementFinished>(x => PresentOptions(), this));

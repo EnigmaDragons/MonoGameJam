@@ -53,9 +53,11 @@
     <Compile Include="CoreGame\CharacterTurns.cs" />
     <Compile Include="CoreGame\GameWorld.cs" />
     <Compile Include="CoreGame\GameDrawMaster.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\OverwatchSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Events\ShootSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
     <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\ActionResolved.cs" />
     <Compile Include="CoreGame\StateEvents\RangedTargetsAvailable.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="CoreGame\UiElements\EquippedWeaponView.cs" />
     <Compile Include="CoreGame\UiElements\HudView.cs" />
     <Compile Include="CoreGame\UiElements\InGameMenu.cs" />
+    <Compile Include="CoreGame\UiElements\MoveConfirmView.cs" />
     <Compile Include="CoreGame\UiElements\UiEvents\MenuDismissed.cs" />
     <Compile Include="CoreGame\UiElements\UiEvents\MenuRequested.cs" />
     <Compile Include="Characters\Gear\RangedWeapon.cs" />
