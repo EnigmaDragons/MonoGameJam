@@ -33,9 +33,9 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             };
 
             var confirmButton = new ImageButton("UI/confirm.png", "UI/confirm-hover.png", "UI/confirm-press.png",
-                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 52 - 30, _menuY + 55), new Size2(52, 52)), () => Event.Publish(new ActionConfirmed()));
+                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) + 30, _menuY + 55), new Size2(52, 52)), () => Event.Publish(new ActionConfirmed()));
             var cancelButton = new ImageButton("UI/cancel.png", "UI/cancel-hover.png", "UI/cancel-press.png",
-                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) + 30, _menuY + 55), new Size2(52, 52)), () => Event.Publish(new ActionCancelled()));
+                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 52 - 30, _menuY + 55), new Size2(52, 52)), () => Event.Publish(new ActionCancelled()));
 
             _visuals.Add(menu);
             _visuals.Add(confirmButton);

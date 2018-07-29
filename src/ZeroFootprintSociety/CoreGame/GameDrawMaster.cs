@@ -14,7 +14,7 @@ namespace ZeroFootPrintSociety.CoreGame
                 x.Draw(0, parentTransform);
                 x.Draw(1, parentTransform);
             });
-            GameWorld.Highlights.ForEach(x => x.Draw(parentTransform));
+            GameWorld.Highlights.ToList().ForEach(x => x.Draw(parentTransform));
             GameWorld.Map.Tiles.ForEach(x =>
             {
                 x.Draw(2, parentTransform);

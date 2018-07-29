@@ -48,6 +48,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             Event.Subscribe<ActionOptionsAvailable>(UpdateOptions, this);
             Event.Subscribe<ActionSelected>(e => HideDisplay(), this);
             Event.Subscribe<ActionCancelled>(x => PresentOptions(), this);
+            Event.Subscribe<ActionConfirmed>(x => _options.Clear(), this);
         }
 
         private void Select(ActionType actionType)
@@ -71,7 +72,6 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             _clickUI.Remove(_branch);
             _showingOptions = false;
-            _options.Clear();
         }
 
         public void Draw(Transform2 parentTransform)

@@ -29,8 +29,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         private void Hide()
         {
-            if (GameWorld.Highlights.Contains(this))
-                GameWorld.Highlights.Remove(this);
+            GameWorld.Highlights.Remove(this);
         }
 
         public void Draw(Transform2 parentTransform)

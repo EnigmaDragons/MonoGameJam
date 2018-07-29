@@ -53,7 +53,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
             Add(new EnemyAI());
             Add(new ActionOptionsCalculator());
-            Add(new HideUI());
+            Add((object)new HideUI()); // To use as an Actor instead of a Visual. 
             Add(new MovementOptionsCalculator());
             Add(new ShootOptionsCalculator());
             Add(new AvailableMovesView(GameWorld.Map));
