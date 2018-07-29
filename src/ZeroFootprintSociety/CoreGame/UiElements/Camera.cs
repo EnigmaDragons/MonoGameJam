@@ -38,6 +38,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private float _transitionCompletion;
         private Point _destination;
         public Point Position { get; private set; }
+
         private bool _shouldFreezeCamera;
         private readonly CameraOptions _cameraOptions;
 
@@ -82,7 +83,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                     if (cameraControl.CanUpdate() && cameraControl.CustomCanUpdateFunc())
                     {
                         cameraControl.Update(delta);
-                        Position += cameraControl.Offset;
+                        Position = ClampToWorldEdges(Position + cameraControl.Offset);
                         if (cameraControl.TestBreakAfterUpdate())
                             return;
                     }
@@ -100,11 +101,16 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             SetPosition(GameWorld.Map.TileToWorldPosition(startingCameraTile));
         }
 
-        public void SetPosition(Point raw)
+        private Point ClampToWorldEdges(Point raw)
         {
             var clampedX = Math.Min(Math.Max(raw.X, MinMapX), MaxMapX - GameWidth);
             var clampedY = Math.Min(Math.Max(raw.Y, MinMapY), MaxMapY - GameHeight);
-            Position = new Point(clampedX, clampedY);
+            return new Point(clampedX, clampedY);
+        }
+
+        public void SetPosition(Point raw)
+        {
+            Position = ClampToWorldEdges(raw);
         }
 
         private void MoveTo(Point position)

@@ -7,17 +7,23 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     internal sealed class CameraDragMouseControl: CameraControl
     {
-        public bool IsDragging { get; private set; } = false;
+        public bool IsDragging { get; private set; }
+        private Point? oldMousePos;
 
         public override void Update(TimeSpan delta)
         {
-            Offset = Point.Zero;
-            return;
-            bool weGood = CurrentGame.TheGame.IsActive && Mouse.GetState().RightButton == ButtonState.Pressed;
-            if (weGood)
+            MouseState mouse = Mouse.GetState();
+            IsDragging = mouse.RightButton == ButtonState.Pressed;
+            Point oldPosition = oldMousePos ?? mouse.Position;
+            if (!IsDragging)
             {
-                // Take last mouse position since last 
-
+                oldMousePos = null; 
+                Offset = Point.Zero;
+            }
+            else
+            {
+                Offset = oldPosition - mouse.Position;
+                oldMousePos = mouse.Position;
             }
         }
 

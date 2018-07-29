@@ -4,7 +4,7 @@ using MonoDragons.Core.Engine;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
-    internal abstract class CameraControl : IAutomaton
+    internal abstract class CameraControl
     {
         public int CameraSpeed { get; set; }
 
@@ -14,7 +14,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public abstract void Update(TimeSpan delta);
         
         /// <summary>
-        /// Returns true if you need to break out of the camera controls loop after this one's update is done.
+        /// Returns true if you need to break out of the camera's main update loop after this camera control's update is done.
         /// </summary>
         /// <returns></returns>
         public virtual bool TestBreakAfterUpdate() => false;
