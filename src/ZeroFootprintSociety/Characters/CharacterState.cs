@@ -19,10 +19,8 @@ namespace ZeroFootPrintSociety.Characters
         {
             get => _remainingHealth;
             set
-            {
+            { 
                 _remainingHealth = MathHelper.Clamp(value, 0, _stats.HP);
-                if (_remainingHealth == 0)
-                    Event.Publish(new CharacterDeceases() {Character = _itself});
             }
         }
 

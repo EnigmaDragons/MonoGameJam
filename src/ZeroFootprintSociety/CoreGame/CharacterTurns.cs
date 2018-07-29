@@ -1,5 +1,6 @@
 ﻿using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.Characters;
@@ -19,7 +20,7 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             _characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
             Event.Subscribe(EventSubscription.Create<TurnEnded>(BeginNextTurn, this));
-            Event.Subscribe(EventSubscription.Create<CharacterDeceases>(OnCharacterDeath, this));
+            Event.Subscribe(EventSubscription.Create<CharacterDeceased>(OnCharacterDeath, this));
         }
 
         public void Init()
@@ -35,12 +36,12 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Publish(new TurnBegun());
         }
 
-        private void OnCharacterDeath(CharacterDeceases _event)
+        private void OnCharacterDeath(CharacterDeceased _event)
         {
             var charIndex = _characters.IndexOf(_event.Character);
             _activeCharacterIndex = charIndex >= _activeCharacterIndex 
                 ? _activeCharacterIndex 
-                : _activeCharacterIndex - 1;
+                : Math.Min(_activeCharacterIndex - 1, 0);
             _characters.Remove(_event.Character);
         }
     }
