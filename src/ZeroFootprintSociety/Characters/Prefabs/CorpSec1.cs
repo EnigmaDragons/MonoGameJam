@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters.Gear;
-using ZeroFootPrintSociety.Characters.Teams;
 
 namespace ZeroFootPrintSociety.Characters.Prefabs
 {

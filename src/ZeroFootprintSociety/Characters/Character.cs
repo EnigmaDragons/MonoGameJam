@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
-using ZeroFootPrintSociety.Characters.Teams;
 using ZeroFootPrintSociety.Characters.Ui;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.StateEvents;

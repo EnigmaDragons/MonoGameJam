@@ -6,6 +6,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
+using ZeroFootPrintSociety.AI;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
@@ -51,6 +52,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _shouldIgnoreClicks = true, this));
             Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
+            Add(new EnemyAI());
             _objects.Add(new HideUI());
             _objects.Add(new MovementOptionsCalculator());
             _objects.Add(new ShootOptionsCalculator());

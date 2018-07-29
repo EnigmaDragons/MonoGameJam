@@ -3,7 +3,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using ZeroFootPrintSociety.Characters;
-using ZeroFootPrintSociety.Characters.Teams;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame

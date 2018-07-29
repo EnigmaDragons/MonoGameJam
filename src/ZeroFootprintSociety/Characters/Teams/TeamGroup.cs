@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ZeroFootPrintSociety.Characters.Teams
+namespace ZeroFootPrintSociety.Characters
 {
     /// <summary>
     /// Groups of teams in an Enum.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZeroFootPrintSociety.Characters.Teams
+namespace ZeroFootPrintSociety.Characters
 {
     public enum Team
     {
