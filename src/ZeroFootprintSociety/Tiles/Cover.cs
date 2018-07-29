@@ -3,8 +3,8 @@
     public enum Cover
     {
         None = 0,
-        Light = 12,
-        Medium = 25,
-        Heavy = 50
+        Light = 8,
+        Medium = 17,
+        Heavy = 33
     }
 }
