@@ -44,7 +44,7 @@
     <Compile Include="AI\Flow\AIActionQueued.cs" />
     <Compile Include="AI\Flow\AIActorBase.cs" />
     <Compile Include="AI\Flow\AIThinkingDelay.cs" />
-    <Compile Include="AI\GoNowhereAIMovement.cs" />
+    <Compile Include="AI\AIMoveRandomly.cs" />
     <Compile Include="AI\EnemyAI.cs" />
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
@@ -72,11 +72,13 @@
     <Compile Include="CoreGame\Mechanics\Covers\ShotCoverInfo.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchSelected.cs" />
     <Compile Include="CoreGame\Actions\OverwatchTilesAvailable.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\PassSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Events\ShootSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionProposal.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\PassAction.cs" />
     <Compile Include="CoreGame\StateEvents\ActionCancelled.cs" />
     <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\ActionResolved.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="CoreGame\UiElements\HudView.cs" />
     <Compile Include="CoreGame\UiElements\InGameMenu.cs" />
     <Compile Include="CoreGame\UiElements\MoveConfirmView.cs" />
+    <Compile Include="CoreGame\UiElements\MovementPathHighlights.cs" />
     <Compile Include="CoreGame\UiElements\UiEvents\MenuDismissed.cs" />
     <Compile Include="CoreGame\UiElements\UiEvents\MenuRequested.cs" />
     <Compile Include="Characters\Gear\RangedWeapon.cs" />

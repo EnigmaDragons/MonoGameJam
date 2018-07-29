@@ -74,12 +74,13 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Update(TimeSpan delta)
         {
+            const double speedModifier = 0.3;
             _currentAnimation.Update(delta);
             if (_path.Any())
             {
                 var targetLocation = GameWorld.Map[_path.First()].Transform.Location;
                 var pastLocation = CurrentTileLocation;
-                CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds);
+                CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds * speedModifier);
                 SetFacing(pastLocation);
                 if (CurrentTileLocation.X == targetLocation.X && CurrentTileLocation.Y == targetLocation.Y)
                     _path.RemoveAt(0);

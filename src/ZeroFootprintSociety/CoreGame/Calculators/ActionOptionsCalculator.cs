@@ -22,6 +22,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 options[ActionType.Hide] = () => Select(new HideSelected());
             if (GameWorld.CurrentCharacter.Gear.EquippedWeapon.IsRanged)
                 options[ActionType.Overwatch] = () => Select(new OverwatchSelected());
+            options[ActionType.Pass] = () => Select(new PassSelected());
 
             Event.Publish(new ActionOptionsAvailable { Options = options });
         }

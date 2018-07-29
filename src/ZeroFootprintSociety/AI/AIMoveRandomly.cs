@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
-using System.Collections.Generic;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.AI
 {
-    sealed class GoNowhereAIMovement : AIActorBase
+    sealed class AIMoveRandomly : AIActorBase
     {
-        public GoNowhereAIMovement()
+        public AIMoveRandomly()
         {
             Event.Subscribe<MovementOptionsAvailable>(ChooseMoveIfApplicable, this);
         }
@@ -15,7 +14,7 @@ namespace ZeroFootPrintSociety.AI
         private void ChooseMoveIfApplicable(MovementOptionsAvailable e)
         {
             IfAITurn(
-                () => Event.Publish(new MovementConfirmed { Path = new List<Point> { Char.CurrentTile.Position } }));
+                () => Event.Publish(new MovementConfirmed { Path = e.AvailableMoves.Random() }));
         }
     }
 }

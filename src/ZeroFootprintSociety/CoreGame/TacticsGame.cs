@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Development;
@@ -57,6 +56,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Add((object)new HideUI()); // To use as an Actor instead of a Visual. 
             Add(new MovementOptionsCalculator());
             Add(new ShootOptionsCalculator());
+            Add(new MovementPathHighlights());
             Add(new AvailableMovesView(GameWorld.Map));
             Add(new AvailableTargetsView());
             Add(_drawMaster);

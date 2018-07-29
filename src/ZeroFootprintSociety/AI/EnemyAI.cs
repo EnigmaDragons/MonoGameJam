@@ -12,7 +12,7 @@ namespace ZeroFootPrintSociety.AI
         public EnemyAI()
         {
             Add(new AIThinkingDelay());
-            Add(new GoNowhereAIMovement());
+            Add(new AIMoveRandomly());
             Add(new AIActionSelector());
             Add(new AIShootingTargetSelector());
             Add(new AIActionConfirmer());
