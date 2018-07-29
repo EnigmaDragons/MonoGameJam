@@ -51,11 +51,11 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _shouldIgnoreClicks = true, this));
             Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
-            _objects.Add(new AvailableMovesView(GameWorld.Map));
-            _objects.Add(new AvailableTargetsView());
             _objects.Add(new HideUI());
             _objects.Add(new MovementOptionsCalculator());
             _objects.Add(new ShootOptionsCalculator());
+            Add(new AvailableMovesView(GameWorld.Map));
+            Add(new AvailableTargetsView());
             _combat.Init();
             Add(_drawMaster);
             Add(_combat);
