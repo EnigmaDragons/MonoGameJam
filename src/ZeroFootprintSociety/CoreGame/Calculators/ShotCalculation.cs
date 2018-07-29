@@ -57,7 +57,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             while (currentSpot.X != point2.X || currentSpot.Y != point2.Y)
             {
                 var tile = GameWorld.Map.MapPositionToTile(currentSpot);
-                if (GameWorld.Map.Exists(tile) && GameWorld.Map[tile].Cover > currentCover.Cover)
+                if (GameWorld.Map.Exists(tile) && GameWorld.Map[tile].Cover >= currentCover.Cover)
                     currentCover = new CoverProvided { Cover = GameWorld.Map[tile].Cover, Provider = GameWorld.Map[tile] };
                 currentSpot = currentSpot.MoveTowards(point2, 0.1);
             }

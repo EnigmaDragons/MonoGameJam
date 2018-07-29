@@ -51,6 +51,7 @@
     <Compile Include="CoreGame\ActionEvents\ShotFired.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotHit.cs" />
     <Compile Include="CoreGame\ActionEvents\ShotMissed.cs" />
+    <Compile Include="CoreGame\Calculators\HitChanceCalculation.cs" />
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShotCalculation.cs" />

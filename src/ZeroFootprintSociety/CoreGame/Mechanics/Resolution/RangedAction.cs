@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
+using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 using ZeroFootPrintSociety.Tiles;
@@ -34,14 +35,14 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             {
                 Attacker = e.Attacker,
                 Defender = e.Defender,
-                AttackerHitChance = (e.Attacker.Accuracy - e.Defender.Stats.Agility) * (100 - e.DefenderBlockChance) / 100,
+                AttackerHitChance = new HitChanceCalculation(e.Attacker.Accuracy, e.DefenderBlockChance, e.Defender.Stats.Agility).Get(),
                 AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]),
                 AttackerBlockChance = e.AttackerBlockChance
             };
             if (e.Defender.Gear.EquippedWeapon.IsRanged)
             {
                 var defenderWeapon = e.Defender.Gear.EquippedWeapon.AsRanged();
-                proposed.DefenderHitChance = (e.Defender.Accuracy - e.Attacker.Stats.Agility) * (100 - e.AttackerBlockChance) / 100;
+                proposed.DefenderHitChance = new HitChanceCalculation(e.Defender.Accuracy, e.AttackerBlockChance, e.Attacker.Stats.Agility).Get();
                 if (defenderWeapon.EffectiveRanges.ContainsKey(distance))
                     proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]);
             }

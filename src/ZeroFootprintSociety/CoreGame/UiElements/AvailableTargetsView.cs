@@ -8,6 +8,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
@@ -54,8 +55,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Alpha = 100, Image = "UI/shield-placeholder", Transform = cover.Provider.Transform });
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = Color.White, Transform = cover.Provider.Transform });
                 });
-                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{(int)((GameWorld.CurrentCharacter.Accuracy - x.Character.Stats.Agility) * x.CoverToThem.BlockChance / 100)}%", Transform = x.Character.CurrentTile.Transform });
-                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{(int)((x.Character.Accuracy - GameWorld.CurrentCharacter.Stats.Agility) * x.CoverFromThem.BlockChance / 100)}%", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });
+                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.CoverToThem.BlockChance, x.Character.Stats.Agility).Get()}%", Transform = x.Character.CurrentTile.Transform });
+                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(x.Character.Accuracy, x.CoverFromThem.BlockChance, GameWorld.CurrentCharacter.Stats.Agility).Get()}% ", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });
             });
             GameWorld.Highlights.Add(this);
         }
