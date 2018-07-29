@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Graphics;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.Text;
 
 namespace MonoDragons.Core.UserInterface
 {
@@ -20,9 +21,11 @@ namespace MonoDragons.Core.UserInterface
         public Action OnExit { private get; set; } = () => { };
         public Action OnEnter { private get; set; } = () => { };
         public Action OnPress { private get; set; } = () => { };
+        public string Font { get; set; } = DefaultFont.Name;
 
         public TextButton(Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press)
             : this(area, onClick, text, defaultColor, hover, press, () => true) { }
+
         public TextButton(Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press, Func<bool> isvisible) : base(area)
         {
             _onClick = onClick;
@@ -63,7 +66,7 @@ namespace MonoDragons.Core.UserInterface
             if (_isVisible())
             {
                 World.Draw(_currentRect, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size));
-                UI.DrawTextCentered(_text, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color.White);
+                UI.DrawTextCentered(_text, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color.White, Font);
             }
         }
     }

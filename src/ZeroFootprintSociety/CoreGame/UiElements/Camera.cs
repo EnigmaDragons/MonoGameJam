@@ -8,7 +8,9 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Render;
 using MonoDragons.Core.UserInterface;
 using System;
+using System.Linq;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -34,15 +36,22 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private float _transitionCompletion;
         private Point _destination;
         public Point Position { get; private set; }
+        private bool _shouldFreezeCamera;
 
         public Camera()
         {
-            Event.Subscribe(EventSubscription.Create<TurnBegun>(e => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform), this));
+            Event.Subscribe<TurnBegun>(e => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform), this);
+            Event.Subscribe<MovementConfirmed>(e => CenterOn(GameWorld.Map.TileToWorldTransform(e.Path.Last())), this);
+            Event.Subscribe<MenuRequested>(e => _shouldFreezeCamera = true, this);
+            Event.Subscribe<MenuDismissed>(e => _shouldFreezeCamera = false, this);
             Input.On(Control.Select, () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform));
         }
 
         public void Update(TimeSpan delta)
         {
+            if (_shouldFreezeCamera)
+                return;
+
             if (_transitionCompletion < 1f)
             {
                 _transitionCompletion += 0.04f;

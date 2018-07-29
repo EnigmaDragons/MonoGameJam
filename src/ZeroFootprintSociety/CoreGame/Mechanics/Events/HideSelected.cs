@@ -1,6 +1,6 @@
 ﻿namespace ZeroFootPrintSociety.CoreGame.Mechanics.Events
 {
-    public class HideChosen
+    public class HideSelected
     {
     }
 }

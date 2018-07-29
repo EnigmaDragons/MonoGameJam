@@ -65,7 +65,6 @@ namespace MonoDragons.Core.UserInterface
         {
             if (_currentElement == element && _currentElement.IsHovered)
             {
-                Event.Publish(new ActiveElementChanged(_currentElement));
                 _currentElement.OnExitted();
                 _currentElement.IsHovered = false;
                 _currentElement = ClickUI.None;
@@ -116,7 +115,6 @@ namespace MonoDragons.Core.UserInterface
         {
             if (_currentElement.IsHovered)
             {
-                Event.Publish(new ActiveElementChanged(_currentElement));
                 _currentElement.OnExitted();
                 _currentElement.IsHovered = false;
                 _currentElement = ClickUI.None;

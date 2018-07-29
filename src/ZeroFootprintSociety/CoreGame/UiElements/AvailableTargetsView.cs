@@ -43,7 +43,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 _targetVisuals[x.Character.CurrentTile.Position] = new List<IVisual>();
                 x.CoverToThem.Where(cover => cover.Cover > Cover.None).ForEach(cover =>
                 {
-                    _targetVisuals[x.Character.CurrentTile.Position].Add(new ImageBox { Alpha = 100, Image = "UI/shield-placeholder", Transform = cover.Provider.Transform });
+                    _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Alpha = 100, Image = "UI/shield-placeholder", Transform = cover.Provider.Transform });
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = Color.White, Transform = cover.Provider.Transform });
                 });
                 _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{x.TargetBlockChance}%", Transform = x.Character.CurrentTile.Transform });

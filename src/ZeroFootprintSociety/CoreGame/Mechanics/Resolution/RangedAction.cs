@@ -48,6 +48,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             proposed.AttackerDamage = proposed.DefenderHitChance * proposed.DefenderBullets * proposed.DefenderBulletDamage / 100;
             proposed.DefenderDamage = proposed.AttackerHitChance * proposed.AttackerBullets * proposed.AttackerBulletDamage / 100;
             proposed.DefenderBlockChance = e.DefenderBlockChance;
+            Event.Publish(new ActionSelected(() => Event.Publish(new ShotConfirmed { Proposed = proposed })));
             Event.Publish(proposed);
         }
 

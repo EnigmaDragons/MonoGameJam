@@ -4,14 +4,14 @@ using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 {
-    class HideAction
+    class OverwatchAction
     {
-        public HideAction()
+        public OverwatchAction()
         {
-            Event.Subscribe(EventSubscription.Create<HideSelected>(OnHideChosen, this));
+            Event.Subscribe(EventSubscription.Create<OverwatchSelected>(OnOverwatchSelected, this));
         }
 
-        private void OnHideChosen(HideSelected e)
+        private void OnOverwatchSelected(OverwatchSelected e)
         {
             Event.Publish(new ActionConfirmed());
             // TODO: Add Hide game state update

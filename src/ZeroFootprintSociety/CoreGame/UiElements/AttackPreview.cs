@@ -68,13 +68,14 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             _hidden = true;
             _clickUI.Remove(_branch);
-            Event.Publish(new ShotConfirmed { Proposed = _shot });
+            Event.Publish(new ActionConfirmed());
         }
 
         private void Cancel()
         {
             _hidden = true;
             _clickUI.Remove(_branch);
+            Event.Publish(new ActionCancelled());
         }
 
         public void Draw(Transform2 parentTransform)
