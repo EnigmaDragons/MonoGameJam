@@ -51,7 +51,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public void MoveTo(int x, int y)
         {
             if (AvailableMoves.Any(move => move.Last().X == x && move.Last().Y == y))
-                Event.Publish(new MovementConfirmed { Path = AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y) });
+                Event.Publish(new MovementConfirmed(AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y)));
         }
 
         public void Shoot(int x, int y)

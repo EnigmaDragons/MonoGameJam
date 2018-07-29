@@ -27,12 +27,12 @@ namespace ZeroFootPrintSociety.Characters
         private SpriteAnimation _idleLeft;
         private SpriteAnimation _idleRight;
         private SpriteAnimation _currentAnimation;
-
-        private List<Point> _path = new List<Point>();
         
         public Vector2 CurrentTileLocation { get; private set; }
         public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];
         public Transform2 Transform { get; private set; }
+
+        private List<Point> _path = new List<Point>();
 
         public CharacterBody(string characterPath, Vector2 offset)
         {
@@ -46,7 +46,7 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (GameWorld.Turns.CurrentCharacter.Body == this)
             {
-                _path = movement.Path;
+                _path = movement.Path.ToList();
             }
         }
 
