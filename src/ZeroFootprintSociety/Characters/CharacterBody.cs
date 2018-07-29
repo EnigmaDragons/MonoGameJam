@@ -14,6 +14,7 @@ using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.PhsyicsMath;
 using ZeroFootPrintSociety.Tiles;
+using ZeroFootPrintSociety.UIEffects;
 
 namespace ZeroFootPrintSociety.Characters
 {
@@ -21,6 +22,8 @@ namespace ZeroFootPrintSociety.Characters
     {
         private readonly Vector2 _offset;
         private readonly string _characterPath;
+        private readonly GlowEffect _glow;
+        private readonly Vector2 _glowOff = new Vector2(-30, -70);
 
         private SpriteAnimation _idleDown;
         private SpriteAnimation _idleUp;
@@ -35,8 +38,9 @@ namespace ZeroFootPrintSociety.Characters
         public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];
         public Transform2 Transform { get; private set; }
 
-        public CharacterBody(string characterPath, Vector2 offset)
+        public CharacterBody(string characterPath, Vector2 offset, Color glowColor)
         {
+            _glow = new GlowEffect(new Size2(60, 100)) { Tint = Color.FromNonPremultiplied(glowColor.R, glowColor.G, glowColor.B, 18) };
             _characterPath = characterPath;
             _offset = offset;
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
@@ -134,6 +138,7 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Draw(Transform2 parentTransform)
         {
+            _glow.Draw(parentTransform + Transform + CurrentTileLocation + _glowOff);
             _currentAnimation.Draw(parentTransform + Transform + _offset + CurrentTileLocation);
         }
     }
