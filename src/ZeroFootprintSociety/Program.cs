@@ -20,7 +20,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            LaunchGameWithScene("SampleLevel");
+            LaunchGameWithScene("MainMenu");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -63,6 +63,7 @@ namespace ZeroFootPrintSociety
             {
                 { Keys.Space, Control.Select },
                 { Keys.Enter, Control.Start },
+                { Keys.Escape, Control.Menu },
                 { Keys.V, Control.A },
                 { Keys.O, Control.X }
             });

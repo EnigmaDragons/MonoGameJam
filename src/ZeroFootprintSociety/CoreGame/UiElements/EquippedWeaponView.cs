@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Transform = new Transform2(new Rectangle(position.X, position.Y + 40, 220, 60)),
                 TextColor = Color.FromNonPremultiplied(255, 255, 255, 180)
             };
-            _visuals.Add(new WorldImage { Image = "UI/weapon-panel.png", Alpha = 180, Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 84)) });
+            _visuals.Add(new UiImage { Image = "UI/weapon-panel.png", Alpha = 180, Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 84)) });
             _visuals.Add(_weaponArt);
             _visuals.Add(_label);
         }

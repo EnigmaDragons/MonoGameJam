@@ -61,7 +61,6 @@ namespace MonoDragons.Core.UserInterface
                 b.Unsubscribe(subscribeAction);
                 if (b.IsCurrentElement(_current) && _current.IsHovered)
                 {
-                    Event.Publish(new ActiveElementChanged(_current));
                     _current.OnExitted();
                     _current.IsHovered = false;
                 }
@@ -125,7 +124,6 @@ namespace MonoDragons.Core.UserInterface
                 _current.OnExitted();
                 _current.IsHovered = false;
             }
-            Event.Publish(new ActiveElementChanged(_current.IsHovered ? _current : None, newElement));
             _wasClicked = false;
             _current = newElement;
             _current.OnEntered();
@@ -164,7 +162,6 @@ namespace MonoDragons.Core.UserInterface
             if (_current.IsHovered)
             {
                 _current.OnExitted();
-                Event.Publish(new ActiveElementChanged(_current));
             }
             _current = None;
         }

@@ -12,5 +12,6 @@
         Right,
         Select,
         Start,
+        Menu,
     }
 }

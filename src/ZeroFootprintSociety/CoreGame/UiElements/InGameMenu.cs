@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using MonoDragons.Core.Inputs;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
@@ -42,7 +43,16 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             _visuals.Add(mainMenuButton);
             _interceptLayer.Add(new ScreenClickable(HideDisplay));
             _branch.Add(mainMenuButton);
+            Input.On(Control.Menu, ToggleMenu);
             Event.Subscribe(EventSubscription.Create<MenuRequested>(x => PresentOptions(), this));
+        }
+
+        public void ToggleMenu()
+        {
+            if (_showingOptions)
+                HideDisplay();
+            else
+                Event.Publish(new MenuRequested());
         }
 
         public void PresentOptions()

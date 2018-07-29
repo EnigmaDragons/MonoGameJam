@@ -66,7 +66,7 @@ namespace MonoDragons.Core.UserInterface
             _background.Draw(parentTransform);
             var iconArea = new Rectangle(_iconArea.Location, _iconArea.Size);
             iconArea.Offset(parentTransform.Location);
-            World.Draw(_icon, iconArea);
+            UI.Draw(_icon, iconArea);
         }
 
         public override string ToString()

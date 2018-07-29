@@ -204,7 +204,43 @@ namespace MonoDragons.Core.UserInterface
             var wrapped = new WrappingText(() => spriteFont, () => area.Width).Wrap(text);
             var size = spriteFont.MeasureString(wrapped);
             DrawText(wrapped, _alignPositions[horizontalAlignment](area, size), color, font);
-        } 
+        }
+
+        public static void Draw(Texture2D texture, Rectangle rectangle, Color color)
+        {
+            SpriteBatch.Draw(texture, ScaleRectangle(rectangle), color);
+        }
+
+        public static void Draw(string imageName, Vector2 pixelPosition)
+        {
+            var resource = Resources.Load<Texture2D>(imageName);
+            SpriteBatch.Draw(resource, new Rectangle(ScalePoint(pixelPosition), ScalePoint(resource.Width, resource.Height)), Color.White);
+        }
+
+        public static void Draw(string imageName, Transform2 transform)
+        {
+            Draw(imageName, transform.ToRectangle());
+        }
+
+        public static void Draw(string imageName, Transform2 transform, Color tint)
+        {
+            SpriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(transform.ToRectangle()), tint);
+        }
+
+        public static void Draw(string imageName, Rectangle rectPostion)
+        {
+            SpriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(rectPostion), Color.White);
+        }
+
+        public static void Draw(string imageName, Vector2 size, Anchor anchor)
+        {
+            SpriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(new Rectangle(
+                    new Point(
+                        anchor.AnchorFromLeft ? anchor.HorizontalOffset : (int)Math.Round(CurrentDisplay.GameWidth / CurrentDisplay.Scale - anchor.HorizontalOffset),
+                        anchor.AnchorFromTop ? anchor.VerticalOffset : (int)Math.Round(CurrentDisplay.GameHeight / CurrentDisplay.Scale - anchor.VerticalOffset)),
+                    size.ToPoint())),
+                Color.White);
+        }
 
         private static Vector2 GetLeftPosition(Rectangle area, Vector2 size)
         {

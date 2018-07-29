@@ -115,7 +115,7 @@ namespace MonoDragons.Core.Engine
             {
 #if DEBUG
                 _metrics.Update(gameTime.ElapsedGameTime);
-                if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
+                if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.OemTilde))
                     Environment.Exit(0);
 #endif
                 _controller.Update(gameTime.ElapsedGameTime);

@@ -10,13 +10,13 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
     class CurrentCharacterView : IVisualAutomaton
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
-        private readonly WorldImage _face;
+        private readonly UiImage _face;
         private readonly Label _label;
         private readonly Label _hp;
 
         public CurrentCharacterView(Point position)
         {
-            _face = new WorldImage { Transform = new Transform2(new Rectangle(position.X + 10, position.Y + 12, 70, 70)) };
+            _face = new UiImage { Transform = new Transform2(new Rectangle(position.X + 10, position.Y + 12, 70, 70)) };
             _label = new Label
             {
                 Font = "Fonts/12",
@@ -29,7 +29,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Transform = new Transform2(new Rectangle(position.X + 70, position.Y + 40, 150, 30)),
                 TextColor = Color.FromNonPremultiplied(255, 255, 255, 180)
             };
-            _visuals.Add(new WorldImage { Image = "UI/weapon-panel.png", Alpha = 180, Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 114)) });
+            _visuals.Add(new UiImage { Image = "UI/weapon-panel.png", Alpha = 180, Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 114)) });
             _visuals.Add(_face);
             _visuals.Add(_label);
             _visuals.Add(_hp);
