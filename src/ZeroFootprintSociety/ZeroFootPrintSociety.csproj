@@ -54,7 +54,7 @@
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
-    <Compile Include="CoreGame\CoverProvided.cs" />
+    <Compile Include="CoreGame\Mechanics\Covors\CoverProvided.cs" />
     <Compile Include="CoreGame\GameWorld.cs" />
     <Compile Include="CoreGame\GameDrawMaster.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchSelected.cs" />
@@ -100,6 +100,7 @@
     <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
     <Compile Include="CoreGame\UiElements\EquippedWeaponView.cs" />
+    <Compile Include="CoreGame\UiElements\HideUI.cs" />
     <Compile Include="CoreGame\UiElements\HudView.cs" />
     <Compile Include="CoreGame\UiElements\InGameMenu.cs" />
     <Compile Include="CoreGame\UiElements\MoveConfirmView.cs" />
@@ -114,7 +115,7 @@
     <Compile Include="Scenes\SampleCorporationScene.cs" />
     <Compile Include="Characters\CharacterBody.cs" />
     <Compile Include="Scenes\LabScene.cs" />
-    <Compile Include="Tiles\Cover.cs" />
+    <Compile Include="CoreGame\Mechanics\Covors\Cover.cs" />
     <Compile Include="Tiles\GameMap.cs" />
     <Compile Include="Tiles\GameTile.cs" />
     <Compile Include="Tiles\GameTileDetail.cs" />
