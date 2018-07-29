@@ -1,18 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
-using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
-    class AvailableMovesView : IVisual
+    class AvailableMovesView : MutableSceneContainer
     {
-        private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly GameMap _map;
 
         public AvailableMovesView(GameMap map)
@@ -24,7 +21,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         
         private void OnMovementConfirmed(MovementConfirmed e)
         {
-            _visuals.Clear();
+            Clear();
             GameWorld.Highlights.Remove(this);
         }
 
@@ -32,15 +29,13 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             e.AvailableMoves.ForEach(x =>
             {
-                var coloredBox = new ColoredRectangle { Transform = _map[x.Last().X, x.Last().Y].Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 20) };
-                _visuals.Add(coloredBox);
+                Add(new ColoredRectangle
+                {
+                    Transform = GameWorld.Map.TileToWorldTransform(x.Last()).WithSize(TileData.RenderSize),
+                    Color = Color.FromNonPremultiplied(80, 120, 220, 50)
+                });
             });
             GameWorld.Highlights.Add(this);
-        }
-
-        public void Draw(Transform2 parentTransform)
-        {
-            _visuals.ForEach(x => x.Draw(parentTransform));
         }
     }
 }

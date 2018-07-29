@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
@@ -10,27 +11,30 @@ using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
+using ZeroFootPrintSociety.UIEffects;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
-    public class AvailableTargetsView : IVisual
+    public class AvailableTargetsView : IVisualAutomaton
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
+        private readonly List<IAutomaton> _automata = new List<IAutomaton>();
         private readonly Dictionary<Point, List<IVisual>> _targetVisuals = new Dictionary<Point, List<IVisual>>();
         private List<Target> _availableTargets = new List<Target>();
-        private bool _isDisplaying = false;
 
         public AvailableTargetsView()
         {
             Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(e => _availableTargets = e.Targets, this));
             Event.Subscribe(EventSubscription.Create<ShootSelected>(ShowOptions, this));
-            Event.Subscribe(EventSubscription.Create<ShotConfirmed>(ClearOptions, this));
+            Event.Subscribe(EventSubscription.Create<ActionCancelled>(e => ClearOptions(), this));
+            Event.Subscribe(EventSubscription.Create<ActionConfirmed>(e => ClearOptions(), this));
         }
 
-        private void ClearOptions(ShotConfirmed e)
+        private void ClearOptions()
         {
             _visuals.Clear();
             _targetVisuals.Clear();
+            _automata.Clear();
             GameWorld.Highlights.Remove(this);
         }
 
@@ -38,8 +42,12 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             _availableTargets.ForEach(x =>
             {
-                var coloredBox = new ColoredRectangle { Transform = x.Character.CurrentTile.Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 50) };
-                _visuals.Add(coloredBox);
+                _visuals.Add(new ColoredRectangle { Transform = x.Character.CurrentTile.Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 35) });
+                var anim = new TileRotatingEdgesAnim(x.Character.CurrentTile.Position, Color.FromNonPremultiplied(255, 20, 20, 255));
+                anim.Init();
+                _visuals.Add(anim);
+                _automata.Add(anim);
+
                 _targetVisuals[x.Character.CurrentTile.Position] = new List<IVisual>();
                 x.CoverToThem.Where(cover => cover.Cover > Cover.None).ForEach(cover =>
                 {
@@ -57,6 +65,11 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             _visuals.ToList().ForEach(x => x.Draw(parentTransform));
             if (_targetVisuals.ContainsKey(GameWorld.HoveredTile))
                 _targetVisuals[GameWorld.HoveredTile].ForEach(x => x.Draw(parentTransform));
+        }
+
+        public void Update(TimeSpan delta)
+        {
+            _automata.ToList().ForEach(x => x.Update(delta));
         }
     }
 }

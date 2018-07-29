@@ -6,7 +6,7 @@ using MonoDragons.Core.PhysicsEngine;
 
 namespace ZeroFootPrintSociety.Tiles
 {
-    public class SpriteAnimation : IAutomaton, IVisual
+    public class SpriteAnimation : IVisualAutomaton
     {
         private readonly List<SpriteAnimationFrame> _frames;
         private double _secondsRemaining;
