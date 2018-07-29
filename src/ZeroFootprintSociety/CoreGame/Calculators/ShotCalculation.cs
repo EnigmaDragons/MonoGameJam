@@ -15,7 +15,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         public ShotCalculation(GameTile aggressor, GameTile victim)
         {
             _aggressor = aggressor;
-            _victim = aggressor;
+            _victim = victim;
         }
 
         public ShotCoverInfo BestShot()
