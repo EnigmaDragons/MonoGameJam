@@ -24,21 +24,7 @@ namespace ZeroFootPrintSociety.Scenes
                     GameWorld.Clear();
                     Scene.NavigateTo("SampleLevel");
                 }, "Sample Corp", Color.Transparent, Color.LightBlue, Color.Blue);
-            var lab = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f) - 150, 770, 300, 50),
-                () =>
-                {
-                    GameWorld.Clear();
-                    Scene.NavigateTo("SampleLab");
-                }, "Sample Lab", Color.Transparent, Color.LightBlue, Color.Blue);
-            var darkAlley = new TextButton(new Rectangle(UI.OfScreenWidth(0.5f) - 150, 840, 300, 50),
-                () =>
-                {
-                    GameWorld.Clear();
-                    Scene.NavigateTo("DarkAlley");
-                }, "Dark Alley", Color.Transparent, Color.LightBlue, Color.Blue);
             AddClickable(button);
-            AddClickable(lab);
-            AddClickable(darkAlley);
         }
 
         public override void Dispose()
