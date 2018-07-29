@@ -42,7 +42,10 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public Camera()
         {
             Event.Subscribe<TurnBegun>(e => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform), this);
-            Event.Subscribe<MovementConfirmed>(e => CenterOn(GameWorld.Map.TileToWorldTransform(e.Path.Last())), this);
+            Event.Subscribe<MovementConfirmed>(e => CenterOn(GameWorld.Map.TileToWorldTransform(
+                e.Path.Count > 0
+                    ? e.Path.Last()
+                    : GameWorld.CurrentCharacter.CurrentTile.Position)), this);
             Event.Subscribe<MenuRequested>(e => _shouldFreezeCamera = true, this);
             Event.Subscribe<MenuDismissed>(e => _shouldFreezeCamera = false, this);
             Input.On(Control.Select, () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform));
