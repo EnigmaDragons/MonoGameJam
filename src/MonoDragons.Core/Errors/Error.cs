@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 namespace MonoDragons.Core.Errors
 {
+    [Obsolete]
     public static class Error
     {
         public static void Handle(Action action, Action<Exception> onError)

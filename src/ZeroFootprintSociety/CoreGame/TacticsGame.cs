@@ -27,7 +27,6 @@ namespace ZeroFootPrintSociety.CoreGame
         private readonly TurnBasedCombat _combat;
         private readonly Point _startingCameraTile;
         private readonly Camera _camera = new Camera();
-        private readonly List<object> _objects = new List<object>();
         
         private MouseState _lastMouseState;
         private MouseAction _mouseAction = MouseAction.None;
@@ -53,9 +52,10 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
             Add(new EnemyAI());
-            _objects.Add(new HideUI());
-            _objects.Add(new MovementOptionsCalculator());
-            _objects.Add(new ShootOptionsCalculator());
+            Add(new ActionOptionsCalculator());
+            Add(new HideUI());
+            Add(new MovementOptionsCalculator());
+            Add(new ShootOptionsCalculator());
             Add(new AvailableMovesView(GameWorld.Map));
             Add(new AvailableTargetsView());
             _combat.Init();

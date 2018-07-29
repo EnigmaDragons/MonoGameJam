@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -20,7 +20,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private readonly ClickUIBranch _branch = new ClickUIBranch("Actions", 2);
 
         private bool _showingOptions = false;
-        private bool _shootAvailable = false;
+        private Dictionary<ActionType, Action> _options = new Dictionary<ActionType, Action>();
 
         public ClickUI _clickUI;
 
@@ -35,10 +35,9 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Image = "UI/menu-tall-panel.png"
             };
 
-            var hideButton = Buttons.Text(ctx, 0, "Hide", () => Select(new HideSelected()), () => true);
-            var shootButton = Buttons.Text(ctx, 1, "Shoot", () => Select(new ShootSelected()), () => _shootAvailable);
-            var overwatchButton = Buttons.Text(ctx, 2, "Overwatch", () => Select(new OverwatchSelected()), 
-                () => GameWorld.CurrentCharacter.Gear.EquippedWeapon.IsRanged);
+            var hideButton = Buttons.Text(ctx, 0, "Hide", () => Select(new HideSelected()), () => _options.ContainsKey(ActionType.Hide));
+            var shootButton = Buttons.Text(ctx, 1, "Shoot", () => Select(new ShootSelected()), () => _options.ContainsKey(ActionType.Shoot));
+            var overwatchButton = Buttons.Text(ctx, 2, "Overwatch", () => Select(new OverwatchSelected()), () => _options.ContainsKey(ActionType.Overwatch));
 
             _visuals.Add(menu);
             _visuals.Add(hideButton);
@@ -47,9 +46,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             _branch.Add(overwatchButton);
             _visuals.Add(shootButton);
             _branch.Add(shootButton);
-            Event.Subscribe(EventSubscription.Create<MovementFinished>(x => PresentOptions(), this));
+            Event.Subscribe(EventSubscription.Create<ActionOptionsAvailable>(UpdateOptions, this));
             Event.Subscribe(EventSubscription.Create<ActionCancelled>(x => PresentOptions(), this));
-            Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => _shootAvailable = x.Targets.Any(), this));
         }
 
         private void Select(object option)
@@ -58,16 +56,23 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             HideDisplay();
         }
 
-        public void PresentOptions()
+        private void UpdateOptions(ActionOptionsAvailable e)
         {
-            _clickUI.Add(_branch);
-            _showingOptions = true;
+            _options = e.Options;
+            PresentOptions();
         }
 
-        public void HideDisplay()
+        private void PresentOptions()
+        {
+            _showingOptions = true;
+            _clickUI.Add(_branch);
+        }
+
+        private void HideDisplay()
         {
             _clickUI.Remove(_branch);
             _showingOptions = false;
+            _options.Clear();
         }
 
         public void Draw(Transform2 parentTransform)

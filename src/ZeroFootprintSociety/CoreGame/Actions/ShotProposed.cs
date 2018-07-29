@@ -1,6 +1,6 @@
 ﻿using ZeroFootPrintSociety.Characters;
 
-namespace ZeroFootPrintSociety.CoreGame.StateEvents
+namespace ZeroFootPrintSociety.CoreGame
 {
     public class ShotProposed
     {
