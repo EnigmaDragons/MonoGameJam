@@ -1,4 +1,5 @@
-﻿using MonoDragons.Core.Common;
+﻿using System.Linq;
+using MonoDragons.Core.Common;
 
 namespace ZeroFootPrintSociety.Characters.Gear
 {
@@ -9,6 +10,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
         public abstract int Accuracy { get; } // Account * 5 = Hit Chance
         public int AccuracyPercent => Accuracy * 5;
         public abstract Map<int, float> EffectiveRanges { get; } // Damage factor at X tiles away
+        public int Range => EffectiveRanges.Keys.OrderByDescending(x => x).First();
         public abstract int NumShotsPerAttack { get; }
         public abstract int DamagePerHit { get; }
     }

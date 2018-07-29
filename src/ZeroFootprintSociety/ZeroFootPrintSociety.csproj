@@ -53,11 +53,14 @@
     <Compile Include="CoreGame\ActionEvents\ShotMissed.cs" />
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
+    <Compile Include="CoreGame\Calculators\ShotCalculation.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
     <Compile Include="CoreGame\Mechanics\Covors\CoverProvided.cs" />
     <Compile Include="CoreGame\GameWorld.cs" />
     <Compile Include="CoreGame\GameDrawMaster.cs" />
+    <Compile Include="CoreGame\Mechanics\Covors\ShotCoverInfo.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OverwatchSelected.cs" />
+    <Compile Include="CoreGame\StateEvents\OverwatchTilesAvailable.cs" />
     <Compile Include="CoreGame\Mechanics\Events\ShootSelected.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionProposal.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\ActionResolvers.cs" />
@@ -75,12 +78,10 @@
     <Compile Include="CoreGame\UiElements\ActionOptionsView.cs" />
     <Compile Include="CoreGame\StateEvents\MovementFinished.cs" />
     <Compile Include="CoreGame\Mechanics\Events\HideSelected.cs" />
-    <Compile Include="CoreGame\Mechanics\Events\OverwatchBegun.cs" />
     <Compile Include="Characters\CharacterGear.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\RangedAction.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Prefabs\CorpSec1.cs" />
-    <Compile Include="CoreGame\Mechanics\Events\OverwatchTriggered.cs" />
     <Compile Include="CoreGame\StateEvents\TurnBegun.cs" />
     <Compile Include="CoreGame\Mechanics\Events\WeaponSwitched.cs" />
     <Compile Include="CoreGame\StateEvents\ActionOptionsAvailable.cs" />

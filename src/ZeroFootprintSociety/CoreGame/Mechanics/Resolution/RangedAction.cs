@@ -34,14 +34,14 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             {
                 Attacker = e.Attacker,
                 Defender = e.Defender,
-                AttackerHitChance = e.Attacker.Stats.AccuracyPercent + attackerWeapon.AccuracyPercent - e.Defender.Stats.Agility,
+                AttackerHitChance = (e.Attacker.Accuracy - e.Defender.Stats.Agility) * (100 - e.DefenderBlockChance) / 100,
                 AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]),
                 AttackerBlockChance = e.AttackerBlockChance
             };
             if (e.Defender.Gear.EquippedWeapon.IsRanged)
             {
                 var defenderWeapon = e.Defender.Gear.EquippedWeapon.AsRanged();
-                proposed.DefenderHitChance = e.Defender.Stats.AccuracyPercent + defenderWeapon.AccuracyPercent - e.Attacker.Stats.Agility;
+                proposed.DefenderHitChance = (e.Defender.Accuracy - e.Attacker.Stats.Agility) * (100 - e.AttackerBlockChance) / 100;
                 if (defenderWeapon.EffectiveRanges.ContainsKey(distance))
                     proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]);
             }

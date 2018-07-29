@@ -13,6 +13,9 @@ namespace ZeroFootPrintSociety.Characters
 {
     public abstract class Character : IVisualAutomaton
     {
+        private readonly HealthBar _healthBar = new HealthBar(42);
+        private readonly DamageNumbersView _damageNumbers;
+
         public bool IsInitialized { get; internal set; }
 
         public CharacterBody Body { get; }
@@ -21,11 +24,9 @@ namespace ZeroFootPrintSociety.Characters
         public CharacterState State { get; }
         public string FaceImage { get; }
         public Team Team { get; }
-
-        private readonly HealthBar _healthBar = new HealthBar(42);
-        private readonly DamageNumbersView _damageNumbers;
-
+       
         public GameTile CurrentTile => Body.CurrentTile;
+        public int Accuracy => Gear.EquippedWeapon.IsRanged ? Stats.AccuracyPercent + Gear.EquippedWeapon.AsRanged().AccuracyPercent : 0;
 
         public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team = Team.Neutral, string faceImage = "")
         {
@@ -41,7 +42,11 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<TurnBegun>(_ =>
             {
                 if (GameWorld.CurrentCharacter == this)
+                {
                     State.IsHiding = false;
+                    State.IsOverwatching = false;
+                    State.OverwatchedTiles.Clear();
+                }
             }, this);
         }
 

@@ -41,13 +41,13 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 var coloredBox = new ColoredRectangle { Transform = x.Character.CurrentTile.Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 50) };
                 _visuals.Add(coloredBox);
                 _targetVisuals[x.Character.CurrentTile.Position] = new List<IVisual>();
-                x.CoverToThem.Where(cover => cover.Cover > Cover.None).ForEach(cover =>
+                x.CoverToThem.Covers.Where(cover => cover.Cover > Cover.None).ForEach(cover =>
                 {
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Alpha = 100, Image = "UI/shield-placeholder", Transform = cover.Provider.Transform });
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = Color.White, Transform = cover.Provider.Transform });
                 });
-                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{x.TargetBlockChance}%", Transform = x.Character.CurrentTile.Transform });
-                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{x.TargetterBlockChance}%", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });
+                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{(int)((GameWorld.CurrentCharacter.Accuracy - x.Character.Stats.Agility) * x.CoverToThem.BlockChance / 100)}%", Transform = x.Character.CurrentTile.Transform });
+                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{(int)((x.Character.Accuracy - GameWorld.CurrentCharacter.Stats.Agility) * x.CoverFromThem.BlockChance / 100)}%", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });
             });
             GameWorld.Highlights.Add(this);
         }

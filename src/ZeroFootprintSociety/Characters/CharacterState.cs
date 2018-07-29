@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.EventSystem;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.Characters
@@ -10,6 +12,8 @@ namespace ZeroFootPrintSociety.Characters
         private readonly Character _itself;
         private int _remainingHealth = 0;
         public bool IsHiding = false;
+        public bool IsOverwatching = false;
+        public Dictionary<Point, ShotCoverInfo> OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
 
         public int RemainingHealth
         {

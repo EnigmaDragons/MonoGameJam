@@ -6,7 +6,6 @@ using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters;
-using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Resolution;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
@@ -31,8 +30,6 @@ namespace ZeroFootPrintSociety.CoreGame
             if (characters.Any(x => !x.IsInitialized))
                 throw new InvalidOperationException("All Characters must be initialized before Level begins.");
 
-            Event.Subscribe(EventSubscription.Create<OverwatchBegun>(OnOverwatchBegun, this));
-            Event.Subscribe(EventSubscription.Create<OverwatchTriggered>(OnOverwatchTriggered, this));
             Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
             Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(x => AvailableMoves = x.AvailableMoves, this));
@@ -50,16 +47,6 @@ namespace ZeroFootPrintSociety.CoreGame
         private void OnActionResolved(ActionResolved obj)
         {
             Event.Publish(new TurnEnded());
-        }
-
-        private void OnOverwatchTriggered(OverwatchTriggered obj)
-        {
-            // TODO: Handle triggering of overwatch.
-        }
-
-        public void OnOverwatchBegun(OverwatchBegun ob)
-        {
-            // TODO: Handle beginning of overwatch action.
         }
 
         private void OnMovementFinished(MovementFinished e)
@@ -83,8 +70,8 @@ namespace ZeroFootPrintSociety.CoreGame
             {
                 Attacker = GameWorld.CurrentCharacter,
                 Defender = attackTarget.Character,
-                AttackerBlockChance = attackTarget.TargetterBlockChance,
-                DefenderBlockChance = attackTarget.TargetBlockChance
+                AttackerBlockChance = attackTarget.CoverFromThem.BlockChance,
+                DefenderBlockChance = attackTarget.CoverToThem.BlockChance
             });
 
         } 
