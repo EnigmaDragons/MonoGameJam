@@ -139,7 +139,7 @@
     <Compile Include="Tiles\SpriteAnimationFrame.cs" />
     <Compile Include="Tiles\TileData.cs" />
     <Compile Include="Tiles\TileMath.cs" />
-    <Compile Include="UIEffects\BlueLightSource.cs" />
+    <Compile Include="UIEffects\GlowEffect.cs" />
     <Compile Include="UIEffects\TileRotatingEdgesAnim.cs" />
   </ItemGroup>
   <ItemGroup>

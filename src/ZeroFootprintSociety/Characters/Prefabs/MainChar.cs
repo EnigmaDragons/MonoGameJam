@@ -6,7 +6,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
     class MainChar : Character
     {
         public MainChar() : base(
-            new CharacterBody("MainCharacter", new Vector2(-13, -42)),
+            new CharacterBody("MainCharacter", new Vector2(-13, -42), Color.Blue),
             new CharacterStats
             {
                 Name = "Weldon Zemke"
