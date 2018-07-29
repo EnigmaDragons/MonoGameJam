@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
@@ -58,12 +59,15 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new ShootOptionsCalculator());
             Add(new AvailableMovesView(GameWorld.Map));
             Add(new AvailableTargetsView());
-            _combat.Init();
             Add(_drawMaster);
             Add(_combat);
             Add(new HudView());
             Add(_camera);
+#if DEBUG
+            Add(new RecentEventDebugLogView { Position = new Vector2(0, 150), MaxLines = 30, HideTextPart = "ZeroFootPrintSociety." });
+#endif
 
+            _combat.Init();
             _camera.Init(_startingCameraTile);
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Memory;
@@ -17,7 +16,7 @@ namespace MonoDragons.Core.EventSystem
         
         public static void Publish(object payload)
         {
-            Debug.WriteLine(payload.ToString());
+            Logger.WriteLine(payload.ToString());
             TransientEvents.Publish(payload);
             PersistentEvents.Publish(payload);
         }
