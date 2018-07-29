@@ -10,12 +10,14 @@ namespace ZeroFootPrintSociety.CoreGame
     public class CharacterTurns : IInitializable
     {
         private int _activeCharacterIndex;
+        private List<Character> _characters;
 
         public Character CurrentCharacter => Characters[_activeCharacterIndex];
-        public List<Character> Characters => GameWorld.Characters.OrderByDescending(x => x.Stats.Agility).ToList();
+        public IReadOnlyList<Character> Characters => _characters;
 
-        public CharacterTurns()
+        public CharacterTurns(IReadOnlyList<Character> characters)
         {
+            _characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
             Event.Subscribe(EventSubscription.Create<TurnEnded>(BeginNextTurn, this));
             Event.Subscribe(EventSubscription.Create<CharacterDeceases>(OnCharacterDeath, this));
         }
@@ -35,11 +37,11 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private void OnCharacterDeath(CharacterDeceases _event)
         {
-            var charIndex = Characters.IndexOf(_event.Character);
+            var charIndex = _characters.IndexOf(_event.Character);
             _activeCharacterIndex = charIndex >= _activeCharacterIndex 
                 ? _activeCharacterIndex 
                 : _activeCharacterIndex - 1;
-            GameWorld.Characters.Remove(_event.Character);   
+            _characters.Remove(_event.Character);
         }
     }
 }

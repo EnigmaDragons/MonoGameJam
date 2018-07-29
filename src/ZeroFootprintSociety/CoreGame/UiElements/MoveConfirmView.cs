@@ -4,6 +4,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using System.Collections.Generic;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -49,6 +50,9 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         public void Show()
         {
+            if (GameWorld.CurrentCharacter.Team.IsIncludedIn(TeamGroup.NeutralsAndEnemies))
+                return;
+
             _clickUI.Add(_branch);
             _show = true;
         }

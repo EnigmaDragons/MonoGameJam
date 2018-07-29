@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters;
@@ -15,16 +14,12 @@ namespace ZeroFootPrintSociety.CoreGame
     public class TurnBasedCombat : IAutomaton
     {
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
-
-        private CharacterTurns _turns;
-        private Character CurrentCharacter => _turns.CurrentCharacter;
-
+        
         public GameMap Map { get; }
         public List<List<Point>> AvailableMoves { get; private set; }
         public List<Target> Targets { get; private set; }
-        public List<Character> Characters { get; }
 
-        public TurnBasedCombat(GameMap map, List<Character> characters)
+        public TurnBasedCombat(GameMap map, IReadOnlyList<Character> characters)
         {
             Map = map;
             if (characters.Any(x => !x.IsInitialized))
@@ -33,14 +28,13 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(x => AvailableMoves = x.AvailableMoves, this));
             Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => Targets = x.Targets, this));
-            Characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
-            _turns = new CharacterTurns();
-            GameWorld.Turns = _turns;
+            GameWorld.Turns = new CharacterTurns(characters);
+            GameWorld.Characters = GameWorld.Turns.Characters;
         }
 
         public void Init()
         {
-            _turns.Init();
+            GameWorld.Turns.Init();
         }
 
         private void OnActionResolved(ActionResolved obj)
@@ -71,7 +65,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Update(TimeSpan delta)
         {
-            Characters.ForEach(x => x.Update(delta));
+            GameWorld.Characters.ToList().ForEach(x => x.Update(delta));
         }
     }
 }
