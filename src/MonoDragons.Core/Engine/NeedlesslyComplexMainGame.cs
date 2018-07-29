@@ -24,7 +24,8 @@ namespace MonoDragons.Core.Engine
         private readonly bool _areScreenSettingsPreCalculated;
         private readonly IErrorHandler _errorHandler;
         
-        private SpriteBatch _sprites;
+        public static SpriteBatch WorldSpriteBatch;
+        private SpriteBatch _uiSpriteBatch;
         private Display _display;
         private Size2 _defaultScreenSize;
         
@@ -75,10 +76,11 @@ namespace MonoDragons.Core.Engine
                     Window.Position = new Point((GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - CurrentDisplay.GameWidth) / 2, 
                         (GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - CurrentDisplay.GameHeight) / 2 - 40); // Delete this once the above issue is fixed
                     IsMouseVisible = true;
-                    _sprites = new SpriteBatch(GraphicsDevice);
+                    _uiSpriteBatch = new SpriteBatch(GraphicsDevice);
+                    WorldSpriteBatch = new SpriteBatch(GraphicsDevice);
                     Input.SetController(_controller);
-                    World.Init(_sprites);
-                    UI.Init(_sprites);
+                    World.Init(WorldSpriteBatch);
+                    UI.Init(_uiSpriteBatch);
                     _scene.Init();
                     base.Initialize();
                 });
@@ -125,13 +127,15 @@ namespace MonoDragons.Core.Engine
         {
             Error.Handle(() =>
             {
-                _sprites.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp);
+                _uiSpriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp);
+                WorldSpriteBatch.Begin(samplerState: SamplerState.PointClamp);
                 GraphicsDevice.Clear(Color.Black);
                 _scene.Draw();
 #if DEBUG
                 _metrics.Draw(Transform2.Zero);
 #endif
-                _sprites.End();
+                WorldSpriteBatch.End();
+                _uiSpriteBatch.End();
             }, x => _errorHandler.ResolveError(x));
         }
     }
