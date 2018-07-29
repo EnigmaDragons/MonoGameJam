@@ -22,11 +22,11 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             if (!GameWorld.CurrentCharacter.State.OverwatchedTiles.Any())
             {
                 var overwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
-                var tiles = ExistingTiles(TilesInRange(GameWorld.CurrentCharacter.CurrentTile.Position, GameWorld.CurrentCharacter.Gear.EquippedWeapon.AsRanged().Range));
+                var tiles = ValidTiles(TilesInRange(GameWorld.CurrentCharacter.CurrentTile.Position, GameWorld.CurrentCharacter.Gear.EquippedWeapon.AsRanged().Range));
                 tiles.ForEach(x =>
                 {
                     var shot = new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, GameWorld.Map[x]).BestShot();
-                    if (GameWorld.CurrentCharacter.Accuracy * shot.BlockChance / 100 > 0)
+                    if (new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, shot.BlockChance).Get() > 0)
                         overwatchedTiles[x] = shot;
                 });
                 Event.Publish(new OverwatchTilesAvailable { OverwatchedTiles = overwatchedTiles });
@@ -38,9 +38,9 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             }));
         }
 
-        private List<Point> ExistingTiles(List<Point> points)
+        private List<Point> ValidTiles(List<Point> points)
         {
-            return points.Where(x => GameWorld.Map.Exists(x)).ToList();
+            return points.Where(x => GameWorld.Map.Exists(x) && GameWorld.Map[x].IsWalkable).ToList();
         }
 
         private List<Point> TilesInRange(Point point, int rangeRemaining)

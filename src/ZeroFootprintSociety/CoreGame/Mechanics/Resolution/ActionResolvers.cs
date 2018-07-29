@@ -12,7 +12,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 new HideAction(),
                 new RangedAction(),
                 new PassAction(),
-                new OverwatchAction()
+                new OverwatchAction(),
+                new OverwatchResolver()
             };
         }
     }

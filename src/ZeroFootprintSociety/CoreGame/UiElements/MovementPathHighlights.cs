@@ -27,13 +27,11 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Color = Color.FromNonPremultiplied(80, 120, 220, 20)
             });
             Add(new TileRotatingEdgesAnim(destination, Color.FromNonPremultiplied(110, 170, 255, 255)).Initialized());
-            GameWorld.Highlights.Add(this);
         }
 
         private void OnMovementFinished(MovementFinished e)
         {
             Clear();
-            GameWorld.Highlights.Remove(this);
         }
     }
 }

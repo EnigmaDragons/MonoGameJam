@@ -29,6 +29,7 @@ namespace ZeroFootPrintSociety.Characters
         private SpriteAnimation _currentAnimation;
 
         private List<Point> _path = new List<Point>();
+        private bool _stopped = false;
         
         public Vector2 CurrentTileLocation { get; private set; }
         public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];
@@ -40,6 +41,7 @@ namespace ZeroFootPrintSociety.Characters
             _offset = offset;
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
             Event.Subscribe(EventSubscription.Create<ShotFired>(UpdateFacing, this));
+            Event.Subscribe<MoveResolved>(ContinueMoving, this);
         }
 
         private void OnMovementConfirmed(MovementConfirmed movement)
@@ -76,14 +78,26 @@ namespace ZeroFootPrintSociety.Characters
         {
             const double speedModifier = 0.3;
             _currentAnimation.Update(delta);
-            if (_path.Any())
+            if (_path.Any() && !_stopped)
             {
                 var targetLocation = GameWorld.Map[_path.First()].Transform.Location;
                 var pastLocation = CurrentTileLocation;
                 CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds * speedModifier);
                 SetFacing(pastLocation);
                 if (CurrentTileLocation.X == targetLocation.X && CurrentTileLocation.Y == targetLocation.Y)
-                    _path.RemoveAt(0);
+                {
+                    _stopped = true;
+                    Event.Publish(new Moved { Character = GameWorld.CurrentCharacter, Position = _path.First() });
+                }
+            }
+        }
+
+        private void ContinueMoving(MoveResolved e)
+        {
+            if (GameWorld.CurrentCharacter.Body == this)
+            {
+                _stopped = false;
+                _path.RemoveAt(0);
                 if (!_path.Any())
                     Event.Publish(new MovementFinished());
             }
