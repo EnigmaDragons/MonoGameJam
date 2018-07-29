@@ -38,14 +38,9 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 else
                 {
                     if (_random.Next(0, 100) < e.Proposed.AttackerHitChance)
-                    {
-                        e.Proposed.Defender.State.RemainingHealth -= e.Proposed.AttackerBulletDamage;
                         Event.Publish(new ShotHit { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender, DamageAmount = e.Proposed.AttackerBulletDamage });
-                    }
                     else
-                    {
                         Event.Publish(new ShotMissed { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
-                    }
                 }
             }
             e.Proposed.Attacker.State.IsOverwatching = false;
@@ -64,14 +59,9 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                         else
                         {
                             if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
-                            {
-                                e.Proposed.Attacker.State.RemainingHealth -= e.Proposed.DefenderBulletDamage;
                                 Event.Publish(new ShotHit { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, DamageAmount = e.Proposed.AttackerBulletDamage });
-                            }
                             else
-                            {
                                 Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
-                            }
                         }
                     }
                     e.Proposed.Defender.State.IsOverwatching = false;

@@ -81,6 +81,9 @@
     <Compile Include="CoreGame\Mechanics\Resolution\HideAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchResolver.cs" />
+    <Compile Include="CoreGame\UiElements\CameraArrowKeysControl.cs" />
+    <Compile Include="CoreGame\UiElements\CameraControl.cs" />
+    <Compile Include="CoreGame\UiElements\CameraEdgesMouseControl.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\PassAction.cs" />
     <Compile Include="CoreGame\StateEvents\ActionCancelled.cs" />
     <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
@@ -116,6 +119,8 @@
     <Compile Include="CoreGame\UiElements\AvailableTargetsView.cs" />
     <Compile Include="CoreGame\UiElements\Buttons.cs" />
     <Compile Include="CoreGame\UiElements\Camera.cs" />
+    <Compile Include="CoreGame\UiElements\CameraOptions.cs" />
+    <Compile Include="CoreGame\UiElements\CameraDragMouseControl.cs" />
     <Compile Include="CoreGame\UiElements\CombatantSummary.cs" />
     <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />

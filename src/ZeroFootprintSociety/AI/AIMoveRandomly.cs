@@ -14,7 +14,7 @@ namespace ZeroFootPrintSociety.AI
         private void ChooseMoveIfApplicable(MovementOptionsAvailable e)
         {
             IfAITurn(
-                () => Event.Publish(new MovementConfirmed { Path = e.AvailableMoves.Random() }));
+                () => Event.Publish(new MovementConfirmed(e.AvailableMoves.Random())));
         }
     }
 }

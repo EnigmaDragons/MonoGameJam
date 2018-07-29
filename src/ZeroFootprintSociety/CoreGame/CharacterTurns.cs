@@ -1,5 +1,6 @@
 ﻿using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.Characters;
@@ -10,14 +11,16 @@ namespace ZeroFootPrintSociety.CoreGame
     public class CharacterTurns : IInitializable
     {
         private int _activeCharacterIndex;
+        private List<Character> _characters;
 
         public Character CurrentCharacter => Characters[_activeCharacterIndex];
-        public List<Character> Characters => GameWorld.Characters.OrderByDescending(x => x.Stats.Agility).ToList();
+        public IReadOnlyList<Character> Characters => _characters;
 
-        public CharacterTurns()
+        public CharacterTurns(IReadOnlyList<Character> characters)
         {
+            _characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
             Event.Subscribe(EventSubscription.Create<TurnEnded>(BeginNextTurn, this));
-            Event.Subscribe(EventSubscription.Create<CharacterDeceases>(OnCharacterDeath, this));
+            Event.Subscribe(EventSubscription.Create<CharacterDeceased>(OnCharacterDeath, this));
         }
 
         public void Init()
@@ -33,13 +36,13 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Publish(new TurnBegun());
         }
 
-        private void OnCharacterDeath(CharacterDeceases _event)
+        private void OnCharacterDeath(CharacterDeceased _event)
         {
-            var charIndex = Characters.IndexOf(_event.Character);
+            var charIndex = _characters.IndexOf(_event.Character);
             _activeCharacterIndex = charIndex >= _activeCharacterIndex 
                 ? _activeCharacterIndex 
-                : _activeCharacterIndex - 1;
-            GameWorld.Characters.Remove(_event.Character);   
+                : Math.Min(_activeCharacterIndex - 1, 0);
+            _characters.Remove(_event.Character);
         }
     }
 }

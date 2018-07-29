@@ -6,16 +6,13 @@ namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
     class MovementConfirmed
     {
-        private List<Point> _path;
-        
-        public List<Point> Path {
-            get => _path;
-            set
-            {
-                if (value.Count == 0)
-                    throw new InvalidOperationException("All Movement Paths must have an ending");
-                _path = value;
-            }
+        public IReadOnlyList<Point> Path { get; }
+
+        public MovementConfirmed(List<Point> path)
+        {
+            if (path.Count == 0)
+                throw new InvalidOperationException("All Movement Paths must have an ending");
+            Path = path;
         }
     }
 }

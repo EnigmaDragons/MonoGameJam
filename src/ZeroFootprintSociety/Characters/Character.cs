@@ -7,7 +7,9 @@ using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters.Ui;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
+using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.Characters
@@ -42,6 +44,14 @@ namespace ZeroFootPrintSociety.Characters
 
             Event.Subscribe<TurnBegun>(OnTurnBegan, this);
             Event.Subscribe<OverwatchTilesAvailable>(UpdateOverwatch, this);
+            Event.Subscribe<ShotHit>(OnShotHit, this);
+            Event.Subscribe<ShotAnimationsFinished>(OnShotsResolved, this);
+        }
+
+        private void OnShotsResolved(ShotAnimationsFinished e)
+        {
+            if (State.RemainingHealth <= 0)
+                Event.Publish(new CharacterDeceased { Character = this });
         }
 
         public void Init(GameTile tile)
@@ -72,6 +82,12 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (GameWorld.CurrentCharacter == this)
                 State.OverwatchedTiles = e.OverwatchedTiles;
+        }
+
+        private void OnShotHit(ShotHit e)
+        {
+            if (e.Target.Equals(this))
+                State.RemainingHealth -= e.DamageAmount;
         }
 
         public void Draw(Transform2 parentTransform)

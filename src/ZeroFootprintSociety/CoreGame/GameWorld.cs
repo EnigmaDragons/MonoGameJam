@@ -10,7 +10,7 @@ namespace ZeroFootPrintSociety.CoreGame
     public static class GameWorld
     {
         public static GameMap Map { get; set; } 
-        public static List<Character> Characters { get; set; }
+        public static IReadOnlyList<Character> Characters { get; set; }
         public static CharacterTurns Turns { get; set; }
         public static Character CurrentCharacter => Turns.CurrentCharacter;
         public static Highlights Highlights { get; set; }
@@ -21,7 +21,7 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             Map = null;
             Turns = null;
-            Characters?.Clear();
+            Characters = new List<Character>();
             Highlights = null;
             HoveredTile = Point.Zero;
         }

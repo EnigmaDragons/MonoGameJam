@@ -5,6 +5,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -64,6 +65,9 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         private void PresentOptions()
         {
+            if (!GameWorld.CurrentCharacter.Team.IsIncludedIn(TeamGroup.Friendlies))
+                return;
+
             _showingOptions = true;
             _clickUI.Add(_branch);
         }
