@@ -38,9 +38,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
+    <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Teams\TeamGroup.cs" />
     <Compile Include="Characters\Teams\Team.cs" />
     <Compile Include="Characters\Ui\HealthBar.cs" />
@@ -168,6 +170,33 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Characters\CorporateSecurity-idle-right-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter-idle-down-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter-idle-down-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter-idle-left-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter-idle-left-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter-idle-right-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter-idle-right-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter-idle-up-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter-idle-up-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\placeholder-mainchar-face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Characters\placeholder-soldier-face.png">

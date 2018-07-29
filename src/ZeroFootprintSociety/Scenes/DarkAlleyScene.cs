@@ -20,7 +20,7 @@ namespace ZeroFootPrintSociety.Scenes
             GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "DarkAlleyLevel.tmx"), new Size2(48, 48));
             GameWorld.Characters = new List<Character>
             {
-                new CorpSec1().Initialized(GameWorld.Map[12, 40])
+                new MainChar().Initialized(GameWorld.Map[12, 40])
             };
             var startingCameraTile = new Point(0, 20); ; 
             _game = new TacticsGame(
