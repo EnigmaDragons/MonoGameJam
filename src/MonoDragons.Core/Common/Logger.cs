@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace MonoDragons.Core.Common
 {
-    internal static class Logger
+    public static class Logger
     {
         private static List<Action<string>> _sinks = new List<Action<string>> { x => Debug.WriteLine(x) };
 
