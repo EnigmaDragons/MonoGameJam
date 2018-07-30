@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Xna.Framework;
 
@@ -34,6 +35,15 @@ namespace MonoTiled.Tiled.TmxLoading
             SourceRect = sourceRect;
             CustomBools = customBools;
             CustomStrings = customStrings;
+        }
+
+        public T GetEnum<T>(string key) where T : struct, IConvertible
+        {
+            if (!typeof(T).IsEnum)
+                throw new ArgumentException("T must be an Enum");
+            return CustomStrings.ContainsKey(key)
+                ? (T)Enum.Parse(typeof(T), CustomStrings[key])
+                : default(T);
         }
     }
 }
