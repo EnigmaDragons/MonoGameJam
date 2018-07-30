@@ -139,11 +139,11 @@ namespace ZeroFootPrintSociety.Characters
 
         private void ContinueMoving(MoveResolved e)
         {
-            if (GameWorld.CurrentCharacter.Body == this)
+            if (e.Character.Body == this)
             {
                 _stopped = false;
                 _path.RemoveAt(0);
-                if (!_path.Any())
+                if (!_path.Any() && !e.Character.State.IsDeceased)
                     Event.Publish(new MovementFinished());
             }
         }

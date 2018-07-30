@@ -34,7 +34,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                             x.State.OverwatchedTiles[moved.Position].BlockChance).CalculateShot()
                     })
                 .ToList();
-            Action action = () => Event.Publish(new MoveResolved());
+            Action action = () => Event.Publish(new MoveResolved { Character = moved.Character });
             shots.ForEach(x =>
             {
                 x.OnFinished = action;

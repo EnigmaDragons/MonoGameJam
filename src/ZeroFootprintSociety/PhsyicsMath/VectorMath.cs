@@ -23,5 +23,10 @@ namespace ZeroFootPrintSociety.PhsyicsMath
         {
             return Math.Sqrt(Math.Pow(point1.X - point2.X, 2) + Math.Pow(point1.Y - point2.Y, 2));
         }
+
+        public static Vector2 MoveInDirection(this Vector2 start, double radians, double distance)
+        {
+            return start + new Vector2((float)Math.Cos(radians), (float)Math.Sin(radians)) * (float)distance;
+        }
     }
 }
