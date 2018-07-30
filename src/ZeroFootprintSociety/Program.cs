@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("ShootingRange");
+            RunGame("SampleLevel");
         }
 
         private static SceneFactory CreateSceneFactory()
