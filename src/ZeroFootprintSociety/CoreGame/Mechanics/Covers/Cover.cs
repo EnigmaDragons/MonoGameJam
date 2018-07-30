@@ -5,6 +5,6 @@
         None = 0,
         Light = 8,
         Medium = 17,
-        Heavy = 33
+        Heavy = 34
     }
 }
