@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoDragons;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using MonoDragons.Core.Inputs;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.CoreGame;
@@ -29,6 +27,11 @@ namespace ZeroFootPrintSociety.Characters
         private SpriteAnimation _idleUp;
         private SpriteAnimation _idleLeft;
         private SpriteAnimation _idleRight;
+        private SpriteAnimation _runDown;
+        private SpriteAnimation _runUp;
+        private SpriteAnimation _runLeft;
+        private SpriteAnimation _runRight;
+
         private SpriteAnimation _currentAnimation;
 
         private List<Point> _path = new List<Point>();
@@ -62,17 +65,53 @@ namespace ZeroFootPrintSociety.Characters
             const float duration = 0.5f;
             const float scale = 1f;
             _idleDown = new SpriteAnimation(
-                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-down-1.png"), scale, duration),
-                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-down-2.png"), scale, duration));
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-idle-down-1.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-idle-down-2.png"), scale, duration));
             _idleUp = new SpriteAnimation(
-                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-up-1.png"), scale, duration),
-                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-up-2.png"), scale, duration));
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-idle-up-1.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-idle-up-2.png"), scale, duration));
             _idleLeft = new SpriteAnimation(
-                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-left-1.png"), scale, duration),
-                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-left-2.png"), scale, duration));
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-idle-left-1.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-idle-left-2.png"), scale, duration));
             _idleRight = new SpriteAnimation(
-                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-right-1.png"), scale, duration),
-                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-right-2.png"), scale, duration));
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-idle-right-1.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-idle-right-2.png"), scale, duration));
+            _runDown = new SpriteAnimation(
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-down-1.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-down-2.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-down-3.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-down-4.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-down-5.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-down-6.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-down-7.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-down-8.png"), scale, duration));
+            _runUp = new SpriteAnimation(                                                                         
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-up-1.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-up-2.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-up-3.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-up-4.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-up-5.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-up-6.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-up-7.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-up-8.png"), scale, duration));
+            _runLeft = new SpriteAnimation(                                                                       
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-left-1.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-left-2.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-left-3.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-left-4.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-left-5.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-left-6.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-left-7.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-left-8.png"), scale, duration));
+            _runRight = new SpriteAnimation(                                                                      
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-right-1.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-right-2.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-right-3.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-right-4.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-right-5.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-right-6.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-right-7.png"), scale, duration),
+                new SpriteAnimationFrame(Resources.Load<Texture2D>($"Characters/{_characterPath}/{_characterPath}-run-right-8.png"), scale, duration));
             var sprite = Resources.Load<Texture2D>($"Characters/{_characterPath}-idle-down-1.png");
             Transform = new Transform2(new Vector2((float)(CurrentTile.Transform.Size.Width - sprite.Width) / 2, sprite.Height - sprite.Height), new Size2(sprite.Width, sprite.Height));
             _currentAnimation = _idleDown;
@@ -87,10 +126,11 @@ namespace ZeroFootPrintSociety.Characters
                 var targetLocation = GameWorld.Map[_path.First()].Transform.Location;
                 var pastLocation = CurrentTileLocation;
                 CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds * speedModifier);
-                SetFacing(pastLocation);
+                SetRunningFacing(pastLocation);
                 if (CurrentTileLocation.X == targetLocation.X && CurrentTileLocation.Y == targetLocation.Y)
                 {
                     _stopped = true;
+                    SetFacing(pastLocation);
                     Event.Publish(new Moved { Character = GameWorld.CurrentCharacter, Position = _path.First() });
                 }
             }
@@ -122,6 +162,18 @@ namespace ZeroFootPrintSociety.Characters
                 _currentAnimation = delta.Y > 0 ? _idleDown : _idleUp;
             else
                 _currentAnimation = delta.X > 0 ? _idleRight : _idleLeft;
+        }
+
+        private void SetRunningFacing(Vector2 pastLocation)
+        {
+            if (pastLocation.X < CurrentTileLocation.X)
+                _currentAnimation = _runRight;
+            if (pastLocation.X > CurrentTileLocation.X)
+                _currentAnimation = _runLeft;
+            if (pastLocation.Y < CurrentTileLocation.Y)
+                _currentAnimation = _runDown;
+            if (pastLocation.Y > CurrentTileLocation.Y)
+                _currentAnimation = _runUp;
         }
 
         private void SetFacing(Vector2 pastLocation)
