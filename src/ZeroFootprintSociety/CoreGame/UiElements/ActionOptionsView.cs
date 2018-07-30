@@ -35,17 +35,21 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 Image = "UI/menu-tall-panel.png"
             };
 
-            var hideButton = Buttons.Text(ctx, 0, "Hide", () => Select(ActionType.Hide), () => _options.ContainsKey(ActionType.Hide));
-            var shootButton = Buttons.Text(ctx, 1, "Shoot", () => Select(ActionType.Shoot), () => _options.ContainsKey(ActionType.Shoot));
-            var overwatchButton = Buttons.Text(ctx, 2, "Overwatch", () => Select(ActionType.Overwatch), () => _options.ContainsKey(ActionType.Overwatch));
+            var buttons = new List<TextButton>
+            {
+                Buttons.Text(ctx, 0, "Hide", () => Select(ActionType.Hide), () => _options.ContainsKey(ActionType.Hide)),
+                Buttons.Text(ctx, 1, "Shoot", () => Select(ActionType.Shoot), () => _options.ContainsKey(ActionType.Shoot)),
+                Buttons.Text(ctx, 2, "Overwatch", () => Select(ActionType.Overwatch), () => _options.ContainsKey(ActionType.Overwatch)),
+                Buttons.Text(ctx, 3, "Pass", () => Select(ActionType.Pass), () => _options.ContainsKey(ActionType.Pass))
+            };
 
             _visuals.Add(menu);
-            _visuals.Add(hideButton);
-            _branch.Add(hideButton);
-            _visuals.Add(overwatchButton);
-            _branch.Add(overwatchButton);
-            _visuals.Add(shootButton);
-            _branch.Add(shootButton);
+            buttons.ForEach(x =>
+            {
+                _visuals.Add(x);
+                _branch.Add(x);
+            });
+
             Event.Subscribe<ActionOptionsAvailable>(UpdateOptions, this);
             Event.Subscribe<ActionSelected>(e => HideDisplay(), this);
             Event.Subscribe<ActionCancelled>(x => PresentOptions(), this);
