@@ -4,6 +4,7 @@ using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using System.Linq;
+using Microsoft.Xna.Framework.Input;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 using ZeroFootPrintSociety.UIEffects;
@@ -14,6 +15,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
     {
         public MovementPathHighlights()
         {
+            // TODO: Draw that highlight on mouseover when MovementOptionsAvailable publishes. (maybe?)
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
             Event.Subscribe(EventSubscription.Create<MovementFinished>(_ => OnMovementFinished(), this));
             Event.Subscribe(EventSubscription.Create<TurnEnded>(_ => OnMovementFinished(), this));

@@ -59,8 +59,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         private void OnShotBlocked(ShotBlocked e)
         {
-            var target = new ShotCalculation(e.Attacker.CurrentTile, e.Target.CurrentTile).BestShot().Covers.Random()
-                .Provider;
+            var target = new ShotCalculation(e.Attacker.CurrentTile, e.Target.CurrentTile).BestShot().Covers.SelectMany(c => c.Providers).ToList().Random();
             _shots.Add(new TargetedShotVisual(
                 new RectangleTexture(Color.White).Create(),
                 CalculateTransform(
