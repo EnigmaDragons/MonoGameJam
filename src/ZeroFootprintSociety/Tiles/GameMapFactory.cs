@@ -37,5 +37,7 @@ namespace ZeroFootPrintSociety.Tiles
                         tileMap[layerAndTile.Tile.TextureId].GetEnum<Cover>("Cover"),
                         tileMap[layerAndTile.Tile.TextureId].CustomBools["Hide"])).ToList())).ToList());
         }
+
+
     }
 }
