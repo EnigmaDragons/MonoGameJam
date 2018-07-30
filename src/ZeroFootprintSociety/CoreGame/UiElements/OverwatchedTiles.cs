@@ -22,7 +22,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public OverwatchedTiles()
         {
             Event.Subscribe<OverwatchSelected>(x => _waitingForActionSelected = true, this);
-            Event.Subscribe<ActionSelected>(x => ShowIfApplicable(), this);
+            Event.Subscribe<ActionReadied>(x => ShowIfApplicable(), this);
             Event.Subscribe<ActionConfirmed>(x => Hide(), this);
             Event.Subscribe<ActionCancelled>(x => Hide(), this);
         }

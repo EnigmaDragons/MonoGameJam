@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.Calculators
@@ -45,6 +46,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         
         private void Select(object selection)
         {
+            Event.Publish(new ActionSelected());
             Event.Publish(selection);
         }
     }

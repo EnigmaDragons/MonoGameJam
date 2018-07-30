@@ -31,7 +31,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 });
                 Event.Publish(new OverwatchTilesAvailable { OverwatchedTiles = overwatchedTiles });
             }
-            Event.Publish(new ActionSelected(() =>
+            Event.Publish(new ActionReadied(() =>
             {
                 GameWorld.CurrentCharacter.State.IsOverwatching = true;
                 Event.Publish(new ActionResolved());

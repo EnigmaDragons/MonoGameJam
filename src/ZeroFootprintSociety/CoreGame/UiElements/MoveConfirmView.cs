@@ -43,7 +43,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             _branch.Add(confirmButton);
             _visuals.Add(cancelButton);
             _branch.Add(cancelButton);
-            Event.Subscribe<ActionSelected>(e => Show(), this);
+            Event.Subscribe<ActionReadied>(e => Show(), this);
             Event.Subscribe<ActionCancelled>(e => Hide(), this);
             Event.Subscribe<ActionConfirmed>(e => Hide(), this);
         }
