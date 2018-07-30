@@ -54,6 +54,7 @@
     <Compile Include="AudioSystem\SmartSample.cs" />
     <Compile Include="AudioSystem\Sound.cs" />
     <Compile Include="AudioSystem\SoundType.cs" />
+    <Compile Include="Common\ConcurrentDictionaryWithDefault.cs" />
     <Compile Include="Common\DictionaryWithDefault.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\MathExtensions.cs" />
