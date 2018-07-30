@@ -55,7 +55,9 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (GameWorld.Turns.CurrentCharacter.Body == this)
             {
-                _path = movement.Path.ToList();
+                _path = movement.Path.Skip(1).ToList();
+                if (!_path.Any())
+                    Event.Publish(new MovementFinished());
             }
         }
 
