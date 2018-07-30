@@ -69,6 +69,7 @@
     <Compile Include="CoreGame\Calculators\ProposedShotCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShotCalculation.cs" />
+    <Compile Include="CoreGame\Calculators\VisibilityCalculator.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
     <Compile Include="CoreGame\Mechanics\Covers\CoverProvided.cs" />
     <Compile Include="CoreGame\GameWorld.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchResolver.cs" />
     <Compile Include="CoreGame\StateEvents\ActionSelected.cs" />
+    <Compile Include="CoreGame\StateEvents\TilesSeen.cs" />
     <Compile Include="CoreGame\UiElements\CameraArrowKeysControl.cs" />
     <Compile Include="CoreGame\UiElements\CameraControl.cs" />
     <Compile Include="CoreGame\UiElements\CameraEdgesMouseControl.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="CoreGame\UiElements\CombatantSummary.cs" />
     <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
+    <Compile Include="CoreGame\UiElements\FogOfWarView.cs" />
     <Compile Include="CoreGame\UiElements\Gunshots.cs" />
     <Compile Include="CoreGame\UiElements\MovementPathDirectionsPreview.cs" />
     <Compile Include="CoreGame\UiElements\TeamTurnHudDecor.cs" />

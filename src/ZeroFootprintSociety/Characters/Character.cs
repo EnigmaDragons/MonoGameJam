@@ -63,6 +63,8 @@ namespace ZeroFootPrintSociety.Characters
             Body.Init(tile);
             State.Init();
             _healthBar.Init();
+            // Initialize visible tiles.
+
             IsInitialized = true;
         }
 

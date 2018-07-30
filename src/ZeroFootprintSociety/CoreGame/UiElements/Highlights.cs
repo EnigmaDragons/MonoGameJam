@@ -13,6 +13,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public Highlights()
         {
             Add(new AvailableMovesView(GameWorld.Map));
+            Add(new FogOfWarView());
             Add(new AvailableTargetsView());
             Add(new OverwatchedTiles());
             Add(new MovementPathHighlights());
