@@ -96,6 +96,8 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Draw(Transform2 parentTransform)
         {
+            if (State.IsDeceased)
+                return;
             Body.Draw(parentTransform);
             _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
             _damageNumbers.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
@@ -103,6 +105,8 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Update(TimeSpan delta)
         {
+            if (State.IsDeceased)
+                return;
             Body.Update(delta);
             _healthBar.Update(State.PercentLeft);
             _damageNumbers.Update(delta);

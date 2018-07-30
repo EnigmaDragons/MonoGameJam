@@ -29,7 +29,6 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(x => AvailableMoves = x.AvailableMoves, this));
             Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => Targets = x.Targets, this));
             GameWorld.Turns = new CharacterTurns(characters);
-            GameWorld.Characters = GameWorld.Turns.Characters;
         }
 
         public void Init()

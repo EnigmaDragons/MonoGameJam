@@ -20,7 +20,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
         public void UpdateOverwatchers()
         {
-            _overwatchingEnemies = GameWorld.Characters.Where(x => x.State.IsOverwatching && x.Team != GameWorld.CurrentCharacter.Team).ToList();
+            _overwatchingEnemies = GameWorld.LivingCharacters.Where(x => x.State.IsOverwatching && x.Team != GameWorld.CurrentCharacter.Team).ToList();
         }
 
         public void OnMovement(Moved moved)
