@@ -154,6 +154,7 @@
     <Compile Include="Tiles\GameMapFactory.cs" />
     <Compile Include="Tiles\SpriteAnimation.cs" />
     <Compile Include="Tiles\SpriteAnimationFrame.cs" />
+    <Compile Include="Tiles\TileCorner.cs" />
     <Compile Include="Tiles\TileData.cs" />
     <Compile Include="Tiles\TileMath.cs" />
     <Compile Include="UIEffects\TileFXCollection.cs" />
