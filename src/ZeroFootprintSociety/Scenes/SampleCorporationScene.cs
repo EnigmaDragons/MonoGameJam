@@ -17,7 +17,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         public override void Init()
         {
-            GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps", "SampleCorporate.tmx"), new Size2(48, 48));
+            GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps2", "SampleCorporate.tmx"), new Size2(48, 48));
             GameWorld.Characters = new List<Character>
             {
                 new MainChar().Initialized(GameWorld.Map[14, 14]),
