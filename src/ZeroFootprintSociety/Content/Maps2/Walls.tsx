@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset name="Walls" tilewidth="24" tileheight="24" tilecount="180" columns="9">
- <image source="Walls.png" width="216" height="480"/>
+ <image source="Walls.png" width="216" height="360"/>
  <tile id="0">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
@@ -135,25 +135,25 @@
  </tile>
  <tile id="22">
   <properties>
-   <property name="Blocking" type="bool" value="true"/>
+   <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="23">
   <properties>
-   <property name="Blocking" type="bool" value="true"/>
+   <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="24">
   <properties>
-   <property name="Blocking" type="bool" value="true"/>
+   <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="25">
   <properties>
-   <property name="Blocking" type="bool" value="true"/>
+   <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
@@ -219,25 +219,25 @@
  </tile>
  <tile id="36">
   <properties>
-   <property name="Blocking" type="bool" value="true"/>
+   <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="37">
   <properties>
-   <property name="Blocking" type="bool" value="true"/>
+   <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="38">
   <properties>
-   <property name="Blocking" type="bool" value="true"/>
+   <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="39">
   <properties>
-   <property name="Blocking" type="bool" value="true"/>
+   <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
