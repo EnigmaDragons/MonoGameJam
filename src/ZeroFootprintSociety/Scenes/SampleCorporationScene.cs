@@ -22,6 +22,7 @@ namespace ZeroFootPrintSociety.Scenes
             {
                 new MainChar().Initialized(GameWorld.Map[14, 14]),
                 new CorpSec1().Initialized(GameWorld.Map[18, 18]),
+                new Sidechick().Initialized(GameWorld.Map[20, 20]),
             };
             var startingCameraTile = new Point(10, 10);
             _game = new TacticsGame(
