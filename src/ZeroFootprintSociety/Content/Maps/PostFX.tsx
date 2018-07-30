@@ -105,7 +105,8 @@
  </tile>
  <tile id="19">
   <properties>
-   <property name="Hide" type="bool" value="true"/>
+   <property name="FX" value="largeneongradient-turqoise"/>
+   <property name="Hide" type="bool" value="false"/>
   </properties>
  </tile>
  <tile id="20">
@@ -253,6 +254,7 @@
  </tile>
  <tile id="48">
   <properties>
+   <property name="FX" value="vertneongradient-turqoise"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
@@ -558,7 +560,7 @@
  </tile>
  <tile id="109">
   <properties>
-   <property name="FX" value="smallcirclegradient-neon"/>
+   <property name="FX" value="smallcirclegradient-turqoise"/>
    <property name="Hide" type="bool" value="false"/>
   </properties>
  </tile>
