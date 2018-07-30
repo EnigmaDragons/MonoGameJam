@@ -80,14 +80,13 @@ namespace MonoDragons.Core.Engine
                     WorldSpriteBatch = new SpriteBatch(GraphicsDevice);
                     Input.SetController(_controller);
                     World.Init(WorldSpriteBatch);
-                    UI.Init(_uiSpriteBatch);
-                    _scene.Init();
+                    UI.Init(_uiSpriteBatch); _scene.Init();
                     base.Initialize();
                 });
             }
             catch (Exception e)
             {
-                _errorHandler.ResolveError(e);
+                _errorHandler.ResolveError(new Exception("Error while Initializing MonoDragons Core engine", e));
             }
         }
 
@@ -105,7 +104,7 @@ namespace MonoDragons.Core.Engine
             }
             catch (Exception e)
             {
-                _errorHandler.ResolveError(e);
+                _errorHandler.ResolveError(new Exception($"Error while navigating to Scene {_scene.GetType()}", e));
             };
         }
 
@@ -125,7 +124,6 @@ namespace MonoDragons.Core.Engine
         {
             try
             {
-
 #if DEBUG
                 _metrics.Update(gameTime.ElapsedGameTime);
                 if (Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.OemTilde))

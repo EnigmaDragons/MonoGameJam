@@ -23,11 +23,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private static readonly Point ScreenCenter = new Point(GameWidth / 2, GameHeight / 2);
 
         private const int TileOverage = 5;
-
-        private readonly CameraEdgesMouseControl _edgesMouseControl;
-        private readonly CameraArrowKeysControl _arrowKeysControl;
-        private readonly CameraDragMouseControl _dragMouseControl;
-
+        
         private readonly List<CameraControl> _cameraControls;
 
         private readonly int MinMapX = (GameWorld.Map.MinX - TileOverage) * TileData.RenderWidth;
@@ -124,14 +120,6 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 #if DEBUG
             var color = DevText.Color;
             var font = DevText.Font;
-            if (false)
-            {
-                new ColoredRectangle { Color = color, Transform = new Transform2(ScreenCenter.ToVector2(), new Size2(2, 2)) }.Draw();
-                new ColoredRectangle { Color = color, Transform = new Transform2(new Vector2(_edgesMouseControl.XLeft, 0), new Size2(1, 2000)) }.Draw();
-                new ColoredRectangle { Color = color, Transform = new Transform2(new Vector2(_edgesMouseControl.XRight, 0), new Size2(1, 2000)) }.Draw();
-                new ColoredRectangle { Color = color, Transform = new Transform2(new Vector2(0, _edgesMouseControl.YTop), new Size2(2000, 1)) }.Draw();
-                new ColoredRectangle { Color = color, Transform = new Transform2(new Vector2(0, _edgesMouseControl.YBottom), new Size2(2000, 1)) }.Draw();
-            }
             UI.DrawText($"Mouse: X {Mouse.GetState().X} Y {Mouse.GetState().Y}", new Vector2(0, 88), color, font);
             UI.DrawText($"Cam: X {Position.X} Y {Position.Y}", new Vector2(0, 112), color, font);
 #endif

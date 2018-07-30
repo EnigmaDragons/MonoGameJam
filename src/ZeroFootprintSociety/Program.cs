@@ -33,6 +33,7 @@ namespace ZeroFootPrintSociety
                 { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
                 { "MainMenu", () => new MainMenuScene() },
                 { "SampleLevel", () => new SampleCorporationScene() },
+                { "Level1", () => new CorporationOutsideScene() },
             });
         }
 
@@ -52,11 +53,11 @@ namespace ZeroFootPrintSociety
         private static IScene SetupScene()
         {
             var currentScene = new CurrentScene();
-            Scene.Init(new CurrentSceneNavigation(currentScene, CreateSceneFactory(),
-                Input.ClearTransientBindings,
-                AudioPlayer.Instance.StopAll,
-                Resources.Unload));
-            return new HideViewportExternals(currentScene);
+                Scene.Init(new CurrentSceneNavigation(currentScene, CreateSceneFactory(),
+                    Input.ClearTransientBindings,
+                    AudioPlayer.Instance.StopAll,
+                    Resources.Unload));
+                return new HideViewportExternals(currentScene);
         }
 
         private static IController CreateKeyboardController()
