@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -16,7 +17,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     public class OverwatchedTiles : IVisual
     {
-        private readonly List<IVisual> _visuals = new List<IVisual>();
+        private readonly BlockingCollection<IVisual> _visuals = new BlockingCollection<IVisual>();
         private bool _waitingForActionSelected = false;
 
         public OverwatchedTiles()
@@ -53,7 +54,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private void Hide()
         {
             _waitingForActionSelected = false;
-            _visuals.Clear();
+            while(_visuals.Count > 0)
+                _visuals.Take();
         }
 
         public void Draw(Transform2 parentTransform)

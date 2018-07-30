@@ -18,6 +18,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             Add(new MovementPathHighlights());
             Add(new MovementPathDirectionsPreview());
             Add(new Gunshots());
+            Add(new OverwatchesEnemyTiles());
         }
 
         public void Draw(Transform2 parentTransform)
