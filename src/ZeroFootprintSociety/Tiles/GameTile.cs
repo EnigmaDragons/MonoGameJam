@@ -18,7 +18,6 @@ namespace ZeroFootPrintSociety.Tiles
         public bool IsWalkable => Details.All(x => !x.IsBlocking) && GameWorld.Characters.All(x => x.CurrentTile != this);
         public Cover Cover => Details.OrderByDescending(x => (int)x.Cover).First().Cover;
 
-
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {
             Position = new Point(column, row);
