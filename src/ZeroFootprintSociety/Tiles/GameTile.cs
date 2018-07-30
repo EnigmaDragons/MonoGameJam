@@ -13,7 +13,7 @@ namespace ZeroFootPrintSociety.Tiles
         public Point Position { get; }
         public Transform2 Transform { get; }
         public List<GameTileDetail> Details { get; }
-        public bool IsWalkable => Details.All(x => !x.IsBlocking) && GameWorld.Characters.All(x => x.CurrentTile != this);
+        public bool IsWalkable => Details.All(x => !x.IsBlocking) && GameWorld.LivingCharacters.All(x => x.CurrentTile != this);
         public Cover Cover { get; }
         public string PostFX { get; }
 
