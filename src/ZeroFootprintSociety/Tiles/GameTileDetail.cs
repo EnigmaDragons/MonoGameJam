@@ -11,8 +11,9 @@ namespace ZeroFootPrintSociety.Tiles
         public bool IsBlocking { get; }
         public Cover Cover { get; }
         public bool IsVisible { get; }
+        public string PostFX { get; }
 
-        public GameTileDetail(Texture2D texture, Rectangle sourceRect, int zIndex, bool isBlocking, Cover cover, bool isHidden)
+        public GameTileDetail(Texture2D texture, Rectangle sourceRect, int zIndex, bool isBlocking, Cover cover, bool isHidden, string postFx)
         {
             Texture = texture;
             SourceRect = sourceRect;
@@ -20,8 +21,7 @@ namespace ZeroFootPrintSociety.Tiles
             IsBlocking = isBlocking;
             Cover = cover;
             IsVisible = !isHidden;
-            if (!IsVisible)
-                return;
+            PostFX = postFx;
         }
     }
 }

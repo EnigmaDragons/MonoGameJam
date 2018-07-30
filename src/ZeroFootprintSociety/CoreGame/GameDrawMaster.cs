@@ -2,11 +2,14 @@
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.UIEffects;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
     public class GameDrawMaster : IVisual
     {
+        private readonly TileFXCollection _fx = new TileFXCollection();
+
         const int Floors = 0;
         const int Walls = 1;
         const int UnderChar1 = 2;
@@ -33,8 +36,9 @@ namespace ZeroFootPrintSociety.CoreGame
             {
                 x.Draw(OverChar1, parentTransform);
                 x.Draw(OverChar2, parentTransform);
-                x.Draw(PostFx, parentTransform);
             });
+
+            GameWorld.Map.Tiles.ForEach(x => _fx.Draw(parentTransform, x));
         }
     }
 }
