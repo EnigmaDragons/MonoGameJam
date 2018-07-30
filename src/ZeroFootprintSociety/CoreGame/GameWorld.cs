@@ -14,6 +14,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public static IReadOnlyList<Character> LivingCharacters => Characters.ToList().Where(x => !x.State.IsDeceased).ToList();
         public static CharacterTurns Turns { get; set; }
         public static Character CurrentCharacter => Turns.CurrentCharacter;
+        public static bool IsEnemyTurn => CurrentCharacter.Team.IsIncludedIn(TeamGroup.Enemies);
         public static Highlights Highlights { get; set; }
         public static Point HoveredTile { get; set; } = new Point(0, 0);
 

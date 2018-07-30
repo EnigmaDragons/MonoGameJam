@@ -4,6 +4,7 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using System;
 using System.Collections.Generic;
+using ZeroFootPrintSociety.Characters;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
@@ -37,7 +38,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
         public void Draw(Transform2 parentTransform)
         {
-            _visuals.ForEach(x => x.Draw(parentTransform));
+            if (GameWorld.CurrentCharacter.Team.IsIncludedIn(TeamGroup.Friendlies))
+                _visuals.ForEach(x => x.Draw(parentTransform));
         }
 
         public void Update(TimeSpan delta)
