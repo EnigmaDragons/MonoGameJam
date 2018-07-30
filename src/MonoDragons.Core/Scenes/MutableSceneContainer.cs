@@ -38,6 +38,16 @@ namespace MonoDragons.Core.Scenes
             Add((IAutomaton)obj);
         }
 
+        protected void Pop()
+        {
+            if (_visuals.Any())
+                _visuals.RemoveAt(0);
+            if (_automata.Any())
+                _automata.RemoveAt(0);
+        }
+
+        protected bool IsEmpty() => !_visuals.Any() && !_automata.Any();
+
         public virtual void Draw(Transform2 parentTransform)
         {
             var t = _useAbsolutePosition ? Transform2.Zero : parentTransform + GetOffset();
