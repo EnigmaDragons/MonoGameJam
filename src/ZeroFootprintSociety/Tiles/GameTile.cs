@@ -15,7 +15,7 @@ namespace ZeroFootPrintSociety.Tiles
         public List<GameTileDetail> Details { get; }
         public bool IsWalkable => Details.All(x => !x.IsBlocking) && GameWorld.LivingCharacters.All(x => x.CurrentTile != this);
         public Cover Cover { get; }
-        public string PostFX { get; }
+        public List<string> PostFX { get; }
 
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {
@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety.Tiles
             Transform = transform;
             Details = details.OrderBy(x => x.ZIndex).ToList();
             Cover = Details.OrderByDescending(x => (int)x.Cover).First().Cover;
-            PostFX = details.Where(x => !string.IsNullOrWhiteSpace(x.PostFX)).FirstOrDefault()?.PostFX ?? "None";
+            PostFX = details.Select(x => x.PostFX).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
         }
 
         public void Draw(int layer, Transform2 parentTransform)

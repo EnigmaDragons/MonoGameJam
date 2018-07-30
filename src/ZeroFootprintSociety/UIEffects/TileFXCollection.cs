@@ -17,12 +17,14 @@ namespace ZeroFootPrintSociety.UIEffects
         
         public void Draw(Transform2 parentTransform, GameTile tile)
         {
-            if (tile.PostFX.Equals("None"))
-                return;
-
-            var fx = new FXString(tile.PostFX);
-            if (fx.Name.Equals("trianglegradient", StringComparison.InvariantCultureIgnoreCase))
-                DrawTriangleGradient(parentTransform, tile, _colors[fx.Color]);
+            tile.PostFX.ForEach(x =>
+            {
+                var fx = new FXString(x);
+                if (fx.Name.Equals("trianglegradient", StringComparison.InvariantCultureIgnoreCase))
+                    DrawTriangleGradient(parentTransform, tile, _colors[fx.Color]);
+                if (fx.Name.Equals("circlegradient", StringComparison.InvariantCultureIgnoreCase))
+                    DrawCircleGradient(parentTransform, tile, _colors[fx.Color]);
+            });
         }
 
         private void DrawTriangleGradient(Transform2 parentTransform, GameTile tile, Color color)
@@ -31,6 +33,14 @@ namespace ZeroFootPrintSociety.UIEffects
             var loc = (TileData.RenderSize.ToPoint() * tile.Position).ToVector2();
             var t = new Transform2(loc + gradientOffset, new Size2(800, 800));
             UI.Draw("Effects/TriangleGradient", parentTransform + t, color);
+        }
+
+        private void DrawCircleGradient(Transform2 parentTransform, GameTile tile, Color color)
+        {
+            var gradientOffset = new Vector2(-122, -128);
+            var loc = (TileData.RenderSize.ToPoint() * tile.Position).ToVector2();
+            var t = new Transform2(loc + gradientOffset, new Size2(290, 290));
+            UI.Draw("Effects/CircleGradient", parentTransform + t, color);
         }
     }
 }

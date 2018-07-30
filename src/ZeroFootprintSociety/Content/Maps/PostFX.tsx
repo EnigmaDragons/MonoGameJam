@@ -89,6 +89,7 @@
  </tile>
  <tile id="16">
   <properties>
+   <property name="FX" value="circlegradient-blue"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
