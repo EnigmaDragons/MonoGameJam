@@ -6,7 +6,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
     public sealed class CorpSec1 : Character
     {
         public CorpSec1() : base(
-            new CharacterBody("CorporateSecurity", new Vector2(-13, -42), Color.Red),
+            new CharacterBody("CorporationSecurity1", new Vector2(-13, -42), Color.Red),
             new CharacterStats
             {
                 Name = "Corporate Security"
