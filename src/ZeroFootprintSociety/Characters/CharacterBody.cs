@@ -189,10 +189,15 @@ namespace ZeroFootPrintSociety.Characters
                 _currentAnimation = _idleUp;
         }
 
+        public Transform2 GetTransform()
+        {
+            return Transform + _offset + CurrentTileLocation;
+        }
+
         public void Draw(Transform2 parentTransform)
         {
             _glow.Draw(parentTransform + Transform + CurrentTileLocation + _glowOff);
-            _currentAnimation.Draw(parentTransform + Transform + _offset + CurrentTileLocation);
+            _currentAnimation.Draw(parentTransform + GetTransform());
         }
     }
 }

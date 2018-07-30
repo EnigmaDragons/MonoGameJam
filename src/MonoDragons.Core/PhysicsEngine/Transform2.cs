@@ -81,6 +81,11 @@ namespace MonoDragons.Core.PhysicsEngine
             return new Transform2(Location + paddingAmount.ToVector(), Rotation, Size - (paddingAmount * 2), Scale, ZIndex);
         }
 
+        public Vector2 Center()
+        {
+            return new Vector2(Location.X + (float)Size.Width / 2, Location.Y + (float)Size.Height / 2);
+        }
+
         public override string ToString()
         {
             return $"{Location} {Size} {Rotation} {Scale} {ZIndex}";

@@ -127,6 +127,7 @@
     <Compile Include="CoreGame\UiElements\CombatantSummary.cs" />
     <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
+    <Compile Include="CoreGame\UiElements\Gunshots.cs" />
     <Compile Include="CoreGame\UiElements\TeamTurnHudDecor.cs" />
     <Compile Include="CoreGame\UiElements\EquippedWeaponView.cs" />
     <Compile Include="CoreGame\UiElements\HideUI.cs" />
