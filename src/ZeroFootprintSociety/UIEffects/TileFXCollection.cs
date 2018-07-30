@@ -12,7 +12,7 @@ namespace ZeroFootPrintSociety.UIEffects
         private static readonly DictionaryWithDefault<string, Color> _colors = new DictionaryWithDefault<string, Color>(Color.FromNonPremultiplied(255, 255, 0, 120))
         {
             { "blue", Color.FromNonPremultiplied(30, 90, 230, 60) },
-            { "neon", Color.FromNonPremultiplied(60, 200, 255, 80) },
+            { "turqoise", Color.FromNonPremultiplied(60, 200, 255, 80) },
             { "red", Color.FromNonPremultiplied(255, 0, 0, 60) },
         };
         
@@ -27,6 +27,8 @@ namespace ZeroFootPrintSociety.UIEffects
                     DrawCircleGradient(parentTransform, tile, _colors[fx.Color]);
                 else if (fx.Name.Equals("smallcirclegradient", StringComparison.InvariantCultureIgnoreCase))
                     DrawSmallCircleGradient(parentTransform, tile, _colors[fx.Color]);
+                else if (fx.Name.Equals("vertneongradient", StringComparison.InvariantCultureIgnoreCase))
+                    DrawVertNeonGradient(parentTransform, tile, _colors[fx.Color]);
                 else
                     Logger.WriteLine($"Unknown FX '{x}'");
             });
@@ -54,6 +56,14 @@ namespace ZeroFootPrintSociety.UIEffects
             var loc = (TileData.RenderSize.ToPoint() * tile.Position).ToVector2();
             var t = new Transform2(loc + gradientOffset, new Size2(140, 140));
             UI.Draw("Effects/CircleGradient", parentTransform + t, color);
+        }
+
+        private void DrawVertNeonGradient(Transform2 parentTransform, GameTile tile, Color color)
+        {
+            var gradientOffset = new Vector2(0, -48);
+            var loc = (TileData.RenderSize.ToPoint() * tile.Position).ToVector2();
+            var t = new Transform2(loc + gradientOffset, new Size2(96, 192));
+            UI.Draw("Effects/VertNeonGradient", parentTransform + t, color);
         }
     }
 }
