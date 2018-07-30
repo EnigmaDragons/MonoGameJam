@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters.Ui;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
@@ -40,23 +43,19 @@ namespace ZeroFootPrintSociety.Characters
 
             _damageNumbers = new DamageNumbersView(this);
 
-            Event.Subscribe<TurnBegun>(_ =>
-            {
-                if (GameWorld.CurrentCharacter == this)
-                {
-                    State.IsHiding = false;
-                    State.IsOverwatching = false;
-                    State.OverwatchedTiles.Clear();
-                }
-            }, this);
+            Event.Subscribe<TurnBegun>(OnTurnBegan, this);
+            Event.Subscribe<OverwatchTilesAvailable>(UpdateOverwatch, this);
             Event.Subscribe<ShotHit>(OnShotHit, this);
             Event.Subscribe<ShotAnimationsFinished>(OnShotsResolved, this);
         }
 
         private void OnShotsResolved(ShotAnimationsFinished e)
         {
-            if (State.RemainingHealth <= 0)
+            if (State.RemainingHealth <= 0 && !State.IsDeceased)
+            {
+                State.IsDeceased = true;
                 Event.Publish(new CharacterDeceased { Character = this });
+            }
         }
 
         public void Init(GameTile tile)
@@ -73,6 +72,22 @@ namespace ZeroFootPrintSociety.Characters
             return this;
         }
 
+        public void OnTurnBegan(TurnBegun e)
+        {
+            if (GameWorld.CurrentCharacter == this)
+            {
+                State.IsHiding = false;
+                State.IsOverwatching = false;
+                State.OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
+            }
+        }
+
+        public void UpdateOverwatch(OverwatchTilesAvailable e)
+        {
+            if (GameWorld.CurrentCharacter == this)
+                State.OverwatchedTiles = e.OverwatchedTiles;
+        }
+
         private void OnShotHit(ShotHit e)
         {
             if (e.Target.Equals(this))
@@ -81,13 +96,23 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Draw(Transform2 parentTransform)
         {
+            if (State.IsDeceased)
+                return;
             Body.Draw(parentTransform);
+        }
+
+        public void DrawUI(Transform2 parentTransform)
+        {
+            if (State.IsDeceased)
+                return;
             _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
             _damageNumbers.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
         }
 
         public void Update(TimeSpan delta)
         {
+            if (State.IsDeceased)
+                return;
             Body.Update(delta);
             _healthBar.Update(State.PercentLeft);
             _damageNumbers.Update(delta);

@@ -16,7 +16,6 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
         public RangedAction()
         {
-            Event.Subscribe(EventSubscription.Create<RangedTargetInspected>(PreviewShot, this));
             Event.Subscribe(EventSubscription.Create<ShotConfirmed>(ResolveShot, this));
             Event.Subscribe(EventSubscription.Create<ShotAnimationsFinished>(AdvanceQueue, this));
         }
@@ -25,32 +24,6 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             if (_eventQueue.Count > 0)
                 _eventQueue.Dequeue().Invoke();
-        }
-
-        private void PreviewShot(RangedTargetInspected e)
-        {
-            var distance = e.Attacker.CurrentTile.Position.TileDistance(e.Defender.CurrentTile.Position);
-            var attackerWeapon = e.Attacker.Gear.EquippedWeapon.AsRanged();
-            var proposed = new ShotProposed
-            {
-                Attacker = e.Attacker,
-                Defender = e.Defender,
-                AttackerHitChance = new HitChanceCalculation(e.Attacker.Accuracy, e.DefenderBlockChance, e.Defender.Stats.Agility).Get(),
-                AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]),
-                AttackerBlockChance = e.AttackerBlockChance
-            };
-            if (e.Defender.Gear.EquippedWeapon.IsRanged)
-            {
-                var defenderWeapon = e.Defender.Gear.EquippedWeapon.AsRanged();
-                proposed.DefenderHitChance = new HitChanceCalculation(e.Defender.Accuracy, e.AttackerBlockChance, e.Attacker.Stats.Agility).Get();
-                if (defenderWeapon.EffectiveRanges.ContainsKey(distance))
-                    proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]);
-            }
-            proposed.AttackerDamage = proposed.DefenderHitChance * proposed.DefenderBullets * proposed.DefenderBulletDamage / 100;
-            proposed.DefenderDamage = proposed.AttackerHitChance * proposed.AttackerBullets * proposed.AttackerBulletDamage / 100;
-            proposed.DefenderBlockChance = e.DefenderBlockChance;
-            Event.Publish(new ActionSelected(() => Event.Publish(new ShotConfirmed { Proposed = proposed })));
-            Event.Publish(proposed);
         }
 
         private void ResolveShot(ShotConfirmed e)
@@ -70,6 +43,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                         Event.Publish(new ShotMissed { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
                 }
             }
+            e.Proposed.Attacker.State.IsOverwatching = false;
 
             _eventQueue.Enqueue(() =>
             {
@@ -80,7 +54,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                         Event.Publish(new ShotFired { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
                         if (_random.Next(0, 100) < e.Proposed.DefenderBlockChance)
                         {
-                            Event.Publish(new ShotBlocked { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
+                            Event.Publish(new ShotBlocked { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
                         }
                         else
                         {
@@ -90,14 +64,14 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                                 Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
                         }
                     }
+                    e.Proposed.Defender.State.IsOverwatching = false;
                 }
                 else
                 {
                     Event.Publish(new ShotAnimationsFinished());
                 }
             });
-
-            _eventQueue.Enqueue(() => Event.Publish(new ActionResolved()));
+            _eventQueue.Enqueue(() => e.OnFinished());
         }
     }
 }

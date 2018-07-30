@@ -1,6 +1,5 @@
 ﻿using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.Characters;
@@ -13,12 +12,12 @@ namespace ZeroFootPrintSociety.CoreGame
         private int _activeCharacterIndex;
         private List<Character> _characters;
 
-        public Character CurrentCharacter => Characters[_activeCharacterIndex];
-        public IReadOnlyList<Character> Characters => _characters;
+        public Character CurrentCharacter { get; private set; }
 
         public CharacterTurns(IReadOnlyList<Character> characters)
         {
             _characters = characters.OrderByDescending(x => x.Stats.Agility).ToList();
+            CurrentCharacter = _characters.First();
             Event.Subscribe(EventSubscription.Create<TurnEnded>(BeginNextTurn, this));
             Event.Subscribe(EventSubscription.Create<CharacterDeceased>(OnCharacterDeath, this));
         }
@@ -30,19 +29,24 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private void BeginNextTurn(TurnEnded e)
         {
-            _activeCharacterIndex++;
-            if (_activeCharacterIndex == Characters.Count)
-                _activeCharacterIndex = 0;
+            Advance();
+            while (CurrentCharacter.State.IsDeceased)
+                Advance();
             Event.Publish(new TurnBegun());
+        }
+
+        private void Advance()
+        {
+            _activeCharacterIndex++;
+            if (_activeCharacterIndex == _characters.Count)
+                _activeCharacterIndex = 0;
+            CurrentCharacter = _characters[_activeCharacterIndex];
         }
 
         private void OnCharacterDeath(CharacterDeceased _event)
         {
-            var charIndex = _characters.IndexOf(_event.Character);
-            _activeCharacterIndex = charIndex >= _activeCharacterIndex 
-                ? _activeCharacterIndex 
-                : Math.Min(_activeCharacterIndex - 1, 0);
-            _characters.Remove(_event.Character);
+            if (CurrentCharacter == _event.Character)
+                Event.Publish(new ActionResolved());
         }
     }
 }

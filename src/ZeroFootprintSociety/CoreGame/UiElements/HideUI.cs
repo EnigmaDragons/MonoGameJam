@@ -12,6 +12,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
     {
         private readonly UiImage _hideBonusImage = new UiImage { Image = "UI/shield-placeholder" };
         private readonly Label _hideBonusLabel = new Label { Text = "+100%", TextColor = Color.White };
+        private bool _hidden = true;
 
         public HideUI()
         {
@@ -24,16 +25,18 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             _hideBonusImage.Transform = GameWorld.CurrentCharacter.CurrentTile.Transform;
             _hideBonusLabel.Transform = GameWorld.CurrentCharacter.CurrentTile.Transform;
-            GameWorld.Highlights.Add(this);
+            _hidden = false;
         }
 
         private void Hide()
         {
-            GameWorld.Highlights.Remove(this);
+            _hidden = true;
         }
 
         public void Draw(Transform2 parentTransform)
         {
+            if (_hidden)
+                return;
             _hideBonusImage.Draw(parentTransform);
             _hideBonusLabel.Draw(parentTransform);
         }

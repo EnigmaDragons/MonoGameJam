@@ -1,6 +1,6 @@
 ﻿namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
-    class TurnBegun
+    public class TurnBegun
     {
     }
 }

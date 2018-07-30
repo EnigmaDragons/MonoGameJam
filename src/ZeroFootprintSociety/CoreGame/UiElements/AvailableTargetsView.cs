@@ -7,10 +7,8 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
-using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.Tiles;
 using ZeroFootPrintSociety.UIEffects;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -19,7 +17,6 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly List<IAutomaton> _automata = new List<IAutomaton>();
-        private readonly Dictionary<Point, List<IVisual>> _targetVisuals = new Dictionary<Point, List<IVisual>>();
 
         public AvailableTargetsView()
         {
@@ -31,9 +28,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private void ClearOptions()
         {
             _visuals.Clear();
-            _targetVisuals.Clear();
             _automata.Clear();
-            GameWorld.Highlights.Remove(this);
         }
 
         private void ShowOptions(ShootSelected e)
@@ -45,24 +40,12 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 anim.Init();
                 _visuals.Add(anim);
                 _automata.Add(anim);
-
-                _targetVisuals[x.Character.CurrentTile.Position] = new List<IVisual>();
-                x.CoverToThem.Covers.ForEach(cover => cover.Providers.ForEach(p => 
-                {
-                    _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Alpha = 100, Image = "UI/shield-placeholder", Transform = p.Transform });
-                    _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = Color.White, Transform = p.Transform });
-                }));
-                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.CoverToThem.BlockChance, x.Character.Stats.Agility).Get()}%", Transform = x.Character.CurrentTile.Transform });
-                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(x.Character.Accuracy, x.CoverFromThem.BlockChance, GameWorld.CurrentCharacter.Stats.Agility).Get()}% ", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });
             });
-            GameWorld.Highlights.Add(this);
         }
 
         public void Draw(Transform2 parentTransform)
         {
             _visuals.ToList().ForEach(x => x.Draw(parentTransform));
-            if (_targetVisuals.ContainsKey(GameWorld.HoveredTile))
-                _targetVisuals[GameWorld.HoveredTile].ForEach(x => x.Draw(parentTransform));
         }
 
         public void Update(TimeSpan delta)

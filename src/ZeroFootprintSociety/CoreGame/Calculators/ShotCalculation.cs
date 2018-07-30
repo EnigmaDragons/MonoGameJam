@@ -34,11 +34,6 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         private List<List<CoverProvided>> CoversFromEachCorner()
         {
-            /*var debug = CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X, _aggressor.Transform.Location.Y), TileSide.TopLeft);
-            var debug2 = CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X + _aggressor.Transform.Size.Width, _aggressor.Transform.Location.Y), TileSide.TopRight);
-            var debug3 = CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X, _aggressor.Transform.Location.Y + _aggressor.Transform.Size.Height), TileSide.BottomLeft);
-            var debug4 = CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X + _aggressor.Transform.Size.Width, _aggressor.Transform.Location.Y + _aggressor.Transform.Size.Height), TileSide.BottomRight);
-            */
             return new List<List<CoverProvided>>
             {
                 CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X, _aggressor.Transform.Location.Y), TileSide.TopLeft),
@@ -50,11 +45,6 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         private List<CoverProvided> CoversFromThisCorner(Vector2 aggressorCorner, TileSide corner)
         {
-            /*var debug = CoverProvidedBetween(aggressorCorner, corner, new Vector2(_victim.Transform.Location.X, _victim.Transform.Location.Y), TileSide.TopLeft);
-            var debug2 = CoverProvidedBetween(aggressorCorner, corner, new Vector2(_victim.Transform.Location.X + _victim.Transform.Size.Width, _victim.Transform.Location.Y), TileSide.TopRight);
-            var debug3 = CoverProvidedBetween(aggressorCorner, corner, new Vector2(_victim.Transform.Location.X, _victim.Transform.Location.Y + _victim.Transform.Size.Height), TileSide.BottomLeft);
-            var debug4 = CoverProvidedBetween(aggressorCorner, corner, new Vector2(_victim.Transform.Location.X + _victim.Transform.Size.Width, _victim.Transform.Location.Y + _victim.Transform.Size.Height), TileSide.BottomRight);
-            */
             return new List<CoverProvided>
             {
                 CoverProvidedBetween(aggressorCorner, corner, new Vector2(_victim.Transform.Location.X, _victim.Transform.Location.Y), TileSide.TopLeft),
@@ -85,6 +75,15 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             if (currentX == victimX)
             {
                 var direction = Math.Sign(victimY - currentY);
+                if (_aggressor.Position.X == _victim.Position.X)
+                    for (var y = _aggressor.Position.Y; y != _victim.Position.Y; y += direction)
+                    {
+                        cover = new CoverProvided(GameWorld.Map[_aggressor.Position.X, y]);
+                        if (cover.Cover == Cover.Heavy)
+                            return cover;
+                        if ((int)cover.Cover > (int)currentCover.Cover)
+                            currentCover = cover;
+                    }
                 currentY += direction;
                 while (currentY != victimCenterY)
                 {
@@ -100,6 +99,15 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             if (currentY == victimY)
             {
                 var direction = Math.Sign(victimX - currentX);
+                if (_aggressor.Position.Y == _victim.Position.Y)
+                    for (var x = _aggressor.Position.X; x != _victim.Position.X; x += direction)
+                    {
+                        cover = new CoverProvided(GameWorld.Map[x, _aggressor.Position.Y]);
+                        if (cover.Cover == Cover.Heavy)
+                            return cover;
+                        if ((int)cover.Cover > (int)currentCover.Cover)
+                            currentCover = cover;
+                    }
                 currentX += direction;
                 while (currentX != victimCenterX)
                 {
@@ -128,16 +136,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                     return cover;
                 if ((int)cover.Cover > (int)currentCover.Cover)
                     currentCover = cover;
-
-                /*var debug = distanceX > 0
-                        ? Math.Ceiling((currentPreciseX + 0.01) / TileData.RenderWidth)
-                        : Math.Floor((currentPreciseX - 0.01) / TileData.RenderWidth);
-                var debug2 = debug * TileData.RenderWidth;
-                var debug3 = debug2 - currentPreciseX;
-                var debug4 = debug3 / distanceX;
-                var debug5 = Math.Abs(debug4);*/
-
-
+                
                 var timeUntilCrossX = Math.Abs(((distanceX > 0
                         ? Math.Ceiling((currentPreciseX + 0.01) / TileData.RenderWidth)
                         : Math.Floor((currentPreciseX - 0.01) / TileData.RenderWidth))

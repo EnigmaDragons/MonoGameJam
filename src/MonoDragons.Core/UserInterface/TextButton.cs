@@ -65,7 +65,7 @@ namespace MonoDragons.Core.UserInterface
         {
             if (_isVisible())
             {
-                World.Draw(_currentRect, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size));
+                UI.Draw(_currentRect, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color.White);
                 UI.DrawTextCentered(_text, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color.White, Font);
             }
         }

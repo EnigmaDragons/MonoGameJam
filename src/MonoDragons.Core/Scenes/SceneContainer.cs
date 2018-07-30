@@ -36,34 +36,12 @@ namespace MonoDragons.Core.Scenes
         public virtual void Draw(Transform2 parentTransform)
         {
             var t = _useAbsolutePosition ? Transform2.Zero : parentTransform + GetOffset();
-#if DEBUG
-            _visuals.ForEach(x =>
-            {
-                try { x.Draw(t); }
-                catch (Exception e)
-                {
-                    throw new Exception($"Error: Drawing {x.GetType()}", e);
-                }
-            });
-#else
             _visuals.ForEach(x => x.Draw(t));
-#endif
         }
 
         public virtual void Update(TimeSpan delta)
         {
-#if DEBUG
-            _automata.ForEach(x =>
-            {
-                try { x.Update(delta); }
-                catch (Exception e)
-                {
-                    throw new Exception($"Error: Updating {x.GetType()}", e);
-                }
-            });
-#else
             _automata.ForEach(x => x.Update(delta));
-#endif
         }
     }
 }

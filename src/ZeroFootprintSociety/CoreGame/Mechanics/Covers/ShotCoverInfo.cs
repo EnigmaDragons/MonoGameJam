@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Covors
@@ -11,7 +12,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Covors
         public ShotCoverInfo(List<CoverProvided> covers)
         {
             Covers = covers;
-            BlockChance = covers.Sum(x => (int)x.Cover);
+            BlockChance = Math.Min(covers.Sum(x => (int)x.Cover), 100);
         }
     }
 }

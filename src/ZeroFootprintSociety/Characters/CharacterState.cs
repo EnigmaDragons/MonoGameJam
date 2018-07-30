@@ -13,6 +13,7 @@ namespace ZeroFootPrintSociety.Characters
         private int _remainingHealth = 0;
         public bool IsHiding = false;
         public bool IsOverwatching = false;
+        public bool IsDeceased = false;
         public Dictionary<Point, ShotCoverInfo> OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
 
         public int RemainingHealth

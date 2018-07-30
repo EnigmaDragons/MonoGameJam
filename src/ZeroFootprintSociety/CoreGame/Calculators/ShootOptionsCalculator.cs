@@ -19,7 +19,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         {
             var targetsAvailable = new RangedTargetsAvailable
             {
-                Targets = GameWorld.Characters
+                Targets = GameWorld.LivingCharacters
                     .Where(x => x != GameWorld.Turns.CurrentCharacter && CanShoot(GameWorld.Turns.CurrentCharacter, x))
                     .Select(x => new Target
                     {

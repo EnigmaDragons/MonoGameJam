@@ -11,12 +11,12 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
         public ActionProposal()
         {
-            Event.Subscribe<ActionSelected>(Set, this);
+            Event.Subscribe<ActionReadied>(Set, this);
             Event.Subscribe<ActionConfirmed>(e => _proposed.Dequeue().Invoke(), this);
             Event.Subscribe<ActionCancelled>(e => _proposed.Clear(), this);
         }
 
-        private void Set(ActionSelected e)
+        private void Set(ActionReadied e)
         {
             _proposed.Clear();
             _proposed.Enqueue(e.Action);

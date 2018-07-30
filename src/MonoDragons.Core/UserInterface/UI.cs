@@ -211,6 +211,11 @@ namespace MonoDragons.Core.UserInterface
             SpriteBatch.Draw(texture, ScaleRectangle(rectangle), color);
         }
 
+        public static void Draw(string imageName, Rectangle rectangle, Color color)
+        {
+            SpriteBatch.Draw(Resources.Load<Texture2D>(imageName), ScaleRectangle(rectangle), color);
+        }
+
         public static void Draw(string imageName, Vector2 pixelPosition)
         {
             var resource = Resources.Load<Texture2D>(imageName);

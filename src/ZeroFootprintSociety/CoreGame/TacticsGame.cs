@@ -53,16 +53,18 @@ namespace ZeroFootPrintSociety.CoreGame
 
             Add(new EnemyAI());
             Add(new ActionOptionsCalculator());
-            Add((object)new HideUI()); // To use as an Actor instead of a Visual. 
+            Add(new HideUI());
             Add(new MovementOptionsCalculator());
             Add(new ShootOptionsCalculator());
-            Add(new MovementPathHighlights());
-            Add(new AvailableMovesView(GameWorld.Map));
-            Add(new AvailableTargetsView());
+            Add(new ProposedShotCalculator());
+            Add(new AvailableTargetsUI());
             Add(_drawMaster);
             Add(_combat);
             Add(new HudView());
             Add(_camera);
+            GameWorld.Highlights = new Highlights();
+            Add((IAutomaton)GameWorld.Highlights);
+
 #if DEBUG
             Add(new RecentEventDebugLogView { Position = new Vector2(0, 150), MaxLines = 30, HideTextPart = "ZeroFootPrintSociety." });
 #endif

@@ -22,7 +22,6 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private void OnMovementConfirmed(MovementConfirmed e)
         {
             Clear();
-            GameWorld.Highlights.Remove(this);
         }
 
         private void ShowOptions(MovementOptionsAvailable e)
@@ -35,7 +34,6 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                     Color = Color.FromNonPremultiplied(80, 120, 220, 50)
                 });
             });
-            GameWorld.Highlights.Add(this);
         }
     }
 }
