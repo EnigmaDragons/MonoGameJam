@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
-using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
 
 namespace ZeroFootPrintSociety.Tiles
@@ -18,7 +16,6 @@ namespace ZeroFootPrintSociety.Tiles
         public bool IsWalkable => Details.All(x => !x.IsBlocking) && GameWorld.Characters.All(x => x.CurrentTile != this);
         public Cover Cover => Details.OrderByDescending(x => (int)x.Cover).First().Cover;
 
-
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {
             Position = new Point(column, row);
@@ -26,21 +23,10 @@ namespace ZeroFootPrintSociety.Tiles
             Details = details.OrderBy(x => x.ZIndex).ToList();
         }
 
-        public void OverwatchThis(Character ownerChar)
-        {
-        }
-
-        public void OnCharacterSteps(Character character)
-        {
-            // TODO: Include necessary properties for `OverwatchTriggeredEvent`.
-
-            // If Overwatch was triggered
-            // Event.Publish(new OverwatchTriggeredEvent() {FoundCharacter = character});
-        }
-
         public void Draw(int layer, Transform2 parentTransform)
         {
             Details.Where(x => x.ZIndex == layer)
+                .Where(x => x.IsVisible)
                 .ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect, Color.White));
         }
     }
