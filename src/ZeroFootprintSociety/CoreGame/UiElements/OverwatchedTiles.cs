@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
@@ -9,6 +10,7 @@ using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
@@ -33,7 +35,8 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 {
                     _visuals.Add(new ColoredRectangle
                     {
-                        Color = Color.FromNonPremultiplied(0, 150, 0, 150),
+
+                        Color = Color.FromNonPremultiplied(Math.Min(255, (int)(150 * GameWorld.CurrentCharacter.Gear.EquippedWeapon.AsRanged().EffectiveRanges[GameWorld.CurrentCharacter.CurrentTile.Position.TileDistance(x.Key)])), 0, 0, 100),
                         Transform = GameWorld.Map[x.Key].Transform
                     });
                     _visuals.Add(new Label
