@@ -99,6 +99,12 @@ namespace ZeroFootPrintSociety.Characters
             if (State.IsDeceased)
                 return;
             Body.Draw(parentTransform);
+        }
+
+        public void DrawUI(Transform2 parentTransform)
+        {
+            if (State.IsDeceased)
+                return;
             _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
             _damageNumbers.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
         }
