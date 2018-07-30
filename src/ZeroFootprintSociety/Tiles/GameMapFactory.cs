@@ -34,7 +34,8 @@ namespace ZeroFootPrintSociety.Tiles
                         tileMap[layerAndTile.Tile.TextureId].SourceRect,
                         layerAndTile.Layer.ZIndex,
                         tileMap[layerAndTile.Tile.TextureId].CustomBools["Blocking"],
-                        tileMap[layerAndTile.Tile.TextureId].GetEnum<Cover>("Cover"))).ToList())).ToList());
+                        tileMap[layerAndTile.Tile.TextureId].GetEnum<Cover>("Cover"),
+                        tileMap[layerAndTile.Tile.TextureId].CustomBools["Hide"])).ToList())).ToList());
         }
 
 

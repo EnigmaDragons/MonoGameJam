@@ -153,8 +153,11 @@
     <Compile Include="Tiles\SpriteAnimationFrame.cs" />
     <Compile Include="Tiles\TileData.cs" />
     <Compile Include="Tiles\TileMath.cs" />
+    <Compile Include="UIEffects\FXString.cs" />
     <Compile Include="UIEffects\GlowEffect.cs" />
+    <Compile Include="UIEffects\PresetColors.cs" />
     <Compile Include="UIEffects\TileRotatingEdgesAnim.cs" />
+    <Compile Include="UIEffects\TriangleGradient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -679,6 +682,9 @@
     <Content Include="Content\Effects\CircleGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Effects\NeonGradient.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Effects\RotatingHighlight\1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -701,6 +707,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Effects\RotatingHighlight\8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\StarGradient.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\TriangleGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Maps\Floors.png">
