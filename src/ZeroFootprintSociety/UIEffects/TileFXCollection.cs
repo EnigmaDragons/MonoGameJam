@@ -12,6 +12,7 @@ namespace ZeroFootPrintSociety.UIEffects
         private static readonly DictionaryWithDefault<string, Color> _colors = new DictionaryWithDefault<string, Color>(Color.FromNonPremultiplied(255, 255, 0, 120))
         {
             { "blue", Color.FromNonPremultiplied(30, 90, 230, 60) },
+            { "neon", Color.FromNonPremultiplied(60, 200, 255, 80) },
             { "red", Color.FromNonPremultiplied(255, 0, 0, 60) },
         };
         
@@ -22,8 +23,12 @@ namespace ZeroFootPrintSociety.UIEffects
                 var fx = new FXString(x);
                 if (fx.Name.Equals("trianglegradient", StringComparison.InvariantCultureIgnoreCase))
                     DrawTriangleGradient(parentTransform, tile, _colors[fx.Color]);
-                if (fx.Name.Equals("circlegradient", StringComparison.InvariantCultureIgnoreCase))
+                else if (fx.Name.Equals("circlegradient", StringComparison.InvariantCultureIgnoreCase))
                     DrawCircleGradient(parentTransform, tile, _colors[fx.Color]);
+                else if (fx.Name.Equals("smallcirclegradient", StringComparison.InvariantCultureIgnoreCase))
+                    DrawSmallCircleGradient(parentTransform, tile, _colors[fx.Color]);
+                else
+                    Logger.WriteLine($"Unknown FX '{x}'");
             });
         }
 
@@ -40,6 +45,14 @@ namespace ZeroFootPrintSociety.UIEffects
             var gradientOffset = new Vector2(-122, -128);
             var loc = (TileData.RenderSize.ToPoint() * tile.Position).ToVector2();
             var t = new Transform2(loc + gradientOffset, new Size2(290, 290));
+            UI.Draw("Effects/CircleGradient", parentTransform + t, color);
+        }
+
+        private void DrawSmallCircleGradient(Transform2 parentTransform, GameTile tile, Color color)
+        {
+            var gradientOffset = new Vector2(-46, -20);
+            var loc = (TileData.RenderSize.ToPoint() * tile.Position).ToVector2();
+            var t = new Transform2(loc + gradientOffset, new Size2(140, 140));
             UI.Draw("Effects/CircleGradient", parentTransform + t, color);
         }
     }

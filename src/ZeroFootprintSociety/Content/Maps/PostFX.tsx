@@ -558,7 +558,8 @@
  </tile>
  <tile id="109">
   <properties>
-   <property name="Hide" type="bool" value="true"/>
+   <property name="FX" value="smallcirclegradient-neon"/>
+   <property name="Hide" type="bool" value="false"/>
   </properties>
  </tile>
  <tile id="110">

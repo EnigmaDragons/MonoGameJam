@@ -46,7 +46,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             _cameraControls = new List<CameraControl>
             {
                 new CameraDragMouseControl() { CustomCanUpdateFunc = () => _cameraOptions.UseRightClickDrag },
-                new CameraEdgesMouseControl(){ CameraSpeed = 13 },
+                //new CameraEdgesMouseControl(){ CameraSpeed = 13 }, // This one is annoying. Probably leave it off.
                 new CameraArrowKeysControl() { CameraSpeed = 7 }
             };
 
