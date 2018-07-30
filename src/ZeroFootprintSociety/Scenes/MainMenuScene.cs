@@ -22,13 +22,11 @@ namespace ZeroFootPrintSociety.Scenes
                 () =>
                 {
                     GameWorld.Clear();
-                    Scene.NavigateTo("SampleLevel");
-                }, "Sample Corp", Color.Transparent, Color.LightBlue, Color.Blue);
+                    Scene.NavigateTo("Level1");
+                }, "New Game", Color.Transparent, Color.LightBlue, Color.Blue);
             AddClickable(button);
         }
 
-        public override void Dispose()
-        {
-        }
+        public override void Dispose() { }
     }
 }
