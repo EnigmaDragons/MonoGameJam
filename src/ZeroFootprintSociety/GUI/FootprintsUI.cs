@@ -22,7 +22,7 @@ namespace ZeroFootPrintSociety.GUI
             { Direction.Down, Math.PI },
             { Direction.Left, Math.PI * 1.5 }
         };
-        private string _footprint = "Effects/GlowingFootsteps";
+        private string _footprint = "Effects/Footsteps7";
 
         public void Draw(Transform2 parentTransform)
         {
@@ -38,7 +38,9 @@ namespace ZeroFootPrintSociety.GUI
             var texture = Resources.Load<Texture2D>(_footprint);
             var rotationOrigin = new Vector2(texture.Width / 2, texture.Height / 2);
             var transform = GameWorld.Map[print.Tile].Transform + parentTransform + new Transform2(rotationOrigin);
-            World.SpriteBatch.Draw(texture: texture,
+            World.SpriteBatch.Draw(
+                texture: texture,
+                scale: new Vector2(0.1f, .1f),
                 destinationRectangle: transform.ToRectangle(),
                 sourceRectangle: null,
                 color: color,
