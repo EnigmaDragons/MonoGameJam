@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
+using ZeroFootPrintSociety.GUI;
 
-namespace ZeroFootPrintSociety.Characters.Ui
+namespace ZeroFootPrintSociety.Characters.GUI
 {
     class DamageNumbersView : IVisualAutomaton
     {

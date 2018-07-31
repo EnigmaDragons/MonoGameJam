@@ -5,14 +5,14 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
-using ZeroFootPrintSociety.Characters.Ui;
+using ZeroFootPrintSociety.Characters.GUI;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 using ZeroFootPrintSociety.Tiles;
+using ZeroFootPrintSociety.GUI;
 
 namespace ZeroFootPrintSociety.Characters
 {
