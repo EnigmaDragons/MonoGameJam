@@ -17,6 +17,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public static Character CurrentCharacter => Turns.CurrentCharacter;
         public static bool IsEnemyTurn => CurrentCharacter.Team.Equals(Team.Enemy);
         public static Highlights Highlights { get; set; }
+        public static HighHighlights HighHighlights { get; set; }
         public static Point HoveredTile { get; set; } = new Point(0, 0);
 
         public static IEnumerable<Character> Friendlies => FriendliesWhere();
@@ -30,6 +31,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Turns = null;
             Characters = new List<Character>();
             Highlights = null;
+            HighHighlights = null;
             HoveredTile = Point.Zero;
         }
     }

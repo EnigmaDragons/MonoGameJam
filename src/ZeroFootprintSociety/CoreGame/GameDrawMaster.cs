@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.UIEffects;
@@ -38,6 +39,7 @@ namespace ZeroFootPrintSociety.CoreGame
                 x.Draw(OverChar1, parentTransform);
                 x.Draw(OverChar2, parentTransform);
             });
+            GameWorld.HighHighlights.Draw(parentTransform);
             GameWorld.Map.Tiles.ForEach(x => _fx.Draw(parentTransform, x));
             chars.ForEach(x => x.DrawUI(parentTransform));
         }

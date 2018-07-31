@@ -69,6 +69,7 @@
     <Compile Include="CoreGame\Calculators\ProposedShotCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShotCalculation.cs" />
+    <Compile Include="CoreGame\Calculators\VisibilityCalculation.cs" />
     <Compile Include="CoreGame\Calculators\VisibilityCalculator.cs" />
     <Compile Include="CoreGame\CharacterTurns.cs" />
     <Compile Include="CoreGame\Mechanics\Covers\CoverProvided.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
     <Compile Include="CoreGame\UiElements\FogOfWarView.cs" />
     <Compile Include="CoreGame\UiElements\Gunshots.cs" />
+    <Compile Include="CoreGame\UiElements\HighHighlights.cs" />
     <Compile Include="CoreGame\UiElements\MovementPathDirectionsPreview.cs" />
     <Compile Include="CoreGame\UiElements\TeamTurnHudDecor.cs" />
     <Compile Include="CoreGame\UiElements\EquippedWeaponView.cs" />
