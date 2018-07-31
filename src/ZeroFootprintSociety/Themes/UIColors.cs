@@ -21,7 +21,7 @@ namespace ZeroFootPrintSociety.Themes
         public static Color AttackedHealthBar_HealthRemaining { get; } = Color.FromNonPremultiplied(0, 200, 83, 255);
         public static Color AttackedHealthBar_PredictedDamage { get; } = Color.FromNonPremultiplied(213, 0, 0, 255);
 
-        public static Color AvailableMovesView_Rectangles { get; } = Color.FromNonPremultiplied(80, 120, 220, 50);
+        public static Color AvailableMovesView_Rectangles { get; } = Color.FromNonPremultiplied(255, 255, 255, 150);
 
         public static Color AvailableTargetsUI_CoverPercentText { get; } = Color.White;
 

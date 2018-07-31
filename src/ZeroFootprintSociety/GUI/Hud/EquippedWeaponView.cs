@@ -26,7 +26,7 @@ namespace ZeroFootPrintSociety.GUI
                 Transform = new Transform2(new Rectangle(position.X, position.Y + 40, 220, 60)),
                 TextColor = UIColors.InGame_Text
             };
-            _visuals.Add(new UiImage { Image = "UI/weapon-panel.png", Alpha = 180, Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 88)) });
+            _visuals.Add(new UiImage { Image = "UI/weapon-panel.png", Tint = 180.Alpha(), Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 88)) });
             _visuals.Add(_weaponArt);
             _visuals.Add(_label);
         }

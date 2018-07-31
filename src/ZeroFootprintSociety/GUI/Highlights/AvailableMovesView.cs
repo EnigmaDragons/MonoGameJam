@@ -29,10 +29,11 @@ namespace ZeroFootPrintSociety.GUI
         {
             e.AvailableMoves.ForEach(x =>
             {
-                Add(new ColoredRectangle
+                Add(new UiImage
                 {
+                    Image = "Effects/CornerTileOverlay",
                     Transform = GameWorld.Map.TileToWorldTransform(x.Last()).WithSize(TileData.RenderSize),
-                    Color = UIColors.AvailableMovesView_Rectangles
+                    Tint = UIColors.AvailableMovesView_Rectangles
                 });
             });
         }

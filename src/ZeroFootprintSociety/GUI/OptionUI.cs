@@ -18,7 +18,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public OptionUI(string name, Vector2 offset, Action onClick, params IVisual[] visuals) : base(new Rectangle((int)offset.X, (int)offset.Y, 350, 600))
         {
-            _image = new UiImage { Image = "UI/menu-tall-panel.png", Transform = new Transform2(Area), Alpha = 127 };
+            _image = new UiImage { Image = "UI/menu-tall-panel.png", Transform = new Transform2(Area), Tint = 127.Alpha() };
             _optionName = new Label { Text = name, Transform = new Transform2(new Vector2(25 + Area.X, 25 + Area.Y), new Size2(300, 50))} ;
             _offset = offset;
             _onClick = onClick;
@@ -27,17 +27,17 @@ namespace ZeroFootPrintSociety.GUI
 
         public override void OnEntered()
         {
-            _image.Alpha = 191;
+            _image.Tint = 191.Alpha();
         }
 
         public override void OnExitted()
         {
-            _image.Alpha = 127;
+            _image.Tint = 127.Alpha();
         }
 
         public override void OnPressed()
         {
-            _image.Alpha = 255;
+            _image.Tint = 255.Alpha();
         }
 
         public override void OnReleased()
