@@ -19,6 +19,7 @@ namespace ZeroFootPrintSociety.Tiles
         public bool IsWalkable => Details.All(x => !x.IsBlocking) && GameWorld.LivingCharacters.All(x => x.CurrentTile != this);
         public Cover Cover { get; }
         public List<string> PostFX { get; }
+        public string SpawnCharacter { get; }
         public bool SeenOnce => _seenOnce;
 
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
@@ -28,6 +29,7 @@ namespace ZeroFootPrintSociety.Tiles
             Details = details.OrderBy(x => x.ZIndex).ToList();
             Cover = Details.OrderByDescending(x => (int)x.Cover).First().Cover;
             PostFX = details.Select(x => x.PostFX).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+            SpawnCharacter = details.Select(x => x.SpawnCharacter).Where(x => !string.IsNullOrWhiteSpace(x)).FirstOrDefault() ?? "None";
         }
 
         public void See() => _seenOnce = true;

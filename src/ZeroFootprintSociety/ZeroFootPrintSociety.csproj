@@ -55,6 +55,7 @@
     <Compile Include="Characters\Prefabs\CorpSec2.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Prefabs\Sidechick.cs" />
+    <Compile Include="Tiles\CharacterSpawning.cs" />
     <Compile Include="Characters\Target.cs" />
     <Compile Include="Characters\Teams\TeamGroup.cs" />
     <Compile Include="Characters\Teams\Team.cs" />
@@ -752,6 +753,9 @@
     <Content Include="Content\Effects\VertNeonGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Maps2\Characters.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Maps2\Corporation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -935,6 +939,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Maps2\TestFogOfWar.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Maps2\Characters.tsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

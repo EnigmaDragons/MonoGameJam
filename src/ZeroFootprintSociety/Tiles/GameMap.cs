@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.Characters;
 
 namespace ZeroFootPrintSociety.Tiles
 {
@@ -46,6 +47,11 @@ namespace ZeroFootPrintSociety.Tiles
 
         public bool Exists(Point point) => Exists(point.X, point.Y);
         public bool Exists(int x, int y) => _tileMap.ContainsKey(x) && _tileMap[x].ContainsKey(y);
+
+        public List<Character> GetStartingCharacters(params Character[] extraCharacters)
+        {
+            return new CharacterSpawning().GetCharacters(this).Concat(extraCharacters).ToList();
+        }
 
         public Point MapPositionToTile(Vector2 position)
         {

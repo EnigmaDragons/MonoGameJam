@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
@@ -20,17 +21,15 @@ namespace ZeroFootPrintSociety.Scenes
             GameWorld.Map =
                 new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps2", "TestFogOfWar.tmx"),
                     new Size2(48, 48));
-            GameWorld.Characters = new List<Character>
-            {
-                new MainChar().Initialized(GameWorld.Map[18, 20]),
-                new Sidechick().Initialized(GameWorld.Map[18, 21]),
-                new CorpSec1().Initialized(GameWorld.Map[16, 10]),
-                new CorpSec1().Initialized(GameWorld.Map[11, 28]),
-                new CorpSec1().Initialized(GameWorld.Map[3, 3]),
-                new CorpSec1().Initialized(GameWorld.Map[24, 13]),
-                new CorpSec1().Initialized(GameWorld.Map[7, 9]),
-                new CorpSec1().Initialized(GameWorld.Map[7, 19]),
-            };
+
+            GameWorld.Characters = GameWorld.Map
+                .GetStartingCharacters(
+                    new CorpSec1().Initialized(GameWorld.Map[16, 10]),
+                    new CorpSec1().Initialized(GameWorld.Map[11, 28]),
+                    new CorpSec1().Initialized(GameWorld.Map[3, 3]),
+                    new CorpSec1().Initialized(GameWorld.Map[24, 13]),
+                    new CorpSec1().Initialized(GameWorld.Map[7, 9]),
+                    new CorpSec1().Initialized(GameWorld.Map[7, 19]));
             var startingCameraTile = new Point(10, 10);
             _game = new TacticsGame(
                 new TurnBasedCombat(
