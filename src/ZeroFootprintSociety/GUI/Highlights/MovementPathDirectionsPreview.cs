@@ -23,7 +23,6 @@ namespace ZeroFootPrintSociety.GUI
         private Point? _lastPointOver;
         private Point? _previousTileOver;
         private List<List<Point>> _availableMoves;
-        private bool _isInGameMenu = false;
 
         public MovementPathDirectionsPreview()
         {
@@ -31,8 +30,6 @@ namespace ZeroFootPrintSociety.GUI
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
             Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
             Event.Subscribe(EventSubscription.Create<Moved>(OnChangesTile, this));
-            Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _isInGameMenu = true, this));
-            Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _isInGameMenu = false, this));
         }
 
         private void OnMovementOptionsAvailable(MovementOptionsAvailable e)
@@ -84,7 +81,7 @@ namespace ZeroFootPrintSociety.GUI
         
         public override void Update(TimeSpan delta)
         {
-            if (_showsHoveredPathDirections && CurrentGame.TheGame.IsActive && !_isInGameMenu)
+            if (_showsHoveredPathDirections && CurrentGame.TheGame.IsActive)
             {
                 if (_checksMouse && _lastPointOver != GameWorld.HoveredTile)
                 {
@@ -102,8 +99,10 @@ namespace ZeroFootPrintSociety.GUI
 
         public override void Draw(Transform2 parentTransform)
         {
-            if (_showsHoveredPathDirections && CurrentGame.TheGame.IsActive && !_isInGameMenu)
+            if (_showsHoveredPathDirections)
+            {
                 base.Draw(parentTransform);
+            }
         }
     }
 }
