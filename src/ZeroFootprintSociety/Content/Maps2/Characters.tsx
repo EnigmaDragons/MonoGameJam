@@ -45,19 +45,19 @@
  </tile>
  <tile id="7">
   <properties>
-   <property name="Character" value=""/>
+   <property name="Character" value="corpsec1"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="8">
   <properties>
-   <property name="Character" value=""/>
+   <property name="Character" value="corpsec2"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="9">
   <properties>
-   <property name="Character" value=""/>
+   <property name="Character" value="corpsec3"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>

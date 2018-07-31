@@ -55,6 +55,7 @@
     <Compile Include="Characters\Prefabs\CorpSec2.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Prefabs\Sidechick.cs" />
+    <Compile Include="Scenes\GameLevel.cs" />
     <Compile Include="Tiles\CharacterSpawning.cs" />
     <Compile Include="Characters\Target.cs" />
     <Compile Include="Characters\Teams\TeamGroup.cs" />
@@ -167,14 +168,10 @@
     <Compile Include="PhysicsMath\VectorMath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Scenes\CharacterCreation.cs" />
-    <Compile Include="Scenes\CorporationOutsideScene.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
-    <Compile Include="Scenes\DarkAlleyScene.cs" />
-    <Compile Include="Scenes\SampleCorporationScene.cs" />
     <Compile Include="Characters\CharacterBody.cs" />
     <Compile Include="CoreGame\Mechanics\Covers\Cover.cs" />
-    <Compile Include="Scenes\ShootingRange.cs" />
     <Compile Include="Themes\TeamColors.cs" />
     <Compile Include="Themes\TeamColorTheme.cs" />
     <Compile Include="Themes\UIColors.cs" />
