@@ -52,7 +52,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                     for (var i = 0; i < e.Proposed.DefenderBullets; i++)
                     {
                         Event.Publish(new ShotFired { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
-                        if (_random.Next(0, 100) < e.Proposed.DefenderBlockChance)
+                        if (_random.Next(0, 100) < e.Proposed.AttackerBlockChance)
                         {
                             Event.Publish(new ShotBlocked { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
                         }

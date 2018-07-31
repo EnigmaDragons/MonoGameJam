@@ -49,6 +49,7 @@
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
     <Compile Include="Characters\Footprint.cs" />
+    <Compile Include="Characters\Gear\MeleeWeapon.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
     <Compile Include="Characters\Prefabs\CorpSec2.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="CoreGame\StateEvents\MoveResolved.cs" />
     <Compile Include="CoreGame\StateEvents\TargetInspected.cs" />
     <Compile Include="CoreGame\StateEvents\TurnEnded.cs" />
+    <Compile Include="GUI\ChoiceUI.cs" />
     <Compile Include="GUI\Menus\ActionOptionsView.cs" />
     <Compile Include="CoreGame\StateEvents\MovementFinished.cs" />
     <Compile Include="CoreGame\Mechanics\Events\HideSelected.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="GUI\Menus\MoveConfirmView.cs" />
     <Compile Include="GUI\Highlights\MovementPathHighlights.cs" />
     <Compile Include="GUI\Highlights\OverwatchedTiles.cs" />
+    <Compile Include="GUI\OptionUI.cs" />
     <Compile Include="GUI\UiEvents\MenuDismissed.cs" />
     <Compile Include="GUI\UiEvents\MenuRequested.cs" />
     <Compile Include="Characters\Gear\RangedWeapon.cs" />
@@ -160,6 +163,7 @@
     <Compile Include="Credits\TitleCreditSection.cs" />
     <Compile Include="PhysicsMath\VectorMath.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Scenes\CharacterCreation.cs" />
     <Compile Include="Scenes\CorporationOutsideScene.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />

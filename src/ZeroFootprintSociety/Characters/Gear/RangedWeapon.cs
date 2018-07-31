@@ -6,6 +6,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     public abstract class RangedWeapon : Weapon
     {
         public override bool IsRanged => true;
+        public override bool IsMelee => false;
 
         public abstract int Accuracy { get; } // Account * 5 = Hit Chance
         public int AccuracyPercent => Accuracy * 5;

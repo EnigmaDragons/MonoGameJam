@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("ShootingRange");
+            RunGame("CharacterCreation");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -36,6 +36,7 @@ namespace ZeroFootPrintSociety
                 { "Level1", () => new CorporationOutsideScene() },
                 { "ShootingRange", () => new ShootingRange() },
                 { "Credits", () => new CreditsScene() },
+                { "CharacterCreation", () => new CharacterCreation() },
             });
         }
 
