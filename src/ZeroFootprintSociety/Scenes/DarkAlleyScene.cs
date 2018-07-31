@@ -17,14 +17,14 @@ namespace ZeroFootPrintSociety.Scenes
 
         public override void Init()
         {
-            GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps2", "DarkAlley.tmx"), new Size2(100, 100));
+            GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, "Maps2", "DarkAlley.tmx"), new Size2(48, 48));
             GameWorld.Characters = new List<Character>
             {
-                new MainChar().Initialized(GameWorld.Map[49, 97]),
-                //new Sidechick().Initialized(GameWorld.Map[50, 98]),
+                new MainChar().Initialized(GameWorld.Map[48, 95]),
+                //new Sidechick().Initialized(GameWorld.Map[46, 95]),
             };
 
-            var startingCameraTile = new Point(49, 54);
+            var startingCameraTile = new Point(31, 93);
             _game = new TacticsGame(
                 new TurnBasedCombat(
                     GameWorld.Map,
