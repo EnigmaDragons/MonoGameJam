@@ -14,8 +14,8 @@ namespace MonoDragons.Core.Animations
             Transform = new Transform2(new Size2(1920, 1080))
         };
 
-        public int FromAlpha { get; set; } = 0;
-        public int ToAlpha { get; set; } = 255;
+        public int FromAlpha { get; set; } = 255;
+        public int ToAlpha { get; set; } = 0;
         public TimeSpan Duration { get; set; } = TimeSpan.FromSeconds(1);
         private TimeSpan _elapsed;
         private bool _started;

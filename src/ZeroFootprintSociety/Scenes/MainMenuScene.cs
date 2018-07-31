@@ -12,6 +12,13 @@ namespace ZeroFootPrintSociety.Scenes
 {
     public sealed class MainMenuScene : ClickUiScene
     {
+        private readonly string _newGameScene;
+
+        public MainMenuScene(string newGameScene)
+        {
+            _newGameScene = newGameScene;
+        }
+        
         public override void Init()
         {
             Input.On(Control.Menu, () => Environment.Exit(0));
@@ -23,7 +30,7 @@ namespace ZeroFootPrintSociety.Scenes
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
                 () => {
                     GameWorld.Clear();
-                    Scene.NavigateTo("ShootingRange");
+                    Scene.NavigateTo(_newGameScene);
                 }, 
                 "New Game",
                 UIColors.MainMenuScene_ButtonDefault,

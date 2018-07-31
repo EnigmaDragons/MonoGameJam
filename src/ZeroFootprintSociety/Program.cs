@@ -31,7 +31,8 @@ namespace ZeroFootPrintSociety
             return new SceneFactory(new Map<string, Func<IScene>>
             {
                 { "Logo", () => new LogoScene("MainMenu") },
-                { "MainMenu", () => new MainMenuScene() },
+                { "MainMenu", () => new MainMenuScene("Intro") },
+                { "Intro", () => new IntroCutscene("DarkAlley") },
                 { "Credits", () => new CreditsScene() },
                 { "CharacterCreation", () => new CharacterCreation() },
                 { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
@@ -51,6 +52,7 @@ namespace ZeroFootPrintSociety
             catch(Exception e)
             {
                 FatalErrorHandler.ResolveError(e);
+                System.Windows.Forms.MessageBox.Show(e.StackTrace);
             }
         }
 
