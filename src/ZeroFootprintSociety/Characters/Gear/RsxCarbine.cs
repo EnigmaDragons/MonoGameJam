@@ -125,7 +125,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class RsxRailgun : RangedWeapon
     {
         public override string Name { get; } = "RSX-238 Railgun";
-        public override string Image { get; } = "Weapons/nnvscopedassault";
+        public override string Image { get; } = "Weapons/rsxcarbine";
         public override string ShortDescription { get; } = "People have claimed to make over mile long shot's with this gun.";
         public override int Accuracy { get; } = 18;
         public override int NumShotsPerAttack { get; } = 1;
@@ -192,7 +192,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class RsxAssultRifle : RangedWeapon
     {
         public override string Name { get; } = "RSX-107 Assult Rifle";
-        public override string Image { get; } = "Weapons/smanclassicar";
+        public override string Image { get; } = "Weapons/nnvscopedassault";
         public override string ShortDescription { get; } = "A reliable 3-round burst rifle";
         public override int Accuracy { get; } = 12;
         public override int NumShotsPerAttack { get; } = 3;
@@ -212,7 +212,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class WarUzi : RangedWeapon
     {
         public override string Name { get; } = "WAR-27 \"Spray and Pray\" Gun";
-        public override string Image { get; } = "Weapons/rstautopen";
+        public override string Image { get; } = "Weapons/smanclassicar";
         public override string ShortDescription { get; } = "You just point in the general direction of the enemy and waste a clip and pray to god they are not moving afterwards.";
         public override int Accuracy { get; } = 7;
         public override int NumShotsPerAttack { get; } = 9;
