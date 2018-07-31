@@ -22,6 +22,8 @@ namespace ZeroFootPrintSociety.Characters
                         return new CorpSec1().Initialized(t);
                     if (t.SpawnCharacter.Equals("corpsec2", StringComparison.InvariantCultureIgnoreCase))
                         return new CorpSec2().Initialized(t);
+                    if (t.SpawnCharacter.Equals("corpsec3", StringComparison.InvariantCultureIgnoreCase))
+                        return new CorpSec3().Initialized(t);
                     Logger.WriteLine($"Unknown SpawnCharacter '{t.SpawnCharacter}'");
                     return new CorpSec1().Initialized(t);
                 }).ToList();

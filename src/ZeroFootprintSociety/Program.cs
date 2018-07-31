@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("SampleLevel");
+            RunGame("SpawnTest");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -37,6 +37,7 @@ namespace ZeroFootPrintSociety
                 { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
                 { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
                 { "DarkAlley", () => new GameLevel("DarkAlley.tmx") },
+                { "SpawnTest", () => new GameLevel("SpawnTest.tmx") },
             });
         }
 
