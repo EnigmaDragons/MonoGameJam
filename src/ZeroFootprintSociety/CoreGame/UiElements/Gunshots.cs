@@ -45,7 +45,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private void OnShotHit(ShotHit e)
         {
             _shots.Add(new TargetedShotVisual(
-                new RectangleTexture(Color.White).Create(), 
+                new RectangleTexture(UIColors.Gunshot).Create(), 
                 CalculateTransform(e.Attacker, e.Target, _random.Next(-10, 10) * 0.001), 
                 e.Target.CurrentTile.Position));
         }

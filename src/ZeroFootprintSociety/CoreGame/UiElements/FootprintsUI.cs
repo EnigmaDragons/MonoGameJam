@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Common;
@@ -9,6 +8,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.Memory;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
@@ -28,11 +28,11 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             GameWorld.LivingCharacters.ForEach(character => character.Body.Footprints.ForEach(footprint =>
             {
                 if (GameWorld.Friendlies.Any(x => x.State.CanPercieve(footprint.Tile)))
-                    DrawPrint(footprint, parentTransform);
+                    DrawPrint(footprint, parentTransform, character.Team == Team.Friendly ? TeamColors.Friendly.Footprints_GlowColor : TeamColors.Enemy.Footprints_GlowColor);
             }));
         }
 
-        private void DrawPrint(Footprint print, Transform2 parentTransform)
+        private void DrawPrint(Footprint print, Transform2 parentTransform, Color color)
         {
             var texture = Resources.Load<Texture2D>(_footprint);
             var rotationOrigin = new Vector2(texture.Width / 2, texture.Height / 2);
@@ -40,7 +40,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             World.SpriteBatch.Draw(texture: texture,
                 destinationRectangle: transform.ToRectangle(),
                 sourceRectangle: null,
-                color: Color.White,
+                color: color,
                 rotation: (float)_directionToRadians[print.Direction],
                 origin: rotationOrigin,
                 effects: (print.Tile.X + print.Tile.Y) % 2 == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally,
