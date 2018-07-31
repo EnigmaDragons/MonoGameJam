@@ -125,7 +125,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class RsxRailgun : RangedWeapon
     {
         public override string Name { get; } = "RSX-238 Railgun";
-        public override string Image { get; } = "Weapons/RsxCarbine";
+        public override string Image { get; } = "Weapons/nnvscopedassault";
         public override string ShortDescription { get; } = "People have claimed to make over mile long shot's with this gun.";
         public override int Accuracy { get; } = 18;
         public override int NumShotsPerAttack { get; } = 1;
@@ -174,7 +174,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class WarShotgun : RangedWeapon
     {
         public override string Name { get; } = "WAR-12 Shotgun";
-        public override string Image { get; } = "Weapons/RsxCarbine";
+        public override string Image { get; } = "Weapons/urxsemishotgun";
         public override string ShortDescription { get; } = "When you want to make things personal";
         public override int Accuracy { get; } = 11;
         public override int NumShotsPerAttack { get; } = 1;
@@ -192,7 +192,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class RsxAssultRifle : RangedWeapon
     {
         public override string Name { get; } = "RSX-107 Assult Rifle";
-        public override string Image { get; } = "Weapons/RsxCarbine";
+        public override string Image { get; } = "Weapons/smanclassicar";
         public override string ShortDescription { get; } = "A reliable 3-round burst rifle";
         public override int Accuracy { get; } = 12;
         public override int NumShotsPerAttack { get; } = 3;
@@ -212,7 +212,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class WarUzi : RangedWeapon
     {
         public override string Name { get; } = "WAR-27 \"Spray and Pray\" Gun";
-        public override string Image { get; } = "Weapons/RsxCarbine";
+        public override string Image { get; } = "Weapons/rstautopen";
         public override string ShortDescription { get; } = "You just point in the general direction of the enemy and waste a clip and pray to god they are not moving afterwards.";
         public override int Accuracy { get; } = 7;
         public override int NumShotsPerAttack { get; } = 9;
@@ -231,7 +231,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class FiliBlade : MeleeWeapon
     {
         public override string Name { get; } = "Fili Blade \"Box Cutter\"";
-        public override string Image { get; } = "Weapons/RsxCarbine";
+        public override string Image { get; } = "Weapons/kteccombatblade";
         public override string ShortDescription { get; } = "These are general purpose knives, though it's not unheard of for shakings to be done with these.";
 
         public override int NumHitsPerAttack { get; } = 2;
@@ -244,7 +244,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class AutoPistol : RangedWeapon
     {
         public override string Name { get; } = "Glock-99";
-        public override string Image { get; } = "Weapons/RsxCarbine";
+        public override string Image { get; } = "Weapons/rephoser";
         public override string ShortDescription { get; } = "The latest in self-defense full-auto pistols.";
         public override int Accuracy { get; } = 8;
         public override int NumShotsPerAttack { get; } = 5;
@@ -262,7 +262,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     class PowerMagnum : RangedWeapon
     {
         public override string Name { get; } = "PWR-1 Magnum";
-        public override string Image { get; } = "Weapons/RsxCarbine";
+        public override string Image { get; } = "Weapons/tirmagnum";
         public override string ShortDescription { get; } = "The first and greatest of it's kind, the magnum of the future.";
         public override int Accuracy { get; } = 11;
         public override int NumShotsPerAttack { get; } = 2;

@@ -182,7 +182,7 @@ namespace ZeroFootPrintSociety.Scenes
                     Transform = new Transform2(new Vector2(25, 225), new Size2(300, 50)) },
                 new Label { TextColor = Color.White, Text = weaponSet.Secondary.Name, Font = "Fonts/16",
                     Transform = new Transform2(new Vector2(25, 300), new Size2(300, 50)) },
-                new UiImage { Image = weaponSet.Primary.Image, Transform = new Transform2(new Vector2(50, 350), new Size2(250, 100)) },
+                new UiImage { Image = weaponSet.Secondary.Image, Transform = new Transform2(new Vector2(50, 350), new Size2(250, 100)) },
                 new Label { TextColor = Color.White, Text = weaponSet.Secondary.ShortDescription, Font = "Fonts/12",
                     Transform = new Transform2(new Vector2(25, 450), new Size2(300, 50)) });
         }

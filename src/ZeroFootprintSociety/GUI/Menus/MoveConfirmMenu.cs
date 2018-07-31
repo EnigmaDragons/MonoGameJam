@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.GUI
 {
-    class MoveConfirmView : IVisual
+    class ActionConfirmMenu : IVisual
     {
         private const int _menuWidth = 300;
         private const int _menuHeight = 600;
@@ -18,42 +19,67 @@ namespace ZeroFootPrintSociety.GUI
         private readonly int _menuY = 0.85.VH();
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly ClickUIBranch _branch = new ClickUIBranch("Actions", 2);
+        private readonly Label _actionLabel;
+        private readonly ImageButton _confirmButton;
 
         private bool _show = false;
+        private bool _isReady = false;
 
         public ClickUI _clickUI;
 
-        public MoveConfirmView(ClickUI clickUI)
+        public ActionConfirmMenu(ClickUI clickUI)
         {
             _clickUI = clickUI;
             var ctx = new Buttons.MenuContext { X = _menuX, Y = _menuY, Width = _menuWidth, FirstButtonYOffset = 30 };
 
-            var menu = new UiImage
+            _visuals.Add(new UiImage
             {
                 Transform = new Transform2(new Rectangle(_menuX, _menuY, _menuWidth, _menuHeight)),
                 Image = "UI/menu-tall-panel.png"
+            });
+
+            _confirmButton = new ImageButton("UI/confirm.png", "UI/confirm-hover.png", "UI/confirm-press.png",
+                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) + 30, _menuY + 64), new Size2(52, 52)), () => Event.Publish(new ActionConfirmed()), () => _isReady);
+            var cancelButton = new ImageButton("UI/cancel.png", "UI/cancel-hover.png", "UI/cancel-press.png",
+                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 52 - 30, _menuY + 64), new Size2(52, 52)), () => Event.Publish(new ActionCancelled()));
+
+            _actionLabel = new Label
+            {
+                Transform = new Transform2(new Rectangle(_menuX, _menuY + 20, _menuWidth, 52)),
+                BackgroundColor = Color.Transparent,
+                TextColor = UIColors.InGame_Text,
+                Font = GuiFonts.Body,
             };
 
-            var confirmButton = new ImageButton("UI/confirm.png", "UI/confirm-hover.png", "UI/confirm-press.png",
-                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) + 30, _menuY + 55), new Size2(52, 52)), () => Event.Publish(new ActionConfirmed()));
-            var cancelButton = new ImageButton("UI/cancel.png", "UI/cancel-hover.png", "UI/cancel-press.png",
-                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 52 - 30, _menuY + 55), new Size2(52, 52)), () => Event.Publish(new ActionCancelled()));
-
-            _visuals.Add(menu);
-            _visuals.Add(confirmButton);
-            _branch.Add(confirmButton);
+            _visuals.Add(_actionLabel);
+            _visuals.Add(_confirmButton);
+            _branch.Add(_confirmButton);
             _visuals.Add(cancelButton);
             _branch.Add(cancelButton);
-            Event.Subscribe<ActionReadied>(e => Show(), this);
+            Event.Subscribe<ActionSelected>(Show, this);
+            Event.Subscribe<ActionReadied>(Show, this);
             Event.Subscribe<ActionCancelled>(e => Hide(), this);
             Event.Subscribe<ActionConfirmed>(e => Hide(), this);
         }
 
-        public void Show()
+        private void Show(ActionReadied obj)
+        {
+            Show(true);
+        }
+
+        private void Show(ActionSelected a)
+        {
+            _actionLabel.Text = a.Name;
+            Show(false);
+        }
+
+        public void Show(bool isReady)
         {
             if (GameWorld.CurrentCharacter.Team.IsIncludedIn(TeamGroup.NeutralsAndEnemies))
                 return;
 
+            _confirmButton.IsEnabled = isReady;
+            _isReady = isReady;
             _clickUI.Add(_branch);
             _show = true;
         }

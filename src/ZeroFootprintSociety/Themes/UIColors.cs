@@ -31,19 +31,13 @@ namespace ZeroFootPrintSociety.Themes
         public static Color Buttons_Default { get; } = Color.FromNonPremultiplied(206, 232, 245, 0);
         public static Color Buttons_Hover { get; } = Color.FromNonPremultiplied(206, 232, 245, 70);
         public static Color Buttons_Press { get; } = Color.FromNonPremultiplied(206, 232, 245, 110);
-
-        public static Color CombatantSummary_Text { get; } = Color.White;
-
-        public static Color CurrentCharacterView_Text { get; } = Color.FromNonPremultiplied(255, 255, 255, 180);
-
-        public static Color EquippedWeaponView_Text { get; } = Color.FromNonPremultiplied(255, 255, 255, 180);
+                
+        public static Color InGame_Text { get; } = Color.FromNonPremultiplied(255, 255, 255, 180);
 
         public static Color Gunshot { get; } = Color.White;
         public static Color Gunshot_MissedShot { get; } = Color.White;
         public static Color Gunshot_TargetedShotVisual { get; } = Color.White;
-
-        public static Color HideUI_Text { get; } = Color.White;
-
+        
         public static Color InGameMenu_FullScreenRectangle { get; } = Color.FromNonPremultiplied(0, 0, 0, 160);
 
         public static Color MovementPathDirectionsPreview_Tile { get; } = Color.FromNonPremultiplied(255, 255, 255, 80);

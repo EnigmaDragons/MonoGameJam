@@ -26,7 +26,7 @@ namespace ZeroFootPrintSociety.GUI
             _name = new Label
             {
                 Transform = new Transform2(new Rectangle(25, 25, 300, 50)), 
-                TextColor = UIColors.CombatantSummary_Text
+                TextColor = UIColors.InGame_Text
             };
             _face = new UiImage
             {
@@ -37,7 +37,7 @@ namespace ZeroFootPrintSociety.GUI
             _weaponName = new Label
             {
                 Transform = new Transform2(new Rectangle(25, 275, 300, 50)), 
-                TextColor = UIColors.CombatantSummary_Text
+                TextColor = UIColors.InGame_Text
             };
             _weapon = new UiImage
             {
@@ -47,17 +47,17 @@ namespace ZeroFootPrintSociety.GUI
             _hitChance = new Label
             {
                 Transform = new Transform2(new Rectangle(25, 425, 300, 50)),
-                TextColor = UIColors.CombatantSummary_Text
+                TextColor = UIColors.InGame_Text
             };
             _bullets = new Label
             {
                 Transform = new Transform2(new Rectangle(25, 475, 300, 50)),
-                TextColor = UIColors.CombatantSummary_Text
+                TextColor = UIColors.InGame_Text
             };
             _bulletDamage = new Label
             {
                 Transform = new Transform2(new Rectangle(25, 525, 300, 50)),
-                TextColor = UIColors.CombatantSummary_Text
+                TextColor = UIColors.InGame_Text
             };
         }
 

@@ -1,4 +1,5 @@
 ﻿using MonoDragons.Core.Animations;
+using MonoDragons.Core.AudioSystem;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
@@ -15,6 +16,8 @@ namespace ZeroFootPrintSociety.Scenes
 
         protected override void OnInit()
         {
+            Sound.Music("fast-forward", 1.0f).Play();
+
             AddUi(new ScreenClickable(() => Scene.NavigateTo("MainMenu")));
 
             AddAnimation(new TitleCreditSegment());

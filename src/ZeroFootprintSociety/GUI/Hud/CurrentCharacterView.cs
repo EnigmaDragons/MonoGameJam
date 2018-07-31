@@ -24,13 +24,13 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Font = "Fonts/12",
                 Transform = new Transform2(new Rectangle(position.X, position.Y + 78, 220, 30)),
-                TextColor = UIColors.CurrentCharacterView_Text
+                TextColor = UIColors.InGame_Text
             };
             _hp = new Label
             {
                 Font = "Fonts/12",
                 Transform = new Transform2(new Rectangle(position.X + 70, position.Y + 40, 150, 30)),
-                TextColor = UIColors.CurrentCharacterView_Text
+                TextColor = UIColors.InGame_Text
             };
             _visuals.Add(new UiImage { Image = "UI/weapon-panel.png", Alpha = 180, Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 114)) });
             _visuals.Add(_face);
@@ -40,7 +40,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            if (GameWorld.CurrentCharacter.Team.IsIncludedIn(TeamGroup.Friendlies))
+            if (!GameWorld.IsGameOver && GameWorld.CurrentCharacter.Team.Equals(Team.Friendly))
                 _visuals.ForEach(x => x.Draw(parentTransform));
         }
 
