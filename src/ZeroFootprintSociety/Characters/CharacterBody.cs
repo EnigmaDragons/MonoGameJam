@@ -36,7 +36,8 @@ namespace ZeroFootPrintSociety.Characters
 
         public List<Point> Path = new List<Point>();
         public bool Stopped = false;
-        
+        public Direction Facing;
+
         public Vector2 CurrentTileLocation { get; private set; }
         public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];
         public Transform2 Transform { get; private set; }
@@ -47,7 +48,6 @@ namespace ZeroFootPrintSociety.Characters
             _characterPath = characterPath;
             _offset = offset;
             Event.Subscribe(EventSubscription.Create<ShotFired>(UpdateFacing, this));
-            Event.Subscribe<MoveResolved>(ContinueMoving, this);
         }
 
         public void Init(GameTile currentTile)
@@ -113,7 +113,7 @@ namespace ZeroFootPrintSociety.Characters
         {
             const double speedModifier = 0.2;
             _currentAnimation.Update(delta);
-            if (Path.Any() && !_stopped)
+            if (Path.Any() && !Stopped)
             {
                 var targetLocation = GameWorld.Map[Path.First()].Transform.Location;
                 var pastLocation = CurrentTileLocation;
@@ -121,7 +121,7 @@ namespace ZeroFootPrintSociety.Characters
                 SetRunningFacing(pastLocation);
                 if (CurrentTileLocation.X == targetLocation.X && CurrentTileLocation.Y == targetLocation.Y)
                 {
-                    _stopped = true;
+                    Stopped = true;
                     SetFacing(pastLocation);
                     Event.Publish(new Moved { Character = GameWorld.CurrentCharacter, Position = Path.First() });
                 }
@@ -147,26 +147,40 @@ namespace ZeroFootPrintSociety.Characters
 
         private void SetRunningFacing(Vector2 pastLocation)
         {
-            if (pastLocation.X < CurrentTileLocation.X)
+            SetDirection(pastLocation);
+            if (Facing == Direction.Right)
                 _currentAnimation = _runRight;
-            if (pastLocation.X > CurrentTileLocation.X)
+            if (Facing == Direction.Left)
                 _currentAnimation = _runLeft;
-            if (pastLocation.Y < CurrentTileLocation.Y)
+            if (Facing == Direction.Down)
                 _currentAnimation = _runDown;
-            if (pastLocation.Y > CurrentTileLocation.Y)
+            if (Facing == Direction.Up)
                 _currentAnimation = _runUp;
         }
 
         private void SetFacing(Vector2 pastLocation)
         {
-            if (pastLocation.X < CurrentTileLocation.X)
+            SetDirection(pastLocation);
+            if (Facing == Direction.Right)
                 _currentAnimation = _idleRight;
-            if (pastLocation.X > CurrentTileLocation.X)
+            if (Facing == Direction.Left)
                 _currentAnimation = _idleLeft;
-            if (pastLocation.Y < CurrentTileLocation.Y)
+            if (Facing == Direction.Down)
                 _currentAnimation = _idleDown;
-            if (pastLocation.Y > CurrentTileLocation.Y)
+            if (Facing == Direction.Up)
                 _currentAnimation = _idleUp;
+        }
+
+        private void SetDirection(Vector2 pastLocation)
+        {
+            if (pastLocation.X < CurrentTileLocation.X)
+                Facing = Direction.Right;
+            if (pastLocation.X > CurrentTileLocation.X)
+                Facing = Direction.Left;
+            if (pastLocation.Y < CurrentTileLocation.Y)
+                Facing = Direction.Down;
+            if (pastLocation.Y > CurrentTileLocation.Y)
+                Facing = Direction.Up;
         }
 
         public Transform2 GetTransform()

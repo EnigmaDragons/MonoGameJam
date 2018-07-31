@@ -48,6 +48,7 @@
     <Compile Include="AI\EnemyAI.cs" />
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
+    <Compile Include="Characters\Footprint.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
     <Compile Include="Characters\Prefabs\CorpSec2.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
     <Compile Include="CoreGame\UiElements\FogOfWarView.cs" />
+    <Compile Include="CoreGame\UiElements\FootprintsUI.cs" />
     <Compile Include="CoreGame\UiElements\Gunshots.cs" />
     <Compile Include="CoreGame\UiElements\HighHighlights.cs" />
     <Compile Include="CoreGame\UiElements\MovementPathDirectionsPreview.cs" />
