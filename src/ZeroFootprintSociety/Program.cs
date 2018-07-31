@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("DarkAlley");
+            RunGame("SampleLevel");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -32,11 +32,11 @@ namespace ZeroFootPrintSociety
             {
                 { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
                 { "MainMenu", () => new MainMenuScene() },
-                { "SampleLevel", () => new SampleCorporationScene() },
-                { "ShootingRange", () => new ShootingRange() },
                 { "Credits", () => new CreditsScene() },
                 { "CharacterCreation", () => new CharacterCreation() },
-                { "DarkAlley", () => new DarkAlleyScene() },
+                { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
+                { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
+                { "DarkAlley", () => new GameLevel("DarkAlley.tmx") },
             });
         }
 

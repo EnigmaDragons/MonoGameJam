@@ -15,7 +15,7 @@ using ZeroFootPrintSociety.GUI;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
-    public class TacticsGame : SceneContainer
+    public class TacticsGame : SceneContainer, IInitializable
     {
         private enum MouseAction
         {
