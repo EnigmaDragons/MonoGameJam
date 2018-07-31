@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Tiles
 {
@@ -10,7 +11,7 @@ namespace ZeroFootPrintSociety.Tiles
         private readonly Texture2D _sprite;
         private readonly Transform2 _transform;
         public float DurationInSeconds { get; }
-        public Color Tint { get; set; } = Color.White;
+        public Color Tint { get; set; } = UIColors.Unchanged;
 
         public SpriteAnimationFrame(Texture2D sprite, float scale, float durationInSeconds)
         {

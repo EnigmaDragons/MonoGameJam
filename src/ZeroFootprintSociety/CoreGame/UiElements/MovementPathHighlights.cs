@@ -6,6 +6,7 @@ using MonoDragons.Core.UserInterface;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Themes;
 using ZeroFootPrintSociety.Tiles;
 using ZeroFootPrintSociety.UIEffects;
 
@@ -27,7 +28,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
             Add(new ColoredRectangle
             {
                 Transform = GameWorld.Map.TileToWorldTransform(destination).WithSize(TileData.RenderSize),
-                Color = Color.FromNonPremultiplied(80, 120, 220, 20)
+                Color = UIColors.MovementPathHighlights_Tile
             });
             Add(new TileRotatingEdgesAnim(destination, Color.FromNonPremultiplied(110, 170, 255, 255)).Initialized());
         }

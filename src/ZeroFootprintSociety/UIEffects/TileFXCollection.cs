@@ -3,17 +3,18 @@ using MonoDragons.Core.Common;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using System;
+using ZeroFootPrintSociety.Themes;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.UIEffects
 {
     class TileFXCollection
     {
-        private static readonly DictionaryWithDefault<string, Color> _colors = new DictionaryWithDefault<string, Color>(Color.FromNonPremultiplied(255, 255, 0, 120))
+        private static readonly DictionaryWithDefault<string, Color> _colors = new DictionaryWithDefault<string, Color>(UIColors.TileFXCollection_Default)
         {
-            { "blue", Color.FromNonPremultiplied(30, 90, 230, 60) },
-            { "turqoise", Color.FromNonPremultiplied(60, 200, 255, 80) },
-            { "red", Color.FromNonPremultiplied(255, 0, 0, 60) },
+            { "blue", UIColors.TileFXCollection_Blue },
+            { "turqoise", UIColors.TileFXCollection_Turquoise },
+            { "red", UIColors.TileFXCollection_Red },
         };
         
         public void Draw(Transform2 parentTransform, GameTile tile)

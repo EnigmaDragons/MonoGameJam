@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Themes;
 using Color = Microsoft.Xna.Framework.Color;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using Size2 = MonoDragons.Core.PhysicsEngine.Size2;
@@ -21,8 +22,8 @@ namespace ZeroFootPrintSociety.Characters.Ui
         public HealthBar(int maxWidth)
         {
             MaxWidth = maxWidth;
-            HealthRectangle = new ColoredRectangle() {Color = Color.LimeGreen, Transform = _MakeHealthTransform()};
-            DamageRectangle = new ColoredRectangle() {Color = Color.Pink, Transform = _MakeDamageTranform()};
+            HealthRectangle = new ColoredRectangle() {Color = UIColors.HealthBar_Health, Transform = _MakeHealthTransform()};
+            DamageRectangle = new ColoredRectangle() {Color = UIColors.HealthBar_Damage, Transform = _MakeDamageTranform()};
         }
 
         public void Init()

@@ -9,6 +9,7 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Themes;
 using ZeroFootPrintSociety.UIEffects;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -35,8 +36,12 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             e.AvailableTargets.ForEach(x =>
             {
-                _visuals.Add(new ColoredRectangle { Transform = x.Character.CurrentTile.Transform, Color = Color.FromNonPremultiplied(200, 0, 0, 35) });
-                var anim = new TileRotatingEdgesAnim(x.Character.CurrentTile.Position, Color.FromNonPremultiplied(255, 20, 20, 255));
+                _visuals.Add(new ColoredRectangle
+                {
+                    Transform = x.Character.CurrentTile.Transform, 
+                    Color = UIColors.AvailableTargetsView_Rectanges
+                });
+                var anim = new TileRotatingEdgesAnim(x.Character.CurrentTile.Position, UIColors.AvailableTargetsView_TileRotatingEdgesAnim);
                 anim.Init();
                 _visuals.Add(anim);
                 _automata.Add(anim);

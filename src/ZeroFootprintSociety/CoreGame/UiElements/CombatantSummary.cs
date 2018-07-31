@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
@@ -22,14 +23,42 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         public CombatantSummary(bool shouldFlip)
         {
             _background = new UiImage { Image = "UI/menu-tall-panel.png", Transform = new Transform2(new Size2(350, 600)) };
-            _name = new Label { Transform = new Transform2(        new Rectangle(25, 25, 300, 50)), TextColor = Color.White };
-            _face = new UiImage { Transform = new Transform2(     new Rectangle(125, 75, 100, 100)), Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None };
-            _damageBarOffset =                                       new Vector2(50, 200); //250, 50
-            _weaponName = new Label { Transform = new Transform2(  new Rectangle(25, 275, 300, 50)), TextColor = Color.White };
-            _weapon = new UiImage { Transform = new Transform2(   new Rectangle(100, 350 + 4, 150, 42)), Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None };
-            _hitChance = new Label { Transform = new Transform2(   new Rectangle(25, 425, 300, 50)), TextColor = Color.White };
-            _bullets = new Label { Transform = new Transform2(     new Rectangle(25, 475, 300, 50)), TextColor = Color.White };
-            _bulletDamage = new Label { Transform = new Transform2(new Rectangle(25, 525, 300, 50)), TextColor = Color.White };
+            _name = new Label
+            {
+                Transform = new Transform2(new Rectangle(25, 25, 300, 50)), 
+                TextColor = UIColors.CombatantSummary_Text
+            };
+            _face = new UiImage
+            {
+                Transform = new Transform2(new Rectangle(125, 75, 100, 100)), 
+                Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None
+            };
+            _damageBarOffset = new Vector2(50, 200); //250, 50
+            _weaponName = new Label
+            {
+                Transform = new Transform2(new Rectangle(25, 275, 300, 50)), 
+                TextColor = UIColors.CombatantSummary_Text
+            };
+            _weapon = new UiImage
+            {
+                Transform = new Transform2(new Rectangle(100, 350 + 4, 150, 42)),
+                Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None
+            };
+            _hitChance = new Label
+            {
+                Transform = new Transform2(new Rectangle(25, 425, 300, 50)),
+                TextColor = UIColors.CombatantSummary_Text
+            };
+            _bullets = new Label
+            {
+                Transform = new Transform2(new Rectangle(25, 475, 300, 50)),
+                TextColor = UIColors.CombatantSummary_Text
+            };
+            _bulletDamage = new Label
+            {
+                Transform = new Transform2(new Rectangle(25, 525, 300, 50)),
+                TextColor = UIColors.CombatantSummary_Text
+            };
         }
 
         public void Update(string characterImage, string name, string weaponImage, string weaponName, string hitChance, string bullets, string bulletDamage,
