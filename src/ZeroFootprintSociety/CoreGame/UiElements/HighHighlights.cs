@@ -14,6 +14,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             Add(new Gunshots());
             Add(new FogOfWarView());
+            Add(new FootprintsUI());
         }
 
         public void Draw(Transform2 parentTransform)
