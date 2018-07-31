@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Scenes;
 using MonoTiled.Tiled.TmxLoading;
+using System;
+using System.Linq;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Tiles;
 
@@ -28,14 +31,30 @@ namespace ZeroFootPrintSociety.Scenes
 
         public override void Init()
         {
-            GameWorld.Map = new GameMapFactory().CreateGameMap(new Tmx(CurrentGame.GraphicsDevice, MapDir, MapFileName), TileData.RenderSize);
-            GameWorld.Characters = GameWorld.Map.GetStartingCharacters();
+            LoadMap();
+            SpawnCharacters();
 
             Add(new TacticsGame(
                 new TurnBasedCombat(
                     GameWorld.Map,
                     GameWorld.Characters),
                 CameraStartingTile).Initialized());
+        }
+
+        private void LoadMap()
+        {
+            GameWorld.Map = Perf.Time("Loaded Map", 
+                () => new GameMapFactory().CreateGameMap(
+                    new Tmx(CurrentGame.GraphicsDevice, MapDir, MapFileName), 
+                    TileData.RenderSize));
+        }
+
+        private void SpawnCharacters()
+        {
+            var characters = GameWorld.Map.GetStartingCharacters();
+            if (!characters.Any())
+                throw new InvalidOperationException($"Map '{MapDir}/{MapFileName}' has no characters.");
+            GameWorld.Characters = characters;
         }
 
         public override void Dispose() { }
