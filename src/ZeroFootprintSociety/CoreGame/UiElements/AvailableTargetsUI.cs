@@ -9,6 +9,7 @@ using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Themes;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -37,7 +38,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 x.CoverToThem.Covers.ForEach(cover => cover.Providers.ForEach(p =>
                 {
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Alpha = 100, Image = "UI/shield-placeholder", Transform = p.Transform });
-                    _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = Color.White, Transform = p.Transform });
+                    _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = UIColors.AvailableTargetsUI_CoverPercentText, Transform = p.Transform });
                 }));
                 _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.CoverToThem.BlockChance, x.Character.Stats.Agility).Get()}%", Transform = x.Character.CurrentTile.Transform });
                 _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(x.Character.Accuracy, x.CoverFromThem.BlockChance, GameWorld.CurrentCharacter.Stats.Agility).Get()}% ", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });

@@ -5,13 +5,14 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     public class HideUI : IVisual
     {
         private readonly UiImage _hideBonusImage = new UiImage { Image = "UI/shield-placeholder" };
-        private readonly Label _hideBonusLabel = new Label { Text = "+100%", TextColor = Color.White };
+        private readonly Label _hideBonusLabel = new Label { Text = "+100%", TextColor = UIColors.HideUI_Text };
         private bool _hidden = true;
 
         public HideUI()

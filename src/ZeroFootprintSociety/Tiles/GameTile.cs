@@ -5,6 +5,7 @@ using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Tiles
 {
@@ -35,7 +36,8 @@ namespace ZeroFootPrintSociety.Tiles
         {
             Details.Where(x => x.ZIndex == layer)
                 .Where(x => x.IsVisible)
-                .ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect, Color.White));
+                .ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect,
+                    UIColors.GameTile_Background));
         }
     }
 }

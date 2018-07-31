@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.UserInterface;
-using System;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
@@ -28,9 +29,9 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                     _buttonHeight),
                 action,
                 text,
-                Color.FromNonPremultiplied(206, 232, 245, 0),
-                Color.FromNonPremultiplied(206, 232, 245, 70),
-                Color.FromNonPremultiplied(206, 232, 245, 110),
+                UIColors.Buttons_Default,
+                UIColors.Buttons_Hover,
+                UIColors.Buttons_Press,
                 condition)
             { Font = "Fonts/12" };
         }

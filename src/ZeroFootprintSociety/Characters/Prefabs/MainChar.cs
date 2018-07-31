@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters.Gear;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Characters.Prefabs
 {
     class MainChar : Character
     {
         public MainChar() : base(
-            new CharacterBody("MainCharacter", new Vector2(-13, -42), Color.Blue),
+            new CharacterBody("MainCharacter", new Vector2(-13, -42), TeamColors.Friendly.Characters_GlowColor),
             new CharacterStats
             {
                 Name = "Weldon Zemke"

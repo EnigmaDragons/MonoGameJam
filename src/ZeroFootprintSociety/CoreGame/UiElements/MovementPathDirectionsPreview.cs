@@ -10,6 +10,7 @@ using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Themes;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -73,7 +74,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                     Add(new ColoredRectangle
                     {
                         Transform = GameWorld.Map.TileToWorldTransform(moveList[i]).WithSize(TileData.RenderSize),
-                        Color = Color.FromNonPremultiplied(255, 255, 255, 80)
+                        Color = UIColors.MovementPathDirectionsPreview_Tile
                     });
                 }
             }

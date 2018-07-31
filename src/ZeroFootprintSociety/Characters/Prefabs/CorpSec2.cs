@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters.Gear;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Characters.Prefabs
 {
     public class CorpSec2 : Character
     {
         public CorpSec2() : base(
-            new CharacterBody("CorporationSecurity2", new Vector2(-13, -42), Color.Red),
+            new CharacterBody("CorporationSecurity2", new Vector2(-13, -42), TeamColors.Enemy.Characters_GlowColor),
             new CharacterStats
             {
                 Name = "Corporate Security"
