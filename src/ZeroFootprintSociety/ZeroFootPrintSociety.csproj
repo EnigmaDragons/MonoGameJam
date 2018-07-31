@@ -57,6 +57,7 @@
     <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Prefabs\Sidechick.cs" />
     <Compile Include="Scenes\GameLevel.cs" />
+    <Compile Include="Scenes\LogoScene.cs" />
     <Compile Include="Tiles\CharacterSpawning.cs" />
     <Compile Include="Characters\Target.cs" />
     <Compile Include="Characters\Teams\TeamGroup.cs" />
@@ -915,6 +916,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Music\running-forever.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SFX\logo-rumble.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\border-side.png">
