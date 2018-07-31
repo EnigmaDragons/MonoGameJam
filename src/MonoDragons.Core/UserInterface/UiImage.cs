@@ -11,9 +11,9 @@ namespace MonoDragons.Core.UserInterface
         public Transform2 Transform { get; set; } = Transform2.Zero;
         public string Image { get; set; } = "none";
         public Func<bool> IsActive { get; set; } = () => true;
-        public int Alpha { get; set; } = 255;
         public SpriteEffects Effects { get; set; } = SpriteEffects.None;
-        
+        public Color Tint { get; set; } = Color.White;
+
         public void Clear()
         {
             Image = "none";
@@ -22,7 +22,7 @@ namespace MonoDragons.Core.UserInterface
         public void Draw(Transform2 parentTransform)
         {
             if (!"none".Equals(Image) && IsActive())
-                UI.DrawWithSpriteEffects(Image, parentTransform + Transform, Color.FromNonPremultiplied(255, 255, 255, Alpha), Effects);
+                UI.DrawWithSpriteEffects(Image, parentTransform + Transform, Tint, Effects);
         }
     }
 }

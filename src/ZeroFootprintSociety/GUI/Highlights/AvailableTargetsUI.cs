@@ -38,7 +38,7 @@ namespace ZeroFootPrintSociety.GUI
                 _targetVisuals[x.Character.CurrentTile.Position] = new List<IVisual>();
                 x.CoverToThem.Covers.ForEach(cover => cover.Providers.ForEach(p =>
                 {
-                    _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Alpha = 100, Image = "UI/shield-placeholder", Transform = p.Transform });
+                    _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Tint = 100.Alpha(), Image = "UI/shield-placeholder", Transform = p.Transform });
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = UIColors.AvailableTargetsUI_CoverPercentText, Transform = p.Transform });
                 }));
                 _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.CoverToThem.BlockChance, x.Character.Stats.Agility).Get()}%", Transform = x.Character.CurrentTile.Transform });
