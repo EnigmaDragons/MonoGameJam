@@ -7,6 +7,7 @@ using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using System.Collections.Generic;
 using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
@@ -38,7 +39,11 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
 
             var mainMenuButton = Buttons.Text(ctx, 3, "Return to Main Menu", () =>  Scene.NavigateTo("MainMenu"), () => true);
 
-            _visuals.Add(new ColoredRectangle { Color = Color.FromNonPremultiplied(0, 0, 0, 160), Transform = new Transform2(new Size2(1920, 1080)) });
+            _visuals.Add(new ColoredRectangle
+            {
+                Color = UIColors.InGameMenu_FullScreenRectangle, 
+                Transform = new Transform2(new Size2(1920, 1080))
+            });
             _visuals.Add(menu);
             _visuals.Add(mainMenuButton);
             _interceptLayer.Add(new ScreenClickable(HideDisplay));

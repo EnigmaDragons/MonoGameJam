@@ -10,6 +10,7 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
@@ -31,7 +32,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                     var visuals = x.State.OverwatchedTiles.Select(tile => new ColoredRectangle
                     {
                         Transform = GameWorld.Map[tile.Key].Transform,
-                        Color = Color.FromNonPremultiplied(100, 0, 0, 31)
+                        Color = UIColors.OverwatchedTiles_OverwatchedByCharacter
                     }).Cast<IVisual>().ToList();
                     _visuals[x] = visuals;
                 });

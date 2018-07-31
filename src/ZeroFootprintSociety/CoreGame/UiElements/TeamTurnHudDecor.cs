@@ -3,17 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
     class TeamTurnHudDecor : IVisual
     {
-        private static readonly Color EnemyColor = Color.FromNonPremultiplied(255, 0, 0, 120);
-        private static readonly Color FriendlyColor = Color.FromNonPremultiplied(196, 233, 246, 176);
-
         public void Draw(Transform2 parentTransform)
         {
-            var color = GameWorld.IsEnemyTurn ? EnemyColor : FriendlyColor;
+            var color = (GameWorld.IsEnemyTurn ? TeamColors.Enemy : TeamColors.Friendly).TeamTurnHudDecor_Text;
             var text = GameWorld.IsEnemyTurn ? "Enemy Turn" : "Player Turn";
 
             UI.DrawTextCentered(text, new Rectangle(0.0.VW(), 0.034.VH(), 1.0.VW(), 22), color, "Fonts/18");

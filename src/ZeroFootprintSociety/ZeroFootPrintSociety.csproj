@@ -161,6 +161,9 @@
     <Compile Include="Characters\CharacterBody.cs" />
     <Compile Include="CoreGame\Mechanics\Covers\Cover.cs" />
     <Compile Include="Scenes\ShootingRange.cs" />
+    <Compile Include="Themes\TeamColors.cs" />
+    <Compile Include="Themes\TeamColorTheme.cs" />
+    <Compile Include="Themes\UIColors.cs" />
     <Compile Include="Tiles\GameMap.cs" />
     <Compile Include="Tiles\GameTile.cs" />
     <Compile Include="Tiles\GameTileDetail.cs" />

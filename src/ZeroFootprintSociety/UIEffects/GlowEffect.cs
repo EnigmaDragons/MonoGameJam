@@ -2,6 +2,7 @@
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Themes;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.UIEffects
@@ -10,7 +11,7 @@ namespace ZeroFootPrintSociety.UIEffects
     {
         private readonly Transform2 _transform;
 
-        public Color Tint { get; set; } = Color.FromNonPremultiplied(48, 140, 140, 70);
+        public Color Tint { get; set; } = UIColors.GlowEffect_DefaultTint;
 
         public GlowEffect(Size2 size)
         {

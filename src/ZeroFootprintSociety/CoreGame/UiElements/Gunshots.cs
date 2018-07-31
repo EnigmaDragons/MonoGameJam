@@ -14,6 +14,7 @@ using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.PhsyicsMath;
 using MonoDragons.Core.Common;
 using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.Themes;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
@@ -52,7 +53,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         private void OnShotMissed(ShotMissed e)
         {
             _shots.Add(new MissedShotVisual(
-                new RectangleTexture(Color.White).Create(), 
+                new RectangleTexture(UIColors.Gunshot).Create(), 
                 CalculateTransform(e.Attacker, e.Target, (_random.Next(0, 1) == 0 ? -1 : 1) * _random.Next(2, 5) * 0.1),
                 e.Attacker.CurrentTile.Position));
         }
@@ -61,7 +62,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
         {
             var target = new ShotCalculation(e.Attacker.CurrentTile, e.Target.CurrentTile).BestShot().Covers.SelectMany(c => c.Providers).ToList().Random();
             _shots.Add(new TargetedShotVisual(
-                new RectangleTexture(Color.White).Create(),
+                new RectangleTexture(UIColors.Gunshot).Create(),
                 CalculateTransform(
                     e.Attacker, 
                     target.Transform.Center(), 
@@ -122,7 +123,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 UI.SpriteBatch.Draw(texture: _texture,
                     destinationRectangle: modifiedTransform.ToRectangle(),
                     sourceRectangle: null,
-                    color: Color.White,
+                    color: UIColors.Gunshot_MissedShot,
                     rotation: _transform.Rotation.Value - (float)(Math.PI / 2),
                     origin: new Vector2(1, 1),
                     effects: SpriteEffects.None,
@@ -167,7 +168,7 @@ namespace ZeroFootPrintSociety.CoreGame.UiElements
                 UI.SpriteBatch.Draw(texture: _texture,
                     destinationRectangle: modifiedTransform.ToRectangle(),
                     sourceRectangle: null,
-                    color: Color.White,
+                    color: UIColors.Gunshot_TargetedShotVisual,
                     rotation: _transform.Rotation.Value - (float)(Math.PI / 2),
                     origin: new Vector2(1, 1),
                     effects: SpriteEffects.None,
