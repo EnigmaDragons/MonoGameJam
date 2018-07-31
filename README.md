@@ -14,7 +14,7 @@ Kanban Board: https://zube.io/enigmadragons/monogamejam/w/workspace-1/kanban
 
 Big Idea:
 - Your main character has a max amount of total steps before dead/game over
-- Must break in to a MegaCorp in order to remedy the situation/injection/trackers/etc
+- Must break into a MegaCorp in order to remedy the situation/injection/trackers/etc
 
 Features:
 - UI display translucent fading footsteps behind where characters move
@@ -32,6 +32,22 @@ Features:
 2. Stretch yourself and try things you haven't done before
 3. Iterate quickly, and don't worry about making things perfect
 4. As a team, we want to deliver something complete and achievable
+
+----
+
+### Tiled Level Design Special Rules
+
+----
+
+**Map must have 6 layers, and can have any number of additional layers**
+
+ * `[ Floors, Walls, UnderChar1, UnderChar2, OverChar1, OverChar2, PostFX1, PostFX2... ]`
+
+**Custom Properties:**
+* `Hide (bool)`
+* `Blocking (bool)`
+* `Cover (string)` Possible Values: `None/Light/Medium/Heavy`
+* `FX (string)` Value format: `X_FXNAME_COLOR` X must be `o` or `n`
 
 ----
 
@@ -65,7 +81,8 @@ Features:
 - Programming - Félix Robidoux (DiglidiDudeNG)
 - Music - Joseph Gomes (Auvenil)
 - Sound - Joseph Gomes (Auvenil)
-- UI Design - (The_Dhel)
+- UI Design - Silas Reinagel (TheoConfidor)
+- Testing - Gordy Keene (gordy)
 
 ----
 
@@ -78,4 +95,6 @@ Features:
 - When the finished art is committed into `ArtSource` you may close the ticket
 
 The sooner people see art, the better the team's ideas will be about the world, the flavor, and the design. So early reveals are great. Get the team excited about what you are creating!
+
+
 
