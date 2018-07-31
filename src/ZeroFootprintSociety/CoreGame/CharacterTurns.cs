@@ -29,6 +29,9 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private void BeginNextTurn(TurnEnded e)
         {
+            if (GameWorld.IsGameOver)
+                return;
+
             Advance();
             while (CurrentCharacter.State.IsDeceased)
                 Advance();
@@ -45,8 +48,15 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private void OnCharacterDeath(CharacterDeceased _event)
         {
-            if (CurrentCharacter == _event.Character)
+            if (GameWorld.Friendlies.All(x => x.State.IsDeceased))
+            {
+                Event.Publish(new GameOver());
+                GameWorld.IsGameOver = true;
+            }
+            else if (CurrentCharacter == _event.Character)
+            {
                 Event.Publish(new ActionResolved());
+            }
         }
     }
 }

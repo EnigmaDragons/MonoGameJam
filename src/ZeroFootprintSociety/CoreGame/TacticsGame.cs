@@ -62,16 +62,15 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new PerceptionCalculator());
             Add(_drawMaster);
             Add(_combat);
-            Add(new HudView());
             Add(_camera);
+#if DEBUG
+            Add(new RecentEventDebugLogView { Position = new Vector2(0, 150), MaxLines = 30, HideTextPart = "ZeroFootPrintSociety." });
+#endif
+            Add(new HudView());
             GameWorld.Highlights = new Highlights();
             GameWorld.HighHighlights = new HighHighlights();
             Add((IAutomaton)GameWorld.Highlights);
             Add((IAutomaton)GameWorld.HighHighlights);
-
-#if DEBUG
-            Add(new RecentEventDebugLogView { Position = new Vector2(0, 150), MaxLines = 30, HideTextPart = "ZeroFootPrintSociety." });
-#endif
 
             _combat.Init();
             _camera.Init(_startingCameraTile);

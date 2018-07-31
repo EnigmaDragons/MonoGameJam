@@ -33,7 +33,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            if (GameWorld.CurrentCharacter.Team.Equals(Team.Friendly))
+            if (!GameWorld.IsGameOver && GameWorld.CurrentCharacter.Team.Equals(Team.Friendly))
                 _visuals.ForEach(x => x.Draw(parentTransform));
         }
 

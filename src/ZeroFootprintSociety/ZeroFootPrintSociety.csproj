@@ -89,6 +89,7 @@
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchResolver.cs" />
     <Compile Include="CoreGame\StateEvents\ActionSelected.cs" />
+    <Compile Include="CoreGame\StateEvents\GameOver.cs" />
     <Compile Include="CoreGame\StateEvents\TilesPercieved.cs" />
     <Compile Include="CoreGame\StateEvents\TilesSeen.cs" />
     <Compile Include="GUI\Camera\CameraArrowKeysControl.cs" />
@@ -106,7 +107,8 @@
     <Compile Include="CoreGame\StateEvents\MoveResolved.cs" />
     <Compile Include="CoreGame\StateEvents\TargetInspected.cs" />
     <Compile Include="CoreGame\StateEvents\TurnEnded.cs" />
-    <Compile Include="GUI\Menus\ActionOptionsView.cs" />
+    <Compile Include="GUI\Menus\GameOverMenu.cs" />
+    <Compile Include="GUI\Menus\ActionOptionsMenu.cs" />
     <Compile Include="CoreGame\StateEvents\MovementFinished.cs" />
     <Compile Include="CoreGame\Mechanics\Events\HideSelected.cs" />
     <Compile Include="Characters\CharacterGear.cs" />
@@ -116,7 +118,7 @@
     <Compile Include="CoreGame\StateEvents\TurnBegun.cs" />
     <Compile Include="CoreGame\Mechanics\Events\WeaponSwitched.cs" />
     <Compile Include="CoreGame\Actions\ActionOptionsAvailable.cs" />
-    <Compile Include="CoreGame\StateEvents\CharacterDeceases.cs" />
+    <Compile Include="CoreGame\StateEvents\CharacterDeceased.cs" />
     <Compile Include="CoreGame\StateEvents\MovementConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\MovementOptionsAvailable.cs" />
     <Compile Include="CoreGame\TacticsGame.cs" />
@@ -145,9 +147,9 @@
     <Compile Include="GUI\Hud\EquippedWeaponView.cs" />
     <Compile Include="GUI\HideUI.cs" />
     <Compile Include="GUI\Highlights\Highlights.cs" />
-    <Compile Include="GUI\HudView.cs" />
+    <Compile Include="GUI\Hud\HudView.cs" />
     <Compile Include="GUI\Menus\InGameMenu.cs" />
-    <Compile Include="GUI\Menus\MoveConfirmView.cs" />
+    <Compile Include="GUI\Menus\MoveConfirmMenu.cs" />
     <Compile Include="GUI\Highlights\MovementPathHighlights.cs" />
     <Compile Include="GUI\Highlights\OverwatchedTiles.cs" />
     <Compile Include="GUI\UiEvents\MenuDismissed.cs" />
@@ -801,6 +803,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\confirm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\game-over.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\menu-tall-panel.png">

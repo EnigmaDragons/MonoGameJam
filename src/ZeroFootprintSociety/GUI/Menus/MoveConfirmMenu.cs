@@ -10,7 +10,7 @@ using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.GUI
 {
-    class MoveConfirmView : IVisual
+    class MoveConfirmMenu : IVisual
     {
         private const int _menuWidth = 300;
         private const int _menuHeight = 600;
@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public ClickUI _clickUI;
 
-        public MoveConfirmView(ClickUI clickUI)
+        public MoveConfirmMenu(ClickUI clickUI)
         {
             _clickUI = clickUI;
             var ctx = new Buttons.MenuContext { X = _menuX, Y = _menuY, Width = _menuWidth, FirstButtonYOffset = 30 };

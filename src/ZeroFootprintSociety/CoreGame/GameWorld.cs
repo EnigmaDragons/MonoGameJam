@@ -22,6 +22,8 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public static IEnumerable<Character> Friendlies => FriendliesWhere();
 
+        public static bool IsGameOver { get; internal set; }
+
         public static IEnumerable<Character> FriendliesWhere(Predicate<Character> wherePredicate = null)
             => LivingCharacters.Where(x => x.Team == Team.Friendly && (wherePredicate?.Invoke(x) ?? true) );
 

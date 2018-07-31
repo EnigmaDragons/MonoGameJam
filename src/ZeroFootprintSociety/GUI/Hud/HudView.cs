@@ -11,13 +11,14 @@ namespace ZeroFootPrintSociety.GUI
         public HudView() : base(true)
         {
             Add(_clickUI);
-            Add(new ActionOptionsView(_clickUI));
+            Add(new GameOverMenu(_clickUI));
             Add(new InGameMenu(_clickUI));
-            Add(new MoveConfirmView(_clickUI));
+            Add(new MoveConfirmMenu(_clickUI));
             Add(new EquippedWeaponView(new Point(UI.OfScreenWidth(0.85f), UI.OfScreenHeight(0.89f))));
             Add(new CurrentCharacterView(new Point(UI.OfScreenWidth(0.01f), UI.OfScreenHeight(0.86f))));
             Add(new AttackPreview());
             Add(new TeamTurnHudDecor());
+            Add(new ActionOptionsMenu(_clickUI));
         }
     }
 }

@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("MainMenu");
+            RunGame("ShootingRange");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -33,7 +33,6 @@ namespace ZeroFootPrintSociety
                 { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
                 { "MainMenu", () => new MainMenuScene() },
                 { "SampleLevel", () => new SampleCorporationScene() },
-                { "Level1", () => new CorporationOutsideScene() },
                 { "ShootingRange", () => new ShootingRange() },
                 { "Credits", () => new CreditsScene() },
             });

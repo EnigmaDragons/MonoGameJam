@@ -23,7 +23,7 @@ namespace ZeroFootPrintSociety.Scenes
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
                 () => {
                     GameWorld.Clear();
-                    Scene.NavigateTo("Level1");
+                    Scene.NavigateTo("ShootingRange");
                 }, 
                 "New Game",
                 UIColors.MainMenuScene_ButtonDefault,

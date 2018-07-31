@@ -40,7 +40,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            if (GameWorld.CurrentCharacter.Team.IsIncludedIn(TeamGroup.Friendlies))
+            if (!GameWorld.IsGameOver && GameWorld.CurrentCharacter.Team.Equals(Team.Friendly))
                 _visuals.ForEach(x => x.Draw(parentTransform));
         }
 

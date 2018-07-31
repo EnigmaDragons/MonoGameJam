@@ -20,7 +20,6 @@ namespace ZeroFootPrintSociety.GUI
     {
         private bool _showsHoveredPathDirections = false;
         private bool _checksMouse = false;
-        private bool _mustInitPathDirections;
         private Point? _lastPointOver;
         private Point? _previousTileOver;
         private List<List<Point>> _availableMoves;
@@ -37,7 +36,6 @@ namespace ZeroFootPrintSociety.GUI
         {
             _availableMoves = e.AvailableMoves;
             _showsHoveredPathDirections = true;
-            _mustInitPathDirections = true;
             _checksMouse = GameWorld.CurrentCharacter.Team == Team.Friendly;
         }
 
