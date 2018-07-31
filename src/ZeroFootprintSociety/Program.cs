@@ -23,14 +23,14 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("DarkAlley");
+            RunGame("Logo");
         }
 
         private static SceneFactory CreateSceneFactory()
         {
             return new SceneFactory(new Map<string, Func<IScene>>
             {
-                { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
+                { "Logo", () => new LogoScene("MainMenu") },
                 { "MainMenu", () => new MainMenuScene() },
                 { "Credits", () => new CreditsScene() },
                 { "CharacterCreation", () => new CharacterCreation() },

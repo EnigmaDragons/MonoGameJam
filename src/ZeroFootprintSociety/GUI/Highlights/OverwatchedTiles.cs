@@ -30,12 +30,30 @@ namespace ZeroFootPrintSociety.GUI
             Event.Subscribe<ActionCancelled>(x => Hide(), this);
         }
 
+        const float multiplier_percentage_divisor = 2.5f;
+
         private void ShowIfApplicable()
         {
             if (_waitingForActionSelected)
             {
                 GameWorld.CurrentCharacter.State.OverwatchedTiles.ForEach(x =>
                 {
+                    int percentage = new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.Value.BlockChance).Get();
+                    int index = percentage >= 90 ? 4 : (percentage >= 65 ? 3 : (percentage >= 30 ? 2 : 1));
+
+                    _visuals.Add(
+
+                       new UiImage
+                       {
+                           Image = "Effects/D_Cover_Overwatched" + index,
+                           Transform = GameWorld.Map[x.Key].Transform,
+                           Tint = new Color(Color.Wheat, .5f * percentage / 100f),
+                       }
+
+
+                       );
+                    /*
+                     * //OLD ONE
                     _visuals.Add(new ColoredRectangle
                     {
                         Color = UIColors.OverwatchedTiles_Rectangle(Math.Min(255, (int)(150 * GameWorld.CurrentCharacter.Gear.EquippedWeapon.AsRanged().EffectiveRanges[GameWorld.CurrentCharacter.CurrentTile.Position.TileDistance(x.Key)]))),
@@ -47,7 +65,7 @@ namespace ZeroFootPrintSociety.GUI
                         TextColor = UIColors.OverwatchedTiles_Text,
                         Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.Value.BlockChance).Get()}%",
                         Transform = GameWorld.Map[x.Key].Transform
-                    });
+                    });*/
                 });
             }
         }

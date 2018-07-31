@@ -35,6 +35,7 @@ namespace ZeroFootPrintSociety.GUI
                         Transform = GameWorld.Map[tile.Key].Transform,
                         Color = UIColors.OverwatchedTiles_OverwatchedByCharacter
                     }).Cast<IVisual>().ToList();
+
                     _visuals[x] = visuals;
                 });
         }

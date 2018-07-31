@@ -43,6 +43,8 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animations\AnimBase.cs" />
+    <Compile Include="Animations\ScreenFade.cs" />
     <Compile Include="Animations\HorizontalFlyInAnimation.cs" />
     <Compile Include="Animations\IAnimation.cs" />
     <Compile Include="Animations\VerticalFlyInAnimation.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Scenes\SceneContainer.cs" />
     <Compile Include="Scenes\SimpleScene.cs" />
     <Compile Include="Scenes\VolumeDemo.cs" />
+    <Compile Include="Scenes\WithSoundEffect.cs" />
     <Compile Include="Text\ScaledSpriteFontSet.cs" />
     <Compile Include="UserInterface\ActiveElementChanged.cs" />
     <Compile Include="UserInterface\Anchor.cs" />
@@ -177,6 +180,7 @@
     <Compile Include="UserInterface\MutableTextPage.cs" />
     <Compile Include="UserInterface\ClickableUIElement.cs" />
     <Compile Include="UserInterface\ClickUI.cs" />
+    <Compile Include="UserInterface\UiColoredRectangle.cs" />
     <Compile Include="UserInterface\UiImage.cs" />
     <Compile Include="UserInterface\UIMathExtensions.cs" />
     <Compile Include="UserInterface\WorldImage.cs" />

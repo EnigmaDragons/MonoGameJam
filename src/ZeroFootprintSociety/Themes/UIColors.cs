@@ -46,7 +46,7 @@ namespace ZeroFootPrintSociety.Themes
         public static Color MovementPathHighlights_TileRotatingEdgesAnim { get; } = Color.FromNonPremultiplied(110, 170, 255, 255);
 
         public static Color OverwatchedTiles_Rectangle(int r) => Color.FromNonPremultiplied(r, 0, 0, 100);
-        public static Color OverwatchedTiles_Text { get; } = Color.White;
+        public static Color OverwatchedTiles_Text { get; } = new Color(248,223,223,1);
         public static Color OverwatchedTiles_OverwatchedByCharacter { get; } = Color.FromNonPremultiplied(100, 0, 0, 31);
 
         public static Color MainMenuScene_Background { get; } = Color.FromNonPremultiplied(0, 0, 0, 100);
