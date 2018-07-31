@@ -1,4 +1,4 @@
-﻿using MonoDragons.Core.Common;
+﻿using System.Linq;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
@@ -13,8 +13,7 @@ namespace ZeroFootPrintSociety.AI
 
         private void ChooseMoveIfApplicable(MovementOptionsAvailable e)
         {
-            IfAITurn(
-                () => Event.Publish(new MovementConfirmed(e.AvailableMoves.Random())));
+            IfAITurn(() => Event.Publish(new MovementConfirmed(e.AvailableMoves.First(x => x.Count == 1))));
         }
     }
 }
