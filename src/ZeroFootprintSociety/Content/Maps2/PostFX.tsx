@@ -51,25 +51,25 @@
  </tile>
  <tile id="8">
   <properties>
-   <property name="FX" value=""/>
+   <property name="FX" value="n_circlegradient-red"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="9">
   <properties>
-   <property name="FX" value=""/>
+   <property name="FX" value="n_smallcirclegradient-red"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="10">
   <properties>
-   <property name="FX" value=""/>
+   <property name="FX" value="o_circlegradient-red"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="11">
   <properties>
-   <property name="FX" value=""/>
+   <property name="FX" value="o_smallcirclegradient-red"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
@@ -93,25 +93,25 @@
  </tile>
  <tile id="15">
   <properties>
-   <property name="FX" value=""/>
+   <property name="FX" value="n_circlegradient-green"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="16">
   <properties>
-   <property name="FX" value=""/>
+   <property name="FX" value="n_smallcirclegradient-green"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="17">
   <properties>
-   <property name="FX" value=""/>
+   <property name="FX" value="o_circlegradient-green"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="18">
   <properties>
-   <property name="FX" value=""/>
+   <property name="FX" value="o_smallcirclegradient-green"/>
    <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
