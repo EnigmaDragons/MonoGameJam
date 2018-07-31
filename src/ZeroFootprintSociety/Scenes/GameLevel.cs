@@ -33,12 +33,21 @@ namespace ZeroFootPrintSociety.Scenes
         {
             LoadMap();
             SpawnCharacters();
+            SetRemainingFootstepsCounter();
 
             Add(new TacticsGame(
                 new TurnBasedCombat(
                     GameWorld.Map,
                     GameWorld.Characters),
                 CameraStartingTile).Initialized());
+        }
+
+        private void SetRemainingFootstepsCounter()
+        {
+            if (GameWorld.FootstepsRemaining == 0)
+            {
+                GameWorld.FootstepsRemaining = 500; // TODO Change me.
+            }
         }
 
         private void LoadMap()

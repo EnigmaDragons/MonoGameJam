@@ -6,10 +6,12 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters.GUI;
+using ZeroFootPrintSociety.Characters.Prefabs;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.Calculators;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 using ZeroFootPrintSociety.GUI;
@@ -52,6 +54,14 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<TilesPercieved>(OnTilesPercieved, this);
             Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
             Event.Subscribe<MoveResolved>(ContinueMoving, this);
+            Event.Subscribe<Moved>(FootstepsIfMainChar, this);
+        }
+
+        private void FootstepsIfMainChar(Moved obj)
+        {
+            if (this is MainChar && obj.Character.Equals(this))
+                if (GameWorld.FootstepsRemaining-- == 0)
+                    Event.Publish(new OutOfFootsteps());
         }
 
         private void ContinueMoving(MoveResolved e)

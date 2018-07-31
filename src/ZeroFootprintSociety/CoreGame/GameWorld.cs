@@ -24,6 +24,8 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public static bool IsGameOver { get; internal set; }
 
+        public static int FootstepsRemaining { get; set; } = 0;
+
         public static IEnumerable<Character> FriendliesWhere(Predicate<Character> wherePredicate = null)
             => LivingCharacters.Where(x => x.Team == Team.Friendly && (wherePredicate?.Invoke(x) ?? true) );
 
@@ -35,6 +37,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Highlights = null;
             HighHighlights = null;
             HoveredTile = Point.Zero;
+            FootstepsRemaining = 0;
         }
     }
 }
