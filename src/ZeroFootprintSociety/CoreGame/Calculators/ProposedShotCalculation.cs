@@ -27,7 +27,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 Attacker = _attacker,
                 Defender = _defender,
                 AttackerHitChance = new HitChanceCalculation(_attacker.Accuracy, _defenderBlockChance, _defender.Stats.Agility).Get(),
-                AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]),
+                AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]) - _defender.Stats.Guts,
                 AttackerBlockChance = _attackerBlockChance
             };
             if (_defender.Gear.EquippedWeapon.IsRanged)
@@ -35,7 +35,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 var defenderWeapon = _defender.Gear.EquippedWeapon.AsRanged();
                 proposed.DefenderHitChance = new HitChanceCalculation(_defender.Accuracy, _attackerBlockChance, _attacker.Stats.Agility).Get();
                 if (defenderWeapon.EffectiveRanges.ContainsKey(distance))
-                    proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]);
+                    proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]) - _attacker.Stats.Guts;
             }
             proposed.AttackerDamage = proposed.DefenderHitChance * proposed.DefenderBullets * proposed.DefenderBulletDamage / 100;
             proposed.DefenderDamage = proposed.AttackerHitChance * proposed.AttackerBullets * proposed.AttackerBulletDamage / 100;

@@ -12,6 +12,7 @@ namespace ZeroFootPrintSociety.Themes
         public Color Characters { get; set; }
 
         public Color TeamTurnHudDecor_Text { get; set; }
-
+        
+        public Color Footprints_GlowColor { get; set; }
     }
 }

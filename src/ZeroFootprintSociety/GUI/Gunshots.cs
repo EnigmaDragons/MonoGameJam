@@ -45,8 +45,8 @@ namespace ZeroFootPrintSociety.GUI
 
         private void OnShotHit(ShotHit e)
         {
-            _shots.Add(new TargetedShotVisual(
-                new RectangleTexture(Color.White).Create(), 
+            _shots.Add(new HitShotVisual(
+                new RectangleTexture(UIColors.Gunshot).Create(), 
                 CalculateTransform(e.Attacker, e.Target, _random.Next(-10, 10) * 0.001), 
                 e.Target.CurrentTile.Position));
         }
@@ -62,7 +62,7 @@ namespace ZeroFootPrintSociety.GUI
         private void OnShotBlocked(ShotBlocked e)
         {
             var target = new ShotCalculation(e.Attacker.CurrentTile, e.Target.CurrentTile).BestShot().Covers.SelectMany(c => c.Providers).ToList().Random();
-            _shots.Add(new TargetedShotVisual(
+            _shots.Add(new BlockedShotVisual(
                 new RectangleTexture(UIColors.Gunshot).Create(),
                 CalculateTransform(
                     e.Attacker, 
@@ -132,7 +132,7 @@ namespace ZeroFootPrintSociety.GUI
             }
         }
 
-        private class TargetedShotVisual : IShotVisual
+        private class HitShotVisual : IShotVisual
         {
             private const double _speed = 0.01;
             private readonly Texture2D _texture;
@@ -142,7 +142,55 @@ namespace ZeroFootPrintSociety.GUI
             private Point _tile;
             public bool IsDone { get; private set; }
 
-            public TargetedShotVisual(Texture2D texture, Transform2 transform, Point target)
+            public HitShotVisual(Texture2D texture, Transform2 transform, Point target)
+            {
+                _texture = texture;
+                _transform = transform;
+                _target = target;
+            }
+
+            public void Update(TimeSpan delta)
+            {
+                var distance = delta.TotalMilliseconds * _speed;
+                _distanceTravled += distance;
+                if (_tile == _target)
+                    IsDone = true;
+            }
+
+            public void Draw(Transform2 parentTransform)
+            {
+                var modifiedTransform = _transform;
+                modifiedTransform.Location =
+                    modifiedTransform.Location.MoveInDirection(_transform.Rotation.Value, _distanceTravled);
+                if (GameWorld.Map.Exists(GameWorld.Map.MapPositionToTile(new Vector2(modifiedTransform.Location.X,
+                    modifiedTransform.Location.Y + 24))))
+                    _tile = GameWorld.Map.MapPositionToTile(new Vector2(modifiedTransform.Location.X,
+                        modifiedTransform.Location.Y + 24));
+                else
+                    IsDone = true;
+                modifiedTransform += parentTransform;
+                UI.SpriteBatch.Draw(texture: _texture,
+                    destinationRectangle: modifiedTransform.ToRectangle(),
+                    sourceRectangle: null,
+                    color: UIColors.Gunshot_TargetedShotVisual,
+                    rotation: _transform.Rotation.Value - (float) (Math.PI / 2),
+                    origin: new Vector2(1, 1),
+                    effects: SpriteEffects.None,
+                    layerDepth: 0.0f);
+            }
+        }
+
+        private class BlockedShotVisual : IShotVisual
+        {
+            private const double _speed = 0.01;
+            private readonly Texture2D _texture;
+            private readonly Transform2 _transform;
+            private readonly Point _target;
+            private double _distanceTravled = 0;
+            private Point _tile;
+            public bool IsDone { get; private set; }
+
+            public BlockedShotVisual(Texture2D texture, Transform2 transform, Point target)
             {
                 _texture = texture;
                 _transform = transform;

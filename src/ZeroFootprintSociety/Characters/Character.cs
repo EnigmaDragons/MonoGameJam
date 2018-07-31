@@ -58,7 +58,7 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (e.Character == this)
             {
-                State.Footprints.Add(new Footprint(Body.CurrentTile.Position, Body.Facing));
+                Body.Footprints.Add(new Footprint(Body.Path.First(), Body.Facing));
                 Body.Stopped = false;
                 Body.Path.RemoveAt(0);
                 if (!Body.Path.Any() && !e.Character.State.IsDeceased)
@@ -70,8 +70,7 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (GameWorld.Turns.CurrentCharacter == this)
             {
-                State.Footprints.Clear();
-                State.Footprints.Add(new Footprint(movement.Path.First(), Body.Facing));
+                Body.Footprints.Add(new Footprint(movement.Path.First(), Body.Facing));
                 Body.Path = movement.Path.Skip(1).ToList();
                 if (!Body.Path.Any())
                     Event.Publish(new MovementFinished());
@@ -123,6 +122,7 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (GameWorld.CurrentCharacter == this)
             {
+                Body.Footprints.Clear();
                 State.IsHiding = false;
                 State.IsOverwatching = false;
                 State.OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();

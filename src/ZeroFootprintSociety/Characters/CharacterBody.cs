@@ -37,6 +37,7 @@ namespace ZeroFootPrintSociety.Characters
         public List<Point> Path = new List<Point>();
         public bool Stopped = false;
         public Direction Facing;
+        public List<Footprint> Footprints { get; set; } = new List<Footprint>();
 
         public Vector2 CurrentTileLocation { get; private set; }
         public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];
