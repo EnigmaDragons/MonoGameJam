@@ -9,6 +9,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
     public class VisibilityCalculation
     {
         private readonly Character _character;
+        const int calculation = 12; //10
 
         public VisibilityCalculation(Character character)
         {
@@ -18,7 +19,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         public DictionaryWithDefault<Point, bool> Calculate()
         {
             DictionaryWithDefault<Point, bool> canSee = new DictionaryWithDefault<Point, bool>(false);
-            new PointRadiusCalculation(_character.CurrentTile.Position, 10).Calculate()
+            new PointRadiusCalculation(_character.CurrentTile.Position, calculation).Calculate()
                 .Where(x => GameWorld.Map.Exists(x))
                 .Where(x => new ShotCalculation(_character.CurrentTile, GameWorld.Map[x]).BestShot().BlockChance != 100)
                 .ForEach(x => canSee[x] = true);
