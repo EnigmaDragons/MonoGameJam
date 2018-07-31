@@ -5,6 +5,8 @@ namespace ZeroFootPrintSociety.Tiles
 {
     public class GameTileDetail
     {
+        public static GameTileDetail None { get; } = new GameTileDetail(null, new Rectangle(), -1, true, Cover.Heavy, false, "", "");
+
         public Texture2D Texture { get; }
         public Rectangle SourceRect { get; }
         public int ZIndex { get; }

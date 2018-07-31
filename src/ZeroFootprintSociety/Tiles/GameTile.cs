@@ -11,6 +11,8 @@ namespace ZeroFootPrintSociety.Tiles
 {
     public class GameTile
     {
+        public static GameTile None { get; } = new GameTile(-1, -1, Transform2.Zero, new List<GameTileDetail> { GameTileDetail.None });
+
         private bool _seenOnce = false;
 
         public Point Position { get; }

@@ -16,8 +16,8 @@ namespace ZeroFootPrintSociety.Tiles
         public int MaxX { get; }
         public int MinY { get; }
         public int MaxY { get; }
-        public GameTile this[int x, int y] => _tileMap[x][y];
-        public GameTile this[Point point] => _tileMap[point.X][point.Y];
+        public GameTile this[int x, int y] => Exists(x, y) ? _tileMap[x][y] : GameTile.None;
+        public GameTile this[Point point] => Exists(point) ? _tileMap[point.X][point.Y] : GameTile.None;
         public List<GameTile> Tiles { get; }
 
         public GameMap(List<GameTile> tiles)
