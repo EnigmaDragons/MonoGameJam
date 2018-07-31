@@ -12,6 +12,8 @@ namespace ZeroFootPrintSociety.Themes
 {
     public static class UIColors
     {
+        public static Color Unchanged { get; } = Color.White;
+
         public static Color HealthBar_Health { get; } = Color.LimeGreen;
         public static Color HealthBar_Damage { get; } = Color.Pink;
 
@@ -57,10 +59,6 @@ namespace ZeroFootPrintSociety.Themes
         public static Color MainMenuScene_ButtonDefault { get; } = Color.Transparent;
         public static Color MainMenuScene_ButtonHover { get; } = Color.LightBlue;
         public static Color MainMenuScene_ButtonPress { get; } = Color.Blue;
-
-        public static Color GameTile_Background { get; } = Color.White;
-
-        public static Color SpriteAnimationFrame_DefaultTint { get; } = Color.White;
 
         public static Color GlowEffect_DefaultTint { get; } = Color.FromNonPremultiplied(48, 140, 140, 70);
 

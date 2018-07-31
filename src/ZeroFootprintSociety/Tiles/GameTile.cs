@@ -37,7 +37,7 @@ namespace ZeroFootPrintSociety.Tiles
             Details.Where(x => x.ZIndex == layer)
                 .Where(x => x.IsVisible)
                 .ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect,
-                    UIColors.GameTile_Background));
+                    UIColors.Unchanged));
         }
     }
 }

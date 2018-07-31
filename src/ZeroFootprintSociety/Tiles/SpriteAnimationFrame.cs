@@ -11,7 +11,7 @@ namespace ZeroFootPrintSociety.Tiles
         private readonly Texture2D _sprite;
         private readonly Transform2 _transform;
         public float DurationInSeconds { get; }
-        public Color Tint { get; set; } = UIColors.SpriteAnimationFrame_DefaultTint;
+        public Color Tint { get; set; } = UIColors.Unchanged;
 
         public SpriteAnimationFrame(Texture2D sprite, float scale, float durationInSeconds)
         {
