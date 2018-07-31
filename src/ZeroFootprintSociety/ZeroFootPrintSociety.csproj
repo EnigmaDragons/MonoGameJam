@@ -65,6 +65,8 @@
     <Compile Include="CoreGame\Calculators\ActionOptionsCalculator.cs" />
     <Compile Include="CoreGame\Calculators\HitChanceCalculation.cs" />
     <Compile Include="CoreGame\Calculators\MovementOptionsCalculator.cs" />
+    <Compile Include="CoreGame\Calculators\PerceptionCalculator.cs" />
+    <Compile Include="CoreGame\Calculators\PointRadiusCalculation.cs" />
     <Compile Include="CoreGame\Calculators\ProposedShotCalculation.cs" />
     <Compile Include="CoreGame\Calculators\ProposedShotCalculator.cs" />
     <Compile Include="CoreGame\Calculators\ShootOptionsCalculator.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchResolver.cs" />
     <Compile Include="CoreGame\StateEvents\ActionSelected.cs" />
+    <Compile Include="CoreGame\StateEvents\TilesPercieved.cs" />
     <Compile Include="CoreGame\StateEvents\TilesSeen.cs" />
     <Compile Include="CoreGame\UiElements\CameraArrowKeysControl.cs" />
     <Compile Include="CoreGame\UiElements\CameraControl.cs" />

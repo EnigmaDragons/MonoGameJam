@@ -59,6 +59,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new ProposedShotCalculator());
             Add(new AvailableTargetsUI());
             Add(new VisibilityCalculator());
+            Add(new PerceptionCalculator());
             Add(_drawMaster);
             Add(_combat);
             Add(new HudView());

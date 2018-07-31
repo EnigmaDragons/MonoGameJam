@@ -49,12 +49,22 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<ShotHit>(OnShotHit, this);
             Event.Subscribe<ShotAnimationsFinished>(OnShotsResolved, this);
             Event.Subscribe<TilesSeen>(OnTilesSeen, this);
+            Event.Subscribe<TilesPercieved>(OnTilesPercieved, this);
         }
 
         private void OnTilesSeen(TilesSeen e)
         {
             if (e.Character == this)
                 State.SeeableTiles = e.SeeableTiles;
+        }
+
+        private void OnTilesPercieved(TilesPercieved e)
+        {
+            if (e.Character == this)
+            {
+                State.PercievedTiles.Clear();
+                e.Tiles.ForEach(x => State.PercievedTiles[x] = true);
+            }
         }
 
         private void OnShotsResolved(ShotAnimationsFinished e)
