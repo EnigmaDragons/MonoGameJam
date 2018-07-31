@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
@@ -22,7 +21,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             if (!GameWorld.CurrentCharacter.State.OverwatchedTiles.Any())
             {
                 var overwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
-                var tiles = ValidTiles(TilesInRange(GameWorld.CurrentCharacter.CurrentTile.Position, GameWorld.CurrentCharacter.Gear.EquippedWeapon.AsRanged().Range));
+                var tiles = ValidTiles(new PointRadiusCalculation(GameWorld.CurrentCharacter.CurrentTile.Position, GameWorld.CurrentCharacter.Gear.EquippedWeapon.AsRanged().Range).Calculate());
                 tiles.ForEach(x =>
                 {
                     var shot = new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, GameWorld.Map[x]).BestShot();
@@ -41,22 +40,6 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         private List<Point> ValidTiles(List<Point> points)
         {
             return points.Where(x => GameWorld.Map.Exists(x) && GameWorld.Map[x].IsWalkable).ToList();
-        }
-
-        private List<Point> TilesInRange(Point point, int rangeRemaining)
-        {
-            IEnumerable<Point> list = new List<Point> { point };
-            if (rangeRemaining == 0)
-                return list.ToList();
-            var directions = new List<Point>
-            {
-                new Point(point.X - 1, point.Y),
-                new Point(point.X + 1, point.Y),
-                new Point(point.X, point.Y - 1),
-                new Point(point.X, point.Y + 1)
-            };
-            directions.Select(x => TilesInRange(x, rangeRemaining - 1)).ForEach(x => list = list.Concat(x));
-            return list.Distinct().ToList();
         }
     }
 }
