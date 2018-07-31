@@ -31,7 +31,7 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Add(new UiImage
                 {
-                    Image = "Effects/CornerTileOverlay",
+                    Image = "Effects/Cover_Gray",
                     Transform = GameWorld.Map.TileToWorldTransform(x.Last()).WithSize(TileData.RenderSize),
                     Tint = UIColors.AvailableMovesView_Rectangles
                 });
