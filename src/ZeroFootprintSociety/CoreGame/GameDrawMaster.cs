@@ -16,6 +16,7 @@ namespace ZeroFootPrintSociety.CoreGame
         const int UnderChar2 = 3;
         const int OverChar1 = 4;
         const int OverChar2 = 5;
+        private const int Shadows = 10;
 
         public void Draw(Transform2 parentTransform)
         {
@@ -38,6 +39,7 @@ namespace ZeroFootPrintSociety.CoreGame
             {
                 x.Draw(OverChar1, parentTransform);
                 x.Draw(OverChar2, parentTransform);
+                x.Draw(Shadows, parentTransform);
             });
             GameWorld.HighHighlights.Draw(parentTransform);
             GameWorld.Map.Tiles.ForEach(x => _fx.Draw(parentTransform, x));
