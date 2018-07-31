@@ -3,6 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.GUI;
+using Microsoft.Xna.Framework;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
@@ -18,6 +19,8 @@ namespace ZeroFootPrintSociety.CoreGame
         const int OverChar2 = 5;
         private const int Shadows = 10;
 
+        static readonly Color MultiplyColor = new Color(150, 210, 255, 255);
+
         public void Draw(Transform2 parentTransform)
         {
             var chars = GameWorld.Characters
@@ -25,20 +28,20 @@ namespace ZeroFootPrintSociety.CoreGame
                 .ThenBy(x => x.CurrentTile.Position.Y).ToList();
             GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(Floors, parentTransform);
-                x.Draw(Walls, parentTransform);
+                x.Draw(Floors, parentTransform, MultiplyColor);
+                x.Draw(Walls, parentTransform, MultiplyColor);
             });
             GameWorld.Highlights.Draw(parentTransform);
             GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(UnderChar1, parentTransform);
-                x.Draw(UnderChar2, parentTransform);
+                x.Draw(UnderChar1, parentTransform, MultiplyColor);
+                x.Draw(UnderChar2, parentTransform, MultiplyColor);
             });
             chars.ForEach(x => x.Draw(parentTransform));
             GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(OverChar1, parentTransform);
-                x.Draw(OverChar2, parentTransform);
+                x.Draw(OverChar1, parentTransform, MultiplyColor);
+                x.Draw(OverChar2, parentTransform, MultiplyColor);
                 x.Draw(Shadows, parentTransform);
             });
             GameWorld.HighHighlights.Draw(parentTransform);

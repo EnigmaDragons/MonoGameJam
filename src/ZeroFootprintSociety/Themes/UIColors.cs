@@ -57,9 +57,9 @@ namespace ZeroFootPrintSociety.Themes
         public static Color GlowEffect_DefaultTint { get; } = Color.FromNonPremultiplied(48, 140, 140, 70);
 
         public static Color TileFXCollection_Default { get; } = Color.FromNonPremultiplied(255, 255, 0, 120);
-        public static Color TileFXCollection_Blue { get; } = Color.FromNonPremultiplied(30, 90, 230, 60);
-        public static Color TileFXCollection_Turquoise { get; } = Color.FromNonPremultiplied(60, 200, 255, 80);
-        public static Color TileFXCollection_Red { get; } = Color.FromNonPremultiplied(255, 0, 0, 30);
-        public static Color TileFXCollection_Green { get; } = Color.FromNonPremultiplied(0, 255, 0, 30);
+        public static Color TileFXCollection_Blue { get; } = Color.FromNonPremultiplied(30, 90, 230, 50);
+        public static Color TileFXCollection_Turquoise { get; } = Color.FromNonPremultiplied(60, 200, 255, 60);
+        public static Color TileFXCollection_Red { get; } = Color.FromNonPremultiplied(255, 0, 0, 35);
+        public static Color TileFXCollection_Green { get; } = Color.FromNonPremultiplied(0, 255, 0, 35);
     }
 }
