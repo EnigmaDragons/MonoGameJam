@@ -170,6 +170,7 @@
     <Compile Include="Scenes\CorporationOutsideScene.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
+    <Compile Include="Scenes\DarkAlleyScene.cs" />
     <Compile Include="Scenes\SampleCorporationScene.cs" />
     <Compile Include="Characters\CharacterBody.cs" />
     <Compile Include="CoreGame\Mechanics\Covers\Cover.cs" />
@@ -753,12 +754,15 @@
     <Content Include="Content\Effects\VertNeonGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+<<<<<<< HEAD
     <Content Include="Content\Maps2\Characters.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Maps2\Corporation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+=======
+>>>>>>> 8cc5a94bc0655de96cef3ac9fdd94db6b83c410b
     <Content Include="Content\Maps2\Floors.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -904,9 +908,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Maps2\Corporate.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Maps2\Floors.tsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -939,6 +940,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Maps2\TestFogOfWar.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+    <ItemGroup>
+    <Content Include="Content\Maps2\DarkAlley.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
