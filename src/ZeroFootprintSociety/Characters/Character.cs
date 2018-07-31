@@ -9,6 +9,7 @@ using ZeroFootPrintSociety.Characters.Ui;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
+using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 using ZeroFootPrintSociety.Tiles;
@@ -47,6 +48,13 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<OverwatchTilesAvailable>(UpdateOverwatch, this);
             Event.Subscribe<ShotHit>(OnShotHit, this);
             Event.Subscribe<ShotAnimationsFinished>(OnShotsResolved, this);
+            Event.Subscribe<TilesSeen>(OnTilesSeen, this);
+        }
+
+        private void OnTilesSeen(TilesSeen e)
+        {
+            if (e.Character == this)
+                State.SeeableTiles = e.SeeableTiles;
         }
 
         private void OnShotsResolved(ShotAnimationsFinished e)
@@ -63,12 +71,15 @@ namespace ZeroFootPrintSociety.Characters
             Body.Init(tile);
             State.Init();
             _healthBar.Init();
+            // Initialize visible tiles.
+
             IsInitialized = true;
         }
 
         public Character Initialized(GameTile tile)
         {
             Init(tile);
+            State.SeeableTiles = new VisibilityCalculation(this).Calculate();
             return this;
         }
 
@@ -96,14 +107,14 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Draw(Transform2 parentTransform)
         {
-            if (State.IsDeceased)
+            if (State.IsDeceased || (Team == Team.Enemy && !GameWorld.Friendlies.Any(x => x.State.SeeableTiles.ContainsKey(CurrentTile.Position))))
                 return;
             Body.Draw(parentTransform);
         }
 
         public void DrawUI(Transform2 parentTransform)
         {
-            if (State.IsDeceased)
+            if (State.IsDeceased || (Team == Team.Enemy && !GameWorld.Friendlies.Any(x => x.State.SeeableTiles.ContainsKey(CurrentTile.Position))))
                 return;
             _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
             _damageNumbers.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));

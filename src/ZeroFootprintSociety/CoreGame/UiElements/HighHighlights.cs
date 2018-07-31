@@ -5,20 +5,15 @@ using MonoDragons.Core.PhysicsEngine;
 
 namespace ZeroFootPrintSociety.CoreGame.UiElements
 {
-    public class Highlights : IVisualAutomaton
+    public class HighHighlights : IVisualAutomaton
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly List<IAutomaton> _automata = new List<IAutomaton>();
 
-        public Highlights()
+        public HighHighlights()
         {
-            Add(new AvailableMovesView(GameWorld.Map));
+            Add(new Gunshots());
             Add(new FogOfWarView());
-            Add(new AvailableTargetsView());
-            Add(new OverwatchedTiles());
-            Add(new MovementPathHighlights());
-            Add(new MovementPathDirectionsPreview());
-            Add(new OverwatchesEnemyTiles());
         }
 
         public void Draw(Transform2 parentTransform)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters;
@@ -16,7 +17,13 @@ namespace ZeroFootPrintSociety.CoreGame
         public static Character CurrentCharacter => Turns.CurrentCharacter;
         public static bool IsEnemyTurn => CurrentCharacter.Team.Equals(Team.Enemy);
         public static Highlights Highlights { get; set; }
+        public static HighHighlights HighHighlights { get; set; }
         public static Point HoveredTile { get; set; } = new Point(0, 0);
+
+        public static IEnumerable<Character> Friendlies => FriendliesWhere();
+
+        public static IEnumerable<Character> FriendliesWhere(Predicate<Character> wherePredicate = null)
+            => LivingCharacters.Where(x => x.Team == Team.Friendly && (wherePredicate?.Invoke(x) ?? true) );
 
         internal static void Clear()
         {
@@ -24,6 +31,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Turns = null;
             Characters = new List<Character>();
             Highlights = null;
+            HighHighlights = null;
             HoveredTile = Point.Zero;
         }
     }
