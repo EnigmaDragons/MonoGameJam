@@ -4,8 +4,10 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Characters.Creator;
 using ZeroFootPrintSociety.Characters.Gear;
 using ZeroFootPrintSociety.GUI;
+using ZeroFootPrintSociety.IO;
 
 namespace ZeroFootPrintSociety.Scenes
 {
@@ -63,6 +65,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         public void Init()
         {
+            CurrentSaveFile.NewGame();
             _clickUi = new ClickUI();
             _classChoice = new ChoiceUI("Choose Class", 
                     new OptionUI(
@@ -187,32 +190,8 @@ namespace ZeroFootPrintSociety.Scenes
                     Transform = new Transform2(new Vector2(25, 450), new Size2(300, 50)) });
         }
 
-        private class Perk
-        {
-            public string Name { get; }
-            public string Description { get; }
-            public Action OnClick { get; }
+        
 
-            public Perk(string name, string description, Action onClick)
-            {
-                Name = name;
-                Description = description;
-                OnClick = onClick;
-            }
-        }
-
-        private class WeaponSet
-        {
-            public string Name { get; }
-            public Weapon Primary { get; }
-            public Weapon Secondary { get; }
-
-            public WeaponSet(string name, Weapon primary, Weapon secondary)
-            {
-                Name = name;
-                Primary = primary;
-                Secondary = secondary;
-            }
-        }
+        
     }
 }

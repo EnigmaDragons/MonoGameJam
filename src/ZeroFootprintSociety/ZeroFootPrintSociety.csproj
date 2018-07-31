@@ -48,6 +48,8 @@
     <Compile Include="AI\EnemyAI.cs" />
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
+    <Compile Include="Characters\Creator\Perk.cs" />
+    <Compile Include="Characters\Creator\WeaponSet.cs" />
     <Compile Include="Characters\Footprint.cs" />
     <Compile Include="Characters\Gear\MeleeWeapon.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
@@ -56,6 +58,11 @@
     <Compile Include="Characters\Prefabs\CorpSec3.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Prefabs\Sidechick.cs" />
+    <Compile Include="GUI\Menus\FileSelectionMenu.cs" />
+    <Compile Include="IO\CurrentSave.cs" />
+    <Compile Include="IO\Events\FileSaveCompleted.cs" />
+    <Compile Include="IO\SaveDataConverter.cs" />
+    <Compile Include="IO\SaveFileData.cs" />
     <Compile Include="Scenes\GameLevel.cs" />
     <Compile Include="Tiles\CharacterSpawning.cs" />
     <Compile Include="Characters\Target.cs" />
