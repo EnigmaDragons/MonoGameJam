@@ -855,6 +855,9 @@
     <Content Include="Content\Effects\D_Cover_Overwatched4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Effects\E_MovementPath.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Effects\GlowingFootsteps.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1016,6 +1019,9 @@
     </Content>
     <Content Include="Content\Weapons\urxsemishotgun.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GUI\Highlights\E_MovementPath.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

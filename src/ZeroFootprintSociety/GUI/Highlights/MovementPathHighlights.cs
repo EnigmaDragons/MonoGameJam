@@ -26,11 +26,22 @@ namespace ZeroFootPrintSociety.GUI
         private void OnMovementConfirmed(MovementConfirmed e)
         {
             var destination = e.Path.Last();
+
+            Add(new UiImage
+            {
+                Image = "Effects/Cover_Gray",
+                Transform = GameWorld.Map.TileToWorldTransform(destination).WithSize(TileData.RenderSize),
+                Tint = UIColors.AvailableMovesView_Rectangles
+            });
+
+            /*
             Add(new ColoredRectangle
             {
                 Transform = GameWorld.Map.TileToWorldTransform(destination).WithSize(TileData.RenderSize),
                 Color = UIColors.MovementPathHighlights_Tile
             });
+            */
+
             Add(new TileRotatingEdgesAnim(destination, Color.FromNonPremultiplied(110, 170, 255, 255)).Initialized());
         }
 
