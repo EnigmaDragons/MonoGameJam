@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="Walls" tilewidth="24" tileheight="24" tilecount="180" columns="9">
- <image source="Walls.png" width="216" height="360"/>
+<tileset name="Walls" tilewidth="24" tileheight="24" tilecount="207" columns="9">
+ <image source="Walls.png" width="216" height="552"/>
  <tile id="0">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
@@ -135,25 +135,25 @@
  </tile>
  <tile id="22">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="23">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="24">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="25">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
@@ -405,7 +405,7 @@
  </tile>
  <tile id="67">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
@@ -567,7 +567,7 @@
  </tile>
  <tile id="94">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
@@ -1076,6 +1076,168 @@
   </properties>
  </tile>
  <tile id="179">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="180">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="181">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="182">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="183">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="184">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="185">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="186">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="187">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="188">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="189">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="190">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="191">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="192">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="193">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="194">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="195">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="196">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="197">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="198">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="199">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="200">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="201">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="202">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="203">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="204">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="205">
+  <properties>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Heavy"/>
+  </properties>
+ </tile>
+ <tile id="206">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
