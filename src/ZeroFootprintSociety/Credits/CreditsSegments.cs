@@ -64,7 +64,7 @@ namespace ZeroFootPrintSociety.Credits
     public sealed class ProgrammerCredit : BasicJamCreditSegment
     {
         public override string Role => "Programmer";
-        public override string Name => "Félix Robidoux";
+        public override string Name => "Felix Robidoux";
     }
 
     public sealed class AlgorithmOptimizer : BasicJamCreditSegment
