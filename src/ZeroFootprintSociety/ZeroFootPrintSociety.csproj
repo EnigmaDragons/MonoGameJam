@@ -754,15 +754,12 @@
     <Content Include="Content\Effects\VertNeonGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-<<<<<<< HEAD
     <Content Include="Content\Maps2\Characters.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Maps2\Corporation.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-=======
->>>>>>> 8cc5a94bc0655de96cef3ac9fdd94db6b83c410b
     <Content Include="Content\Maps2\Floors.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
