@@ -8,7 +8,7 @@ using System;
 
 namespace ZeroFootPrintSociety.Scenes
 {
-    public class LogoScene : SceneContainer, IScene
+    public class LogoScene : ClickUiScene
     {
         private readonly string _nextScene;
 
@@ -17,9 +17,10 @@ namespace ZeroFootPrintSociety.Scenes
             _nextScene = nextScene;
         }
 
-        public void Init()
+        public override void Init()
         {
             Input.On(Control.Start, NavigateToMainMenu);
+            AddClickable(new ScreenClickable(NavigateToMainMenu));
             Sound.SoundEffect("SFX/logo-rumble.mp3").Play();
 
             var anim1 = new ScreenFade() { Duration = TimeSpan.FromSeconds(3.4), FromAlpha = 255, ToAlpha = 0 };
@@ -36,9 +37,5 @@ namespace ZeroFootPrintSociety.Scenes
         {
             Scene.NavigateTo(_nextScene);
         }
-
-        public void Dispose() { }
-
-        public void Draw() => base.Draw(Transform2.Zero);
     }
 }
