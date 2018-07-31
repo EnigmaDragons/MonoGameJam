@@ -50,6 +50,31 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<ShotAnimationsFinished>(OnShotsResolved, this);
             Event.Subscribe<TilesSeen>(OnTilesSeen, this);
             Event.Subscribe<TilesPercieved>(OnTilesPercieved, this);
+            Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
+            Event.Subscribe<MoveResolved>(ContinueMoving, this);
+        }
+
+        private void ContinueMoving(MoveResolved e)
+        {
+            if (e.Character == this)
+            {
+                
+                Body.Stopped = false;
+                Body.Path.RemoveAt(0);
+                if (!Body.Path.Any() && !e.Character.State.IsDeceased)
+                    Event.Publish(new MovementFinished());
+            }
+        }
+
+        private void OnMovementConfirmed(MovementConfirmed movement)
+        {
+            if (GameWorld.Turns.CurrentCharacter == this)
+            {
+                State.Footprints.Clear();
+                Body.Path = movement.Path.Skip(1).ToList();
+                if (!Body.Path.Any())
+                    Event.Publish(new MovementFinished());
+            }
         }
 
         private void OnTilesSeen(TilesSeen e)

@@ -34,8 +34,8 @@ namespace ZeroFootPrintSociety.Characters
 
         private SpriteAnimation _currentAnimation;
 
-        private List<Point> _path = new List<Point>();
-        private bool _stopped = false;
+        public List<Point> Path = new List<Point>();
+        public bool Stopped = false;
         
         public Vector2 CurrentTileLocation { get; private set; }
         public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];
@@ -46,19 +46,8 @@ namespace ZeroFootPrintSociety.Characters
             _glow = new GlowEffect(new Size2(60, 100)) { Tint = Color.FromNonPremultiplied(glowColor.R, glowColor.G, glowColor.B, 18) };
             _characterPath = characterPath;
             _offset = offset;
-            Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
             Event.Subscribe(EventSubscription.Create<ShotFired>(UpdateFacing, this));
             Event.Subscribe<MoveResolved>(ContinueMoving, this);
-        }
-
-        private void OnMovementConfirmed(MovementConfirmed movement)
-        {
-            if (GameWorld.Turns.CurrentCharacter.Body == this)
-            {
-                _path = movement.Path.Skip(1).ToList();
-                if (!_path.Any())
-                    Event.Publish(new MovementFinished());
-            }
         }
 
         public void Init(GameTile currentTile)
@@ -124,9 +113,9 @@ namespace ZeroFootPrintSociety.Characters
         {
             const double speedModifier = 0.2;
             _currentAnimation.Update(delta);
-            if (_path.Any() && !_stopped)
+            if (Path.Any() && !_stopped)
             {
-                var targetLocation = GameWorld.Map[_path.First()].Transform.Location;
+                var targetLocation = GameWorld.Map[Path.First()].Transform.Location;
                 var pastLocation = CurrentTileLocation;
                 CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds * speedModifier);
                 SetRunningFacing(pastLocation);
@@ -134,19 +123,8 @@ namespace ZeroFootPrintSociety.Characters
                 {
                     _stopped = true;
                     SetFacing(pastLocation);
-                    Event.Publish(new Moved { Character = GameWorld.CurrentCharacter, Position = _path.First() });
+                    Event.Publish(new Moved { Character = GameWorld.CurrentCharacter, Position = Path.First() });
                 }
-            }
-        }
-
-        private void ContinueMoving(MoveResolved e)
-        {
-            if (e.Character.Body == this)
-            {
-                _stopped = false;
-                _path.RemoveAt(0);
-                if (!_path.Any() && !e.Character.State.IsDeceased)
-                    Event.Publish(new MovementFinished());
             }
         }
 
