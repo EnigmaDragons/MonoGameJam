@@ -16,7 +16,7 @@ namespace ZeroFootPrintSociety.GUI
         private const int _menuWidth = 300;
         private const int _menuHeight = 600;
         private readonly int _menuX = 0.5f.VW() - (_menuWidth / 2);
-        private readonly int _menuY = 0.76f.VW();
+        private readonly int _menuY = 0.76f.VH();
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly ClickUIBranch _branch = new ClickUIBranch("Actions", 2);
 
