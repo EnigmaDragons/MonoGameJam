@@ -2,7 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
-using ZeroFootPrintSociety.UIEffects;
+using ZeroFootPrintSociety.GUI;
 
 namespace ZeroFootPrintSociety.CoreGame
 {

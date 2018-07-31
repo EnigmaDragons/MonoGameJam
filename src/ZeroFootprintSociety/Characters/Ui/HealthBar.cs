@@ -8,7 +8,7 @@ using Color = Microsoft.Xna.Framework.Color;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using Size2 = MonoDragons.Core.PhysicsEngine.Size2;
 
-namespace ZeroFootPrintSociety.Characters.Ui
+namespace ZeroFootPrintSociety.Characters.GUI
 {
     class HealthBar : IVisual
     {

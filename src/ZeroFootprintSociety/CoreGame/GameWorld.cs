@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.Characters;
-using ZeroFootPrintSociety.CoreGame.UiElements;
+using ZeroFootPrintSociety.GUI;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame

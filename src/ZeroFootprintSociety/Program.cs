@@ -35,6 +35,7 @@ namespace ZeroFootPrintSociety
                 { "SampleLevel", () => new SampleCorporationScene() },
                 { "Level1", () => new CorporationOutsideScene() },
                 { "ShootingRange", () => new ShootingRange() },
+                { "Credits", () => new CreditsScene() },
             });
         }
 

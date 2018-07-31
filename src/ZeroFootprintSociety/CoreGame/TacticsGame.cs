@@ -10,8 +10,8 @@ using ZeroFootPrintSociety.AI;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.CoreGame.UiElements;
-using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
+using ZeroFootPrintSociety.GUI;
+
 
 namespace ZeroFootPrintSociety.CoreGame
 {
