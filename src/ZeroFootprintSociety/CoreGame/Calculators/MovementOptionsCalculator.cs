@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.Calculators
@@ -23,8 +24,10 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         public void UpdateOverwatchers()
         {
             _overwatchedTiles.Clear();
+            if (GameWorld.CurrentCharacter.Team != Team.Friendly)
+                return;
             GameWorld.LivingCharacters
-                .Where(x => x.State.IsOverwatching && x.Team != GameWorld.CurrentCharacter.Team)
+                .Where(x => x.State.IsOverwatching && x.Team != Team.Friendly && GameWorld.FriendlyPerception[x.CurrentTile.Position])
                 .ForEach(x => x.State.OverwatchedTiles.ForEach(tile => _overwatchedTiles[tile.Key] = true));
         }
 
