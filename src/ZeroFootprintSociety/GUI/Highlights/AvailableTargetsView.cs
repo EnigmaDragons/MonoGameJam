@@ -16,8 +16,8 @@ namespace ZeroFootPrintSociety.GUI
 {
     public class AvailableTargetsView : IVisualAutomaton
     {
-        private readonly List<IVisual> _visuals = new List<IVisual>();
-        private readonly List<IAutomaton> _automata = new List<IAutomaton>();
+        private List<IVisual> _visuals = new List<IVisual>();
+        private List<IAutomaton> _automata = new List<IAutomaton>();
 
         public AvailableTargetsView()
         {
@@ -28,24 +28,28 @@ namespace ZeroFootPrintSociety.GUI
 
         private void ClearOptions()
         {
-            _visuals.Clear();
-            _automata.Clear();
+            _visuals = new List<IVisual>();
+            _automata = new List<IAutomaton>();
         }
 
         private void ShowOptions(ShootSelected e)
         {
+            var visuals = new List<IVisual>();
+            var automata = new List<IAutomaton>();
             e.AvailableTargets.ForEach(x =>
             {
-                _visuals.Add(new ColoredRectangle
+                visuals.Add(new ColoredRectangle
                 {
                     Transform = x.Character.CurrentTile.Transform, 
                     Color = UIColors.AvailableTargetsView_Rectanges
                 });
                 var anim = new TileRotatingEdgesAnim(x.Character.CurrentTile.Position, UIColors.AvailableTargetsView_TileRotatingEdgesAnim);
                 anim.Init();
-                _visuals.Add(anim);
-                _automata.Add(anim);
+                visuals.Add(anim);
+                automata.Add(anim);
             });
+            _visuals = visuals;
+            _automata = automata;
         }
 
         public void Draw(Transform2 parentTransform)
