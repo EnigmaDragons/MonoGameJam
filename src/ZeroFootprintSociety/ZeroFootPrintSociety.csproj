@@ -69,6 +69,7 @@
     <Compile Include="CoreGame\StateEvents\EnemySpotted.cs" />
     <Compile Include="CoreGame\StateEvents\MoodChange.cs" />
     <Compile Include="GUI\ChatBox.cs" />
+    <Compile Include="GUI\Highlights\MoveAttackTargetsView.cs" />
     <Compile Include="GUI\Highlights\CharacterGroundFootprints.cs" />
     <Compile Include="GUI\Menus\SwitchWeaponsMenu.cs" />
     <Compile Include="GUI\UiEffects\FadingVisual.cs" />

@@ -20,6 +20,7 @@ namespace ZeroFootPrintSociety.GUI
             Add(new MovementPathHighlights());
             Add(new MovementPathDirectionsPreview());
             Add(new OverwatchesEnemyTiles());
+            Add(new MoveAttackTargetsView());
             Add(new CharacterGroundFootprints());
         }
 
