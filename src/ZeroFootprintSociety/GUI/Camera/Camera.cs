@@ -88,7 +88,7 @@ namespace ZeroFootPrintSociety.GUI
 
         private void IfPerceivable(Point tile, Action action)
         {
-            if (GameWorld.Friendlies.Any(x => x.State.CanPercieve(tile)))
+            if (GameWorld.FriendlyPerception[tile])
                 action();
         } 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
@@ -26,6 +27,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public static bool IsGameOver { get; internal set; }
         public static IEnumerable<Character> FriendliesWhere(Predicate<Character> wherePredicate = null)
             => LivingCharacters.Where(x => x.Team == Team.Friendly && (wherePredicate?.Invoke(x) ?? true) );
+        public static DictionaryWithDefault<Point, bool> FriendlyPerception { get; set; } = new DictionaryWithDefault<Point, bool>(false);
         
         private static int _footsteps = 0;
         public static int FootstepsRemaining
@@ -45,6 +47,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Characters = new List<Character>();
             Highlights = null;
             HighHighlights = null;
+            FriendlyPerception = new DictionaryWithDefault<Point, bool>(false);
             HoveredTile = Point.Zero;
             _footsteps = 0;
         }
