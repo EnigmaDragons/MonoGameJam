@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
+using MonoDragons.Core.Development;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.Tiles;
 
@@ -23,7 +24,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             var possibleTiles = new PointRadiusCalculation(_character.CurrentTile.Position, calculation).Calculate()
                 .Where(x => GameWorld.Map.Exists(x)).ToList();
             possibleTiles
-                .Where(x => new ShotCalculation(_character.CurrentTile, GameWorld.Map[x]).BestShot().BlockChance != 100 )
+                .Where(x => new ShotCalculation(_character.CurrentTile, GameWorld.Map[x]).CanShoot())
                 .ForEach(x => canSee[x] = true);
             canSee.Where(x => GameWorld.Map[x.Key].Cover == Cover.Heavy)
                 .ForEach(x =>

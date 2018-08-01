@@ -21,25 +21,29 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             _victim = victim;
         }
 
-        public ShotCoverInfo BestShot()
+        public ShotCoverInfo GetBestShot()
         {
-            return new ShotCoverInfo(OptimalShot(CoversFromEachCorner()));
-        }
-
-        private List<CoverProvided> OptimalShot(List<List<CoverProvided>> options)
-        {
-            return options.OrderBy(covers => covers.Sum(x => (int)x.Cover)).First();
-        }
-
-        private List<List<CoverProvided>> CoversFromEachCorner()
-        {
-            return new List<List<CoverProvided>>
+            var viableCovers = new List<List<CoverProvided>>();
+            foreach(var covers in CoversFromEachCorner())
             {
-                CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X, _aggressor.Transform.Location.Y), TileSide.TopLeft),
-                CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X + _aggressor.Transform.Size.Width, _aggressor.Transform.Location.Y), TileSide.TopRight),
-                CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X, _aggressor.Transform.Location.Y + _aggressor.Transform.Size.Height), TileSide.BottomLeft),
-                CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X + _aggressor.Transform.Size.Width, _aggressor.Transform.Location.Y + _aggressor.Transform.Size.Height), TileSide.BottomRight)
-            };
+                if(covers.Sum(c => (int)c.Cover) == 0)
+                    return new ShotCoverInfo(covers);
+                viableCovers.Add(covers);
+            }
+            return new ShotCoverInfo(viableCovers.OrderBy(covers => covers.Sum(x => (int)x.Cover)).First());
+        }
+
+        public bool CanShoot()
+        {
+            return CoversFromEachCorner().Any(covers => covers.Sum(c => (int)c.Cover) != 100);
+        }
+
+        private IEnumerable<List<CoverProvided>> CoversFromEachCorner()
+        {
+            yield return CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X, _aggressor.Transform.Location.Y), TileSide.TopLeft);
+            yield return CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X + _aggressor.Transform.Size.Width, _aggressor.Transform.Location.Y), TileSide.TopRight);
+            yield return CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X, _aggressor.Transform.Location.Y + _aggressor.Transform.Size.Height), TileSide.BottomLeft);
+            yield return CoversFromThisCorner(new Vector2(_aggressor.Transform.Location.X + _aggressor.Transform.Size.Width, _aggressor.Transform.Location.Y + _aggressor.Transform.Size.Height), TileSide.BottomRight);
         }
 
         private List<CoverProvided> CoversFromThisCorner(Vector2 aggressorCorner, TileSide corner)
