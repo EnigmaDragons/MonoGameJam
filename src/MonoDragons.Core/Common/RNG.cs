@@ -47,6 +47,17 @@ namespace MonoDragons.Core.Common
         {
             return list[Int(list.Count)];
         }
+        
+        public static T Random<T>(this IList<T> list)
+        {
+            return list[Int(list.Count)];
+        }
+        
+        
+        public static T Random<T>(this IReadOnlyList<T> list)
+        {
+            return list[Int(list.Count)];
+        }
 
         public static T Random<T>(this List<T> list, Func<T, bool> condition)
         {

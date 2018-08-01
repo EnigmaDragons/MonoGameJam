@@ -19,6 +19,7 @@ namespace ZeroFootPrintSociety.CoreGame
         const int OverChar1 = 4;
         const int OverChar2 = 5;
         private const int Shadows = 10;
+        private const int FogOfWar = 99;
 
         static readonly Color MultiplyColor = new Color(150, 210, 255, 255);
 
@@ -44,6 +45,7 @@ namespace ZeroFootPrintSociety.CoreGame
                 x.Draw(OverChar1, parentTransform);
                 x.Draw(OverChar2, parentTransform);
                 x.Draw(Shadows, parentTransform);
+                x.Draw(FogOfWar, parentTransform);
             }));
             Perf.Time("Drew High Highlights", () => GameWorld.HighHighlights.Draw(parentTransform));
             Perf.Time("Drew PostFX", () => GameWorld.Map.Tiles.ForEach(x => _fx.Draw(parentTransform, x)));

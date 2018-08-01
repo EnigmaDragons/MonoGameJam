@@ -55,7 +55,6 @@ namespace ZeroFootPrintSociety.CoreGame
             var visibilityCalculator = new VisibilityCalculator();
             var perceptionCalculator = new PerceptionCalculator();
             var perceptionUpdater = new FrinedlyPerceptionUpdater();
-            Add(perceptionUpdater);
             Add(new EnemyAI());
             Add(new ActionOptionsCalculator());
             Add(new HideUI());
@@ -65,6 +64,8 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new AvailableTargetsUI());
             Add(visibilityCalculator);
             Add(perceptionCalculator);
+            Add(perceptionUpdater);
+            Add(new FriendlyVisionCalculator());
             Add(_drawMaster);
             Add(_combat);
             Add(_camera);

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Themes;
 
@@ -11,9 +12,10 @@ namespace ZeroFootPrintSociety.Tiles
 {
     public class GameTile
     {
+        private const int FogLayer = 99;
+        private static readonly ColoredRectangle _lightFog = new ColoredRectangle { Color = UIColors.FogColor, Transform = new Transform2(TileData.RenderSize)};
+        
         public static GameTile None { get; } = new GameTile(-1, -1, Transform2.Zero, new List<GameTileDetail> { GameTileDetail.None });
-
-        private bool _seenOnce = false;
 
         public Point Position { get; }
         public Transform2 Transform { get; }
@@ -22,7 +24,8 @@ namespace ZeroFootPrintSociety.Tiles
         public Cover Cover { get; }
         public List<string> PostFX { get; }
         public string SpawnCharacter { get; }
-        public bool SeenOnce => _seenOnce;
+        public bool EverSeenByFriendly { get; set; }
+        public bool CurrentlyFriendlyVisible { get; set; } = true; // TODO: Set this;
 
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {
@@ -34,8 +37,6 @@ namespace ZeroFootPrintSociety.Tiles
             SpawnCharacter = details.Select(x => x.SpawnCharacter).FirstOrDefault(x => !string.IsNullOrWhiteSpace(x)) ?? "None";
         }
 
-        public void See() => _seenOnce = true;
-
         public void Draw(int layer, Transform2 parentTransform)
         {
             Draw(layer, parentTransform, UIColors.Unchanged);
@@ -43,9 +44,16 @@ namespace ZeroFootPrintSociety.Tiles
 
         public void Draw(int layer, Transform2 parentTransform, Color tint)
         {
-            Details.Where(x => x.ZIndex == layer)
-                .Where(x => x.IsVisible)
-                .ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect, tint));
+            if (!EverSeenByFriendly)
+                return;
+            if (layer.Equals(FogLayer) && !CurrentlyFriendlyVisible)
+                _lightFog.Draw(parentTransform + Transform);
+            else
+                Details.Where(x => x.ZIndex == layer)
+                    .Where(x => x.IsVisible)
+                    .ForEach(x =>
+                        World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect,
+                            tint));
         }
     }
 }

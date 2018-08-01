@@ -16,7 +16,7 @@ namespace ZeroFootPrintSociety.CoreGame
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
         
         public GameMap Map { get; }
-        public List<List<Point>> AvailableMoves { get; private set; }
+        public IReadOnlyList<IReadOnlyList<Point>> AvailableMoves { get; private set; }
         public List<Target> Targets { get; private set; }
 
         public TurnBasedCombat(GameMap map, IReadOnlyList<Character> characters)
