@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.GUI;
 using ZeroFootPrintSociety.Tiles;
 
@@ -20,14 +22,22 @@ namespace ZeroFootPrintSociety.CoreGame
         public static HighHighlights HighHighlights { get; set; }
         public static Point HoveredTile { get; set; } = new Point(0, 0);
 
-        public static IEnumerable<Character> Friendlies => FriendliesWhere();
-
         public static bool IsGameOver { get; internal set; }
 
-        public static int FootstepsRemaining { get; set; } = 0;
-
+        public static IEnumerable<Character> Friendlies => FriendliesWhere();
         public static IEnumerable<Character> FriendliesWhere(Predicate<Character> wherePredicate = null)
             => LivingCharacters.Where(x => x.Team == Team.Friendly && (wherePredicate?.Invoke(x) ?? true) );
+        
+        private static int _footsteps = 0;
+        public static int FootstepsRemaining
+        {
+            get => _footsteps;
+            set
+            {
+                _footsteps = value;
+                Event.Publish(new FootstepCounted {Steps = value});
+            }
+        }
 
         internal static void Clear()
         {
@@ -37,7 +47,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Highlights = null;
             HighHighlights = null;
             HoveredTile = Point.Zero;
-            FootstepsRemaining = 0;
+            _footsteps = 0;
         }
     }
 }
