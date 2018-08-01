@@ -12,6 +12,15 @@ namespace ZeroFootPrintSociety.Soundtrack
             _songs = new DictionaryWithDefault<MusicType, string>(ambientSongName);
         }
 
+        public LevelMusic(string ambientSongName, string actionSongName, string bossSongName)
+        {
+            _songs = new DictionaryWithDefault<MusicType, string>(ambientSongName)
+            {
+                {MusicType.Action, actionSongName},
+                {MusicType.Boss, bossSongName}
+            };
+        }
+
         public void Play(MusicType musicType)
         {
             Sound.Music(_songs[musicType]).Play();

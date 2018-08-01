@@ -19,13 +19,13 @@ namespace ZeroFootPrintSociety.Scenes
         private LevelMusic Music { get; }
 
         public GameLevel(string mapFileName)
-            : this("Maps2", mapFileName, new Point(10, 10), new LevelMusic("corp-amb")) { }
+            : this("Maps2", mapFileName, new Point(10, 10), new LevelMusic("corp-amb", "corp-amb", "corp-boss")) { }
         
         public GameLevel(string mapFileName, LevelMusic music)
             : this("Maps2", mapFileName, new Point(10, 10), music) { }
 
         public GameLevel(string mapDir, string mapFileName)
-            : this(mapDir, mapFileName, new Point(10, 10), new LevelMusic("corp-amb")) { }
+            : this(mapDir, mapFileName, new Point(10, 10), new LevelMusic("corp-amb", "corp-amb", "corp-boss")) { }
 
         private GameLevel(string mapDir, string mapFileName, Point cameraStartingPosition, LevelMusic music)
         {
