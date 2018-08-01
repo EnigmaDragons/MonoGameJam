@@ -17,5 +17,10 @@ namespace MonoDragons.Core.Common
             for (var i = 0; i < coll.Count; i++)
                 indexAction(coll[i], i);
         }
+
+        public static T ValueOrDefault<TKey, T>(this IDictionary<TKey, T> dictionary, TKey key, T defaultValue)
+        {
+            return dictionary.TryGetValue(key, out var val) ? val : defaultValue;
+        }
     }
 }

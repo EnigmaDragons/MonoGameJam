@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -17,11 +18,13 @@ namespace ZeroFootPrintSociety.GUI
 {
     public class MovementPathDirectionsPreview : IVisualAutomaton
     {
+        private static IReadOnlyList<IReadOnlyList<Point>> Empty = new List<List<Point>>(0);
+        
         private bool _showsHoveredPathDirections = false;
         private bool _shouldCheckMouse = false;
         private Point? _lastPointOver;
         private Point? _previousTileOver;
-        private List<List<Point>> _availableMoves = new List<List<Point>>(0);
+        private IReadOnlyList<IReadOnlyList<Point>> _availableMoves = Empty;
         private List<Transform2> _currentPathTransforms = new List<Transform2>(0);
         private readonly IVisual _highlight = new ColoredRectangle
         {
@@ -39,7 +42,7 @@ namespace ZeroFootPrintSociety.GUI
 
         private void OnMovementOptionsAvailable(MovementOptionsAvailable e)
         {
-            _availableMoves = e.AvailableMoves;
+            _availableMoves = e.AvailableMoves.ToList();
             _showsHoveredPathDirections = true;
             _shouldCheckMouse = GameWorld.CurrentCharacter.Team == Team.Friendly;
         }
@@ -47,7 +50,7 @@ namespace ZeroFootPrintSociety.GUI
         private void OnMovementConfirmed(MovementConfirmed e)
         {
             _shouldCheckMouse = false;
-            _availableMoves = null;
+            _availableMoves = Empty;
             _lastPointOver = e.Path.First();
         }
 
@@ -68,7 +71,7 @@ namespace ZeroFootPrintSociety.GUI
         private void InitDirections()
         {
             _previousTileOver = null;
-            var path = _availableMoves.Find(x => x.Last() == _lastPointOver) ?? new List<Point>();
+            var path = _availableMoves.ToList().Find(x => x.Last() == _lastPointOver) ?? new List<Point>();
             _currentPathTransforms = path.Select(x => GameWorld.Map.TileToWorldTransform(x)).ToList();
         }
         

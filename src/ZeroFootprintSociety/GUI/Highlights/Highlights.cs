@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.CoreGame;
@@ -14,7 +15,6 @@ namespace ZeroFootPrintSociety.GUI
         public Highlights()
         {
             Add(new AvailableMovesView(GameWorld.Map));
-            Add(new FogOfWarView());
             Add(new AvailableTargetsView());
             Add(new OverwatchedTiles());
             Add(new MovementPathHighlights());
@@ -24,7 +24,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            _visuals.ForEach(x => x.Draw(parentTransform));
+            _visuals.ForEach(x => Perf.Time($"Drew {x.GetType().Name}", () => x.Draw(parentTransform)));
         }
 
         public void Update(TimeSpan delta)

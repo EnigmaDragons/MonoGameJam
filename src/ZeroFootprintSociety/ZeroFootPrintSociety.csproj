@@ -56,6 +56,7 @@
     <Compile Include="Characters\Prefabs\CorpSec3.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Prefabs\Sidechick.cs" />
+    <Compile Include="CoreGame\Calculators\FriendlyVisionCalculator.cs" />
     <Compile Include="CoreGame\Mechanics\Events\FootstepCounted.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OutOfFootsteps.cs" />
     <Compile Include="GUI\ChatBox.cs" />
@@ -150,7 +151,6 @@
     <Compile Include="GUI\CombatantSummary.cs" />
     <Compile Include="GUI\Hud\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
-    <Compile Include="GUI\FogOfWarView.cs" />
     <Compile Include="GUI\FootprintsUI.cs" />
     <Compile Include="GUI\GuiFonts.cs" />
     <Compile Include="GUI\Gunshots.cs" />

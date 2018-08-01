@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 
@@ -13,13 +14,12 @@ namespace ZeroFootPrintSociety.GUI
         public HighHighlights()
         {
             Add(new Gunshots());
-            Add(new FogOfWarView());
             Add(new FootprintsUI());
         }
 
         public void Draw(Transform2 parentTransform)
         {
-            _visuals.ForEach(x => x.Draw(parentTransform));
+            _visuals.ForEach(x => Perf.Time($"Drew {x.GetType().Name}", () => x.Draw(parentTransform)));
         }
 
         public void Update(TimeSpan delta)

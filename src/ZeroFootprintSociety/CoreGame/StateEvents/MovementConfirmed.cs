@@ -8,7 +8,7 @@ namespace ZeroFootPrintSociety.CoreGame.StateEvents
     {
         public IReadOnlyList<Point> Path { get; }
 
-        public MovementConfirmed(List<Point> path)
+        public MovementConfirmed(IReadOnlyList<Point> path)
         {
             if (path.Count == 0)
                 throw new InvalidOperationException("All Movement Paths must have an ending");
