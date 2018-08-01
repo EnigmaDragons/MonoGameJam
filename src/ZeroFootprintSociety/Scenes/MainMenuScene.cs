@@ -22,7 +22,7 @@ namespace ZeroFootPrintSociety.Scenes
         public override void Init()
         {
             Input.On(Control.Menu, () => Environment.Exit(0));
-            Sound.Music("placeholder-main-theme").Play();
+            Sound.Music("main-theme").Play();
             Add(new UiImage { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new ColoredRectangle { Color = UIColors.MainMenuScene_Background, Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new UiImage { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });

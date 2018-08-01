@@ -25,7 +25,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("Logo");
+            RunGame("CharacterCreation");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -39,7 +39,7 @@ namespace ZeroFootPrintSociety
                 { "CharacterCreation", () => new CharacterCreation() },
                 { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
                 { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
-                { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb")) },
+                { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb", "alley-action", "alley-action")) },
                 { "SpawnTest", () => new GameLevel("SpawnTest.tmx") },
                 { "FinalFloor", () => new GameLevel("FinalFloor.tmx") },
             });
