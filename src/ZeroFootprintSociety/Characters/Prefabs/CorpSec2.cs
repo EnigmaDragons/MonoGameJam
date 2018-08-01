@@ -10,9 +10,15 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterBody("CorporationSecurity2", new Vector2(-13, -42), TeamColors.Enemy.Characters_GlowColor),
             new CharacterStats
             {
-                Name = "CorpSec Trooper"
+                Name = "CorpSec Trooper",
+                HP = 40,
+                Movement = 7,
+                Accuracy = 5,
+                Guts = 7,
+                Agility = 6,
+                Perception = 8
             },
-            new CharacterGear(new RsxCarbine(), new RsxCarbine()),
+            new CharacterGear(WeaponLists.RandomPrimary(), WeaponLists.RandomSecondary()),
             Team.Enemy,
             "Characters/placeholder-soldier-face.png")
         {
