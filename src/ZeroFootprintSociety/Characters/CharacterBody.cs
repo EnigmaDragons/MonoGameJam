@@ -18,7 +18,6 @@ namespace ZeroFootPrintSociety.Characters
 {
     public sealed class CharacterBody : IAutomaton, IVisual
     {
-
         private const double UnseenEnemySpeed = 9;
         private const double RunSpeed = 0.38;
         private readonly Vector2 _offset;
@@ -40,7 +39,6 @@ namespace ZeroFootPrintSociety.Characters
         public List<Point> Path = new List<Point>();
         public bool Stopped = false;
         public Direction Facing;
-        public List<Footprint> Footprints { get; set; } = new List<Footprint>();
 
         public Vector2 CurrentTileLocation { get; private set; }
         public GameTile CurrentTile => GameWorld.Map[GameWorld.Map.MapPositionToTile(CurrentTileLocation)];

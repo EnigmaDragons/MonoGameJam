@@ -70,7 +70,9 @@
     <Compile Include="CoreGame\StateEvents\MoodChange.cs" />
     <Compile Include="GUI\ChatBox.cs" />
     <Compile Include="GUI\Highlights\MoveAttackTargetsView.cs" />
+    <Compile Include="GUI\Highlights\CharacterGroundFootprints.cs" />
     <Compile Include="GUI\Menus\SwitchWeaponsMenu.cs" />
+    <Compile Include="GUI\UiEffects\FadingVisual.cs" />
     <Compile Include="MessageBoxErrorHandler.cs" />
     <Compile Include="GUI\Hud\FootstepsCounterView.cs" />
     <Compile Include="Scenes\GameLevel.cs" />
@@ -162,7 +164,7 @@
     <Compile Include="GUI\CombatantSummary.cs" />
     <Compile Include="GUI\Hud\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
-    <Compile Include="GUI\FootprintsUI.cs" />
+    <Compile Include="GUI\PerceptionFootprintsUI.cs" />
     <Compile Include="GUI\GuiFonts.cs" />
     <Compile Include="GUI\Gunshots.cs" />
     <Compile Include="GUI\Highlights\HighHighlights.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="Themes\TeamColors.cs" />
     <Compile Include="Themes\TeamColorTheme.cs" />
     <Compile Include="Themes\UIColors.cs" />
+    <Compile Include="Tiles\FadingSpriteAnimation.cs" />
     <Compile Include="Tiles\GameMap.cs" />
     <Compile Include="Tiles\GameTile.cs" />
     <Compile Include="Tiles\GameTileDetail.cs" />
@@ -881,6 +884,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Effects\E_MovementPath.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\GlowingFootsteps-down.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\GlowingFootsteps-left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\GlowingFootsteps-right.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Effects\GlowingFootsteps.png">

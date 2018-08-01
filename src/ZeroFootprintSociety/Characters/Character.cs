@@ -15,6 +15,7 @@ using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 using ZeroFootPrintSociety.GUI;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Characters
 {
@@ -33,6 +34,7 @@ namespace ZeroFootPrintSociety.Characters
         public string FaceImage { get; }
         public string BustImage { get; }
         public Team Team { get; }
+        public TeamColorTheme Theme { get; }
 
         public bool IsFriendly => Team.IsIncludedIn(TeamGroup.Friendlies);
         public GameTile CurrentTile => Body.CurrentTile;
@@ -47,6 +49,7 @@ namespace ZeroFootPrintSociety.Characters
             BustImage = bustImage;
             State = new CharacterState(stats);
             Team = team;
+            Theme = IsFriendly ? TeamColors.Friendly : TeamColors.Enemy;
 
             _damageNumbers = new DamageNumbersView(this);
 
@@ -76,7 +79,6 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (e.Character == this)
             {
-                Body.Footprints.Add(new Footprint(Body.Path.First(), Body.Facing));
                 Body.Stopped = false;
                 Body.Path.RemoveAt(0);
                 if (!Body.Path.Any() && !e.Character.State.IsDeceased)
@@ -88,7 +90,6 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (GameWorld.Turns.CurrentCharacter == this)
             {
-                Body.Footprints.Add(new Footprint(movement.Path.First(), Body.Facing));
                 Body.Path = movement.Path.Skip(1).ToList();
                 if (!Body.Path.Any())
                     Event.Publish(new MovementFinished());
@@ -141,7 +142,6 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (GameWorld.CurrentCharacter == this)
             {
-                Body.Footprints.Clear();
                 State.IsHiding = false;
                 State.IsOverwatching = false;
                 State.OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();

@@ -21,6 +21,7 @@ namespace ZeroFootPrintSociety.GUI
             Add(new MovementPathDirectionsPreview());
             Add(new OverwatchesEnemyTiles());
             Add(new MoveAttackTargetsView());
+            Add(new CharacterGroundFootprints());
         }
 
         public void Draw(Transform2 parentTransform)

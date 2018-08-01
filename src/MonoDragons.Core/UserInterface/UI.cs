@@ -112,10 +112,10 @@ namespace MonoDragons.Core.UserInterface
         public static void DrawText(string text, Vector2 position, Color color)
         {
             if (DefaultFont.ScaledFontSet.Contains(CurrentDisplay.Scale))
-                SpriteBatch.DrawString(DefaultFont.ScaledFontSet[CurrentDisplay.Scale], text, ScalePoint(position.X, position.Y).ToVector2(), color,
+                SpriteBatch.DrawString(DefaultFont.ScaledFontSet[CurrentDisplay.Scale], text ?? "", ScalePoint(position.X, position.Y).ToVector2(), color,
                     0, Vector2.Zero, 1, SpriteEffects.None, 1);
             else
-                SpriteBatch.DrawString(DefaultFont.ScaledFontSet.DefaultFont, text, ScalePoint(position.X, position.Y).ToVector2(), color,
+                SpriteBatch.DrawString(DefaultFont.ScaledFontSet.DefaultFont, text ?? "", ScalePoint(position.X, position.Y).ToVector2(), color,
                     0, Vector2.Zero, CurrentDisplay.Scale, SpriteEffects.None, 1);
         }
 
@@ -140,7 +140,7 @@ namespace MonoDragons.Core.UserInterface
 
         private static void DrawUnscaledString(string text, Vector2 position, Color color, string font)
         {
-            SpriteBatch.DrawString(Resources.Load<SpriteFont>(font), text, position, color, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
+            SpriteBatch.DrawString(Resources.Load<SpriteFont>(font), text ?? "", position, color, 0, Vector2.Zero, 1, SpriteEffects.None, 1);
         }
 
         private static void DrawStringScalingSpriteBatchIfNeeded(string text, Vector2 position, Color color, string font)
@@ -168,13 +168,13 @@ namespace MonoDragons.Core.UserInterface
 
         private static void DrawUnscaledSpriteBatchString(string text, Vector2 position, Color color, string scaledFontName)
         {
-            SpriteBatch.DrawString(Resources.Load<SpriteFont>(scaledFontName), text, ScalePoint(position.X, position.Y).ToVector2(), color,
+            SpriteBatch.DrawString(Resources.Load<SpriteFont>(scaledFontName), text ?? "", ScalePoint(position.X, position.Y).ToVector2(), color,
                     0, Vector2.Zero, 1, SpriteEffects.None, 1);
         }
 
         private static void DrawScaledSpriteBatchString(string text, Vector2 position, Color color, string font)
         {
-            SpriteBatch.DrawString(Resources.Load<SpriteFont>(font), text, ScalePoint(position.X, position.Y).ToVector2(), color,
+            SpriteBatch.DrawString(Resources.Load<SpriteFont>(font), text ?? "", ScalePoint(position.X, position.Y).ToVector2(), color,
                     0, Vector2.Zero, CurrentDisplay.Scale, SpriteEffects.None, 1);
         }
 
