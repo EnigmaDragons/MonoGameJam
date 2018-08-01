@@ -12,20 +12,20 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         public NewEnemySpotter()
         {
-            Event.Subscribe<MoveResolved>(OnMoved, this);
+            Event.Subscribe<MoveResolved>(e => Spot(e.Character), this);
         }
 
-        public void OnMoved(MoveResolved e)
+        public void Spot(Character character)
         {
-            if (e.Character.Team == Team.Enemy && !_hasSeen[e.Character] 
-                && GameWorld.Friendlies.Any(x => GameWorld.FriendlyPerception[e.Character.CurrentTile.Position]))
+            if (character.Team == Team.Enemy && !_hasSeen[character] 
+                && GameWorld.Friendlies.Any(x => GameWorld.FriendlyPerception[character.CurrentTile.Position]))
             {
-                _hasSeen[e.Character] = true;
-                Event.Publish(new EnemySpotted { Enemy = e.Character });
+                _hasSeen[character] = true;
+                Event.Publish(new EnemySpotted { Enemy = character });
             }
-            else if (e.Character.Team == Team.Friendly)
+            else if (character.Team == Team.Friendly)
             {
-                GameWorld.LivingCharacters.Where(x => x.Team == Team.Enemy && !_hasSeen[x] && e.Character.State.CanPercieve(x.CurrentTile.Position))
+                GameWorld.LivingCharacters.Where(x => x.Team == Team.Enemy && !_hasSeen[x] && character.State.CanPercieve(x.CurrentTile.Position))
                     .ForEach(x =>
                     {
                         _hasSeen[x] = true;

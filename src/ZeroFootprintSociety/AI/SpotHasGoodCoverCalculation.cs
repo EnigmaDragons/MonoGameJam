@@ -31,27 +31,7 @@ namespace ZeroFootPrintSociety.AI
 
         private List<Direction> GetLastSeenPlayerDirections()
         {
-            return _data.SeenEnemies.SelectMany(x => GetPointDirections(x.Value)).Distinct().ToList();
-        }
-
-        private List<Direction> GetPointDirections(Point point)
-        {
-            var directions = new List<Direction>();
-            if (Math.Abs(_position.X - point.X) >= Math.Abs(_position.Y - point.Y))
-            {
-                if (_position.X - point.X > 0)
-                    directions.Add(Direction.Left);
-                if (_position.X - point.X < 0)
-                    directions.Add(Direction.Right);
-            }
-            if (Math.Abs(_position.X - point.X) <= Math.Abs(_position.Y - point.Y))
-            {
-                if (_position.Y - point.Y > 0)
-                    directions.Add(Direction.Down);
-                if (_position.Y - point.Y < 0)
-                    directions.Add(Direction.Up);
-            }
-            return directions;
+            return _data.SeenEnemies.SelectMany(x => _position.PrimaryDirectionsTowards(x.Value)).Distinct().ToList();
         }
 
         private List<Direction> GetCoverDirections()

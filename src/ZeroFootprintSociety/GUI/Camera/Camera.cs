@@ -13,6 +13,7 @@ using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 using ZeroFootPrintSociety.CoreGame;
 using MonoDragons.Core.UserInterface;
+using Direction = ZeroFootPrintSociety.Characters.Direction;
 
 namespace ZeroFootPrintSociety.GUI
 {
@@ -61,7 +62,7 @@ namespace ZeroFootPrintSociety.GUI
             Event.Subscribe<MovementConfirmed>(e =>
                 {
                     if (GameWorld.CurrentCharacter.IsFriendly)
-                        CenterOn(GameWorld.Map.TileToWorldTransform(e.Path.Last()));
+                        CenterOn(GameWorld.Map.TileToWorldTransform(AheadOfPoint(GameWorld.CurrentCharacter.CurrentTile.Position, e.Path.Last())));
                 }, this);
             Event.Subscribe<EnemySpotted>(e => CenterOn(GameWorld.Map.TileToWorldTransform(e.Enemy.CurrentTile.Position)), this);
             Event.Subscribe<MenuRequested>(e => _shouldFreezeCamera = true, this);
@@ -94,6 +95,14 @@ namespace ZeroFootPrintSociety.GUI
                     }
                 }
             }
+        }
+
+        private Point AheadOfPoint(Point start, Point dest)
+        {
+            var directions = start.PrimaryDirectionsTowards(dest);
+            return new Point(
+                dest.X + (directions.Contains(Direction.Left) ? -3 : 0) + (directions.Contains(Direction.Right) ? 3 : 0),
+                dest.Y + (directions.Contains(Direction.Up) ? 3 : 0) + (directions.Contains(Direction.Down) ? -3 : 0));
         }
 
         private void IfPerceivable(Point tile, Action action)
