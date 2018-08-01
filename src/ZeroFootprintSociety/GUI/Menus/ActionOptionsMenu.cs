@@ -85,7 +85,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            if (!_showingOptions)
+            if (GameWorld.IsGameOver || !_showingOptions)
                 return;
             _visuals.ForEach(x => x.Draw(parentTransform));
         }

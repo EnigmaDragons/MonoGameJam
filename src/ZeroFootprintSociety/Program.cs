@@ -25,7 +25,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("CharacterCreation");
+            RunGame("Logo");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -64,7 +64,6 @@ namespace ZeroFootPrintSociety
             var currentScene = new CurrentScene();
                 Scene.Init(new CurrentSceneNavigation(currentScene, CreateSceneFactory(),
                     Input.ClearTransientBindings,
-                    AudioPlayer.Instance.StopAll,
                     Resources.Unload));
                 return new HideViewportExternals(currentScene);
         }

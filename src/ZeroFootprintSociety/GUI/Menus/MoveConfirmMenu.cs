@@ -39,7 +39,11 @@ namespace ZeroFootPrintSociety.GUI
             });
 
             _confirmButton = new ImageButton("UI/confirm.png", "UI/confirm-hover.png", "UI/confirm-press.png",
-                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) + 30, _menuY + 64), new Size2(52, 52)), () => Event.Publish(new ActionConfirmed()), () => _isReady);
+                new Transform2(new Vector2(UI.OfScreenWidth(0.5f) + 30, _menuY + 64), new Size2(52, 52)), () =>
+                {
+                    Buttons.PlayClickSound();
+                    Event.Publish(new ActionConfirmed());
+                }, () => _isReady);
             var cancelButton = new ImageButton("UI/cancel.png", "UI/cancel-hover.png", "UI/cancel-press.png",
                 new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 52 - 30, _menuY + 64), new Size2(52, 52)), () => Event.Publish(new ActionCancelled()));
 

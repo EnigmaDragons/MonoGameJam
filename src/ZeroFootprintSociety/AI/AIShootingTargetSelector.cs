@@ -1,6 +1,9 @@
-﻿using MonoDragons.Core.EventSystem;
+﻿using System.Collections.Generic;
+using MonoDragons.Core.EventSystem;
 using System.Linq;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
@@ -15,16 +18,19 @@ namespace ZeroFootPrintSociety.AI
 
         private void SelectTarget(ShootSelected e)
         {
-            IfAITurn(() =>
+            IfAITurn(() => Shoot(e.AvailableTargets
+                .OrderBy(x => new ShotCalculation(Char.CurrentTile, x.Character.CurrentTile).GetBestShot().BlockChance)
+                .ThenByDescending(x => x.Character.Stats.Guts).First()));
+        }
+
+        private void Shoot(Target target)
+        {
+            Event.Publish(new RangedTargetInspected
             {
-                var target = e.AvailableTargets.First();
-                Event.Publish(new RangedTargetInspected
-                {
-                    Attacker = GameWorld.CurrentCharacter,
-                    Defender = target.Character,
-                    AttackerBlockInfo = target.CoverFromThem,
-                    DefenderBlockInfo = target.CoverToThem
-                });
+                Attacker = GameWorld.CurrentCharacter,
+                Defender = target.Character,
+                AttackerBlockInfo = target.CoverFromThem,
+                DefenderBlockInfo = target.CoverToThem
             });
         }
     }

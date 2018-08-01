@@ -7,6 +7,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
+using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.AI;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
@@ -52,9 +53,11 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _shouldIgnoreClicks = true, this));
             Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
+            var clickUI = new ClickUI();
             var visibilityCalculator = new VisibilityCalculator();
             var perceptionCalculator = new PerceptionCalculator();
             var perceptionUpdater = new FrinedlyPerceptionUpdater();
+            Add(clickUI);
             Add(new EnemyAI());
             Add(new ActionOptionsCalculator());
             Add(new HideUI());
@@ -72,7 +75,7 @@ namespace ZeroFootPrintSociety.CoreGame
 #if DEBUG
             Add(new RecentEventDebugLogView { Position = new Vector2(0, 150), MaxLines = 30, HideTextPart = "ZeroFootPrintSociety." });
 #endif
-            Add(new HudView());
+            Add(new HudView(clickUI));
             GameWorld.Highlights = new Highlights();
             GameWorld.HighHighlights = new HighHighlights();
             Add((IAutomaton)GameWorld.Highlights);
