@@ -15,13 +15,19 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.GUI
 {
-    public class MovementPathDirectionsPreview : MutableSceneContainer
+    public class MovementPathDirectionsPreview : IVisualAutomaton
     {
         private bool _showsHoveredPathDirections = false;
-        private bool _checksMouse = false;
+        private bool _shouldCheckMouse = false;
         private Point? _lastPointOver;
         private Point? _previousTileOver;
-        private List<List<Point>> _availableMoves;
+        private List<List<Point>> _availableMoves = new List<List<Point>>(0);
+        private List<Transform2> _currentPathTransforms = new List<Transform2>(0);
+        private readonly IVisual _highlight = new ColoredRectangle
+        {
+            Transform = new Transform2(TileData.RenderSize),
+            Color = UIColors.MovementPathDirectionsPreview_Tile
+        };
 
         public MovementPathDirectionsPreview()
         {
@@ -35,12 +41,12 @@ namespace ZeroFootPrintSociety.GUI
         {
             _availableMoves = e.AvailableMoves;
             _showsHoveredPathDirections = true;
-            _checksMouse = GameWorld.CurrentCharacter.Team == Team.Friendly;
+            _shouldCheckMouse = GameWorld.CurrentCharacter.Team == Team.Friendly;
         }
 
         private void OnMovementConfirmed(MovementConfirmed e)
         {
-            _checksMouse = false;
+            _shouldCheckMouse = false;
             _availableMoves = null;
             _lastPointOver = e.Path.First();
         }
@@ -49,40 +55,28 @@ namespace ZeroFootPrintSociety.GUI
         {
             if (_showsHoveredPathDirections)
             {
-                Pop();
+                _currentPathTransforms = _currentPathTransforms.Skip(1).ToList();
                 _previousTileOver = _lastPointOver;
                 _lastPointOver = e.Position;
-                if (IsEmpty())
+                if (!_currentPathTransforms.Any())
                     _showsHoveredPathDirections = false;
             }
         }
 
-        private void OnMovementFinished(MovementFinished obj)
-            => Clear();
+        private void OnMovementFinished(MovementFinished obj) => _currentPathTransforms = new List<Transform2>(0);
 
         private void InitDirections()
         {
             _previousTileOver = null;
-            List<Point> moveList = _availableMoves.Find(x => x.Last() == _lastPointOver);
-            if (moveList != null)
-            {
-                Clear();
-                for (int i = 0; i < moveList.Count(); i++)
-                {
-                    Add(new ColoredRectangle
-                    {
-                        Transform = GameWorld.Map.TileToWorldTransform(moveList[i]).WithSize(TileData.RenderSize),
-                        Color = UIColors.MovementPathDirectionsPreview_Tile
-                    });
-                }
-            }
+            var path = _availableMoves.Find(x => x.Last() == _lastPointOver) ?? new List<Point>();
+            _currentPathTransforms = path.Select(x => GameWorld.Map.TileToWorldTransform(x)).ToList();
         }
         
-        public override void Update(TimeSpan delta)
+        public void Update(TimeSpan delta)
         {
             if (_showsHoveredPathDirections && CurrentGame.TheGame.IsActive)
             {
-                if (_checksMouse && _lastPointOver != GameWorld.HoveredTile)
+                if (_shouldCheckMouse && _lastPointOver != GameWorld.HoveredTile)
                 {
                     _lastPointOver = GameWorld.HoveredTile;
                     InitDirections();
@@ -91,17 +85,13 @@ namespace ZeroFootPrintSociety.GUI
                 {
                     InitDirections();
                 }
-
-                base.Update(delta);
             }
         }
 
-        public override void Draw(Transform2 parentTransform)
+        public void Draw(Transform2 parentTransform)
         {
-            if (_showsHoveredPathDirections)
-            {
-                base.Draw(parentTransform);
-            }
+            if (_showsHoveredPathDirections && _currentPathTransforms.Any())
+                _currentPathTransforms.ToList().ForEach(x => _highlight.Draw(parentTransform + x));
         }
     }
 }

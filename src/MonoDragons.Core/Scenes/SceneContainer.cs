@@ -2,6 +2,7 @@
 using MonoDragons.Core.PhysicsEngine;
 using System;
 using System.Collections.Generic;
+using MonoDragons.Core.Development;
 
 namespace MonoDragons.Core.Scenes
 {
@@ -40,7 +41,10 @@ namespace MonoDragons.Core.Scenes
         public virtual void Draw(Transform2 parentTransform)
         {
             var t = _useAbsolutePosition ? Transform2.Zero : parentTransform + GetOffset();
-            _visuals.ForEach(x => x.Draw(t));
+            _visuals.ForEach(x =>
+            {
+                Perf.Time($"Drew {x.GetType().Name}", ()  => x.Draw(t), 20);
+            });
         }
 
         public virtual void Update(TimeSpan delta)
