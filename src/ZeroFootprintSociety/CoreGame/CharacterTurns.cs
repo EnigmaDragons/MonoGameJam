@@ -10,7 +10,7 @@ namespace ZeroFootPrintSociety.CoreGame
     public class CharacterTurns : IInitializable
     {
         private int _activeCharacterIndex;
-        private List<Character> _characters;
+        private readonly List<Character> _characters;
 
         public Character CurrentCharacter { get; private set; }
 
@@ -24,6 +24,9 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void Init()
         {
+            if (_characters.Any(x => x.IsFriendly))
+                while (!CurrentCharacter.IsFriendly)
+                    Advance();
             Event.Publish(new TurnBegun());
         }
 

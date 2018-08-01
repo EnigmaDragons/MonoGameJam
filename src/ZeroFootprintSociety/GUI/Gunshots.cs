@@ -24,7 +24,8 @@ namespace ZeroFootPrintSociety.GUI
     {
         private readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
         private readonly List<IShotVisual> _shots = new List<IShotVisual>();
-
+        public const double TravelSpeed = 0.085;
+        
         public Gunshots()
         {
             Event.Subscribe<ShotHit>(OnShotHit, this);
@@ -89,7 +90,6 @@ namespace ZeroFootPrintSociety.GUI
 
         private class MissedShotVisual : IShotVisual
         {
-            private const double _speed = 0.01;
             private readonly Texture2D _texture;
             private readonly Transform2 _transform;
             private double _distanceTravled = 0;
@@ -105,7 +105,7 @@ namespace ZeroFootPrintSociety.GUI
 
             public void Update(TimeSpan delta)
             {
-                var distance = delta.TotalMilliseconds * _speed;
+                var distance = delta.TotalMilliseconds * TravelSpeed;
                 _distanceTravled += distance;
                 if (!GameWorld.Map.Exists(_tile) || GameWorld.Map[_tile].Cover == Cover.Heavy)
                     IsDone = true;
@@ -133,7 +133,6 @@ namespace ZeroFootPrintSociety.GUI
 
         private class HitShotVisual : IShotVisual
         {
-            private const double _speed = 0.01;
             private readonly Texture2D _texture;
             private readonly Transform2 _transform;
             private readonly Point _target;
@@ -150,7 +149,7 @@ namespace ZeroFootPrintSociety.GUI
 
             public void Update(TimeSpan delta)
             {
-                var distance = delta.TotalMilliseconds * _speed;
+                var distance = delta.TotalMilliseconds * TravelSpeed;
                 _distanceTravled += distance;
                 if (_tile == _target)
                     IsDone = true;
@@ -181,7 +180,6 @@ namespace ZeroFootPrintSociety.GUI
 
         private class BlockedShotVisual : IShotVisual
         {
-            private const double _speed = 0.01;
             private readonly Texture2D _texture;
             private readonly Transform2 _transform;
             private readonly Point _target;
@@ -198,7 +196,7 @@ namespace ZeroFootPrintSociety.GUI
 
             public void Update(TimeSpan delta)
             {
-                var distance = delta.TotalMilliseconds * _speed;
+                var distance = delta.TotalMilliseconds * TravelSpeed;
                 _distanceTravled += distance;
                 if (_tile == _target)
                     IsDone = true;
