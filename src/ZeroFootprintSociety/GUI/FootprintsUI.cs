@@ -26,7 +26,8 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            GameWorld.LivingCharacters.ForEach(character => character.Body.Footprints.ForEach(footprint =>
+            // TODO: No calculations in the draw loop!
+            GameWorld.LivingCharacters.ToList().ForEach(character => character.Body.Footprints.ForEach(footprint =>
             {
                 if (GameWorld.Friendlies.Any(x => x.State.CanPercieve(footprint.Tile)))
                     DrawPrint(footprint, parentTransform, character.Team == Team.Friendly ? TeamColors.Friendly.Footprints_GlowColor : TeamColors.Enemy.Footprints_GlowColor);

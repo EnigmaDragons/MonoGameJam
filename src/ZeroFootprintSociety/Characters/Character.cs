@@ -20,6 +20,7 @@ namespace ZeroFootPrintSociety.Characters
 {
     public abstract class Character : IVisualAutomaton
     {
+        private readonly Queue<int> _pendingDmg = new Queue<int>(0);
         private readonly HealthBar _healthBar = new HealthBar(42);
         private readonly DamageNumbersView _damageNumbers;
 
@@ -32,7 +33,8 @@ namespace ZeroFootPrintSociety.Characters
         public string FaceImage { get; }
         public string BustImage { get; }
         public Team Team { get; }
-       
+
+        public bool IsFriendly => Team.IsIncludedIn(TeamGroup.Friendlies);
         public GameTile CurrentTile => Body.CurrentTile;
         public int Accuracy => Gear.EquippedWeapon.IsRanged ? Stats.AccuracyPercent + Gear.EquippedWeapon.AsRanged().AccuracyPercent : 0;
 
@@ -106,6 +108,8 @@ namespace ZeroFootPrintSociety.Characters
 
         private void OnShotsResolved(ShotAnimationsFinished e)
         {
+            if (_pendingDmg.Any())
+                State.RemainingHealth -= _pendingDmg.Dequeue();
             if (State.RemainingHealth <= 0 && !State.IsDeceased)
             {
                 State.IsDeceased = true;
@@ -150,7 +154,7 @@ namespace ZeroFootPrintSociety.Characters
         private void OnShotHit(ShotHit e)
         {
             if (e.Target.Equals(this))
-                State.RemainingHealth -= e.DamageAmount;
+                _pendingDmg.Enqueue(e.DamageAmount);
         }
 
         public void Draw(Transform2 parentTransform)

@@ -15,8 +15,10 @@ namespace ZeroFootPrintSociety.Characters.GUI
     class DamageNumbersView : IVisualAutomaton
     {
         private static readonly TimeSpan DisplayDuration = TimeSpan.FromMilliseconds(1800);
+        private static readonly TimeSpan DelayDuration = TimeSpan.FromMilliseconds(400);
         private readonly Character _owner;
-        private List<Tuple<TimeSpan, string>> _numbers = new List<Tuple<TimeSpan, string>>();
+        private readonly List<Tuple<TimeSpan, string>> _numbers = new List<Tuple<TimeSpan, string>>();
+        private readonly List<Tuple<TimeSpan, string>> _delayed = new List<Tuple<TimeSpan, string>>();
         private bool _isDisplayingDamage;
 
         public DamageNumbersView(Character owner)
@@ -26,7 +28,7 @@ namespace ZeroFootPrintSociety.Characters.GUI
             Event.Subscribe<ShotBlocked>(OnShotBlocked, this);
             _owner = owner;
         }
-
+        
         private void OnShotHit(ShotHit e)
         {
             if (e.Target.Equals(_owner))
@@ -47,8 +49,8 @@ namespace ZeroFootPrintSociety.Characters.GUI
 
         private void Add(string text)
         {
-            _numbers.Add(new Tuple<TimeSpan, string>(
-                DisplayDuration,
+            _delayed.Add(new Tuple<TimeSpan, string>(
+                DelayDuration,
                 text));
             _isDisplayingDamage = true;
         }
@@ -61,17 +63,25 @@ namespace ZeroFootPrintSociety.Characters.GUI
 
         public void Update(TimeSpan delta)
         {
-            if (_isDisplayingDamage && _numbers.Count == 0)
+            if (_isDisplayingDamage && _numbers.Count == 0 && _delayed.Count == 0)
             {
                 _isDisplayingDamage = false;
                 Event.Publish(new ShotAnimationsFinished());
             }
-
+            
+            var updated =  _delayed.ToList()
+                .Select(x => new Tuple<TimeSpan, string>(x.Item1 - delta, x.Item2)).ToList();
+            _delayed.Clear();
+            _delayed.AddRange(updated.Where(x => x.Item1 > TimeSpan.Zero));
+            
             var numbers = _numbers.ToList();
             _numbers.Clear();
             _numbers.AddRange(numbers
                 .Select(x => new Tuple<TimeSpan, string>(x.Item1 - delta, x.Item2))
-                .Where(i => i.Item1 > TimeSpan.Zero));            
+                .Where(i => i.Item1 > TimeSpan.Zero));
+            _numbers.AddRange(updated
+                .Where(x => x.Item1 <= TimeSpan.Zero)
+                .Select(i => new Tuple<TimeSpan, string>(DisplayDuration, i.Item2)));
         }
     }
 }
