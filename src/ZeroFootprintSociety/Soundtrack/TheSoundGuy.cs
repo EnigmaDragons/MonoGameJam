@@ -20,6 +20,13 @@ namespace ZeroFootPrintSociety.Soundtrack
             Event.Subscribe<ActionConfirmed>(OnActionConfirmed, this);
             Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
             Event.Subscribe<ShotFired>(OnShotFired, this);
+            Event.Subscribe<Moved>(OnMoved, this);
+        }
+
+        private void OnMoved(Moved obj)
+        {
+            if (GameWorld.FriendlyPerception[obj.Position])
+                Sound.SoundEffect($"SFX/step-hard-{Rng.Int(1, 6)}.wav", 0.36f).Play();
         }
 
         private void OnShotFired(ShotFired obj)
