@@ -44,6 +44,7 @@ namespace ZeroFootPrintSociety.Scenes
             LoadMap();
             SpawnCharacters();
             SetRemainingFootstepsCounter();
+            Add(new TheSoundGuy());
 
             Add(new TacticsGame(
                 new TurnBasedCombat(

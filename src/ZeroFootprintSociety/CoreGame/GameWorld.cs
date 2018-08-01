@@ -29,6 +29,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public static IEnumerable<Character> FriendliesWhere(Predicate<Character> wherePredicate = null)
             => LivingCharacters.Where(x => x.Team == Team.Friendly && (wherePredicate?.Invoke(x) ?? true) );
         public static DictionaryWithDefault<Point, bool> FriendlyPerception { get; set; } = new DictionaryWithDefault<Point, bool>(false);
+        public static bool IsFriendlyTurn => CurrentCharacter.IsFriendly;
         
         private static int _footsteps = 0;
         public static int FootstepsRemaining
