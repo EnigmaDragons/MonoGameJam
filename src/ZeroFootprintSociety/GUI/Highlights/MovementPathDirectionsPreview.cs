@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
@@ -63,22 +62,19 @@ namespace ZeroFootPrintSociety.GUI
 
         private void InitDirections()
         {
-            try
+            _previousTileOver = null;
+            List<Point> moveList = _availableMoves.Find(x => x.Last() == _lastPointOver);
+            if (moveList != null)
             {
-                _previousTileOver = null;
-                List<Point> moveList = _availableMoves.Where(x => x.Last() == _lastPointOver).Take(1).FirstOrDefault() ?? new List<Point>();
-                if (moveList.Any())
-                    Clear();
-                moveList.ForEach(x => 
+                Clear();
+                for (int i = 0; i < moveList.Count(); i++)
+                {
                     Add(new ColoredRectangle
                     {
-                        Transform = GameWorld.Map.TileToWorldTransform(x).WithSize(TileData.RenderSize),
+                        Transform = GameWorld.Map.TileToWorldTransform(moveList[i]).WithSize(TileData.RenderSize),
                         Color = UIColors.MovementPathDirectionsPreview_Tile
-                    }));
-            }
-            catch (Exception e)
-            {
-                throw e;
+                    });
+                }
             }
         }
         

@@ -10,7 +10,6 @@ namespace ZeroFootPrintSociety.Characters
     public class CharacterState
     {
         private readonly CharacterStats _stats;
-        private readonly Character _itself;
         private int _remainingHealth = 0;
         public bool IsHiding = false;
         public bool IsOverwatching = false;
@@ -31,10 +30,9 @@ namespace ZeroFootPrintSociety.Characters
 
         public float PercentLeft => (float)RemainingHealth / _stats.HP;
 
-        public CharacterState(CharacterStats stats, Character itself)
+        public CharacterState(CharacterStats stats)
         {
             _stats = stats;
-            _itself = itself;
         }
 
         public void Init()

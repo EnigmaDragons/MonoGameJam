@@ -38,10 +38,14 @@ namespace ZeroFootPrintSociety.Tiles
 
         public void Draw(int layer, Transform2 parentTransform)
         {
+            Draw(layer, parentTransform, UIColors.Unchanged);
+        }
+
+        public void Draw(int layer, Transform2 parentTransform, Color tint)
+        {
             Details.Where(x => x.ZIndex == layer)
                 .Where(x => x.IsVisible)
-                .ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect,
-                    UIColors.Unchanged));
+                .ForEach(x => World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect, tint));
         }
     }
 }

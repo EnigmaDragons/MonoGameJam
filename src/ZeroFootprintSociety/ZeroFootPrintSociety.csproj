@@ -56,8 +56,11 @@
     <Compile Include="Characters\Prefabs\CorpSec3.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Prefabs\Sidechick.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\FootstepCounted.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\OutOfFootsteps.cs" />
     <Compile Include="GUI\ChatBox.cs" />
     <Compile Include="MessageBoxErrorHandler.cs" />
+    <Compile Include="GUI\Hud\FootstepsCounterView.cs" />
     <Compile Include="Scenes\GameLevel.cs" />
     <Compile Include="Scenes\IntroCutscene.cs" />
     <Compile Include="Scenes\LogoScene.cs" />
@@ -866,6 +869,9 @@
     <Content Include="Content\Effects\D_Cover_Overwatched4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Effects\E_MovementPath.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Effects\GlowingFootsteps.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -980,6 +986,9 @@
     <Content Include="Content\UI\game-over.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\UI\giant-footstep.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\UI\menu-tall-panel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1027,6 +1036,9 @@
     </Content>
     <Content Include="Content\Weapons\urxsemishotgun.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GUI\Highlights\E_MovementPath.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
