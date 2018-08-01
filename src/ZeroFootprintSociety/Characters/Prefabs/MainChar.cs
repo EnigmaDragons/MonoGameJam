@@ -14,7 +14,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
                 HP = 110,
                 Movement = 8,
             },
-            new CharacterGear(new RsxCarbine(), new RsxCarbine()),
+            new CharacterGear(new RsxCarbine(), new WarShotgun()),
             Team.Friendly,
             "Characters/MainCharacter/MainCharacter-face.png",
             "Characters/MainCharacter/MainCharacter-bust.png") { }
