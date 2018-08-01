@@ -69,6 +69,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(perceptionCalculator);
             Add(perceptionUpdater);
             Add(new FriendlyVisionCalculator());
+            Add(new NewEnemySpotter());
             Add(_drawMaster);
             Add(_combat);
             Add(_camera);

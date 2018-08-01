@@ -35,6 +35,7 @@ namespace ZeroFootPrintSociety.Scenes
             MapFileName = mapFileName;
             CameraStartingTile = CameraStartingTile;
             Music = music;
+            Add(Music);
         }            
 
         public override void Init()
