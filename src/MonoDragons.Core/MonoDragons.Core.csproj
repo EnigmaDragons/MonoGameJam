@@ -64,6 +64,7 @@
     <Compile Include="Development\DevTextColor.cs" />
     <Compile Include="Development\RecentEventDebugLogView.cs" />
     <Compile Include="Engine\IInitializable.cs" />
+    <Compile Include="Engine\ITransient.cs" />
     <Compile Include="Errors\Error.cs" />
     <Compile Include="Common\Map.cs" />
     <Compile Include="Common\MustInit.cs" />

@@ -24,6 +24,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public static HighHighlights HighHighlights { get; set; }
         public static Point HoveredTile { get; set; } = new Point(0, 0);
         public static IEnumerable<Character> Friendlies => FriendliesWhere();
+        public static IEnumerable<Character> Enemies => LivingCharacters.Where(x => x.Team.IsIncludedIn(TeamGroup.Enemies));
         public static bool IsGameOver { get; internal set; }
         public static IEnumerable<Character> FriendliesWhere(Predicate<Character> wherePredicate = null)
             => LivingCharacters.Where(x => x.Team == Team.Friendly && (wherePredicate?.Invoke(x) ?? true) );
