@@ -11,7 +11,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
     public class VisibilityCalculation
     {
         private readonly Character _character;
-        const int calculation = 15;
+        const int calculation = 18;
 
         public VisibilityCalculation(Character character)
         {

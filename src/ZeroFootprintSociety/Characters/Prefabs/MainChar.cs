@@ -11,7 +11,8 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterStats
             {
                 Name = "Weldon Zemke",
-                HP = 110
+                HP = 110,
+                Movement = 8,
             },
             new CharacterGear(new RsxCarbine(), new RsxCarbine()),
             Team.Friendly,
