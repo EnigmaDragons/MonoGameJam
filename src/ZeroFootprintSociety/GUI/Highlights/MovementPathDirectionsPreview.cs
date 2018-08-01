@@ -70,11 +70,19 @@ namespace ZeroFootPrintSociety.GUI
                 Clear();
                 for (int i = 0; i < moveList.Count(); i++)
                 {
+                    
+                    Add(new UiImage
+                    {
+                        Image = "Effects/E_MovementPath",
+                        Transform = GameWorld.Map.TileToWorldTransform(moveList[i]).WithSize(TileData.RenderSize),
+                    });
+
+                    /*
                     Add(new ColoredRectangle
                     {
                         Transform = GameWorld.Map.TileToWorldTransform(moveList[i]).WithSize(TileData.RenderSize),
                         Color = UIColors.MovementPathDirectionsPreview_Tile
-                    });
+                    });*/
                 }
             }
         }

@@ -112,6 +112,8 @@ namespace ZeroFootPrintSociety.Scenes
             _proxMineWeaponChoice = CreateWeaponChoice(_dronePerkChoice, _shotgunSet, _carbineSet, _assultRifleSet);
             _droneWeaponChoice = CreateWeaponChoice(_dronePerkChoice, _shotgunSet, _carbineSet, _uziSet);
 
+            // TODO: Difficulty settings.
+
             _activeChoice = _classChoice;
             _clickUi.Add(_classChoice.Branch);
         }

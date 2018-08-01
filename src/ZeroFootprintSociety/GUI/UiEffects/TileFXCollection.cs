@@ -15,6 +15,7 @@ namespace ZeroFootPrintSociety.GUI
             { "blue", UIColors.TileFXCollection_Blue },
             { "turqoise", UIColors.TileFXCollection_Turquoise },
             { "red", UIColors.TileFXCollection_Red },
+            { "green", UIColors.TileFXCollection_Green }
         };
         
         public void Draw(Transform2 parentTransform, GameTile tile)
