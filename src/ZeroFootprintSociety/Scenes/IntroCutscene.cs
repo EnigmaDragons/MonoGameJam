@@ -56,8 +56,9 @@ namespace ZeroFootPrintSociety.Scenes
 
         public override void Init()
         {
-            Sound.Music("trapped-and-stuck").Play();
+            Sound.Music("intro").Play();
             Input.On(Control.Start, Advance);
+            Input.On(Control.Select, () => Scene.NavigateTo(_nextScene));
             AddClickable(new ScreenClickable(Advance));
             Add(_chatBox);
             Add(_fadeOut);

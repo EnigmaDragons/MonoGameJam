@@ -16,7 +16,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         protected override void OnInit()
         {
-            Sound.Music("fast-forward", 1.0f).Play();
+            Sound.Music("credits", 1.0f).Play();
 
             AddUi(new ScreenClickable(() => Scene.NavigateTo("MainMenu")));
 

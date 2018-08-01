@@ -39,7 +39,7 @@ namespace ZeroFootPrintSociety
                 { "CharacterCreation", () => new CharacterCreation() },
                 { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
                 { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
-                { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb")) },
+                { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb", "alley-action", "alley-action")) },
                 { "SpawnTest", () => new GameLevel("SpawnTest.tmx") },
                 { "FinalFloor", () => new GameLevel("FinalFloor.tmx") },
             });
@@ -64,7 +64,6 @@ namespace ZeroFootPrintSociety
             var currentScene = new CurrentScene();
                 Scene.Init(new CurrentSceneNavigation(currentScene, CreateSceneFactory(),
                     Input.ClearTransientBindings,
-                    AudioPlayer.Instance.StopAll,
                     Resources.Unload));
                 return new HideViewportExternals(currentScene);
         }

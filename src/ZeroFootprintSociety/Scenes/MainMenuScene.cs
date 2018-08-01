@@ -6,6 +6,8 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.AudioSystem;
 using ZeroFootPrintSociety.CoreGame;
 using System;
+using MonoDragons.Core.Animations;
+using ZeroFootPrintSociety.GUI;
 using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Scenes
@@ -22,13 +24,14 @@ namespace ZeroFootPrintSociety.Scenes
         public override void Init()
         {
             Input.On(Control.Menu, () => Environment.Exit(0));
-            Sound.Music("placeholder-main-theme").Play();
+            Sound.Music("main-theme").Play();
             Add(new UiImage { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new ColoredRectangle { Color = UIColors.MainMenuScene_Background, Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new UiImage { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });
             var button = new TextButton(
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
                 () => {
+                    Buttons.PlayClickSound();
                     GameWorld.Clear();
                     Scene.NavigateTo(_newGameScene);
                 }, 
@@ -41,6 +44,7 @@ namespace ZeroFootPrintSociety.Scenes
             var button2 = new TextButton(
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 760, 300, 50),
                 () => {
+                    Buttons.PlayClickSound();
                     GameWorld.Clear();
                     Scene.NavigateTo("Credits");
                 }, 
@@ -49,6 +53,8 @@ namespace ZeroFootPrintSociety.Scenes
                 UIColors.MainMenuScene_ButtonHover,
                 UIColors.MainMenuScene_ButtonPress
             );
+            
+            Add(new ScreenFade {Duration = TimeSpan.FromSeconds(1)}.Started());
             AddClickable(button);
             AddClickable(button2);
         }

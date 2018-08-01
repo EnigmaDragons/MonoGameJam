@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.AudioSystem;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
@@ -63,6 +64,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         public void Init()
         {
+            Sound.Music("customizing").Play();
             _clickUi = new ClickUI();
             _classChoice = new ChoiceUI("Choose Class", 
                     new OptionUI(

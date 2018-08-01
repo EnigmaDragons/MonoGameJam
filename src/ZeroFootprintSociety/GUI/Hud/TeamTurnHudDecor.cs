@@ -12,9 +12,6 @@ namespace ZeroFootPrintSociety.GUI
     {
         public void Draw(Transform2 parentTransform)
         {
-            if (GameWorld.IsGameOver)
-                return;
-
             var color = (GameWorld.IsEnemyTurn ? TeamColors.Enemy : TeamColors.Friendly).TeamTurnHudDecor_Text;
             var text = GameWorld.IsEnemyTurn ? "Enemy Turn" : "Player Turn";
 
