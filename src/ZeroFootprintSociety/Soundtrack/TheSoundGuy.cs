@@ -1,6 +1,8 @@
 ﻿using MonoDragons.Core.AudioSystem;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.Soundtrack
@@ -17,6 +19,12 @@ namespace ZeroFootPrintSociety.Soundtrack
             Event.Subscribe<ActionCancelled>(OnActionCancelled, this);
             Event.Subscribe<ActionConfirmed>(OnActionConfirmed, this);
             Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
+            Event.Subscribe<ShotFired>(OnShotFired, this);
+        }
+
+        private void OnShotFired(ShotFired obj)
+        {
+            Sound.SoundEffect("SFX/rifle-1.wav", DefaultVolume).Play();
         }
 
         private void OnMovementConfirmed(MovementConfirmed obj)

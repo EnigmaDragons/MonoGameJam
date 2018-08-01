@@ -35,7 +35,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         public bool CanShoot()
         {
-            return CoversFromEachCorner().Any(covers => covers.Sum(c => (int)c.Cover) != 100);
+            return CoversFromEachCorner().Any(covers => covers.Sum(c => (int)c.Cover) < 100);
         }
 
         private IEnumerable<List<CoverProvided>> CoversFromEachCorner()
