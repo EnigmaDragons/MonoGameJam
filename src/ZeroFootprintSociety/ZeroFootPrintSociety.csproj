@@ -80,6 +80,7 @@
     <Compile Include="Scenes\LogoScene.cs" />
     <Compile Include="Soundtrack\LevelMusic.cs" />
     <Compile Include="Soundtrack\MusicType.cs" />
+    <Compile Include="Soundtrack\TheSoundGuy.cs" />
     <Compile Include="Tiles\CharacterSpawning.cs" />
     <Compile Include="Characters\Target.cs" />
     <Compile Include="Characters\Teams\TeamGroup.cs" />
@@ -1006,19 +1007,22 @@
     <Content Include="Content\Music\intro.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\SFX\button-press-1.mp3">
+    <Content Include="Content\SFX\button-press-1.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\SFX\cancel.mp3">
+    <Content Include="Content\SFX\cancel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\SFX\confirm.mp3">
+    <Content Include="Content\SFX\confirm.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SFX\death-swell.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SFX\logo-rumble.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SFX\turn-start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\border-side.png">
