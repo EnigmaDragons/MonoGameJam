@@ -26,6 +26,7 @@ namespace ZeroFootPrintSociety.Tiles
         public string SpawnCharacter { get; }
         public bool EverSeenByFriendly { get; set; }
         public bool CurrentlyFriendlyVisible { get; set; } = true; // TODO: Set this;
+        public bool MustKill { get; }
 
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)
         {
@@ -35,6 +36,7 @@ namespace ZeroFootPrintSociety.Tiles
             Cover = Details.OrderByDescending(x => (int)x.Cover).First().Cover;
             PostFX = details.Select(x => x.PostFX).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
             SpawnCharacter = details.Select(x => x.SpawnCharacter).FirstOrDefault(x => !string.IsNullOrWhiteSpace(x)) ?? "None";
+            MustKill = details.Any(x => x.MustKill);
         }
 
         public void Draw(int layer, Transform2 parentTransform)

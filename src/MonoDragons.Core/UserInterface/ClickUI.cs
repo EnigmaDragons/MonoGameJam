@@ -16,7 +16,8 @@ namespace MonoDragons.Core.UserInterface
         private List<ClickUIBranch> _branches = new List<ClickUIBranch> { new ClickUIBranch("Base", 0) };
         
         private float Scale => CurrentDisplay.Scale;
-        
+
+        private object _branchLock = new object();
         private ClickableUIElement _current = None;
         private bool _wasClicked;
         private ClickUIBranch _elementLayer;
@@ -30,13 +31,16 @@ namespace MonoDragons.Core.UserInterface
 
         public void Add(ClickUIBranch branch)
         {
-            var branches = GetAllBranchesFrom(branch);
-            foreach (var b in branches)
+            lock (_branchLock)
             {
-                _branches.Add(b);
-                b.Subscribe(subscribeAction);
+                var branches = GetAllBranchesFrom(branch);
+                foreach (var b in branches)
+                {
+                    _branches.Add(b);
+                    b.Subscribe(subscribeAction);
+                }
+                _branches = _branches.OrderBy((b) => b.Priority).Reverse().ToList();
             }
-            _branches = _branches.OrderBy((b) => b.Priority).Reverse().ToList();
         }
 
         private List<ClickUIBranch> GetAllBranchesFrom(ClickUIBranch branch)
@@ -54,17 +58,18 @@ namespace MonoDragons.Core.UserInterface
 
         public void Remove(ClickUIBranch branch)
         {
-            if (branch == null)
-                throw new Exception("We Have a problem");
-            var branches = GetAllBranchesFrom(branch);
-            foreach (var b in branches)
+            lock (_branchLock)
             {
-                _branches.Remove(b);
-                b.Unsubscribe(subscribeAction);
-                if (b.IsCurrentElement(_current) && _current.IsHovered)
+                var branches = GetAllBranchesFrom(branch);
+                foreach (var b in branches)
                 {
-                    _current.OnExitted();
-                    _current.IsHovered = false;
+                    _branches.Remove(b);
+                    b.Unsubscribe(subscribeAction);
+                    if (b.IsCurrentElement(_current) && _current.IsHovered)
+                    {
+                        _current.OnExitted();
+                        _current.IsHovered = false;
+                    }
                 }
             }
         }
@@ -150,8 +155,11 @@ namespace MonoDragons.Core.UserInterface
         private ClickableUIElement GetElement(MouseState mouse)
         {
             var position = ScaleMousePosition(mouse);
-            var branch = _branches.Find((b) => b.GetElement(position) != None);
-            return branch != null ? branch.GetElement(position) : None;
+            lock (_branchLock)
+            {
+                var branch = _branches.Find((b) => b.GetElement(position) != None);
+                return branch != null ? branch.GetElement(position) : None;
+            }
         }
 
         private Point ScaleMousePosition(MouseState mouse)

@@ -4895,6 +4895,7 @@
   <properties>
    <property name="Blocking" type="bool" value="false"/>
    <property name="Cover" value="None"/>
+   <property name="MustKill" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="816">

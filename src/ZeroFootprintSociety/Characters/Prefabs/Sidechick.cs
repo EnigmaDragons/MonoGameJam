@@ -11,9 +11,9 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             {
                 Name = "Cassia Lanthe",
                 HP = 105,
-                Movement = 9,
+                Movement = 8,
             },
-            new CharacterGear(new RsxCarbine(), new RsxCarbine()),
+            new CharacterGear(new RsxCarbine(), new GoldenGun()),
             Team.Friendly,
             "Characters/Sidechick/Sidechick-face.png",
             "Characters/Sidechick/Sidechick-bust.png")
