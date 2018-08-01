@@ -50,13 +50,15 @@
     <Compile Include="AI\AIMovement.cs" />
     <Compile Include="AI\EnemyAI.cs" />
     <Compile Include="AI\SpotHasGoodCoverCalculation.cs" />
+    <Compile Include="Characters\CharacterClass.cs" />
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
     <Compile Include="Characters\Direction.cs" />
     <Compile Include="Characters\Footprint.cs" />
     <Compile Include="Characters\Gear\MeleeWeapon.cs" />
-    <Compile Include="Characters\Gear\RsxCarbine.cs" />
+    <Compile Include="Characters\Gear\Weapons.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
+    <Compile Include="Characters\Gear\WeaponSet.cs" />
     <Compile Include="Characters\Prefabs\CorpSec2.cs" />
     <Compile Include="Characters\Prefabs\CorpSec3.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Scenes\GameLevel.cs" />
     <Compile Include="Scenes\IntroCutscene.cs" />
     <Compile Include="Scenes\LogoScene.cs" />
+    <Compile Include="Scenes\CharacterCreationScene.cs" />
     <Compile Include="Soundtrack\LevelMusic.cs" />
     <Compile Include="Soundtrack\MusicType.cs" />
     <Compile Include="Soundtrack\TheSoundGuy.cs" />
@@ -192,7 +195,6 @@
     <Compile Include="Credits\TitleCreditSection.cs" />
     <Compile Include="PhysicsMath\VectorMath.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Scenes\CharacterCreation.cs" />
     <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
     <Compile Include="Characters\CharacterBody.cs" />

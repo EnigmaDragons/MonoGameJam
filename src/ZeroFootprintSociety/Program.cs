@@ -32,11 +32,11 @@ namespace ZeroFootPrintSociety
         {
             return new SceneFactory(new Map<string, Func<IScene>>
             {
+                { "Credits", () => new CreditsScene() },
                 { "Logo", () => new LogoScene("MainMenu") },
                 { "MainMenu", () => new MainMenuScene("Intro") },
-                { "Intro", () => new IntroCutscene("DarkAlley") },
-                { "Credits", () => new CreditsScene() },
-                { "CharacterCreation", () => new CharacterCreation() },
+                { "Intro", () => new IntroCutscene("CharacterCreation") },
+                { "CharacterCreation", () => new CharacterCreationScene("DarkAlley") },
                 { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
                 { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
                 { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb", "alley-action-loop", "alley-action-loop", 0.8f, 0.4f, 0.4f)) },

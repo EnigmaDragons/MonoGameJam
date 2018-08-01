@@ -22,7 +22,13 @@ namespace ZeroFootPrintSociety.GUI
 
         private ChoiceUI(string title, Action backAction, bool backButtonActive, params OptionUI[] options)
         {
-            _title = new Label { Text = title, TextColor = Color.White, Transform = new Transform2(new Size2(1600, 100)) };
+            _title = new Label
+            {
+                Text = title,
+                Font = GuiFonts.Header,
+                TextColor = UIColors.InGame_Text, 
+                Transform = new Transform2(new Vector2(0.22.VW(), 0.1.VH()), new Size2(0.75.VW(), 80))
+            };
             _options = options.ToList();
             _backButton = new TextButton(new Rectangle(700, 800, 200, 35), backAction, "Back", UIColors.Buttons_Default, UIColors.Buttons_Hover, UIColors.Buttons_Press, () => backButtonActive);
             Branch = new ClickUIBranch("Choice", 2);
