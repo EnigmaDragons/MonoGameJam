@@ -12,7 +12,7 @@ namespace ZeroFootPrintSociety.GUI
 {
     public class HideUI : IVisual
     {
-        private readonly UiImage _hideBonusImage = new UiImage { Image = "UI/shield-placeholder" };
+        private readonly UiImage _hideBonusImage = new UiImage { Image = "UI/shield-placeholder-1" };
         private readonly Label _hideBonusLabel = new Label { Text = "+100%", TextColor = UIColors.InGame_Text };
         private bool _hidden = true;
 

@@ -30,7 +30,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 .Select(x => new ShotConfirmed
                     {
                         Proposed = new ProposedShotCalculation(x, GameWorld.CurrentCharacter, 
-                            new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, x.CurrentTile).BestShot(), 
+                            new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, x.CurrentTile).GetBestShot(), 
                             x.State.OverwatchedTiles[moved.Position]).CalculateShot()
                     })
                 .ToList();

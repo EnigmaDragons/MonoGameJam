@@ -1,6 +1,7 @@
 ﻿using MonoDragons.Core.Engine;
 using System;
 using System.Collections.Generic;
+using ZeroFootPrintSociety.Characters;
 
 namespace ZeroFootPrintSociety.AI
 {
@@ -11,9 +12,12 @@ namespace ZeroFootPrintSociety.AI
 
         public EnemyAI()
         {
+            var characterData = new Dictionary<Character, AICharacterData>();
             Add(new AIThinkingDelay());
-            Add(new AIMoveRandomly());
-            Add(new AIActionSelector());
+            Add(new AICharacterDataInitializer(characterData));
+            Add(new AIEnemyWatcher(characterData));
+            Add(new AIMovement(characterData));
+            Add(new AIActionSelector(characterData));
             Add(new AIShootingTargetSelector());
             Add(new AIActionConfirmer());
         }

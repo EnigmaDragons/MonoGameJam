@@ -40,14 +40,19 @@
   <ItemGroup>
     <Compile Include="AI\AIActionConfirmer.cs" />
     <Compile Include="AI\AIActionSelector.cs" />
+    <Compile Include="AI\AICharacterData.cs" />
+    <Compile Include="AI\AICharacterDataInitializer.cs" />
+    <Compile Include="AI\AIEnemyWatcher.cs" />
     <Compile Include="AI\AIShootingTargetSelector.cs" />
     <Compile Include="AI\Flow\AIActionQueued.cs" />
     <Compile Include="AI\Flow\AIActorBase.cs" />
     <Compile Include="AI\Flow\AIThinkingDelay.cs" />
-    <Compile Include="AI\AIMoveRandomly.cs" />
+    <Compile Include="AI\AIMovement.cs" />
     <Compile Include="AI\EnemyAI.cs" />
+    <Compile Include="AI\SpotHasGoodCoverCalculation.cs" />
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
+    <Compile Include="Characters\Direction.cs" />
     <Compile Include="Characters\Footprint.cs" />
     <Compile Include="Characters\Gear\MeleeWeapon.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />

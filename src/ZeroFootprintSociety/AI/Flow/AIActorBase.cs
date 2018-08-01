@@ -5,7 +5,7 @@ using ZeroFootPrintSociety.CoreGame;
 
 namespace ZeroFootPrintSociety.AI
 {
-    abstract class AIActorBase
+    public abstract class AIActorBase
     {
         protected Character Char => GameWorld.CurrentCharacter;
 

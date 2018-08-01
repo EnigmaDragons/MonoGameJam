@@ -24,7 +24,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 var tiles = ValidTiles(new PointRadiusCalculation(GameWorld.CurrentCharacter.CurrentTile.Position, GameWorld.CurrentCharacter.Gear.EquippedWeapon.AsRanged().Range).Calculate());
                 tiles.ForEach(x =>
                 {
-                    var shot = new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, GameWorld.Map[x]).BestShot();
+                    var shot = new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, GameWorld.Map[x]).GetBestShot();
                     if (new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, shot.BlockChance).Get() > 0)
                         overwatchedTiles[x] = shot;
                 });

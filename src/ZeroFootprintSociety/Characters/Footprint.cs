@@ -13,12 +13,4 @@ namespace ZeroFootPrintSociety.Characters
             Direction = direction;
         }
     }
-
-    public enum Direction
-    {
-        Up,
-        Down,
-        Right,
-        Left
-    }
 }
