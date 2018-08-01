@@ -3,6 +3,7 @@ using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.GUI.Hud;
+using ZeroFootPrintSociety.GUI.Menus;
 
 namespace ZeroFootPrintSociety.GUI
 {
@@ -19,6 +20,7 @@ namespace ZeroFootPrintSociety.GUI
             Add(new TeamTurnHudDecor());
             Add(new ActionOptionsMenu(clickUi));
             Add(new GameOverMenu(clickUi));
+            Add(new SwitchWeaponsMenu(clickUi));
         }
     }
 }

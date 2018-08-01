@@ -67,6 +67,7 @@
     <Compile Include="CoreGame\Mechanics\Events\OutOfFootsteps.cs" />
     <Compile Include="CoreGame\StateEvents\MoodChange.cs" />
     <Compile Include="GUI\ChatBox.cs" />
+    <Compile Include="GUI\Menus\SwitchWeaponsMenu.cs" />
     <Compile Include="MessageBoxErrorHandler.cs" />
     <Compile Include="GUI\Hud\FootstepsCounterView.cs" />
     <Compile Include="Scenes\GameLevel.cs" />
