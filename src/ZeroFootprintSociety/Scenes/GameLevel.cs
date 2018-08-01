@@ -5,7 +5,9 @@ using MonoDragons.Core.Scenes;
 using MonoTiled.Tiled.TmxLoading;
 using System;
 using System.Linq;
+using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Soundtrack;
 using ZeroFootPrintSociety.Tiles;
 
@@ -47,6 +49,17 @@ namespace ZeroFootPrintSociety.Scenes
                     GameWorld.Map,
                     GameWorld.Characters),
                 CameraStartingTile).Initialized());
+            Event.Subscribe<MoodChange>(OnMoodChange, this);
+        }
+
+        private void OnMoodChange(MoodChange change)
+        {
+            if (change.NewMood == Mood.Stealth)
+                Music.Play(MusicType.Ambient);
+            if (change.NewMood == Mood.Battle)
+                Music.Play(MusicType.Action);
+            if (change.NewMood == Mood.Boss)
+                Music.Play(MusicType.Boss);
         }
 
         private void SetRemainingFootstepsCounter()

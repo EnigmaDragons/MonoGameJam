@@ -65,6 +65,7 @@
     <Compile Include="CoreGame\Calculators\FrinedlyPerceptionUpdater.cs" />
     <Compile Include="CoreGame\Mechanics\Events\FootstepCounted.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OutOfFootsteps.cs" />
+    <Compile Include="CoreGame\StateEvents\MoodChange.cs" />
     <Compile Include="GUI\ChatBox.cs" />
     <Compile Include="MessageBoxErrorHandler.cs" />
     <Compile Include="GUI\Hud\FootstepsCounterView.cs" />

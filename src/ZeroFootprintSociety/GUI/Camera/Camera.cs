@@ -53,7 +53,16 @@ namespace ZeroFootPrintSociety.GUI
             Event.Subscribe<TurnBegun>(e => IfPerceivable(GameWorld.CurrentCharacter.CurrentTile.Position, 
                 () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform)), this);
             Event.Subscribe<Moved>(e => IfPerceivable(GameWorld.CurrentCharacter.CurrentTile.Position, 
-                () => CenterOn(GameWorld.Map.TileToWorldTransform(GameWorld.CurrentCharacter.CurrentTile.Position))), this);
+                () =>
+                {
+                    if (!GameWorld.CurrentCharacter.IsFriendly)
+                        CenterOn(GameWorld.Map.TileToWorldTransform(GameWorld.CurrentCharacter.CurrentTile.Position));
+                }), this);
+            Event.Subscribe<MovementConfirmed>(e =>
+                {
+                    if (GameWorld.CurrentCharacter.IsFriendly)
+                        CenterOn(GameWorld.Map.TileToWorldTransform(e.Path.Last()));
+                }, this);
             Event.Subscribe<MenuRequested>(e => _shouldFreezeCamera = true, this);
             Event.Subscribe<MenuDismissed>(e => _shouldFreezeCamera = false, this);
             Input.On(Control.Select, () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform));

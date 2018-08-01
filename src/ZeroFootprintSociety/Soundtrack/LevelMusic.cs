@@ -1,4 +1,5 @@
-﻿using MonoDragons.Core.AudioSystem;
+﻿using System.Collections.Generic;
+using MonoDragons.Core.AudioSystem;
 using MonoDragons.Core.Common;
 
 namespace ZeroFootPrintSociety.Soundtrack
@@ -6,6 +7,7 @@ namespace ZeroFootPrintSociety.Soundtrack
     public sealed class LevelMusic
     {
         private readonly DictionaryWithDefault<MusicType, string> _songs;
+        private readonly List<Sound> _sounds = new List<Sound>();
 
         public LevelMusic(string ambientSongName)
         {
@@ -23,7 +25,9 @@ namespace ZeroFootPrintSociety.Soundtrack
 
         public void Play(MusicType musicType)
         {
-            Sound.Music(_songs[musicType]).Play();
+            var music = Sound.Music(_songs[musicType]);
+            music.Play();
+            _sounds.Add(music);
         }
     }
 }

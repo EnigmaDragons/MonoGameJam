@@ -21,7 +21,8 @@ namespace MonoDragons.Core.AudioSystem
                 PlaySound(sound, _soundEffects, MaxSoundEffects);
             if (sound.Type == SoundType.Ambient)
                 PlaySound(sound, _ambience, MaxAmbience);
-            PlaySound(sound, _musics, MaxMusic);
+            if (sound.Type == SoundType.Music)
+                PlaySound(sound, _musics, MaxMusic);
         }
 
         private void PlaySound(Sound sound, List<Sound> category, int max)
