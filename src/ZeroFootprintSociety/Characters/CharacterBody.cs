@@ -112,7 +112,7 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Update(TimeSpan delta)
         {
-            const double speedModifier = 0.2;
+            double speedModifier = GameWorld.CurrentCharacter.Team != Team.Friendly && !GameWorld.FriendlyPerception[CurrentTile.Position] ? 9 : 0.2;
             _currentAnimation.Update(delta);
             if (Path.Any() && !Stopped)
             {
