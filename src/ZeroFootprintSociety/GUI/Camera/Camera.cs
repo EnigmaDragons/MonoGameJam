@@ -13,6 +13,8 @@ using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Tiles;
 using ZeroFootPrintSociety.CoreGame;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using Direction = ZeroFootPrintSociety.Characters.Direction;
 
 namespace ZeroFootPrintSociety.GUI
@@ -23,7 +25,7 @@ namespace ZeroFootPrintSociety.GUI
         private static readonly int GameHeight = CurrentDisplay.GameHeight;
         private static readonly Point ScreenCenter = new Point(GameWidth / 2, GameHeight / 2);
 
-        private const int TileOverage = 5;
+        private const int TileOverage = 8;
         
         private readonly List<CameraControl> _cameraControls;
 
@@ -65,6 +67,7 @@ namespace ZeroFootPrintSociety.GUI
                         CenterOn(GameWorld.Map.TileToWorldTransform(AheadOfPoint(GameWorld.CurrentCharacter.CurrentTile.Position, e.Path.Last())));
                 }, this);
             Event.Subscribe<EnemySpotted>(e => CenterOn(GameWorld.Map.TileToWorldTransform(e.Enemy.CurrentTile.Position)), this);
+            Event.Subscribe<ShootSelected>(e => CenterOn(GameWorld.CurrentCharacter), this);
             Event.Subscribe<MenuRequested>(e => _shouldFreezeCamera = true, this);
             Event.Subscribe<MenuDismissed>(e => _shouldFreezeCamera = false, this);
             Input.On(Control.Select, () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform));
@@ -110,7 +113,12 @@ namespace ZeroFootPrintSociety.GUI
             if (GameWorld.FriendlyPerception[tile])
                 action();
         } 
-
+        
+        private void CenterOn(Character ch)
+        {
+            CenterOn(ch.Body.CurrentTile.Transform);
+        }
+        
         private void CenterOn(Transform2 transform)
         {
             MoveTo(transform.Location.ToPoint() - ScreenCenter + new Point(transform.Size.Width / 2, transform.Size.Height / 2));

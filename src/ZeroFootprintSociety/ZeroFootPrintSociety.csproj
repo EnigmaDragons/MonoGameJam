@@ -166,7 +166,7 @@
     <Compile Include="GUI\CombatantSummary.cs" />
     <Compile Include="GUI\Hud\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
-    <Compile Include="GUI\PerceptionFootprintsUI.cs" />
+    <Compile Include="GUI\PerceptionIndicatorUI.cs" />
     <Compile Include="GUI\GuiFonts.cs" />
     <Compile Include="GUI\Gunshots.cs" />
     <Compile Include="GUI\Highlights\HighHighlights.cs" />
@@ -901,6 +901,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Effects\NeonGradient.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\perception-marker.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Effects\RotatingHighlight\1.png">

@@ -14,7 +14,7 @@ namespace ZeroFootPrintSociety.GUI
         public HighHighlights()
         {
             Add(new Gunshots());
-            Add(new PerceptionFootprintsUI());
+            Add(new PerceptionIndicatorUI());
         }
 
         public void Draw(Transform2 parentTransform)
