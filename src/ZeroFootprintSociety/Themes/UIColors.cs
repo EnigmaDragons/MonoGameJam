@@ -62,8 +62,6 @@ namespace ZeroFootPrintSociety.Themes
         public static Color TileFXCollection_Red { get; } = Color.FromNonPremultiplied(255, 0, 0, 35);
         public static Color TileFXCollection_Green { get; } = Color.FromNonPremultiplied(0, 255, 0, 35);
 
-        public static Color FootstepsCounterView_Text(int r = 255) => Color.FromNonPremultiplied(r, 255 + r, 255 - r, 255);
-
         public static Color FogColor { get; } = Color.FromNonPremultiplied(0, 0, 0, 63);
     }
 }
