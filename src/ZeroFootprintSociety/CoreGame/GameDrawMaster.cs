@@ -4,6 +4,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.GUI;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Development;
 
 namespace ZeroFootPrintSociety.CoreGame
 {
@@ -26,27 +27,27 @@ namespace ZeroFootPrintSociety.CoreGame
             var chars = GameWorld.Characters
                 .OrderBy(x => x.CurrentTile.Position.X)
                 .ThenBy(x => x.CurrentTile.Position.Y).ToList();
-            GameWorld.Map.Tiles.ForEach(x =>
+            Perf.Time("Drew Walls + Floors", () => GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(Floors, parentTransform, MultiplyColor);
-                x.Draw(Walls, parentTransform, MultiplyColor);
-            });
-            GameWorld.Highlights.Draw(parentTransform);
-            GameWorld.Map.Tiles.ForEach(x =>
+                x.Draw(Floors, parentTransform);
+                x.Draw(Walls, parentTransform);
+            }));
+            Perf.Time("Drew Highlights", () => GameWorld.Highlights.Draw(parentTransform));
+            Perf.Time("Drew Under Char Objects", () => GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(UnderChar1, parentTransform, MultiplyColor);
-                x.Draw(UnderChar2, parentTransform, MultiplyColor);
-            });
-            chars.ForEach(x => x.Draw(parentTransform));
-            GameWorld.Map.Tiles.ForEach(x =>
+                x.Draw(UnderChar1, parentTransform);
+                x.Draw(UnderChar2, parentTransform);
+            }));
+            Perf.Time("Drew Characters", () => chars.ForEach(x => x.Draw(parentTransform)));
+            Perf.Time("Drew Over Char Objects", () => GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(OverChar1, parentTransform, MultiplyColor);
-                x.Draw(OverChar2, parentTransform, MultiplyColor);
+                x.Draw(OverChar1, parentTransform);
+                x.Draw(OverChar2, parentTransform);
                 x.Draw(Shadows, parentTransform);
-            });
-            GameWorld.HighHighlights.Draw(parentTransform);
-            GameWorld.Map.Tiles.ForEach(x => _fx.Draw(parentTransform, x));
-            chars.ForEach(x => x.DrawUI(parentTransform));
+            }));
+            Perf.Time("Drew High Highlights", () => GameWorld.HighHighlights.Draw(parentTransform));
+            Perf.Time("Drew PostFX", () => GameWorld.Map.Tiles.ForEach(x => _fx.Draw(parentTransform, x)));
+            Perf.Time("Drew Char UI", () => chars.ForEach(x => x.DrawUI(parentTransform)));
         }
     }
 }

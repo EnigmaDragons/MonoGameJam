@@ -31,7 +31,7 @@ namespace ZeroFootPrintSociety.Tiles
             Details = details.OrderBy(x => x.ZIndex).ToList();
             Cover = Details.OrderByDescending(x => (int)x.Cover).First().Cover;
             PostFX = details.Select(x => x.PostFX).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
-            SpawnCharacter = details.Select(x => x.SpawnCharacter).Where(x => !string.IsNullOrWhiteSpace(x)).FirstOrDefault() ?? "None";
+            SpawnCharacter = details.Select(x => x.SpawnCharacter).FirstOrDefault(x => !string.IsNullOrWhiteSpace(x)) ?? "None";
         }
 
         public void See() => _seenOnce = true;

@@ -1,4 +1,5 @@
 ﻿using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 
 namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
@@ -6,7 +7,7 @@ namespace ZeroFootPrintSociety.CoreGame.StateEvents
     {
         public Character Attacker { get; set; }
         public Character Defender { get; set; }
-        public int AttackerBlockChance { get; set; }
-        public int DefenderBlockChance { get; set; }
+        public ShotCoverInfo AttackerBlockInfo { get; set; }
+        public ShotCoverInfo DefenderBlockInfo { get; set; }
     }
 }

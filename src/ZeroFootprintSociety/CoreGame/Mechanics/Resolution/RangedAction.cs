@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.Calculators;
@@ -11,7 +12,6 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 {
     public class RangedAction
     {
-        private static readonly Random _random = new Random(Guid.NewGuid().GetHashCode());
         private Queue<Action> _eventQueue = new Queue<Action>();
 
         public RangedAction()
@@ -31,13 +31,22 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             for (var i = 0; i < e.Proposed.AttackerBullets; i++)
             {
                 Event.Publish(new ShotFired { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
-                if (_random.Next(0, 100) < e.Proposed.DefenderBlockChance)
+                var blockRoll = Rng.Int(0, e.Proposed.IsDefenderHiding ? 50 : 100);
+                if(blockRoll < e.Proposed.DefenderBlockInfo.BlockChance)
                 {
-                    Event.Publish(new ShotBlocked { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
+                    e.Proposed.DefenderBlockInfo.Covers.Shuffle();
+                    foreach (CoverProvided cover in e.Proposed.DefenderBlockInfo.Covers)
+                        if (blockRoll < (int)cover.Cover)
+                        {
+                            Event.Publish(new ShotBlocked { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender, Blocker = cover.Providers.Random() });
+                            break;
+                        }
+                        else
+                            blockRoll -= (int)cover.Cover;
                 }
                 else
                 {
-                    if (_random.Next(0, 100) < e.Proposed.AttackerHitChance)
+                    if (Rng.Int(0, 100) < e.Proposed.AttackerHitChance)
                         Event.Publish(new ShotHit { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender, DamageAmount = e.Proposed.AttackerBulletDamage });
                     else
                         Event.Publish(new ShotMissed { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
@@ -52,13 +61,22 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                     for (var i = 0; i < e.Proposed.DefenderBullets; i++)
                     {
                         Event.Publish(new ShotFired { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
-                        if (_random.Next(0, 100) < e.Proposed.AttackerBlockChance)
+                        var blockRoll = Rng.Int(0, e.Proposed.IsAttackerHiding ? 50 : 100);
+                        if (blockRoll < e.Proposed.AttackerBlockInfo.BlockChance)
                         {
-                            Event.Publish(new ShotBlocked { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
+                            e.Proposed.AttackerBlockInfo.Covers.Shuffle();
+                            foreach (CoverProvided cover in e.Proposed.AttackerBlockInfo.Covers)
+                                if (blockRoll < (int)cover.Cover)
+                                {
+                                    Event.Publish(new ShotBlocked { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, Blocker = cover.Providers.Random() });
+                                    break;
+                                }
+                                else
+                                    blockRoll -= (int)cover.Cover;
                         }
                         else
                         {
-                            if (_random.Next(0, 100) < e.Proposed.DefenderHitChance)
+                            if (Rng.Int(0, 100) < e.Proposed.DefenderHitChance)
                                 Event.Publish(new ShotHit { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, DamageAmount = e.Proposed.AttackerBulletDamage });
                             else
                                 Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });

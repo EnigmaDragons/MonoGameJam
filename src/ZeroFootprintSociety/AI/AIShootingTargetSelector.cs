@@ -22,8 +22,8 @@ namespace ZeroFootPrintSociety.AI
                 {
                     Attacker = GameWorld.CurrentCharacter,
                     Defender = target.Character,
-                    AttackerBlockChance = target.CoverFromThem.BlockChance,
-                    DefenderBlockChance = target.CoverToThem.BlockChance
+                    AttackerBlockInfo = target.CoverFromThem,
+                    DefenderBlockInfo = target.CoverToThem
                 });
             });
         }

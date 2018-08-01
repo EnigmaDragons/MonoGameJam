@@ -11,7 +11,6 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
     public class ShotCalculation
     {
         private const float EPSILON = 0.01f;
-        private static readonly Dictionary<int, Dictionary<int, CoverProvided>> _cachedCover = new Dictionary<int, Dictionary<int, CoverProvided>>();
         
         private readonly GameTile _aggressor;
         private readonly GameTile _victim;
@@ -64,7 +63,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             var victimCenterX = _victim.Position.X * 2;
             var victimCenterY = _victim.Position.Y * 2;
 
-            var cover = GetCover(currentX, currentY);
+            var cover = CalculateDiagonalCover(currentX, currentY);
             if (cover.Cover == Cover.Heavy)
                 return cover;
             if ((int)cover.Cover > (int)currentCover.Cover)
@@ -85,15 +84,20 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                             currentCover = cover;
                     }
                 currentY += direction;
-                while (currentY != victimCenterY)
+                if (currentY == victimCenterY)
+                    return currentCover;
+                while (currentY + direction != victimCenterY)
                 {
-                    cover = GetCover(currentX, currentY);
+                    cover = CalculateCover(currentX, currentY);
                     if (cover.Cover == Cover.Heavy)
                         return cover;
                     if ((int)cover.Cover > (int)currentCover.Cover)
                         currentCover = cover;
                     currentY += direction;
                 }
+                cover = CalculateDiagonalCoverIgnoring(currentX, currentY, _victim);
+                if ((int)cover.Cover > (int)currentCover.Cover)
+                    currentCover = cover;
                 return currentCover;
             }
             if (currentY == victimY)
@@ -109,15 +113,20 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                             currentCover = cover;
                     }
                 currentX += direction;
+                if (currentX == victimCenterX)
+                    return currentCover;
                 while (currentX != victimCenterX)
                 {
-                    cover = GetCover(currentX, currentY);
+                    cover = CalculateCover(currentX, currentY);
                     if (cover.Cover == Cover.Heavy)
                         return cover;
                     if ((int)cover.Cover > (int)currentCover.Cover)
                         currentCover = cover;
                     currentX += direction;
                 }
+                cover = CalculateDiagonalCoverIgnoring(currentX, currentY, _victim);
+                if ((int)cover.Cover > (int)currentCover.Cover)
+                    currentCover = cover;
                 return currentCover;
             }
 
@@ -126,12 +135,14 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             var currentPreciseY = aggressorVector.Y;
             var distanceX = (victimX - currentX) / 2;
             var distanceY = (victimY - currentY) / 2;
+            var horizontalDirection = Math.Sign(distanceX);
+            var verticalDirection = Math.Sign(distanceY);
 
             currentX += 1 * Math.Sign(distanceX);
             currentY += 1 * Math.Sign(distanceY);
             while (Math.Abs(currentX - victimCenterX) > 1 || Math.Abs(currentY - victimCenterY) > 1)
             {
-                cover = GetCover(currentX, currentY);
+                cover = new CoverProvided(GameWorld.Map[currentX / 2, currentY / 2]);
                 if (cover.Cover == Cover.Heavy)
                     return cover;
                 if ((int)cover.Cover > (int)currentCover.Cover)
@@ -148,29 +159,34 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
                 if(Math.Abs(timeUntilCrossX - timeUntilCrossY) < EPSILON)
                 {
-                    currentX += 1 * Math.Sign(distanceX);
-                    currentY += 1 * Math.Sign(distanceY);
-                    cover = GetCover(currentX, currentY);
+                    currentX += 1 * horizontalDirection;
+                    currentY += 1 * verticalDirection;
+                    if (Math.Abs(currentX - victimCenterX) <= 1 && Math.Abs(currentY - victimCenterY) <= 1)
+                    {
+                        cover = CalculateDiagonalCoverTraveling(currentX, currentY, horizontalDirection * verticalDirection > 0);
+                        if ((int)cover.Cover > (int)currentCover.Cover)
+                            currentCover = cover;
+                        return currentCover;
+                    }
+                    cover = CalculateDiagonalCover(currentX, currentY);
                     if (cover.Cover == Cover.Heavy)
                         return cover;
                     if ((int)cover.Cover > (int)currentCover.Cover)
                         currentCover = cover;
-                    if (Math.Abs(currentX - victimCenterX) <= 1 && Math.Abs(currentY - victimCenterY) <= 1)
-                        return currentCover;
                     currentPreciseX += (float)timeUntilCrossX * distanceX;
                     currentPreciseY += (float)timeUntilCrossX * distanceY;
-                    currentX += 1 * Math.Sign(distanceX);
-                    currentY += 1 * Math.Sign(distanceY);
+                    currentX += 1 * horizontalDirection;
+                    currentY += 1 * verticalDirection;
                 }
                 else if (timeUntilCrossX < timeUntilCrossY)
                 {
-                    currentX += 2 * Math.Sign(distanceX);
+                    currentX += 2 * horizontalDirection;
                     currentPreciseX += (float)timeUntilCrossX * distanceX;
                     currentPreciseY += (float)timeUntilCrossX * distanceY;
                 }
                 else
                 {
-                    currentY += 2 * Math.Sign(distanceY);
+                    currentY += 2 * verticalDirection;
                     currentPreciseX += (float)timeUntilCrossY * distanceX;
                     currentPreciseY += (float)timeUntilCrossY * distanceY;
                 }
@@ -181,17 +197,6 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         private bool IsInBounds(int x, int y)
         {
             return GameWorld.Map.MinX * 2 <= x && x <= GameWorld.Map.MaxX * 2 || GameWorld.Map.MinY * 2 <= y && y <= GameWorld.Map.MaxY * 2;
-        }
-
-        private CoverProvided GetCover(int x, int y)
-        {
-            if (!IsInBounds(x, y))
-                return new CoverProvided();
-            if (!_cachedCover.ContainsKey(x))
-                _cachedCover.Add(x, new Dictionary<int, CoverProvided>());
-            if (!_cachedCover[x].ContainsKey(y))
-                _cachedCover[x].Add(y, CalculateCover(x, y));
-            return _cachedCover[x][y];
         }
 
         private CoverProvided CalculateCover(int x, int y)
@@ -215,6 +220,20 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             var cover1 = new CoverProvided(GameWorld.Map[(x - 1) / 2, (y - 1) / 2], GameWorld.Map[(x + 1) / 2, (y + 1) / 2]);
             var cover2 = new CoverProvided(GameWorld.Map[(x - 1) / 2, (y + 1) / 2], GameWorld.Map[(x + 1) / 2, (y - 1) / 2]);
             return cover1.Cover > cover2.Cover ? cover1 : cover2;
+        }
+
+        private CoverProvided CalculateDiagonalCoverIgnoring(int x, int y, GameTile tile)
+        {
+            return tile == GameWorld.Map[(x - 1) / 2, (y - 1) / 2] || tile == GameWorld.Map[(x + 1) / 2, (y + 1) / 2]
+                ? new CoverProvided(GameWorld.Map[(x - 1) / 2, (y + 1) / 2], GameWorld.Map[(x + 1) / 2, (y - 1) / 2])
+                : new CoverProvided(GameWorld.Map[(x - 1) / 2, (y - 1) / 2], GameWorld.Map[(x + 1) / 2, (y + 1) / 2]);
+        }
+
+        private CoverProvided CalculateDiagonalCoverTraveling(int x, int y, bool isPorportional)
+        {
+            return isPorportional
+                ? new CoverProvided(GameWorld.Map[(x - 1) / 2, (y - 1) / 2], GameWorld.Map[(x + 1) / 2, (y + 1) / 2])
+                : new CoverProvided(GameWorld.Map[(x - 1) / 2, (y + 1) / 2], GameWorld.Map[(x + 1) / 2, (y - 1) / 2]);
         }
     }
 }
