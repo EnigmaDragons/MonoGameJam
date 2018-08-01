@@ -18,7 +18,6 @@ namespace ZeroFootPrintSociety.GUI
     {
         public MovementPathHighlights()
         {
-            // TODO: Draw that highlight on mouseover when MovementOptionsAvailable publishes. (maybe?)
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
             Event.Subscribe(EventSubscription.Create<MovementFinished>(_ => OnMovementFinished(), this));
             Event.Subscribe(EventSubscription.Create<TurnEnded>(_ => OnMovementFinished(), this));

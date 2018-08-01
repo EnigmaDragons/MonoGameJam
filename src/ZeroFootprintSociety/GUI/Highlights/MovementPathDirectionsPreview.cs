@@ -36,7 +36,6 @@ namespace ZeroFootPrintSociety.GUI
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(OnMovementOptionsAvailable, this));
             Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
             Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
-            Event.Subscribe(EventSubscription.Create<Moved>(OnChangesTile, this));
         }
 
         private void OnMovementOptionsAvailable(MovementOptionsAvailable e)
@@ -51,18 +50,7 @@ namespace ZeroFootPrintSociety.GUI
             _shouldCheckMouse = false;
             _availableMoves = Empty;
             _lastPointOver = e.Path.First();
-        }
-
-        private void OnChangesTile(Moved e)
-        {
-            if (_showsHoveredPathDirections)
-            {
-                _currentPathTransforms = _currentPathTransforms.Skip(1).ToList();
-                _previousTileOver = _lastPointOver;
-                _lastPointOver = e.Position;
-                if (!_currentPathTransforms.Any())
-                    _showsHoveredPathDirections = false;
-            }
+            _currentPathTransforms = new List<Transform2>(0);
         }
 
         private void OnMovementFinished(MovementFinished obj) => _currentPathTransforms = new List<Transform2>(0);
