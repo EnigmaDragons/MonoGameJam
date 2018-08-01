@@ -10,7 +10,8 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterBody("MainCharacter", new Vector2(-13, -42), TeamColors.Friendly.Characters_GlowColor),
             new CharacterStats
             {
-                Name = "Weldon Zemke"
+                Name = "Weldon Zemke",
+                HP = 110
             },
             new CharacterGear(new RsxCarbine(), new RsxCarbine()),
             Team.Friendly,

@@ -9,7 +9,8 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterBody("Sidechick", new Vector2(-13, -42), Color.Blue),
             new CharacterStats
             {
-                Name = "Cassia Lanthe"
+                Name = "Cassia Lanthe",
+                HP = 105
             },
             new CharacterGear(new RsxCarbine(), new RsxCarbine()),
             Team.Friendly,
