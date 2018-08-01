@@ -23,22 +23,30 @@ namespace ZeroFootPrintSociety.AI
 
         private void ChooseMoveIfApplicable(MovementOptionsAvailable e)
         {
-            IfAITurn(() => Event.Publish(new AIActionQueued(() => Event.Publish(new MovementConfirmed(GetBestMovement(e.AvailableMoves))))));
+            IfAITurn(() => Event.Publish(new AIActionQueued(() =>
+            {
+                if (Char.Team != Team.Enemy)
+                    return;
+                Event.Publish(new MovementConfirmed(GetBestMovement(e.AvailableMoves)));
+            })));
         }
 
         private IReadOnlyList<Point> GetBestMovement(IReadOnlyList<IReadOnlyList<Point>> optionalPaths)
         {
-            if (Data.SeenEnemies.Any())
+            var data = Data;
+            if (data.SeenEnemies.Any())
+            {
                 return optionalPaths
                     .Preferred(path => CanShootFrom(path.Last()))
                     .Preferred(path => path.Last() != Char.CurrentTile.Position)
-                    .Preferred(path => new SpotHasGoodCoverCalculation(Data, path.Last()).Calculate())
-                    .GroupBy(path => Data.SeenEnemies.Sum(enemy => enemy.Value.TileDistance(path.Last())))
+                    .Preferred(path => new SpotHasGoodCoverCalculation(data, path.Last()).Calculate())
+                    .GroupBy(path => data.SeenEnemies.Sum(enemy => enemy.Value.TileDistance(path.Last())))
                     .OrderBy(x => x.Key)
                     .First()
                     .ToList()
                     .Random()
                     .ToList();
+            }
             return optionalPaths.Where(x => x.Count == 3 || x.Count == 4).ToList().Random();
         }
 

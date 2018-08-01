@@ -15,6 +15,7 @@ namespace ZeroFootPrintSociety.Tiles
         public bool IsVisible { get; }
         public string PostFX { get; }
         public string SpawnCharacter { get; }
+        //TODO: these are trash properties
         public bool MustKill { get; }
 
         public GameTileDetail(Texture2D texture, Rectangle sourceRect, int zIndex, bool isBlocking, 

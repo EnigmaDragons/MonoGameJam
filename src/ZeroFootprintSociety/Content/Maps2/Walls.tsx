@@ -219,25 +219,25 @@
  </tile>
  <tile id="36">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="37">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="38">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>
  <tile id="39">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="Heavy"/>
   </properties>
  </tile>

@@ -17,6 +17,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             "Characters/placeholder-soldier-face.png")
         {
             State.MustKill = true;
+            State.NextScene = "Credits";
         }
     }
 }
