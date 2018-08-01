@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using MonoDragons.Core.EventSystem;
+﻿using MonoDragons.Core.EventSystem;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.Calculators
@@ -11,12 +8,12 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
     {
         public VisibilityCalculator()
         {
-            Event.Subscribe(EventSubscription.Create<Moved>(OnMoved, this));
+            Event.Subscribe(EventSubscription.Create<Moved>(e => UpdateSight(e.Character), this));
         }
 
-        private void OnMoved(Moved obj)
+        public void UpdateSight(Character character)
         {
-            Event.Publish(new TilesSeen { Character = obj.Character, SeeableTiles = new VisibilityCalculation(obj.Character).Calculate() });
+            Event.Publish(new TilesSeen { Character = character, SeeableTiles = new VisibilityCalculation(character).Calculate() });
         }
     }
 }

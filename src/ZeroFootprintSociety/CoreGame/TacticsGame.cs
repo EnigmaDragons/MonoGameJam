@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -51,7 +52,10 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _shouldIgnoreClicks = true, this));
             Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
-            Add(new FrinedlyPerceptionUpdater());
+            var visibilityCalculator = new VisibilityCalculator();
+            var perceptionCalculator = new PerceptionCalculator();
+            var perceptionUpdater = new FrinedlyPerceptionUpdater();
+            Add(perceptionUpdater);
             Add(new EnemyAI());
             Add(new ActionOptionsCalculator());
             Add(new HideUI());
@@ -59,8 +63,8 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new ShootOptionsCalculator());
             Add(new ProposedShotCalculator());
             Add(new AvailableTargetsUI());
-            Add(new VisibilityCalculator());
-            Add(new PerceptionCalculator());
+            Add(visibilityCalculator);
+            Add(perceptionCalculator);
             Add(_drawMaster);
             Add(_combat);
             Add(_camera);
@@ -73,6 +77,12 @@ namespace ZeroFootPrintSociety.CoreGame
             Add((IAutomaton)GameWorld.Highlights);
             Add((IAutomaton)GameWorld.HighHighlights);
 
+            GameWorld.Characters.ForEach(x =>
+            {
+                visibilityCalculator.UpdateSight(x);
+                perceptionCalculator.UpdatePerception(x);
+            });
+            perceptionUpdater.UpdatePerception();
             _combat.Init();
             _camera.Init(_startingCameraTile);
         }

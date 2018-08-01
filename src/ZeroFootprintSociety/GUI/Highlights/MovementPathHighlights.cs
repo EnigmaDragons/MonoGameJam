@@ -5,6 +5,7 @@ using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Themes;
 using ZeroFootPrintSociety.Tiles;
@@ -26,6 +27,8 @@ namespace ZeroFootPrintSociety.GUI
         private void OnMovementConfirmed(MovementConfirmed e)
         {
             var destination = e.Path.Last();
+            if (GameWorld.CurrentCharacter.Team != Team.Friendly && !GameWorld.FriendlyPerception.ContainsKey(destination))
+                return;
 
             Add(new UiImage
             {
@@ -33,14 +36,6 @@ namespace ZeroFootPrintSociety.GUI
                 Transform = GameWorld.Map.TileToWorldTransform(destination).WithSize(TileData.RenderSize),
                 Tint = UIColors.AvailableMovesView_Rectangles
             });
-
-            /*
-            Add(new ColoredRectangle
-            {
-                Transform = GameWorld.Map.TileToWorldTransform(destination).WithSize(TileData.RenderSize),
-                Color = UIColors.MovementPathHighlights_Tile
-            });
-            */
 
             Add(new TileRotatingEdgesAnim(destination, Color.FromNonPremultiplied(110, 170, 255, 255)).Initialized());
         }

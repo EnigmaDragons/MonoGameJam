@@ -11,13 +11,11 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
     {
         public FrinedlyPerceptionUpdater()
         {
-            Event.Subscribe<TurnEnded>(OnTurnEnd, this);
+            Event.Subscribe<TurnEnded>(_ => UpdatePerception(), this);
         }
 
-        private void OnTurnEnd(TurnEnded e)
+        public void UpdatePerception()
         {
-            if (GameWorld.CurrentCharacter.Team != Team.Friendly)
-                return;
             var frienlyPerception = new DictionaryWithDefault<Point, bool>(false);
             GameWorld.Friendlies.ForEach(friendly =>
             {

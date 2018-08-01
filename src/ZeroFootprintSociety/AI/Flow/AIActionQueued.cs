@@ -1,4 +1,5 @@
 ﻿using System;
+using ZeroFootPrintSociety.CoreGame;
 
 namespace ZeroFootPrintSociety.AI
 {
@@ -8,7 +9,9 @@ namespace ZeroFootPrintSociety.AI
         public TimeSpan Delay { get;  }
 
         public AIActionQueued(Action action)
-            : this(action, TimeSpan.FromMilliseconds(0)) { }
+            : this(action, GameWorld.FriendlyPerception[GameWorld.CurrentCharacter.CurrentTile.Position] 
+                  ? TimeSpan.FromMilliseconds(750) 
+                  : TimeSpan.FromMilliseconds(0)) { }
 
         public AIActionQueued(Action action, TimeSpan delay)
         {

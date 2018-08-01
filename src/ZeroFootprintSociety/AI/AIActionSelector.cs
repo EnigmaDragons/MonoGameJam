@@ -17,13 +17,13 @@ namespace ZeroFootPrintSociety.AI
             {
                 var o = e.Options;
                 if (o.ContainsKey(ActionType.Pass))
-                    o[ActionType.Pass].Invoke();
+                    Event.Publish(new AIActionQueued(() => o[ActionType.Pass].Invoke()));
                 else if (o.ContainsKey(ActionType.Hide))
-                    o[ActionType.Hide].Invoke();
+                    Event.Publish(new AIActionQueued(() => o[ActionType.Hide].Invoke()));
                 else if (o.ContainsKey(ActionType.Shoot))
-                    o[ActionType.Shoot].Invoke();
+                    Event.Publish(new AIActionQueued(() => o[ActionType.Shoot].Invoke()));
                 else if (o.ContainsKey(ActionType.Overwatch))
-                    o[ActionType.Overwatch].Invoke();
+                    Event.Publish(new AIActionQueued(() => o[ActionType.Overwatch].Invoke()));
                 else
                     throw new Exception("No AI possible actions.");
             });
