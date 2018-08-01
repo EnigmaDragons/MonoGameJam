@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.AudioSystem;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.Themes;
 
@@ -10,6 +12,8 @@ namespace ZeroFootPrintSociety.GUI
         private const int _buttonWidth = 200;
         private const int _buttonHeight = 35;
         private const int _buttonMargin = 10;
+        
+        public static void PlayClickSound() => Sound.SoundEffect("SFX/button-press-1.mp3").Play();
 
         public class MenuContext
         {
@@ -27,7 +31,11 @@ namespace ZeroFootPrintSociety.GUI
                     ctx.Y + ctx.FirstButtonYOffset + ((_buttonMargin + _buttonHeight) * index),
                     _buttonWidth,
                     _buttonHeight),
-                action,
+                () =>
+                {
+                    PlayClickSound();
+                    action();
+                },
                 text,
                 UIColors.Buttons_Default,
                 UIColors.Buttons_Hover,

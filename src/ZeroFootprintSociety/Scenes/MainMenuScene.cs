@@ -7,6 +7,7 @@ using MonoDragons.Core.AudioSystem;
 using ZeroFootPrintSociety.CoreGame;
 using System;
 using MonoDragons.Core.Animations;
+using ZeroFootPrintSociety.GUI;
 using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Scenes
@@ -30,6 +31,7 @@ namespace ZeroFootPrintSociety.Scenes
             var button = new TextButton(
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
                 () => {
+                    Buttons.PlayClickSound();
                     GameWorld.Clear();
                     Scene.NavigateTo(_newGameScene);
                 }, 
@@ -42,6 +44,7 @@ namespace ZeroFootPrintSociety.Scenes
             var button2 = new TextButton(
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 760, 300, 50),
                 () => {
+                    Buttons.PlayClickSound();
                     GameWorld.Clear();
                     Scene.NavigateTo("Credits");
                 }, 
