@@ -51,6 +51,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _shouldIgnoreClicks = true, this));
             Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
+            Add(new FrinedlyPerceptionUpdater());
             Add(new EnemyAI());
             Add(new ActionOptionsCalculator());
             Add(new HideUI());

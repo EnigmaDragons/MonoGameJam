@@ -61,14 +61,13 @@ namespace ZeroFootPrintSociety.GUI
 
         private void OnShotBlocked(ShotBlocked e)
         {
-            var target = new ShotCalculation(e.Attacker.CurrentTile, e.Target.CurrentTile).BestShot().Covers.SelectMany(c => c.Providers).ToList().Random();
             _shots.Add(new BlockedShotVisual(
                 new RectangleTexture(UIColors.Gunshot).Create(),
                 CalculateTransform(
                     e.Attacker, 
-                    target.Transform.Center(), 
+                    e.Blocker.Transform.Center(), 
                     _random.Next(-100, 100) * 0.001),
-                target.Position));
+                e.Blocker.Position));
         }
 
         private Transform2 CalculateTransform(Character attacker, Character target, double rotationModifier)

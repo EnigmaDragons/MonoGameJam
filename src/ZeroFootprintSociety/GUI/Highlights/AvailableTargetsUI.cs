@@ -41,8 +41,8 @@ namespace ZeroFootPrintSociety.GUI
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Tint = 100.Alpha(), Image = "UI/shield-placeholder", Transform = p.Transform });
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = UIColors.AvailableTargetsUI_CoverPercentText, Transform = p.Transform });
                 }));
-                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.CoverToThem.BlockChance, x.Character.Stats.Agility).Get()}%", Transform = x.Character.CurrentTile.Transform });
-                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(x.Character.Accuracy, x.CoverFromThem.BlockChance, GameWorld.CurrentCharacter.Stats.Agility).Get()}% ", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });
+                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.CoverToThem.BlockChance, x.Character.Stats.Agility, x.Character.State.IsHiding).Get()}%", Transform = x.Character.CurrentTile.Transform });
+                _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(x.Character.Accuracy, x.CoverFromThem.BlockChance, GameWorld.CurrentCharacter.Stats.Agility, GameWorld.CurrentCharacter.State.IsHiding).Get()}% ", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });
             });
         }
 

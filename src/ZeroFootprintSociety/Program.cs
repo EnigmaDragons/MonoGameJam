@@ -25,7 +25,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("DarkAlley");
+            RunGame("ShootingRange");
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -41,6 +41,7 @@ namespace ZeroFootPrintSociety
                 { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
                 { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb")) },
                 { "SpawnTest", () => new GameLevel("SpawnTest.tmx") },
+                { "FinalFloor", () => new GameLevel("FinalFloor.tmx") },
             });
         }
 

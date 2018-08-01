@@ -57,8 +57,8 @@ namespace ZeroFootPrintSociety.CoreGame
             {
                 Attacker = GameWorld.CurrentCharacter,
                 Defender = attackTarget.Character,
-                AttackerBlockChance = attackTarget.CoverFromThem.BlockChance,
-                DefenderBlockChance = attackTarget.CoverToThem.BlockChance
+                AttackerBlockInfo = attackTarget.CoverFromThem,
+                DefenderBlockInfo = attackTarget.CoverToThem
             });
         } 
 
