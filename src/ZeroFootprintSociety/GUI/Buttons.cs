@@ -13,7 +13,9 @@ namespace ZeroFootPrintSociety.GUI
         private const int _buttonHeight = 35;
         private const int _buttonMargin = 10;
         
-        public static void PlayClickSound() => Sound.SoundEffect("SFX/button-press-1.mp3").Play();
+        public static void PlayClickSound() => Sound.SoundEffect("SFX/button-press-1.mp3", 0.6f).Play();
+        public static void PlayConfirmSound() => Sound.SoundEffect("SFX/confirm.mp3", 0.8f).Play();
+        public static void PlayCancelSound() => Sound.SoundEffect("SFX/cancel.mp3", 0.6f).Play();
 
         public class MenuContext
         {

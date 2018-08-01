@@ -24,9 +24,9 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                     .Select(x => new Target
                     {
                         Character = x,
-                        CoverToThem = new ShotCalculation(GameWorld.Turns.CurrentCharacter.CurrentTile, x.CurrentTile).BestShot(),
+                        CoverToThem = new ShotCalculation(GameWorld.Turns.CurrentCharacter.CurrentTile, x.CurrentTile).GetBestShot(),
                         CoverFromThem = CanShoot(x, GameWorld.Turns.CurrentCharacter)
-                            ? new ShotCalculation(x.CurrentTile, GameWorld.Turns.CurrentCharacter.CurrentTile).BestShot()
+                            ? new ShotCalculation(x.CurrentTile, GameWorld.Turns.CurrentCharacter.CurrentTile).GetBestShot()
                             : new ShotCoverInfo(new List<CoverProvided>())
                     }).ToList()
             };
