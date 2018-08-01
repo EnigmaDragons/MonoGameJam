@@ -28,6 +28,8 @@ namespace ZeroFootPrintSociety.GUI
 
         private void ShowOptions(MovementOptionsAvailable e)
         {
+            if (!GameWorld.FriendlyPerception[GameWorld.CurrentCharacter.CurrentTile.Position])
+                return;
             e.AvailableMoves.ForEach(x =>
             {
                 Add(new UiImage

@@ -36,6 +36,8 @@ namespace ZeroFootPrintSociety.GUI
         {
             if (_waitingForActionSelected)
             {
+                if (!GameWorld.FriendlyPerception[GameWorld.CurrentCharacter.CurrentTile.Position])
+                    return;
                 GameWorld.CurrentCharacter.State.OverwatchedTiles.ForEach(x =>
                 {
                     int percentage = new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.Value.BlockChance).Get();
