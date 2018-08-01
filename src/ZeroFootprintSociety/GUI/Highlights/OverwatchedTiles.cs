@@ -25,20 +25,20 @@ namespace ZeroFootPrintSociety.GUI
         public OverwatchedTiles()
         {
             Event.Subscribe<OverwatchSelected>(x => _waitingForActionSelected = true, this);
-            Event.Subscribe<ActionReadied>(x => ShowIfApplicable(), this);
+            Event.Subscribe<OverwatchTilesAvailable>(x => ShowIfApplicable(x), this);
             Event.Subscribe<ActionConfirmed>(x => Hide(), this);
             Event.Subscribe<ActionCancelled>(x => Hide(), this);
         }
 
         const float multiplier_percentage_divisor = 2.5f;
 
-        private void ShowIfApplicable()
+        private void ShowIfApplicable(OverwatchTilesAvailable tiles)
         {
             if (_waitingForActionSelected)
             {
                 if (!GameWorld.FriendlyPerception[GameWorld.CurrentCharacter.CurrentTile.Position])
                     return;
-                GameWorld.CurrentCharacter.State.OverwatchedTiles.ForEach(x =>
+                tiles.OverwatchedTiles.ForEach(x =>
                 {
                     int percentage = new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.Value.BlockChance).Get();
                     int index = percentage >= 90 ? 4 : (percentage >= 65 ? 3 : (percentage >= 30 ? 2 : 1));
