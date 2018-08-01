@@ -1,8 +1,12 @@
-﻿using MonoDragons.Core.EventSystem;
+﻿using System;
+using System.Collections.Generic;
+using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using System.Linq;
 using MonoDragons.Core.Common;
+using MonoDragons.Core.Engine;
+using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Themes;
@@ -10,9 +14,10 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.GUI
 {
-    class AvailableMovesView : MutableSceneContainer
+    class AvailableMovesView : IVisual
     {
         private readonly GameMap _map;
+        private List<IVisual> _visuals = new List<IVisual>();
 
         public AvailableMovesView(GameMap map)
         {
@@ -23,22 +28,29 @@ namespace ZeroFootPrintSociety.GUI
         
         private void OnMovementConfirmed(MovementConfirmed e)
         {
-            Clear();
+            _visuals = new List<IVisual>();
         }
 
         private void ShowOptions(MovementOptionsAvailable e)
         {
             if (!GameWorld.FriendlyPerception[GameWorld.CurrentCharacter.CurrentTile.Position])
                 return;
+            var visuals = new List<IVisual>();
             e.AvailableMoves.ForEach(x =>
             {
-                Add(new UiImage
+                visuals.Add(new UiImage
                 {
                     Image = "Effects/Cover_Gray",
                     Transform = GameWorld.Map.TileToWorldTransform(x.Last()).WithSize(TileData.RenderSize),
                     Tint = UIColors.AvailableMovesView_Rectangles
                 });
             });
+            _visuals = visuals;
+        }
+
+        public void Draw(Transform2 parentTransform)
+        {
+            _visuals.ToList().ForEach(x => x.Draw(parentTransform));
         }
     }
 }
