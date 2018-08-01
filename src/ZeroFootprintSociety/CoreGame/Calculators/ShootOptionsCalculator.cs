@@ -37,7 +37,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         {
             return !AreSameTeam(attacker, target) 
                 && attacker.Gear.EquippedWeapon.IsRanged
-                && attacker.Gear.EquippedWeapon.AsRanged().EffectiveRanges.ContainsKey(attacker.CurrentTile.Position.TileDistance(target.CurrentTile.Position));
+                && attacker.Gear.EquippedWeapon.AsRanged().EffectiveRanges.ContainsKey(attacker.CurrentTile.Position.TileDistance(target.CurrentTile.Position))
+                && attacker.State.SeeableTiles[target.CurrentTile.Position];
         }
 
         private bool AreSameTeam(Character attacker, Character target) => attacker.Team == target.Team;
