@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
@@ -12,8 +10,6 @@ using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.Themes;
-using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.GUI
 {
@@ -42,18 +38,12 @@ namespace ZeroFootPrintSociety.GUI
                 {
                     int percentage = new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.Value.BlockChance).Get();
                     int index = percentage >= 90 ? 4 : (percentage >= 65 ? 3 : (percentage >= 30 ? 2 : 1));
-
-                    _visuals.Add(
-
-                       new UiImage
-                       {
-                           Image = "Effects/D_Cover_Overwatched" + index,
-                           Transform = GameWorld.Map[x.Key].Transform,
-                           Tint = new Color(Color.Wheat, .5f * percentage / 100f),
-                       }
-
-
-                       );
+                    _visuals.Add(new UiImage
+                    {
+                        Image = "Effects/D_Cover_Overwatched" + index,
+                        Transform = GameWorld.Map[x.Key].Transform,
+                        Tint = new Color(Color.Wheat, .5f * percentage / 100f),
+                    });
                 });
             }
         }

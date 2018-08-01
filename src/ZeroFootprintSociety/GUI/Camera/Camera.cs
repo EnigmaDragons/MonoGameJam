@@ -63,6 +63,7 @@ namespace ZeroFootPrintSociety.GUI
                     if (GameWorld.CurrentCharacter.IsFriendly)
                         CenterOn(GameWorld.Map.TileToWorldTransform(e.Path.Last()));
                 }, this);
+            Event.Subscribe<EnemySpotted>(e => CenterOn(GameWorld.Map.TileToWorldTransform(e.Enemy.CurrentTile.Position)), this);
             Event.Subscribe<MenuRequested>(e => _shouldFreezeCamera = true, this);
             Event.Subscribe<MenuDismissed>(e => _shouldFreezeCamera = false, this);
             Input.On(Control.Select, () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform));
