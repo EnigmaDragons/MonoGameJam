@@ -9,11 +9,12 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterBody("Sidechick", new Vector2(-13, -42), Color.Blue),
             new CharacterStats
             {
-                Name = "Nameless One"
+                Name = "Cassia Lanthe"
             },
             new CharacterGear(new RsxCarbine(), new RsxCarbine()),
             Team.Friendly,
-            "Characters/placeholder-mainchar-face.png")
+            "Characters/Sidechick/Sidechick-face.png",
+            "Characters/Sidechick/Sidechick-bust.png")
         { }
     }
 }

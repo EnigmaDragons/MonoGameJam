@@ -10,6 +10,7 @@ using MonoDragons.Core.Render;
 using MonoDragons.Core.Scenes;
 using ZeroFootPrintSociety.Scenes;
 using System;
+using ZeroFootPrintSociety.Soundtrack;
 using Control = MonoDragons.Core.Inputs.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
@@ -18,7 +19,8 @@ namespace ZeroFootPrintSociety
     public static class Program
     {
         static MetaAppDetails AppMeta = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
-        static ReportErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+        //static ReportErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+        static IErrorHandler FatalErrorHandler = new MessageBoxErrorHandler();
 
         [STAThread]
         static void Main()
@@ -37,7 +39,7 @@ namespace ZeroFootPrintSociety
                 { "CharacterCreation", () => new CharacterCreation() },
                 { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
                 { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
-                { "DarkAlley", () => new GameLevel("DarkAlley.tmx") },
+                { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb")) },
                 { "SpawnTest", () => new GameLevel("SpawnTest.tmx") },
             });
         }
