@@ -54,6 +54,8 @@ namespace MonoDragons.Core.UserInterface
 
         public void Remove(ClickUIBranch branch)
         {
+            if (branch == null)
+                throw new Exception("We Have a problem");
             var branches = GetAllBranchesFrom(branch);
             foreach (var b in branches)
             {
