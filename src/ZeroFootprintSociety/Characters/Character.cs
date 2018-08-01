@@ -28,17 +28,19 @@ namespace ZeroFootPrintSociety.Characters
         public CharacterGear Gear { get; }
         public CharacterState State { get; }
         public string FaceImage { get; }
+        public string BustImage { get; }
         public Team Team { get; }
        
         public GameTile CurrentTile => Body.CurrentTile;
         public int Accuracy => Gear.EquippedWeapon.IsRanged ? Stats.AccuracyPercent + Gear.EquippedWeapon.AsRanged().AccuracyPercent : 0;
 
-        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team = Team.Neutral, string faceImage = "")
+        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team = Team.Neutral, string faceImage = "", string bustImage = "")
         {
             Stats = stats;
             Body = body;
             Gear = gear;
             FaceImage = faceImage;
+            BustImage = bustImage;
             State = new CharacterState(stats, this);
             Team = team;
 

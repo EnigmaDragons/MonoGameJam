@@ -18,12 +18,13 @@ namespace ZeroFootPrintSociety
     public static class Program
     {
         static MetaAppDetails AppMeta = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
-        static ReportErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+        //static ReportErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+        static IErrorHandler FatalErrorHandler = new MessageBoxErrorHandler();
 
         [STAThread]
         static void Main()
         {
-            RunGame("Logo");
+            RunGame("DarkAlley");
         }
 
         private static SceneFactory CreateSceneFactory()

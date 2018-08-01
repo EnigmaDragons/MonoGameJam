@@ -10,6 +10,7 @@ namespace ZeroFootPrintSociety.CoreGame
 {
     public static class GameWorld
     {
+        public static bool IsInitialized => Map != null && Characters != null && Turns != null && Highlights != null && HighHighlights != null;
         public static GameMap Map { get; set; } 
         public static IReadOnlyList<Character> Characters { get; set; }
         public static IReadOnlyList<Character> LivingCharacters => Characters.ToList().Where(x => !x.State.IsDeceased).ToList();
@@ -19,9 +20,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public static Highlights Highlights { get; set; }
         public static HighHighlights HighHighlights { get; set; }
         public static Point HoveredTile { get; set; } = new Point(0, 0);
-
         public static IEnumerable<Character> Friendlies => FriendliesWhere();
-
         public static bool IsGameOver { get; internal set; }
 
         public static IEnumerable<Character> FriendliesWhere(Predicate<Character> wherePredicate = null)

@@ -57,6 +57,7 @@
     <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Prefabs\Sidechick.cs" />
     <Compile Include="GUI\ChatBox.cs" />
+    <Compile Include="MessageBoxErrorHandler.cs" />
     <Compile Include="Scenes\GameLevel.cs" />
     <Compile Include="Scenes\IntroCutscene.cs" />
     <Compile Include="Scenes\LogoScene.cs" />
@@ -587,6 +588,12 @@
     <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\MainCharacter\MainCharacter-bust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter\MainCharacter-face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Characters\MainCharacter\MainCharacter-idle-down-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -707,10 +714,13 @@
     <Content Include="Content\Characters\MainCharacter\MainCharacter-run-up-8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Characters\placeholder-mainchar-face.png">
+    <Content Include="Content\Characters\placeholder-soldier-face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Characters\placeholder-soldier-face.png">
+    <Content Include="Content\Characters\Sidechick\Sidechick-bust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\Sidechick\Sidechick-face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Characters\Sidechick\Sidechick-idle-down-1.png">
