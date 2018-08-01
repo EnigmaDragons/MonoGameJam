@@ -6,6 +6,7 @@ using MonoTiled.Tiled.TmxLoading;
 using System;
 using System.Linq;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.Soundtrack;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.Scenes
@@ -15,22 +16,28 @@ namespace ZeroFootPrintSociety.Scenes
         private string MapDir { get; }
         private string MapFileName { get; }
         private Point CameraStartingTile { get; }
+        private LevelMusic Music { get; }
 
         public GameLevel(string mapFileName)
-            : this("Maps2", mapFileName, new Point(10, 10)) { }
+            : this("Maps2", mapFileName, new Point(10, 10), new LevelMusic("corp-amb")) { }
+        
+        public GameLevel(string mapFileName, LevelMusic music)
+            : this("Maps2", mapFileName, new Point(10, 10), music) { }
 
         public GameLevel(string mapDir, string mapFileName)
-            : this(mapDir, mapFileName, new Point(10, 10)) { }
+            : this(mapDir, mapFileName, new Point(10, 10), new LevelMusic("corp-amb")) { }
 
-        private GameLevel(string mapDir, string mapFileName, Point cameraStartingPosition)
+        private GameLevel(string mapDir, string mapFileName, Point cameraStartingPosition, LevelMusic music)
         {
             MapDir = mapDir;
             MapFileName = mapFileName;
             CameraStartingTile = CameraStartingTile;
+            Music = music;
         }            
 
         public override void Init()
         {
+            Music.Play(MusicType.Ambient);
             LoadMap();
             SpawnCharacters();
             SetRemainingFootstepsCounter();
