@@ -64,7 +64,7 @@ namespace ZeroFootPrintSociety
             var currentScene = new CurrentScene();
                 Scene.Init(new CurrentSceneNavigation(currentScene, CreateSceneFactory(),
                     Input.ClearTransientBindings,
-                    Resources.Unload));
+                    Resources.Unload, () => AudioPlayer.Instance.StopAll()));
                 return new HideViewportExternals(currentScene);
         }
 

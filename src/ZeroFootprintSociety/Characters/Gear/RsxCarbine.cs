@@ -25,6 +25,29 @@ namespace ZeroFootPrintSociety.Characters.Gear
         };
     }
 
+    class GoldenGun : RangedWeapon
+    {
+        public override string Name { get; } = "Golden Gun";
+        public override string Image { get; } = "Weapons/slgstandard";
+        public override string ShortDescription { get; } = "The ultimate";
+
+        public override int Accuracy { get; } = 21;
+        public override int NumShotsPerAttack { get; } = 1;
+        public override int DamagePerHit { get; } = 99;
+
+        public override Map<int, float> EffectiveRanges { get; } = new Map<int, float> {
+            { 1, 1f },
+            { 2, 1f },
+            { 3, 1 },
+            { 4, 1 },
+            { 5, 1f },
+            { 6, 1f },
+            { 7, 1f },
+            { 8, 1f },
+            { 9, 1f }
+        };
+    }
+
     class PowerKatana : MeleeWeapon
     {
         public override string Name { get; } = "PWR-56 Katana";
@@ -101,74 +124,6 @@ namespace ZeroFootPrintSociety.Characters.Gear
         public override int Trauma { get; } = 0;
         public override int Defense { get; } = 5;
         public override bool DoesStunOnHit { get; } = false;
-    }
-
-    class RailShotgun : RangedWeapon
-    {
-        public override string Name { get; } = "Experiment-324 Rail Shotgun";
-        public override string Image { get; } = "Weapons/RsxCarbine";
-        public override string ShortDescription { get; } = "This stolen prototype, is being designed as a new breaching gun for blowing the person on the otherside of the door to bits.";
-        public override int Accuracy { get; } = 9;
-        public override int NumShotsPerAttack { get; } = 1;
-        public override int DamagePerHit { get; } = 15;
-
-        public override Map<int, float> EffectiveRanges { get; } = new Map<int, float> {
-            { 1, 2f },
-            { 2, 1.6f },
-            { 3, 1.3f },
-            { 4, 1 },
-            { 5, 0.8f },
-            { 6, 0.6f }
-        };
-    }
-
-    class RsxRailgun : RangedWeapon
-    {
-        public override string Name { get; } = "RSX-238 Railgun";
-        public override string Image { get; } = "Weapons/rsxcarbine";
-        public override string ShortDescription { get; } = "People have claimed to make over mile long shot's with this gun.";
-        public override int Accuracy { get; } = 18;
-        public override int NumShotsPerAttack { get; } = 1;
-        public override int DamagePerHit { get; } = 9;
-
-        public override Map<int, float> EffectiveRanges { get; } = new Map<int, float> {
-            { 1, 0.3f },
-            { 2, 0.5f },
-            { 3, 0.7f },
-            { 4, 0.9f },
-            { 5, 1 },
-            { 6, 1.1f },
-            { 7, 1.2f },
-            { 8, 1.3f },
-            { 9, 1.4f },
-            { 10, 1.5f },
-            { 11, 1.4f },
-            { 12, 1.3f },
-            { 13, 1.2f },
-        };
-    }
-
-    class WarRailgun : RangedWeapon
-    {
-        public override string Name { get; } = "WAR-24 Railgun";
-        public override string Image { get; } = "Weapons/RsxCarbine";
-        public override string ShortDescription { get; } = "It Uses an experimental bullet, that is a rocket, that engages it's thruster after leaving the gun.";
-        public override int Accuracy { get; } = 13;
-        public override int NumShotsPerAttack { get; } = 1;
-        public override int DamagePerHit { get; } = 10;
-
-        public override Map<int, float> EffectiveRanges { get; } = new Map<int, float> {
-            { 1, 0.1f },
-            { 2, 0.2f },
-            { 3, 0.4f },
-            { 4, 0.6f },
-            { 5, 0.9f },
-            { 6, 1.2f },
-            { 7, 1.6f },
-            { 8, 2f },
-            { 9, 2.5f },
-            { 10, 3f }
-        };
     }
 
     class WarShotgun : RangedWeapon

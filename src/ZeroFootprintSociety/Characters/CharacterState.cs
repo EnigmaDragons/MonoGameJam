@@ -18,6 +18,7 @@ namespace ZeroFootPrintSociety.Characters
         public DictionaryWithDefault<Point, bool> SeeableTiles = new DictionaryWithDefault<Point, bool>(false);
         public ConcurrentDictionaryWithDefault<Point, bool> PercievedTiles = new ConcurrentDictionaryWithDefault<Point, bool>(false);
         public bool CanPercieve(Point point) => SeeableTiles[point] || PercievedTiles[point];
+        public bool MustKill { get; set; }
 
         public int RemainingHealth
         {

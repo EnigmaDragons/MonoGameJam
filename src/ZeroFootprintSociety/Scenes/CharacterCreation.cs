@@ -28,8 +28,8 @@ namespace ZeroFootPrintSociety.Scenes
         private ChoiceUI _gunPerkChoice;
         private const string DualWieldPerkName = "Akimbo";
         private const string DualWeildPerkDescription = "They have mastered the art of dual wielding all types of guns.";
-        private const string RailgunPerkName = "Rail-Expert";
-        private const string RailgunPerkDescription = "Specially trained for shooting enemies through walls with exetreme accuracy in urban combat, it's like they have a second sense.";
+        private const string ArmorPiercingPerkName = "Nanite Armor Piercing Rounds";
+        private const string ArmorPiercingPerkDescription = "No one even knows these rounds exist yet.";
         private ChoiceUI _dronePerkChoice;
         private const string ProxMinePerkName = "Spider Mine";
         private const string ProxMinePerkDescription = "Using high tech sensors, detect the enemies and lay down your explosive pets where they intend to go.";
@@ -48,10 +48,7 @@ namespace ZeroFootPrintSociety.Scenes
         private WeaponSet _doubleShotgunSet;
         private WeaponSet _doubleAssultRifleSet;
         private WeaponSet _doubleUziSet;
-        private ChoiceUI _railgunWeaponChoice;
-        private WeaponSet _explosiveRailgunSet;
-        private WeaponSet _deadEyeSet;
-        private WeaponSet _momentumSet;
+        private ChoiceUI _armorPiercingWeaponChoice;
         private ChoiceUI _proxMineWeaponChoice;
         private ChoiceUI _droneWeaponChoice;
         private WeaponSet _shotgunSet;
@@ -87,7 +84,7 @@ namespace ZeroFootPrintSociety.Scenes
                 new Perk(TankPerkName, TankPerkDescription, () => SwitchChoices(_tankWeaponChoice)));
             _gunPerkChoice = CreatePerkChoice(
                 new Perk(DualWieldPerkName, DualWeildPerkDescription, () => SwitchChoices(_dualWieldWeaponChoice)),
-                new Perk(RailgunPerkName, RailgunPerkDescription, () => SwitchChoices(_railgunWeaponChoice)));
+                new Perk(ArmorPiercingPerkName, ArmorPiercingPerkDescription, () => SwitchChoices(_armorPiercingWeaponChoice)));
             _dronePerkChoice = CreatePerkChoice(
                 new Perk(ProxMinePerkName, ProxMinePerkDescription, () => SwitchChoices(_proxMineWeaponChoice)),
                 new Perk(DronePerkName, DronePerkDescription, () => SwitchChoices(_droneWeaponChoice)));
@@ -100,9 +97,6 @@ namespace ZeroFootPrintSociety.Scenes
             _doubleShotgunSet = new WeaponSet("Death", new DoubleShotgun(), new DoubleMagnum());
             _doubleAssultRifleSet = new WeaponSet("Sharpshooter", new DoubleAssultRifle(), new DoubleAutoPistol());
             _doubleUziSet = new WeaponSet("Raining Bullets", new DoubleUzi(), new DoubleMagnum());
-            _explosiveRailgunSet = new WeaponSet("Experimental", new RailShotgun(), new FiliBlade());
-            _deadEyeSet = new WeaponSet("Never Miss", new RsxRailgun(), new WristShotgun());
-            _momentumSet = new WeaponSet("One Shot...", new WarRailgun(), new WristShotgun());
             _shotgunSet = new WeaponSet("Power", new WarShotgun(), new FiliBlade());
             _assultRifleSet = new WeaponSet("Balance", new RsxAssultRifle(), new WristShotgun());
             _carbineSet = new WeaponSet("Precision", new RsxCarbine(), new AutoPistol());
@@ -110,7 +104,7 @@ namespace ZeroFootPrintSociety.Scenes
             _ninjaWeaponChoice = CreateWeaponChoice(_meleePerkChoice, _katanaSet, _wakizashiSet, _bloodKatanaSet);
             _tankWeaponChoice = CreateWeaponChoice(_meleePerkChoice, _riotShieldSet, _stunBatonSet, _hammerSet);
             _dualWieldWeaponChoice = CreateWeaponChoice(_gunPerkChoice, _doubleShotgunSet, _doubleAssultRifleSet, _doubleUziSet);
-            _railgunWeaponChoice = CreateWeaponChoice(_gunPerkChoice, _explosiveRailgunSet, _deadEyeSet, _momentumSet);
+            _armorPiercingWeaponChoice = CreateWeaponChoice(_gunPerkChoice, _carbineSet, _assultRifleSet, _uziSet);
             _proxMineWeaponChoice = CreateWeaponChoice(_dronePerkChoice, _shotgunSet, _carbineSet, _assultRifleSet);
             _droneWeaponChoice = CreateWeaponChoice(_dronePerkChoice, _shotgunSet, _carbineSet, _uziSet);
 

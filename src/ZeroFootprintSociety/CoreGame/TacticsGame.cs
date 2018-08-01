@@ -11,6 +11,7 @@ using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.AI;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Resolution;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.GUI;
 
@@ -70,6 +71,8 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(perceptionUpdater);
             Add(new FriendlyVisionCalculator());
             Add(new NewEnemySpotter());
+            //TODO: trash class here
+            Add(new TargetKilledSceneTransition());
             Add(_drawMaster);
             Add(_combat);
             Add(_camera);

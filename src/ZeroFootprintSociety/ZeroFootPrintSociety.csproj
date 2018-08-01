@@ -66,6 +66,7 @@
     <Compile Include="CoreGame\Calculators\NewEnemySpotter.cs" />
     <Compile Include="CoreGame\Mechanics\Events\FootstepCounted.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OutOfFootsteps.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\TargetKilledSceneTransition.cs" />
     <Compile Include="CoreGame\StateEvents\EnemySpotted.cs" />
     <Compile Include="CoreGame\StateEvents\MoodChange.cs" />
     <Compile Include="GUI\ChatBox.cs" />
