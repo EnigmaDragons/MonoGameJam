@@ -78,14 +78,20 @@ namespace ZeroFootPrintSociety.CoreGame
             Add((IAutomaton)GameWorld.Highlights);
             Add((IAutomaton)GameWorld.HighHighlights);
 
+            CalculateInitVision(visibilityCalculator, perceptionCalculator, perceptionUpdater);
+            _combat.Init();
+            _camera.Init(_startingCameraTile);
+        }
+
+        private static void CalculateInitVision(VisibilityCalculator visibilityCalculator,
+            PerceptionCalculator perceptionCalculator, FrinedlyPerceptionUpdater perceptionUpdater)
+        {
             GameWorld.Characters.ForEach(x =>
             {
                 visibilityCalculator.UpdateSight(x);
                 perceptionCalculator.UpdatePerception(x);
             });
             perceptionUpdater.UpdatePerception();
-            _combat.Init();
-            _camera.Init(_startingCameraTile);
         }
 
         public override void Update(TimeSpan delta)

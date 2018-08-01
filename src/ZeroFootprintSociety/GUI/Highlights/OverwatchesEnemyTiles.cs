@@ -27,7 +27,7 @@ namespace ZeroFootPrintSociety.GUI
         public void UpdateOverwatchers()
         {
             _visuals.Clear();
-            GameWorld.LivingCharacters.Where(x => x.State.IsOverwatching && x.Team != GameWorld.CurrentCharacter.Team).ForEach(
+            GameWorld.LivingCharacters.Where(x => x.State.IsOverwatching && x.Team != GameWorld.CurrentCharacter.Team && GameWorld.FriendlyPerception[x.CurrentTile.Position]).ForEach(
                 x =>
                 {
                     var visuals = x.State.OverwatchedTiles.Select(tile => new ColoredRectangle
@@ -47,7 +47,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            _visuals.Values.ToList().ForEach(x => x.ForEach(y => y.Draw(parentTransform)));
+            _visuals.Values.ForEach(list => list.ForEach(x => x.Draw(parentTransform)));
         }
     }
 }
