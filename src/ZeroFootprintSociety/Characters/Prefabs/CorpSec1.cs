@@ -10,9 +10,15 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterBody("CorporationSecurity1", new Vector2(-13, -42), TeamColors.Enemy.Characters_GlowColor),
             new CharacterStats
             {
-                Name = "CorpSec Guard"
+                Name = "CorpSec Guard",
+                HP = 25,
+                Movement = 6,
+                Accuracy = 3,
+                Guts = 3,
+                Agility = 3,
+                Perception = 5
             },
-            new CharacterGear(new RsxCarbine(), new RsxCarbine()),
+            new CharacterGear(WeaponLists.RandomPrimary(), WeaponLists.RandomSecondary()),
             Team.Enemy,
             "Characters/placeholder-soldier-face.png") {}
     }

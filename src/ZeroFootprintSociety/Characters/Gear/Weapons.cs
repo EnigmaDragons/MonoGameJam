@@ -1,7 +1,34 @@
-﻿using MonoDragons.Core.Common;
+﻿using System.Collections.Generic;
+using MonoDragons.Core.Common;
 
 namespace ZeroFootPrintSociety.Characters.Gear
 {
+    static class WeaponLists
+    {
+        private static List<Weapon> _primaries = new List<Weapon>
+        {
+            new RsxCarbine(),
+            new WarUzi(),
+            new WarShotgun()
+        };
+        private static List<Weapon> _secondaries = new List<Weapon>
+        {
+            new SideArm(),
+            new PowerMagnum(),
+            new AutoPistol()
+        };
+
+        public static Weapon RandomPrimary()
+        {
+            return _primaries.Random();
+        }
+
+        public static Weapon RandomSecondary()
+        {
+            return _secondaries.Random();
+        }
+    }
+    
     class RsxCarbine : RangedWeapon
     {
         public override string Name { get; } = "RSX-167 Carbine";

@@ -10,8 +10,12 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterStats
             {
                 Name = "Cassia Lanthe",
-                HP = 105,
+                HP = 125,
                 Movement = 8,
+                Accuracy = 5,
+                Guts = 4,
+                Agility = 9,
+                Perception = 6
             },
             new CharacterGear(new RsxCarbine(), new GoldenGun()),
             Team.Friendly,
