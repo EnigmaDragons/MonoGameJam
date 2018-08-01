@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
-using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
@@ -93,7 +92,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            if (_showsHoveredPathDirections && _currentPathTransforms.Any())
+            if (_showsHoveredPathDirections)
                 _currentPathTransforms.ToList().ForEach(x => _highlight.Draw(parentTransform + x));
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using MonoDragons.Core.EventSystem;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.Calculators
@@ -8,15 +9,15 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
     {
         public PerceptionCalculator()
         {
-            Event.Subscribe<Moved>(OnMove, this);
+            Event.Subscribe<Moved>(e => UpdatePerception(e.Character), this);
         }
 
-        private void OnMove(Moved e)
+        public void UpdatePerception(Character character)
         {
             Event.Publish(new TilesPercieved
             {
-                Character = e.Character,
-                Tiles = new PointRadiusCalculation(e.Character.CurrentTile.Position, e.Character.Stats.Perception).Calculate()
+                Character = character,
+                Tiles = new PointRadiusCalculation(character.CurrentTile.Position, character.Stats.Perception).Calculate()
                     .Where(x => GameWorld.Map.Exists(x)).ToList() 
             });
         }

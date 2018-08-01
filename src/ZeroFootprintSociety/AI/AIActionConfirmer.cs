@@ -7,7 +7,7 @@ namespace ZeroFootPrintSociety.AI
     {
         public AIActionConfirmer()
         {
-            Event.Subscribe<ActionReadied>(e => IfAITurn(() => Event.Publish(new ActionConfirmed())), this);
+            Event.Subscribe<ActionReadied>(e => IfAITurn(() => Event.Publish(new AIActionQueued(() => Event.Publish(new ActionConfirmed())))), this);
         }
     }
 }

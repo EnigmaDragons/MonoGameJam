@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -51,7 +52,9 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<MenuRequested>(e => _shouldIgnoreClicks = true, this));
             Event.Subscribe(EventSubscription.Create<MenuDismissed>(e => _shouldIgnoreClicks = false, this));
 
-            Add(new FrinedlyPerceptionUpdater());
+            var visibilityCalculator = new VisibilityCalculator();
+            var perceptionCalculator = new PerceptionCalculator();
+            var perceptionUpdater = new FrinedlyPerceptionUpdater();
             Add(new EnemyAI());
             Add(new ActionOptionsCalculator());
             Add(new HideUI());
@@ -59,8 +62,9 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new ShootOptionsCalculator());
             Add(new ProposedShotCalculator());
             Add(new AvailableTargetsUI());
-            Add(new VisibilityCalculator());
-            Add(new PerceptionCalculator());
+            Add(visibilityCalculator);
+            Add(perceptionCalculator);
+            Add(perceptionUpdater);
             Add(new FriendlyVisionCalculator());
             Add(_drawMaster);
             Add(_combat);
@@ -74,8 +78,20 @@ namespace ZeroFootPrintSociety.CoreGame
             Add((IAutomaton)GameWorld.Highlights);
             Add((IAutomaton)GameWorld.HighHighlights);
 
+            CalculateInitVision(visibilityCalculator, perceptionCalculator, perceptionUpdater);
             _combat.Init();
             _camera.Init(_startingCameraTile);
+        }
+
+        private static void CalculateInitVision(VisibilityCalculator visibilityCalculator,
+            PerceptionCalculator perceptionCalculator, FrinedlyPerceptionUpdater perceptionUpdater)
+        {
+            GameWorld.Characters.ForEach(x =>
+            {
+                visibilityCalculator.UpdateSight(x);
+                perceptionCalculator.UpdatePerception(x);
+            });
+            perceptionUpdater.UpdatePerception();
         }
 
         public override void Update(TimeSpan delta)
