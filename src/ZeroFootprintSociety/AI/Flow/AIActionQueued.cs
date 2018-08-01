@@ -8,7 +8,7 @@ namespace ZeroFootPrintSociety.AI
         public TimeSpan Delay { get;  }
 
         public AIActionQueued(Action action)
-            : this(action, TimeSpan.FromMilliseconds(750)) { }
+            : this(action, TimeSpan.FromMilliseconds(0)) { }
 
         public AIActionQueued(Action action, TimeSpan delay)
         {

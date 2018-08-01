@@ -5,6 +5,8 @@ namespace ZeroFootPrintSociety.Tiles
 {
     public class GameTileDetail
     {
+        public static GameTileDetail None { get; } = new GameTileDetail(null, new Rectangle(), -1, true, Cover.Heavy, false, "", "");
+
         public Texture2D Texture { get; }
         public Rectangle SourceRect { get; }
         public int ZIndex { get; }
@@ -12,8 +14,10 @@ namespace ZeroFootPrintSociety.Tiles
         public Cover Cover { get; }
         public bool IsVisible { get; }
         public string PostFX { get; }
+        public string SpawnCharacter { get; }
 
-        public GameTileDetail(Texture2D texture, Rectangle sourceRect, int zIndex, bool isBlocking, Cover cover, bool isHidden, string postFx)
+        public GameTileDetail(Texture2D texture, Rectangle sourceRect, int zIndex, bool isBlocking, 
+            Cover cover, bool isHidden, string postFx, string spawnCharacter)
         {
             Texture = texture;
             SourceRect = sourceRect;
@@ -22,6 +26,7 @@ namespace ZeroFootPrintSociety.Tiles
             Cover = cover;
             IsVisible = !isHidden;
             PostFX = postFx;
+            SpawnCharacter = spawnCharacter;
         }
     }
 }

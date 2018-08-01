@@ -12,12 +12,12 @@ namespace MonoDragons.Core.Development
             _isEnabled = false;
         }
 
-        public static void Time(string name, Action action)
+        public static void Time(string name, Action action, int minLoggingMillis = 8)
         {
-            Time(name, () => { action(); return true; });
+            Time(name, () => { action(); return true; }, minLoggingMillis);
         }
 
-        public static T Time<T>(string name, Func<T> getResult)
+        public static T Time<T>(string name, Func<T> getResult, int minLoggingMillis = 8)
         {
             if (!_isEnabled)
                 return getResult();
@@ -25,7 +25,8 @@ namespace MonoDragons.Core.Development
             var start = DateTime.Now;
             var result = getResult();
             var duration = DateTime.Now - start;
-            Debug.WriteLine($"{name} - {duration.TotalMilliseconds}ms");
+            if (duration.TotalMilliseconds >= minLoggingMillis)
+                Debug.WriteLine($"{name} - {duration.TotalMilliseconds}ms");
             return result;
         }
     }

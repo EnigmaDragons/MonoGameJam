@@ -39,7 +39,7 @@ namespace MonoDragons.Core.EngimaDragons
                 return;
 
             _begunTransition = true;
-            await Task.Delay(3000);
+            await Task.Delay(6000);
             NavigateToMainMenu();
         }
 

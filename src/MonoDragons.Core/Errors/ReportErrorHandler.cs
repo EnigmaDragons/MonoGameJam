@@ -33,7 +33,6 @@ namespace MonoDragons.Core.Errors
                             StackTrace = ex.StackTrace
                         }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
             _reportedFatalError = true;
-            throw ex;
         }
 
         private class CrashDetail

@@ -21,7 +21,7 @@ namespace MonoDragons.Core.AudioSystem
         public static Sound Ambient(string fileName, float volume = 1) 
             => new Sound(fileName, true, false, volume, SoundType.Ambient);
         public static Sound SoundEffect(string fileName, float volume = 1) 
-            => new Sound(fileName, false, false, volume, SoundType.Effect);
+            => new Sound(Path.Combine("Content", fileName), false, false, volume, SoundType.Effect);
 
         public Sound(string fileName, bool looping, bool mute, float volume, SoundType type)
         {

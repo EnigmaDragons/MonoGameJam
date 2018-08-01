@@ -10,6 +10,7 @@ using MonoDragons.Core.Render;
 using MonoDragons.Core.Scenes;
 using ZeroFootPrintSociety.Scenes;
 using System;
+using ZeroFootPrintSociety.Soundtrack;
 using Control = MonoDragons.Core.Inputs.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 
@@ -18,23 +19,28 @@ namespace ZeroFootPrintSociety
     public static class Program
     {
         static MetaAppDetails AppMeta = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
-        static ReportErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+        //static ReportErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+        static IErrorHandler FatalErrorHandler = new MessageBoxErrorHandler();
 
         [STAThread]
         static void Main()
         {
-            RunGame("ShootingRange");
+            RunGame("DarkAlley");
         }
 
         private static SceneFactory CreateSceneFactory()
         {
             return new SceneFactory(new Map<string, Func<IScene>>
             {
-                { "Logo", () => new FadingInScene(new OilLogoScene("MainMenu")) },
-                { "MainMenu", () => new MainMenuScene() },
-                { "SampleLevel", () => new SampleCorporationScene() },
-                { "Level1", () => new CorporationOutsideScene() },
-                { "ShootingRange", () => new ShootingRange() },
+                { "Logo", () => new LogoScene("MainMenu") },
+                { "MainMenu", () => new MainMenuScene("Intro") },
+                { "Intro", () => new IntroCutscene("DarkAlley") },
+                { "Credits", () => new CreditsScene() },
+                { "CharacterCreation", () => new CharacterCreation() },
+                { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
+                { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
+                { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb")) },
+                { "SpawnTest", () => new GameLevel("SpawnTest.tmx") },
             });
         }
 
@@ -48,6 +54,7 @@ namespace ZeroFootPrintSociety
             catch(Exception e)
             {
                 FatalErrorHandler.ResolveError(e);
+                System.Windows.Forms.MessageBox.Show(e.StackTrace);
             }
         }
 

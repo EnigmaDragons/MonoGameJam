@@ -10,12 +10,12 @@ using ZeroFootPrintSociety.AI;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.CoreGame.UiElements;
-using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
+using ZeroFootPrintSociety.GUI;
+
 
 namespace ZeroFootPrintSociety.CoreGame
 {
-    public class TacticsGame : SceneContainer
+    public class TacticsGame : SceneContainer, IInitializable
     {
         private enum MouseAction
         {
@@ -62,16 +62,15 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new PerceptionCalculator());
             Add(_drawMaster);
             Add(_combat);
-            Add(new HudView());
             Add(_camera);
+#if DEBUG
+            Add(new RecentEventDebugLogView { Position = new Vector2(0, 150), MaxLines = 30, HideTextPart = "ZeroFootPrintSociety." });
+#endif
+            Add(new HudView());
             GameWorld.Highlights = new Highlights();
             GameWorld.HighHighlights = new HighHighlights();
             Add((IAutomaton)GameWorld.Highlights);
             Add((IAutomaton)GameWorld.HighHighlights);
-
-#if DEBUG
-            Add(new RecentEventDebugLogView { Position = new Vector2(0, 150), MaxLines = 30, HideTextPart = "ZeroFootPrintSociety." });
-#endif
 
             _combat.Init();
             _camera.Init(_startingCameraTile);

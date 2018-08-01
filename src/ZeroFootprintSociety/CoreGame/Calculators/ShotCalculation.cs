@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
-using ZeroFootPrintSociety.PhsyicsMath;
+using ZeroFootPrintSociety.PhysicsMath;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.Calculators

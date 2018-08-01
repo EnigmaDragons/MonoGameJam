@@ -46,7 +46,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         
         private void Select(object selection)
         {
-            Event.Publish(new ActionSelected());
+            Event.Publish(new ActionSelected(selection.GetType().Name.Replace("Selected", "")));
             Event.Publish(selection);
         }
     }

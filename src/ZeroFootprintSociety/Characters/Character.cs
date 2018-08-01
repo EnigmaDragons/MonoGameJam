@@ -5,14 +5,16 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
-using ZeroFootPrintSociety.Characters.Ui;
+using ZeroFootPrintSociety.Characters.GUI;
+using ZeroFootPrintSociety.Characters.Prefabs;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.Calculators;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
 using ZeroFootPrintSociety.Tiles;
+using ZeroFootPrintSociety.GUI;
 
 namespace ZeroFootPrintSociety.Characters
 {
@@ -28,18 +30,20 @@ namespace ZeroFootPrintSociety.Characters
         public CharacterGear Gear { get; }
         public CharacterState State { get; }
         public string FaceImage { get; }
+        public string BustImage { get; }
         public Team Team { get; }
        
         public GameTile CurrentTile => Body.CurrentTile;
         public int Accuracy => Gear.EquippedWeapon.IsRanged ? Stats.AccuracyPercent + Gear.EquippedWeapon.AsRanged().AccuracyPercent : 0;
 
-        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team = Team.Neutral, string faceImage = "")
+        public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team = Team.Neutral, string faceImage = "", string bustImage = "")
         {
             Stats = stats;
             Body = body;
             Gear = gear;
             FaceImage = faceImage;
-            State = new CharacterState(stats, this);
+            BustImage = bustImage;
+            State = new CharacterState(stats);
             Team = team;
 
             _damageNumbers = new DamageNumbersView(this);
@@ -52,6 +56,14 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<TilesPercieved>(OnTilesPercieved, this);
             Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
             Event.Subscribe<MoveResolved>(ContinueMoving, this);
+            Event.Subscribe<Moved>(FootstepsIfMainChar, this);
+        }
+
+        private void FootstepsIfMainChar(Moved obj)
+        {
+            if (this is MainChar && obj.Character.Equals(this))
+                if (GameWorld.FootstepsRemaining-- == 0)
+                    Event.Publish(new OutOfFootsteps());
         }
 
         private void ContinueMoving(MoveResolved e)

@@ -5,7 +5,7 @@ using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.CoreGame.UiElements.UiEvents;
+using ZeroFootPrintSociety.GUI;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution

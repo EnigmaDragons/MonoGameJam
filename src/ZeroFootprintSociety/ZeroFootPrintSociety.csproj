@@ -49,11 +49,24 @@
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
     <Compile Include="Characters\Footprint.cs" />
+    <Compile Include="Characters\Gear\MeleeWeapon.cs" />
     <Compile Include="Characters\Gear\RsxCarbine.cs" />
     <Compile Include="Characters\Gear\Weapon.cs" />
     <Compile Include="Characters\Prefabs\CorpSec2.cs" />
+    <Compile Include="Characters\Prefabs\CorpSec3.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
     <Compile Include="Characters\Prefabs\Sidechick.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\FootstepCounted.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\OutOfFootsteps.cs" />
+    <Compile Include="GUI\ChatBox.cs" />
+    <Compile Include="MessageBoxErrorHandler.cs" />
+    <Compile Include="GUI\Hud\FootstepsCounterView.cs" />
+    <Compile Include="Scenes\GameLevel.cs" />
+    <Compile Include="Scenes\IntroCutscene.cs" />
+    <Compile Include="Scenes\LogoScene.cs" />
+    <Compile Include="Soundtrack\LevelMusic.cs" />
+    <Compile Include="Soundtrack\MusicType.cs" />
+    <Compile Include="Tiles\CharacterSpawning.cs" />
     <Compile Include="Characters\Target.cs" />
     <Compile Include="Characters\Teams\TeamGroup.cs" />
     <Compile Include="Characters\Teams\Team.cs" />
@@ -89,11 +102,12 @@
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchAction.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchResolver.cs" />
     <Compile Include="CoreGame\StateEvents\ActionSelected.cs" />
+    <Compile Include="CoreGame\StateEvents\GameOver.cs" />
     <Compile Include="CoreGame\StateEvents\TilesPercieved.cs" />
     <Compile Include="CoreGame\StateEvents\TilesSeen.cs" />
-    <Compile Include="CoreGame\UiElements\CameraArrowKeysControl.cs" />
-    <Compile Include="CoreGame\UiElements\CameraControl.cs" />
-    <Compile Include="CoreGame\UiElements\CameraEdgesMouseControl.cs" />
+    <Compile Include="GUI\Camera\CameraArrowKeysControl.cs" />
+    <Compile Include="GUI\Camera\CameraControl.cs" />
+    <Compile Include="GUI\Camera\CameraEdgesMouseControl.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\PassAction.cs" />
     <Compile Include="CoreGame\StateEvents\ActionCancelled.cs" />
     <Compile Include="CoreGame\StateEvents\ActionConfirmed.cs" />
@@ -106,7 +120,9 @@
     <Compile Include="CoreGame\StateEvents\MoveResolved.cs" />
     <Compile Include="CoreGame\StateEvents\TargetInspected.cs" />
     <Compile Include="CoreGame\StateEvents\TurnEnded.cs" />
-    <Compile Include="CoreGame\UiElements\ActionOptionsView.cs" />
+    <Compile Include="GUI\ChoiceUI.cs" />
+    <Compile Include="GUI\Menus\GameOverMenu.cs" />
+    <Compile Include="GUI\Menus\ActionOptionsMenu.cs" />
     <Compile Include="CoreGame\StateEvents\MovementFinished.cs" />
     <Compile Include="CoreGame\Mechanics\Events\HideSelected.cs" />
     <Compile Include="Characters\CharacterGear.cs" />
@@ -116,51 +132,56 @@
     <Compile Include="CoreGame\StateEvents\TurnBegun.cs" />
     <Compile Include="CoreGame\Mechanics\Events\WeaponSwitched.cs" />
     <Compile Include="CoreGame\Actions\ActionOptionsAvailable.cs" />
-    <Compile Include="CoreGame\StateEvents\CharacterDeceases.cs" />
+    <Compile Include="CoreGame\StateEvents\CharacterDeceased.cs" />
     <Compile Include="CoreGame\StateEvents\MovementConfirmed.cs" />
     <Compile Include="CoreGame\StateEvents\MovementOptionsAvailable.cs" />
     <Compile Include="CoreGame\TacticsGame.cs" />
     <Compile Include="CoreGame\TurnBasedCombat.cs" />
     <Compile Include="Characters\CharacterStats.cs" />
-    <Compile Include="CoreGame\UiElements\AttackedHealthBar.cs" />
-    <Compile Include="CoreGame\UiElements\AttackPreview.cs" />
-    <Compile Include="CoreGame\UiElements\AvailableMovesView.cs" />
-    <Compile Include="CoreGame\UiElements\AvailableTargetsUI.cs" />
-    <Compile Include="CoreGame\UiElements\AvailableTargetsView.cs" />
-    <Compile Include="CoreGame\UiElements\Buttons.cs" />
-    <Compile Include="CoreGame\UiElements\Camera.cs" />
-    <Compile Include="CoreGame\UiElements\CameraOptions.cs" />
-    <Compile Include="CoreGame\UiElements\CameraDragMouseControl.cs" />
-    <Compile Include="CoreGame\UiElements\CombatantSummary.cs" />
-    <Compile Include="CoreGame\UiElements\CurrentCharacterView.cs" />
+    <Compile Include="GUI\AttackedHealthBar.cs" />
+    <Compile Include="GUI\AttackPreview.cs" />
+    <Compile Include="GUI\Highlights\AvailableMovesView.cs" />
+    <Compile Include="GUI\Highlights\AvailableTargetsUI.cs" />
+    <Compile Include="GUI\Highlights\AvailableTargetsView.cs" />
+    <Compile Include="GUI\Buttons.cs" />
+    <Compile Include="GUI\Camera\Camera.cs" />
+    <Compile Include="GUI\Camera\CameraOptions.cs" />
+    <Compile Include="GUI\Camera\CameraDragMouseControl.cs" />
+    <Compile Include="GUI\CombatantSummary.cs" />
+    <Compile Include="GUI\Hud\CurrentCharacterView.cs" />
     <Compile Include="Characters\Ui\DamageNumbersView.cs" />
-    <Compile Include="CoreGame\UiElements\FogOfWarView.cs" />
-    <Compile Include="CoreGame\UiElements\FootprintsUI.cs" />
-    <Compile Include="CoreGame\UiElements\Gunshots.cs" />
-    <Compile Include="CoreGame\UiElements\HighHighlights.cs" />
-    <Compile Include="CoreGame\UiElements\MovementPathDirectionsPreview.cs" />
-    <Compile Include="CoreGame\UiElements\OverwatchesEnemyTiles.cs" />
-    <Compile Include="CoreGame\UiElements\TeamTurnHudDecor.cs" />
-    <Compile Include="CoreGame\UiElements\EquippedWeaponView.cs" />
-    <Compile Include="CoreGame\UiElements\HideUI.cs" />
-    <Compile Include="CoreGame\UiElements\Highlights.cs" />
-    <Compile Include="CoreGame\UiElements\HudView.cs" />
-    <Compile Include="CoreGame\UiElements\InGameMenu.cs" />
-    <Compile Include="CoreGame\UiElements\MoveConfirmView.cs" />
-    <Compile Include="CoreGame\UiElements\MovementPathHighlights.cs" />
-    <Compile Include="CoreGame\UiElements\OverwatchedTiles.cs" />
-    <Compile Include="CoreGame\UiElements\UiEvents\MenuDismissed.cs" />
-    <Compile Include="CoreGame\UiElements\UiEvents\MenuRequested.cs" />
+    <Compile Include="GUI\FogOfWarView.cs" />
+    <Compile Include="GUI\FootprintsUI.cs" />
+    <Compile Include="GUI\GuiFonts.cs" />
+    <Compile Include="GUI\Gunshots.cs" />
+    <Compile Include="GUI\Highlights\HighHighlights.cs" />
+    <Compile Include="GUI\Highlights\MovementPathDirectionsPreview.cs" />
+    <Compile Include="GUI\Highlights\OverwatchesEnemyTiles.cs" />
+    <Compile Include="GUI\Hud\TeamTurnHudDecor.cs" />
+    <Compile Include="GUI\Hud\EquippedWeaponView.cs" />
+    <Compile Include="GUI\HideUI.cs" />
+    <Compile Include="GUI\Highlights\Highlights.cs" />
+    <Compile Include="GUI\Hud\HudView.cs" />
+    <Compile Include="GUI\Menus\InGameMenu.cs" />
+    <Compile Include="GUI\Menus\MoveConfirmMenu.cs" />
+    <Compile Include="GUI\Highlights\MovementPathHighlights.cs" />
+    <Compile Include="GUI\Highlights\OverwatchedTiles.cs" />
+    <Compile Include="GUI\OptionUI.cs" />
+    <Compile Include="GUI\UiEvents\MenuDismissed.cs" />
+    <Compile Include="GUI\UiEvents\MenuRequested.cs" />
     <Compile Include="Characters\Gear\RangedWeapon.cs" />
-    <Compile Include="CoreGame\UiElements\UiEvents\ShotAnimationsFinished.cs" />
-    <Compile Include="PhsyicsMath\VectorMath.cs" />
+    <Compile Include="GUI\UiEvents\ShotAnimationsFinished.cs" />
+    <Compile Include="Credits\BasicJamCreditsSegment.cs" />
+    <Compile Include="Credits\CreditsSegments.cs" />
+    <Compile Include="Credits\JamScene.cs" />
+    <Compile Include="Credits\TitleCreditSection.cs" />
+    <Compile Include="PhysicsMath\VectorMath.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Scenes\CorporationOutsideScene.cs" />
+    <Compile Include="Scenes\CharacterCreation.cs" />
+    <Compile Include="Scenes\CreditsScene.cs" />
     <Compile Include="Scenes\MainMenuScene.cs" />
-    <Compile Include="Scenes\SampleCorporationScene.cs" />
     <Compile Include="Characters\CharacterBody.cs" />
     <Compile Include="CoreGame\Mechanics\Covers\Cover.cs" />
-    <Compile Include="Scenes\ShootingRange.cs" />
     <Compile Include="Themes\TeamColors.cs" />
     <Compile Include="Themes\TeamColorTheme.cs" />
     <Compile Include="Themes\UIColors.cs" />
@@ -173,10 +194,10 @@
     <Compile Include="Tiles\TileCorner.cs" />
     <Compile Include="Tiles\TileData.cs" />
     <Compile Include="Tiles\TileMath.cs" />
-    <Compile Include="UIEffects\TileFXCollection.cs" />
-    <Compile Include="UIEffects\FXString.cs" />
-    <Compile Include="UIEffects\GlowEffect.cs" />
-    <Compile Include="UIEffects\TileRotatingEdgesAnim.cs" />
+    <Compile Include="GUI\UiEffects\TileFXCollection.cs" />
+    <Compile Include="GUI\UiEffects\FXString.cs" />
+    <Compile Include="GUI\UiEffects\GlowEffect.cs" />
+    <Compile Include="GUI\UiEffects\TileRotatingEdgesAnim.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -452,6 +473,132 @@
     <Content Include="Content\Characters\CorporationSecurity2\CorporationSecurity2-run-up-8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-down-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-down-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-left-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-left-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-right-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-right-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-up-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-up-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-down-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-down-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-down-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-down-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-down-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-down-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-down-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-down-8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-left-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-left-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-left-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-left-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-left-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-left-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-left-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-left-8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-right-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-right-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-right-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-right-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-right-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-right-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-right-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-right-8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-run-up-8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter\MainCharacter-bust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\MainCharacter\MainCharacter-face.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Characters\MainCharacter\MainCharacter-idle-down-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -572,10 +719,13 @@
     <Content Include="Content\Characters\MainCharacter\MainCharacter-run-up-8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Characters\placeholder-mainchar-face.png">
+    <Content Include="Content\Characters\placeholder-soldier-face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Characters\placeholder-soldier-face.png">
+    <Content Include="Content\Characters\Sidechick\Sidechick-bust.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Characters\Sidechick\Sidechick-face.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Characters\Sidechick\Sidechick-idle-down-1.png">
@@ -701,6 +851,27 @@
     <Content Include="Content\Effects\CircleGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Effects\Cover_Gray.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\D_Cover_EnemiesOverwatched.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\D_Cover_Overwatched1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\D_Cover_Overwatched2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\D_Cover_Overwatched3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\D_Cover_Overwatched4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Effects\E_MovementPath.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Effects\GlowingFootsteps.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -740,7 +911,7 @@
     <Content Include="Content\Effects\VertNeonGradient.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Maps2\Corporation.png">
+    <Content Include="Content\Maps2\Characters.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Maps2\Floors.png">
@@ -770,7 +941,28 @@
     <Content Include="Content\Maps\Walls.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Music\alley-amb.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\corp-amb.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\fast-forward.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\ominous-adventure.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Music\placeholder-main-theme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\running-forever.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Music\trapped-and-stuck.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SFX\logo-rumble.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\UI\border-side.png">
@@ -797,6 +989,12 @@
     <Content Include="Content\UI\confirm.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\UI\game-over.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\UI\giant-footstep.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\UI\menu-tall-panel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -815,7 +1013,34 @@
     <Content Include="Content\UI\weapon-panel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Weapons\asppistol.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\kteccombatblade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\nnvscopedassault.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\rephoser.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\rstautopen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Weapons\rsxcarbine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\slgstandard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\smanclassicar.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\tirmagnum.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Weapons\urxsemishotgun.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -849,9 +1074,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Maps2\Corporate.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Maps2\Floors.tsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -884,6 +1106,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Maps2\TestFogOfWar.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Maps2\DarkAlley.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Maps2\Characters.tsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Maps2\SpawnTest.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

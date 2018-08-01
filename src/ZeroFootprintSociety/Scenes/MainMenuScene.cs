@@ -12,6 +12,13 @@ namespace ZeroFootPrintSociety.Scenes
 {
     public sealed class MainMenuScene : ClickUiScene
     {
+        private readonly string _newGameScene;
+
+        public MainMenuScene(string newGameScene)
+        {
+            _newGameScene = newGameScene;
+        }
+        
         public override void Init()
         {
             Input.On(Control.Menu, () => Environment.Exit(0));
@@ -23,14 +30,27 @@ namespace ZeroFootPrintSociety.Scenes
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
                 () => {
                     GameWorld.Clear();
-                    Scene.NavigateTo("Level1");
+                    Scene.NavigateTo(_newGameScene);
                 }, 
                 "New Game",
                 UIColors.MainMenuScene_ButtonDefault,
                 UIColors.MainMenuScene_ButtonHover,
                 UIColors.MainMenuScene_ButtonPress
             );
+            
+            var button2 = new TextButton(
+                new Rectangle(UI.OfScreenWidth(0.5f) - 150, 760, 300, 50),
+                () => {
+                    GameWorld.Clear();
+                    Scene.NavigateTo("Credits");
+                }, 
+                "Credits",
+                UIColors.MainMenuScene_ButtonDefault,
+                UIColors.MainMenuScene_ButtonHover,
+                UIColors.MainMenuScene_ButtonPress
+            );
             AddClickable(button);
+            AddClickable(button2);
         }
 
         public override void Dispose() { }

@@ -268,7 +268,7 @@
  <tile id="44">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="45">
@@ -676,7 +676,7 @@
  <tile id="112">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="113">
@@ -741,38 +741,38 @@
  </tile>
  <tile id="123">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="124">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="125">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="126">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="127">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="128">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="129">
@@ -867,44 +867,44 @@
  </tile>
  <tile id="144">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="145">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="146">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="147">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="148">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="149">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="150">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="151">
@@ -987,20 +987,20 @@
  </tile>
  <tile id="164">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="165">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="166">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="167">
@@ -1024,55 +1024,55 @@
  <tile id="170">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="171">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="172">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="173">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="174">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="175">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="176">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="177">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="178">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="179">
@@ -1125,38 +1125,38 @@
  </tile>
  <tile id="187">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="188">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="189">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="190">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="191">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="192">
   <properties>
    <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="193">
@@ -1251,14 +1251,14 @@
  </tile>
  <tile id="208">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="209">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="210">
@@ -1636,7 +1636,7 @@
  <tile id="272">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="273">
@@ -1648,7 +1648,7 @@
  <tile id="274">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="275">
@@ -1678,13 +1678,13 @@
  <tile id="279">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="280">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="281">
@@ -1702,37 +1702,37 @@
  <tile id="283">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="284">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="285">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="286">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="287">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="288">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="289">
@@ -2080,7 +2080,7 @@
  <tile id="346">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="347">
@@ -2092,55 +2092,55 @@
  <tile id="348">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="349">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="350">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="351">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="352">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="353">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="354">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="355">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="356">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="357">
@@ -2188,7 +2188,7 @@
  <tile id="364">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="365">
@@ -2229,8 +2229,8 @@
  </tile>
  <tile id="371">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="372">
@@ -2349,44 +2349,44 @@
  </tile>
  <tile id="391">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="392">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="None"/>
   </properties>
  </tile>
  <tile id="393">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="None"/>
   </properties>
  </tile>
  <tile id="394">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="395">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="396">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="397">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="398">
@@ -2457,20 +2457,20 @@
  </tile>
  <tile id="409">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="None"/>
   </properties>
  </tile>
  <tile id="410">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
+   <property name="Blocking" type="bool" value="true"/>
    <property name="Cover" value="None"/>
   </properties>
  </tile>
  <tile id="411">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="412">
@@ -2481,14 +2481,14 @@
  </tile>
  <tile id="413">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="414">
   <properties>
-   <property name="Blocking" type="bool" value="false"/>
-   <property name="Cover" value="None"/>
+   <property name="Blocking" type="bool" value="true"/>
+   <property name="Cover" value="Medium"/>
   </properties>
  </tile>
  <tile id="415">

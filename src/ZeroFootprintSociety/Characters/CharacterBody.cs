@@ -10,9 +10,9 @@ using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
-using ZeroFootPrintSociety.PhsyicsMath;
+using ZeroFootPrintSociety.PhysicsMath;
 using ZeroFootPrintSociety.Tiles;
-using ZeroFootPrintSociety.UIEffects;
+using ZeroFootPrintSociety.GUI;
 
 namespace ZeroFootPrintSociety.Characters
 {
