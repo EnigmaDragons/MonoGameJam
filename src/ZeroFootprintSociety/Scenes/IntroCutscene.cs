@@ -59,12 +59,8 @@ namespace ZeroFootPrintSociety.Scenes
             Sound.Music("trapped-and-stuck").Play();
             Input.On(Control.Start, Advance);
             AddClickable(new ScreenClickable(Advance));
-            Add(new TimerTask(
-                () =>
-                {
-                    Add(_chatBox);
-                    Add(_fadeOut);
-                }, 250, false));
+            Add(_chatBox);
+            Add(_fadeOut);
         }
 
         private void Advance()

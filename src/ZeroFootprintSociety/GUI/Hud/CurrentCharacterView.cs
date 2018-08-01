@@ -19,20 +19,24 @@ namespace ZeroFootPrintSociety.GUI
 
         public CurrentCharacterView(Point position)
         {
-            _face = new UiImage { Transform = new Transform2(new Rectangle(position.X + 10, position.Y + 12, 70, 70)) };
+            _face = new UiImage { Transform = new Transform2(new Rectangle(position.X + 5, position.Y + 8, 100, 100)) };
             _label = new Label
             {
                 Font = "Fonts/12",
-                Transform = new Transform2(new Rectangle(position.X, position.Y + 78, 220, 30)),
+                Transform = new Transform2(new Rectangle(position.X + 80, position.Y + 75, 170, 30)),
                 TextColor = UIColors.InGame_Text
             };
             _hp = new Label
             {
                 Font = "Fonts/12",
-                Transform = new Transform2(new Rectangle(position.X + 70, position.Y + 40, 150, 30)),
+                Transform = new Transform2(new Rectangle(position.X + 80, position.Y + 44, 170, 30)),
                 TextColor = UIColors.InGame_Text
             };
-            _visuals.Add(new UiImage { Image = "UI/weapon-panel.png", Tint = 180.Alpha(), Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 114)) });
+            _visuals.Add(new UiImage
+            {
+                Image = "UI/weapon-panel.png", Tint = 180.Alpha(),
+                Transform = new Transform2(new Rectangle(position.X, position.Y, 250, 114))
+            });
             _visuals.Add(_face);
             _visuals.Add(_label);
             _visuals.Add(_hp);

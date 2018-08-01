@@ -14,6 +14,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             },
             new CharacterGear(new RsxCarbine(), new RsxCarbine()),
             Team.Friendly,
-            "Characters/placeholder-mainchar-face.png") { }
+            "Characters/MainCharacter/MainCharacter-face.png",
+            "Characters/MainCharacter/MainCharacter-bust.png") { }
     }
 }
