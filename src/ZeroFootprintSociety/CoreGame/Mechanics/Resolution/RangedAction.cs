@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.CoreGame.Calculators;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
@@ -17,10 +18,10 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         public RangedAction()
         {
             Event.Subscribe(EventSubscription.Create<ShotConfirmed>(ResolveShot, this));
-            Event.Subscribe(EventSubscription.Create<ShotAnimationsFinished>(AdvanceQueue, this));
+            Event.Subscribe(EventSubscription.Create<ShotAnimationsFinished>(_ => AdvanceQueue(), this));
         }
 
-        private void AdvanceQueue(ShotAnimationsFinished e)
+        private void AdvanceQueue()
         {
             if (_eventQueue.Count > 0)
                 _eventQueue.Dequeue().Invoke();
@@ -30,7 +31,6 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             for (var i = 0; i < e.Proposed.AttackerBullets; i++)
             {
-                Event.Publish(new ShotFired { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
                 var blockRoll = Rng.Int(0, e.Proposed.IsDefenderHiding ? 50 : 100);
                 if(blockRoll < e.Proposed.DefenderBlockInfo.BlockChance)
                 {
@@ -38,7 +38,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                     foreach (CoverProvided cover in e.Proposed.DefenderBlockInfo.Covers)
                         if (blockRoll < (int)cover.Cover)
                         {
-                            Event.Publish(new ShotBlocked { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender, Blocker = cover.Providers.Random() });
+                            ShotBlocked(e.Proposed.Attacker, e.Proposed.Defender, cover.Providers.Random());
                             break;
                         }
                         else
@@ -47,9 +47,9 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 else
                 {
                     if (Rng.Int(0, 100) < e.Proposed.AttackerHitChance)
-                        Event.Publish(new ShotHit { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender, DamageAmount = e.Proposed.AttackerBulletDamage });
+                        ShotHit(e.Proposed.Attacker, e.Proposed.Defender, e.Proposed.AttackerBulletDamage);
                     else
-                        Event.Publish(new ShotMissed { Attacker = e.Proposed.Attacker, Target = e.Proposed.Defender });
+                        ShotMissed(e.Proposed.Attacker, e.Proposed.Defender);
                 }
             }
             e.Proposed.Attacker.State.IsOverwatching = false;
@@ -60,36 +60,67 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 {
                     for (var i = 0; i < e.Proposed.DefenderBullets; i++)
                     {
-                        Event.Publish(new ShotFired { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
                         var blockRoll = Rng.Int(0, e.Proposed.IsAttackerHiding ? 50 : 100);
                         if (blockRoll < e.Proposed.AttackerBlockInfo.BlockChance)
                         {
                             e.Proposed.AttackerBlockInfo.Covers.Shuffle();
                             foreach (CoverProvided cover in e.Proposed.AttackerBlockInfo.Covers)
-                                if (blockRoll < (int)cover.Cover)
+                                if (blockRoll < (int) cover.Cover)
                                 {
-                                    Event.Publish(new ShotBlocked { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, Blocker = cover.Providers.Random() });
+                                    ShotBlocked(e.Proposed.Defender, e.Proposed.Attacker, cover.Providers.Random());
                                     break;
                                 }
                                 else
-                                    blockRoll -= (int)cover.Cover;
+                                    blockRoll -= (int) cover.Cover;
                         }
                         else
                         {
                             if (Rng.Int(0, 100) < e.Proposed.DefenderHitChance)
-                                Event.Publish(new ShotHit { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker, DamageAmount = e.Proposed.AttackerBulletDamage });
+                                ShotHit(e.Proposed.Defender, e.Proposed.Attacker, e.Proposed.DefenderBulletDamage);
                             else
-                                Event.Publish(new ShotMissed { Attacker = e.Proposed.Defender, Target = e.Proposed.Attacker });
+                                ShotMissed(e.Proposed.Defender, e.Proposed.Attacker);
                         }
                     }
                     e.Proposed.Defender.State.IsOverwatching = false;
                 }
-                else
-                {
-                    Event.Publish(new ShotAnimationsFinished());
-                }
+                AdvanceQueue();
             });
-            _eventQueue.Enqueue(() => e.OnFinished());
+            _eventQueue.Enqueue(() =>
+            {
+                _eventQueue.Enqueue(() => e.OnFinished());
+                AdvanceQueue();
+            });
+            AdvanceQueue();
+        }
+
+        private void ShotHit(Character attacker, Character defender, int damage)
+        {
+            _eventQueue.Enqueue(() =>
+            {
+                Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
+                AdvanceQueue();
+            });
+            _eventQueue.Enqueue(() => Event.Publish(new ShotHit { Attacker = attacker, Target = defender, DamageAmount = damage }));
+        }
+
+        private void ShotMissed(Character attacker, Character defender)
+        {
+            _eventQueue.Enqueue(() =>
+            {
+                Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
+                AdvanceQueue();
+            });
+            _eventQueue.Enqueue(() => Event.Publish(new ShotMissed { Attacker = attacker, Target = defender }));
+        }
+
+        private void ShotBlocked(Character attacker, Character defender, GameTile blocker)
+        {
+            _eventQueue.Enqueue(() =>
+            {
+                Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
+                AdvanceQueue();
+            });
+            _eventQueue.Enqueue(() => Event.Publish(new ShotBlocked { Attacker = attacker, Target = defender, Blocker = blocker }));
         }
     }
 }

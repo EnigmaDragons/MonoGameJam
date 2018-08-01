@@ -105,7 +105,7 @@ namespace ZeroFootPrintSociety.GUI
             var directions = start.PrimaryDirectionsTowards(dest);
             return new Point(
                 dest.X + (directions.Contains(Direction.Left) ? -3 : 0) + (directions.Contains(Direction.Right) ? 3 : 0),
-                dest.Y + (directions.Contains(Direction.Up) ? 3 : 0) + (directions.Contains(Direction.Down) ? -3 : 0));
+                dest.Y + (directions.Contains(Direction.Up) ? -3 : 0) + (directions.Contains(Direction.Down) ? 3 : 0));
         }
 
         private void IfPerceivable(Point tile, Action action)

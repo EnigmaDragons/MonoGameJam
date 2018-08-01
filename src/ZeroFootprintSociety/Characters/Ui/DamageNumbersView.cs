@@ -7,15 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
-using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.GUI;
 
 namespace ZeroFootPrintSociety.Characters.GUI
 {
     class DamageNumbersView : IVisualAutomaton
     {
-        private static readonly TimeSpan DisplayDuration = TimeSpan.FromMilliseconds(1800);
-        private static readonly TimeSpan DelayDuration = TimeSpan.FromMilliseconds(400);
+        private static readonly TimeSpan DisplayDuration = TimeSpan.FromMilliseconds(900);
+        private static readonly TimeSpan DelayDuration = TimeSpan.FromMilliseconds(300);
         private readonly Character _owner;
         private readonly List<Tuple<TimeSpan, string>> _numbers = new List<Tuple<TimeSpan, string>>();
         private readonly List<Tuple<TimeSpan, string>> _delayed = new List<Tuple<TimeSpan, string>>();

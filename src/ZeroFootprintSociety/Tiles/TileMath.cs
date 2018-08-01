@@ -24,9 +24,9 @@ namespace ZeroFootPrintSociety.Tiles
             }
             if (Math.Abs(origin.X - dest.X) <= Math.Abs(origin.Y - dest.Y))
             {
-                if (origin.Y - dest.Y > 0)
-                    directions.Add(Direction.Down);
                 if (origin.Y - dest.Y < 0)
+                    directions.Add(Direction.Down);
+                if (origin.Y - dest.Y > 0)
                     directions.Add(Direction.Up);
             }
             return directions;
