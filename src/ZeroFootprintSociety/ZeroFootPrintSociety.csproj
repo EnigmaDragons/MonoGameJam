@@ -55,6 +55,7 @@
     <Compile Include="Characters\Prefabs\CorpSec2.cs" />
     <Compile Include="Characters\Prefabs\CorpSec3.cs" />
     <Compile Include="Characters\Prefabs\MainChar.cs" />
+    <Compile Include="Characters\Prefabs\Sidechick.cs" />
     <Compile Include="CoreGame\Calculators\FriendlyVisionCalculator.cs" />
     <Compile Include="CoreGame\Calculators\FrinedlyPerceptionUpdater.cs" />
     <Compile Include="CoreGame\Mechanics\Events\FootstepCounted.cs" />
