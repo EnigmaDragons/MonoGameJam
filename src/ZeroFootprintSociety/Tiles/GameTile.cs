@@ -26,6 +26,7 @@ namespace ZeroFootPrintSociety.Tiles
         public string SpawnCharacter { get; }
         public bool EverSeenByFriendly { get; set; }
         public bool CurrentlyFriendlyVisible { get; set; } = true; // TODO: Set this;
+        //TODO: these are trash properties
         public bool MustKill { get; }
 
         public GameTile(int column, int row, Transform2 transform, List<GameTileDetail> details)

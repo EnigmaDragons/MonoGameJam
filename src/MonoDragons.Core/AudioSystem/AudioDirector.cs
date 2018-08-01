@@ -7,9 +7,9 @@ namespace MonoDragons.Core.AudioSystem
     {
         public static readonly AudioDirector Instance = new AudioDirector();
 
-        private readonly List<Sound> _soundEffects = new List<Sound>();
-        private readonly List<Sound> _ambience = new List<Sound>();
-        private readonly List<Sound> _musics = new List<Sound>();
+        private List<Sound> _soundEffects = new List<Sound>();
+        private List<Sound> _ambience = new List<Sound>();
+        private List<Sound> _musics = new List<Sound>();
 
         public int MaxSoundEffects { get; set; } = 9;
         public int MaxAmbience { get; set; } = 2;
@@ -18,25 +18,27 @@ namespace MonoDragons.Core.AudioSystem
         public void Play(Sound sound)
         {
             if (sound.Type == SoundType.Effect)
-                PlaySound(sound, _soundEffects, MaxSoundEffects);
+                _soundEffects = PlaySound(sound, _soundEffects, MaxSoundEffects);
             if (sound.Type == SoundType.Ambient)
-                PlaySound(sound, _ambience, MaxAmbience);
+                _ambience = PlaySound(sound, _ambience, MaxAmbience);
             if (sound.Type == SoundType.Music)
-                PlaySound(sound, _musics, MaxMusic);
+                _musics = PlaySound(sound, _musics, MaxMusic);
         }
 
-        private void PlaySound(Sound sound, List<Sound> category, int max)
+        private List<Sound> PlaySound(Sound sound, List<Sound> category, int max)
         {
-            if (category.Contains(sound))
-                category.Remove(sound);
-            category.Add(sound);
+            var copy = category.ToList();
+            if (copy.Contains(sound))
+                copy.Remove(sound);
+            copy.Add(sound);
             sound.IsPlaying = true;
-            while (category.Count(x => x.IsPlaying) > max)
+            while (copy.Count(x => x.IsPlaying) > max)
             {
-                var effect = category.First(x => x.IsPlaying);
+                var effect = copy.First(x => x.IsPlaying);
                 effect.Pause();
                 effect.Reset();
             }
+            return copy;
         }
     }
 }
