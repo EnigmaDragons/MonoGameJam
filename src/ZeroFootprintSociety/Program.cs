@@ -25,7 +25,7 @@ namespace ZeroFootPrintSociety
         [STAThread]
         static void Main()
         {
-            RunGame("CharacterCreation");
+            RunGame("Logo");
         }
 
         private static SceneFactory CreateSceneFactory()

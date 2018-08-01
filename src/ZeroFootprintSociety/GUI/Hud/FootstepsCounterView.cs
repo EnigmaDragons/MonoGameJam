@@ -29,7 +29,6 @@ namespace ZeroFootPrintSociety.GUI.Hud
             _visuals.Add(new UiImage
             {
                 Image = "UI/giant-footstep.png",
-                IsActive = () => !GameWorld.IsGameOver,
                 Transform = new Transform2(new Rectangle(position.X + 10, position.Y + 10, 80, 80)),
                 Tint =  180.Alpha(),
             });

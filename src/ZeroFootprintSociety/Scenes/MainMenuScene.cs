@@ -6,6 +6,7 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.AudioSystem;
 using ZeroFootPrintSociety.CoreGame;
 using System;
+using MonoDragons.Core.Animations;
 using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Scenes
@@ -49,6 +50,8 @@ namespace ZeroFootPrintSociety.Scenes
                 UIColors.MainMenuScene_ButtonHover,
                 UIColors.MainMenuScene_ButtonPress
             );
+            
+            Add(new ScreenFade {Duration = TimeSpan.FromSeconds(1)}.Started());
             AddClickable(button);
             AddClickable(button2);
         }

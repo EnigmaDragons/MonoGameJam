@@ -65,7 +65,11 @@ namespace ZeroFootPrintSociety.Characters
         {
             if (this is MainChar && obj.Character.Equals(this))
                 if (GameWorld.FootstepsRemaining-- == 0)
+                {
                     Event.Publish(new OutOfFootsteps());
+                    GameWorld.IsGameOver = true;
+                    Event.Publish(new GameOver());
+                }
         }
 
         private void ContinueMoving(MoveResolved e)

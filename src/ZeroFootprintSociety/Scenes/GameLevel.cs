@@ -53,7 +53,7 @@ namespace ZeroFootPrintSociety.Scenes
         {
             if (GameWorld.FootstepsRemaining == 0)
             {
-                GameWorld.FootstepsRemaining = 500; // TODO Change me.
+                GameWorld.FootstepsRemaining = 500; 
             }
         }
 
