@@ -19,15 +19,12 @@ namespace ZeroFootPrintSociety.GUI.Hud
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private int _currentCount => GameWorld.FootstepsRemaining;
-        private bool _isAction;
 
         public UiImage GiantFootstepImage;
         public Label StepsDisplay;
 
         public FootstepsCounterView(Point position)
         {
-            _isAction = true;
-
             GiantFootstepImage = new UiImage
             {
                 Image = "UI/giant-footstep.png",
