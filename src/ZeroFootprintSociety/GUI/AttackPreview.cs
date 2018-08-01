@@ -2,6 +2,7 @@
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
@@ -34,7 +35,8 @@ namespace ZeroFootPrintSociety.GUI
                 e.AttackerBulletDamage.ToString(), 
                 e.Attacker.Stats.HP, 
                 e.Attacker.State.RemainingHealth, 
-                e.AttackerDamage);
+                e.AttackerDamage,
+                e.Attacker.Team);
             _defenderSummary.Update(
                 e.Defender.FaceImage,
                 e.Defender.Stats.Name,
@@ -45,7 +47,8 @@ namespace ZeroFootPrintSociety.GUI
                 e.DefenderBulletDamage.ToString(),
                 e.Defender.Stats.HP,
                 e.Defender.State.RemainingHealth,
-                e.DefenderDamage);
+                e.DefenderDamage,
+                e.Attacker.Team);
         }
 
         private void Hide()
@@ -58,8 +61,9 @@ namespace ZeroFootPrintSociety.GUI
             if (_hidden)
                 return;
 
-            _attackerSummary.Draw(parentTransform + new Vector2(425, 100));
-            _defenderSummary.Draw(parentTransform + new Vector2(825, 100));
+            const int height = 260;
+            _attackerSummary.Draw(parentTransform + new Vector2(.04.VW(), height));
+            _defenderSummary.Draw(parentTransform + new Vector2(.74.VW(), height));
         }
     }
 }

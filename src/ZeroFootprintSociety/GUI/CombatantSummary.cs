@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.GUI
@@ -18,59 +19,73 @@ namespace ZeroFootPrintSociety.GUI
         private readonly UiImage _weapon;
         private readonly Label _hitChance;
         private readonly Label _bullets;
-        private readonly Label _bulletDamage;
 
         public CombatantSummary(bool shouldFlip)
         {
-            _background = new UiImage { Image = "UI/menu-tall-panel.png", Transform = new Transform2(new Size2(350, 600)) };
+            var width = 300;
+            var textHeight = 30;
+            _background = new UiImage
+            {
+                Image = "UI/menu-tall-panel.png", 
+                Transform = new Transform2(new Size2(350, 400))
+            };
+            var yOff = 25;
+            
             _name = new Label
             {
-                Transform = new Transform2(new Rectangle(25, 25, 300, 50)), 
+                Font = GuiFonts.Large,
+                Transform = new Transform2(new Rectangle(25, yOff, width, 50)), 
                 TextColor = UIColors.InGame_Text
             };
+            yOff += 60;
+            
             _face = new UiImage
             {
-                Transform = new Transform2(new Rectangle(125, 75, 100, 100)), 
-                Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None
-            };
-            _damageBarOffset = new Vector2(50, 200); //250, 50
-            _weaponName = new Label
-            {
-                Transform = new Transform2(new Rectangle(25, 275, 300, 50)), 
-                TextColor = UIColors.InGame_Text
-            };
-            _weapon = new UiImage
-            {
-                Transform = new Transform2(new Rectangle(100, 350 + 4, 150, 42)),
+                Transform = new Transform2(new Rectangle(40, yOff, 120, 120)), 
                 Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None
             };
             _hitChance = new Label
             {
-                Transform = new Transform2(new Rectangle(25, 425, 300, 50)),
+                Font = GuiFonts.Large,
+                Transform = new Transform2(new Rectangle(130, yOff + 25, 220, 50)),
                 TextColor = UIColors.InGame_Text
             };
             _bullets = new Label
             {
-                Transform = new Transform2(new Rectangle(25, 475, 300, 50)),
+                Font = GuiFonts.Large,
+                Transform = new Transform2(new Rectangle(130, yOff + 60, 220, 50)),
                 TextColor = UIColors.InGame_Text
             };
-            _bulletDamage = new Label
+            yOff += 140;
+            
+            _damageBarOffset = new Vector2(50, yOff); //250, 50
+            yOff += 50;
+            
+            _weapon = new UiImage
             {
-                Transform = new Transform2(new Rectangle(25, 525, 300, 50)),
+                Transform = new Transform2(new Rectangle(100, yOff, 150, 60)),
+                Effects = shouldFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None
+            };
+            yOff += 60;
+            _weaponName = new Label
+            {
+                Font = GuiFonts.Body,
+                Transform = new Transform2(new Rectangle(25, yOff, width, textHeight)), 
                 TextColor = UIColors.InGame_Text
             };
+            yOff += textHeight;
         }
 
         public void Update(string characterImage, string name, string weaponImage, string weaponName, string hitChance, string bullets, string bulletDamage,
-            int maxHP, int health, int damage)
+            int maxHP, int health, int damage, Team team)
         {
+            _background.Tint = (team.Equals(Team.Enemy) ? TeamColors.Enemy.Characters_GlowColor : UIColors.Unchanged).WithAlpha(180);
             _face.Image = characterImage;
             _name.Text = name;
             _weapon.Image = weaponImage;
-            _weaponName.Text = $"Weapon: {weaponName}";
-            _hitChance.Text = $"Hit Chance: {hitChance}";
-            _bullets.Text = $"Bullets: {bullets}";
-            _bulletDamage.Text = $"Bullet Damage: {bulletDamage}";
+            _weaponName.Text = $"{weaponName}";
+            _hitChance.Text = $"Hit:    {hitChance}%";
+            _bullets.Text = $"Dmg: {bulletDamage}   x{bullets}";
             _damageBar.Update(maxHP, health, damage);
         }
 
@@ -84,7 +99,6 @@ namespace ZeroFootPrintSociety.GUI
             _weapon.Draw(parentTransform);
             _hitChance.Draw(parentTransform);
             _bullets.Draw(parentTransform);
-            _bulletDamage.Draw(parentTransform);
         }
     }
 }
