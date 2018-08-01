@@ -30,21 +30,21 @@ namespace ZeroFootPrintSociety.CoreGame
                 .ThenBy(x => x.CurrentTile.Position.Y).ToList();
             Perf.Time("Drew Walls + Floors", () => GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(Floors, parentTransform);
-                x.Draw(Walls, parentTransform);
+                x.Draw(Floors, parentTransform, MultiplyColor);
+                x.Draw(Walls, parentTransform, MultiplyColor);
             }));
             Perf.Time("Drew Highlights", () => GameWorld.Highlights.Draw(parentTransform));
             Perf.Time("Drew Under Char Objects", () => GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(UnderChar1, parentTransform);
-                x.Draw(UnderChar2, parentTransform);
+                x.Draw(UnderChar1, parentTransform, MultiplyColor);
+                x.Draw(UnderChar2, parentTransform, MultiplyColor);
             }));
             Perf.Time("Drew Characters", () => chars.ForEach(x => x.Draw(parentTransform)));
             Perf.Time("Drew Over Char Objects", () => GameWorld.Map.Tiles.ForEach(x =>
             {
-                x.Draw(OverChar1, parentTransform);
-                x.Draw(OverChar2, parentTransform);
-                x.Draw(Shadows, parentTransform);
+                x.Draw(OverChar1, parentTransform, MultiplyColor);
+                x.Draw(OverChar2, parentTransform, MultiplyColor);
+                x.Draw(Shadows, parentTransform, MultiplyColor);
                 x.Draw(FogOfWar, parentTransform);
             }));
             Perf.Time("Drew High Highlights", () => GameWorld.HighHighlights.Draw(parentTransform));
