@@ -30,8 +30,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                 .Select(x => new ShotConfirmed
                     {
                         Proposed = new ProposedShotCalculation(x, GameWorld.CurrentCharacter, 
-                            new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, x.CurrentTile).BestShot().BlockChance, 
-                            x.State.OverwatchedTiles[moved.Position].BlockChance).CalculateShot()
+                            new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, x.CurrentTile).BestShot(), 
+                            x.State.OverwatchedTiles[moved.Position]).CalculateShot()
                     })
                 .ToList();
             Action action = () => Event.Publish(new MoveResolved { Character = moved.Character });

@@ -1,4 +1,5 @@
 ﻿using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.CoreGame.Calculators
@@ -7,15 +8,15 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
     {
         private readonly Character _attacker;
         private readonly Character _defender;
-        private readonly int _attackerBlockChance;
-        private readonly int _defenderBlockChance;
+        private readonly ShotCoverInfo _attackerBlockInfo;
+        private readonly ShotCoverInfo _defenderBlockInfo;
 
-        public ProposedShotCalculation(Character attacker, Character defender, int attackerBlockChance, int defenderBlockChance)
+        public ProposedShotCalculation(Character attacker, Character defender, ShotCoverInfo attackerBlockInfo, ShotCoverInfo defenderBlockInfo)
         {
             _attacker = attacker;
             _defender = defender;
-            _attackerBlockChance = attackerBlockChance;
-            _defenderBlockChance = defenderBlockChance;
+            _attackerBlockInfo = attackerBlockInfo;
+            _defenderBlockInfo = defenderBlockInfo;
         }
 
         public ShotProposed CalculateShot()
@@ -26,20 +27,22 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             {
                 Attacker = _attacker,
                 Defender = _defender,
-                AttackerHitChance = new HitChanceCalculation(_attacker.Accuracy, _defenderBlockChance, _defender.Stats.Agility).Get(),
+                AttackerHitChance = new HitChanceCalculation(_attacker.Accuracy, _defenderBlockInfo.BlockChance, _defender.Stats.Agility, _defender.State.IsHiding).Get(),
                 AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]) - _defender.Stats.Guts,
-                AttackerBlockChance = _attackerBlockChance
+                AttackerBlockInfo = _attackerBlockInfo,
+                IsAttackerHiding = _attacker.State.IsHiding
             };
             if (_defender.Gear.EquippedWeapon.IsRanged)
             {
                 var defenderWeapon = _defender.Gear.EquippedWeapon.AsRanged();
-                proposed.DefenderHitChance = new HitChanceCalculation(_defender.Accuracy, _attackerBlockChance, _attacker.Stats.Agility).Get();
+                proposed.DefenderHitChance = new HitChanceCalculation(_defender.Accuracy, _attackerBlockInfo.BlockChance, _attacker.Stats.Agility, _attacker.State.IsHiding).Get();
                 if (defenderWeapon.EffectiveRanges.ContainsKey(distance))
                     proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]) - _attacker.Stats.Guts;
             }
             proposed.AttackerDamage = proposed.DefenderHitChance * proposed.DefenderBullets * proposed.DefenderBulletDamage / 100;
             proposed.DefenderDamage = proposed.AttackerHitChance * proposed.AttackerBullets * proposed.AttackerBulletDamage / 100;
-            proposed.DefenderBlockChance = _defenderBlockChance;
+            proposed.DefenderBlockInfo = _defenderBlockInfo;
+            proposed.IsDefenderHiding = _defender.State.IsHiding;
             return proposed;
         }
     }
