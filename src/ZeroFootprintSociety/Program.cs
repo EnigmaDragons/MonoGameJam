@@ -39,7 +39,7 @@ namespace ZeroFootPrintSociety
                 { "CharacterCreation", () => new CharacterCreation() },
                 { "SampleLevel", () => new GameLevel("SampleCorporate.tmx") },
                 { "ShootingRange", () => new GameLevel("TestFogOfWar.tmx") },
-                { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb", "alley-action-loop", "alley-action-loop")) },
+                { "DarkAlley", () => new GameLevel("DarkAlley.tmx", new LevelMusic("alley-amb", "alley-action-loop", "alley-action-loop", 0.8f, 0.4f, 0.4f)) },
                 { "SpawnTest", () => new GameLevel("SpawnTest.tmx") },
                 { "FinalFloor", () => new GameLevel("FinalFloor.tmx") },
             });

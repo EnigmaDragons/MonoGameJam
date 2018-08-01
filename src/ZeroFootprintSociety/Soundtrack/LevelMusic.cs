@@ -13,7 +13,8 @@ namespace ZeroFootPrintSociety.Soundtrack
         private MusicType _currentSound;
         private MusicType _nextSound;
 
-        public LevelMusic(string ambientSongName, string actionSongName, string bossSongName, float ambientMusicVolume = 1, float actionMusicVolume = 0.6f, float bossMusicVolume = 1)
+        public LevelMusic(string ambientSongName, string actionSongName, string bossSongName, 
+            float ambientMusicVolume = 1, float actionMusicVolume = 0.6f, float bossMusicVolume = 0.6f)
         {
             AudioDirector.Instance.MaxMusic = 3;
             _songs = new DictionaryWithDefault<MusicType, Sound>(Sound.Music(ambientSongName))
@@ -26,7 +27,7 @@ namespace ZeroFootPrintSociety.Soundtrack
             {
                 {MusicType.Ambient, ambientMusicVolume},
                 {MusicType.Action, actionMusicVolume},
-                {MusicType.Boss, actionMusicVolume}
+                {MusicType.Boss, bossMusicVolume}
             };
             _currentSound = MusicType.Boss;
         }
