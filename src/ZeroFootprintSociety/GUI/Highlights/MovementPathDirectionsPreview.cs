@@ -22,7 +22,6 @@ namespace ZeroFootPrintSociety.GUI
         private bool _showsHoveredPathDirections = false;
         private bool _shouldCheckMouse = false;
         private Point? _lastPointOver;
-        private Point? _previousTileOver;
         private IReadOnlyList<IReadOnlyList<Point>> _availableMoves = Empty;
         private List<Transform2> _currentPathTransforms = new List<Transform2>(0);
         private readonly IVisual _highlight = new ColoredRectangle
@@ -58,7 +57,6 @@ namespace ZeroFootPrintSociety.GUI
             if (_showsHoveredPathDirections)
             {
                 _currentPathTransforms = _currentPathTransforms.Skip(1).ToList();
-                _previousTileOver = _lastPointOver;
                 _lastPointOver = e.Position;
                 if (!_currentPathTransforms.Any())
                     _showsHoveredPathDirections = false;
@@ -69,7 +67,6 @@ namespace ZeroFootPrintSociety.GUI
 
         private void InitDirections()
         {
-            _previousTileOver = null;
             var path = _availableMoves.ToList().Find(x => x.Last() == _lastPointOver) ?? new List<Point>();
             _currentPathTransforms = path.Select(x => GameWorld.Map.TileToWorldTransform(x)).ToList();
         }

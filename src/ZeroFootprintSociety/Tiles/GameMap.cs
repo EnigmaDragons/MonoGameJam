@@ -37,7 +37,8 @@ namespace ZeroFootPrintSociety.Tiles
                 minY = Math.Min(t.Position.Y, minY);
                 maxY = Math.Max(t.Position.Y, maxY);
             });
-            Tiles = _tileMap.Values.SelectMany(x => x.Values).OrderBy(x => x.Position.X).ThenBy(x => x.Position.Y).ToList();
+            Tiles = _tileMap.Values.SelectMany(x => x.Values).OrderBy(x => x.Position.X).ThenBy(x => x.Position.Y)
+                .ToList();
 
             MinX = minX;
             MaxX = maxX;
