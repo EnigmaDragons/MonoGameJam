@@ -34,7 +34,12 @@ namespace ZeroFootPrintSociety.GUI
             _clickUI = clickUi;
             var ctx = new Buttons.MenuContext { X = _menuX, Y = _menuY, Width = _menuWidth, FirstButtonYOffset = 50 };
 
-            var mainMenuButton = Buttons.Text(ctx, 7, "Return to Main Menu", () => Scene.NavigateTo("MainMenu"), () => true);
+            var mainMenuButton = Buttons.Text(ctx, 7, "Return to Main Menu", 
+                () =>
+                {
+                    AudioPlayer.Instance.StopAll();
+                    Scene.NavigateTo("MainMenu");
+                }, () => true);
 
             _visuals.Add(_black);
             _fade = new ScreenFade

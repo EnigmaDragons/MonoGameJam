@@ -10,7 +10,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterBody("CorporationSecurity2", new Vector2(-13, -42), TeamColors.Enemy.Characters_GlowColor),
             new CharacterStats
             {
-                Name = "Corporate Security"
+                Name = "CorpSec Trooper"
             },
             new CharacterGear(new RsxCarbine(), new RsxCarbine()),
             Team.Enemy,
