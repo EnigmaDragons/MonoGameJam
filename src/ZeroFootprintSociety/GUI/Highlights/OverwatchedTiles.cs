@@ -52,20 +52,6 @@ namespace ZeroFootPrintSociety.GUI
 
 
                        );
-                    /*
-                     * //OLD ONE
-                    _visuals.Add(new ColoredRectangle
-                    {
-                        Color = UIColors.OverwatchedTiles_Rectangle(Math.Min(255, (int)(150 * GameWorld.CurrentCharacter.Gear.EquippedWeapon.AsRanged().EffectiveRanges[GameWorld.CurrentCharacter.CurrentTile.Position.TileDistance(x.Key)]))),
-                        Transform = GameWorld.Map[x.Key].Transform
-                    });
-                    _visuals.Add(new Label
-                    {
-                        Font = "Fonts/12",
-                        TextColor = UIColors.OverwatchedTiles_Text,
-                        Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.Value.BlockChance).Get()}%",
-                        Transform = GameWorld.Map[x.Key].Transform
-                    });*/
                 });
             }
         }
