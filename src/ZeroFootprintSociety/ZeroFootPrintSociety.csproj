@@ -68,6 +68,7 @@
     <Compile Include="CoreGame\StateEvents\MoodChange.cs" />
     <Compile Include="GUI\ChatBox.cs" />
     <Compile Include="MessageBoxErrorHandler.cs" />
+    <Compile Include="GUI\Highlights\CoverProvidedView.cs" />
     <Compile Include="GUI\Hud\FootstepsCounterView.cs" />
     <Compile Include="Scenes\GameLevel.cs" />
     <Compile Include="Scenes\IntroCutscene.cs" />

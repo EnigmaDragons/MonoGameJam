@@ -33,10 +33,10 @@ namespace ZeroFootPrintSociety.GUI
 
         public MovementPathDirectionsPreview()
         {
-            Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(OnMovementOptionsAvailable, this));
-            Event.Subscribe(EventSubscription.Create<MovementConfirmed>(OnMovementConfirmed, this));
-            Event.Subscribe(EventSubscription.Create<MovementFinished>(OnMovementFinished, this));
-            Event.Subscribe(EventSubscription.Create<Moved>(OnChangesTile, this));
+            Event.Subscribe<MovementOptionsAvailable>(OnMovementOptionsAvailable, this);
+            Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
+            Event.Subscribe<MovementFinished>(OnMovementFinished, this);
+            Event.Subscribe<Moved>(OnChangesTile, this);
         }
 
         private void OnMovementOptionsAvailable(MovementOptionsAvailable e)

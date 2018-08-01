@@ -15,6 +15,7 @@ namespace ZeroFootPrintSociety.GUI
         {
             Add(new Gunshots());
             Add(new FootprintsUI());
+            Add(new CoverProvidedView());
         }
 
         public void Draw(Transform2 parentTransform)
