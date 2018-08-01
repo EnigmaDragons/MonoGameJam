@@ -16,6 +16,7 @@ namespace ZeroFootPrintSociety.Credits
 
         private int _countdown;
 
+        public abstract Color RoleColor { get; }
         public abstract string Role { get; }
         public abstract string Name { get; }
 
@@ -37,14 +38,15 @@ namespace ZeroFootPrintSociety.Credits
                 new Label
                 {
                     Text = Role,
-                    Transform = new Transform2(new Vector2(-800, yStart), new Size2(800, 100)),
-                    Font = GuiFonts.Header
+                    Transform = new Transform2(new Vector2(-1000, yStart), new Size2(800, 100)),
+                    Font = GuiFonts.Header,
+                    TextColor = RoleColor
                 }));
             _elements.Add(new HorizontalFlyInAnimation(
                 new Label
                 {
                     Text = Name,
-                    Transform = new Transform2(new Vector2(1920, yStart + 135), new Size2(800, 75))
+                    Transform = new Transform2(new Vector2(1720, yStart + 135), new Size2(800, 75))
                 })
             { FromDir = HorizontalDirection.Right, ToDir = HorizontalDirection.Left });
 

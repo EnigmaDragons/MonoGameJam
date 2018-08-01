@@ -4,6 +4,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using System.Collections.Generic;
+using MonoDragons.Core.Inputs;
 using ZeroFootPrintSociety.Credits;
 
 namespace ZeroFootPrintSociety.Scenes
@@ -17,24 +18,35 @@ namespace ZeroFootPrintSociety.Scenes
         protected override void OnInit()
         {
             Sound.Music("credits", 1.0f).Play();
-
+            Input.On(Control.Start, () => Scene.NavigateTo("MainMenu"));
+            Input.On(Control.Select, () => Scene.NavigateTo("MainMenu"));
             AddUi(new ScreenClickable(() => Scene.NavigateTo("MainMenu")));
 
             AddAnimation(new TitleCreditSegment());
-
-            AddAnimation(new GameDesignerCredit());
-            AddAnimation(new LeadArtistCredit());
+            
+            // Leads
+            AddAnimation(new LeadGameDesignerCredit());
             AddAnimation(new LeadProgrammerCredit());
-            AddAnimation(new CharacterArtistCredit());
-            AddAnimation(new ProjectManagerCredit());
+            AddAnimation(new LeadArtistCredit());
+            
+            // Gameplay Design
+            AddAnimation(new GameplayProgrammerCredit());
+            AddAnimation(new LevelDesigner1Credit());
+            AddAnimation(new LevelDesigner2Credit());
+            
+            // Front-End
             AddAnimation(new EnvironmentArtCredit());
-            AddAnimation(new ProgrammerCredit());
             AddAnimation(new UiDesignerCredit());
-            AddAnimation(new LevelDesignerCredit());
-            AddAnimation(new WriterCredit());
+            AddAnimation(new CharacterArtistCredit());
+            AddAnimation(new AudioCredit());
+            
+            // Back-End
+            AddAnimation(new ProgrammerCredit());
             AddAnimation(new AlgorithmOptimizer());
-            AddAnimation(new WriterCredit());
-            AddAnimation(new ComposerCredit());
+            
+            // Project
+            AddAnimation(new ProjectManagerCredit());
+            AddAnimation(new Tester1Credit());
 
             _timer = new TimerTask(StartNext, 600, recurring: false);
             Add(_timer);
