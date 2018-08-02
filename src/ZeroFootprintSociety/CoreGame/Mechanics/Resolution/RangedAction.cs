@@ -56,7 +56,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
             _eventQueue.Enqueue(() =>
             {
-                if (e.Proposed.Defender.State.RemainingHealth > 0)
+                if (e.Proposed.Defender.State.RemainingHealth > 0 && e.Proposed.DefenderBulletDamage > 0)
                 {
                     for (var i = 0; i < e.Proposed.DefenderBullets; i++)
                     {
