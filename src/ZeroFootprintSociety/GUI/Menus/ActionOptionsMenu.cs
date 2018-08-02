@@ -19,6 +19,7 @@ namespace ZeroFootPrintSociety.GUI
         private readonly int _menuY = 0.76f.VH();
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly ClickUIBranch _branch = new ClickUIBranch("Actions", 2);
+        private readonly List<TextButton> _buttons;
 
         private bool _showingOptions = false;
         private Dictionary<ActionType, Action> _options = new Dictionary<ActionType, Action>();
@@ -36,7 +37,7 @@ namespace ZeroFootPrintSociety.GUI
                 Image = "UI/menu-tall-panel.png"
             };
 
-            var buttons = new List<TextButton>
+            _buttons = new List<TextButton>
             {
                 Buttons.Text(ctx, 0, "Hide", () => Select(ActionType.Hide), () => _options.ContainsKey(ActionType.Hide)),
                 Buttons.Text(ctx, 1, "Shoot", () => Select(ActionType.Shoot), () => _options.ContainsKey(ActionType.Shoot)),
@@ -45,7 +46,7 @@ namespace ZeroFootPrintSociety.GUI
             };
 
             _visuals.Add(menu);
-            buttons.ForEach(x =>
+            _buttons.ForEach(x =>
             {
                 _visuals.Add(x);
                 _branch.Add(x);
@@ -65,6 +66,10 @@ namespace ZeroFootPrintSociety.GUI
         private void UpdateOptions(ActionOptionsAvailable e)
         {
             _options = e.Options;
+            _buttons[0].IsEnabled = _options.ContainsKey(ActionType.Hide);
+            _buttons[1].IsEnabled = _options.ContainsKey(ActionType.Shoot);
+            _buttons[2].IsEnabled = _options.ContainsKey(ActionType.Overwatch);
+            _buttons[3].IsEnabled = _options.ContainsKey(ActionType.Pass);
             PresentOptions();
         }
 
