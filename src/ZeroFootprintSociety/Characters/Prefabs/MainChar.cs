@@ -19,7 +19,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
                 Accuracy = 6,
                 Guts = 6,
                 Agility = 6,
-                Perception = 7
+                Perception = 8
 
             }.WithMods(c.StatMods),
             new CharacterGear(c.WeaponSet.Primary, c.WeaponSet.Secondary),
