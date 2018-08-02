@@ -5,6 +5,7 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.GUI.Hud
 {
@@ -26,7 +27,7 @@ namespace ZeroFootPrintSociety.GUI.Hud
                 Image = "UI/weapon-panel.png",
                 Transform = new Transform2(new Rectangle(350, 200, 900, 300))
             };
-            _chatBox = new ChatBox(_dialogs[_index].Message, 400, GuiFonts.BodySpriteFont, 40, 40) { Position = new Vector2(625, 225) };
+            _chatBox = new ChatBox(_dialogs[_index].Message, 400, GuiFonts.BodySpriteFont, 40, 40) { Position = new Vector2(625, 245), Color = UIColors.InGame_Text};
             _faceImage = new UiImage { Image = _dialogs[_index].CharacterImage, Transform = new Transform2(new Rectangle(375, 225, 250, 250))};
             Input.On(Control.Start, Advance);
             Branch.Add(new ScreenClickable(Advance));

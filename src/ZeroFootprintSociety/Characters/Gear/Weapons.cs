@@ -85,9 +85,9 @@ namespace ZeroFootPrintSociety.Characters.Gear
     
     class WarShotgun : RangedWeapon
     {
-        public override string Name { get; } = "WAR-12 Shotgun";
+        public override string Name { get; } = "G13 Combat Shotgun";
         public override string Image { get; } = "Weapons/urxsemishotgun";
-        public override string ShortDescription { get; } = "When you want to make things personal";
+        public override string ShortDescription { get; } = "Brutal semi-automatic combat weapon. Lethal in close-quarters combat. ";
         public override int Accuracy { get; } = 11;
         public override int NumShotsPerAttack { get; } = 1;
         public override int DamagePerHit { get; } = 20;
@@ -105,7 +105,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     {
         public override string Name { get; } = "WAR-27 Defense SMG";
         public override string Image { get; } = "Weapons/smanclassicar";
-        public override string ShortDescription { get; } = "Urban terrain optimized submachine gun. Fast and deadly.";
+        public override string ShortDescription { get; } = "Urban terrain submachine gun. Spits out bullets at an unbelievable rate.";
         public override int Accuracy { get; } = 7;
         public override int NumShotsPerAttack { get; } = 9;
         public override int DamagePerHit { get; } = 10;
@@ -140,9 +140,9 @@ namespace ZeroFootPrintSociety.Characters.Gear
 
     class PowerMagnum : RangedWeapon
     {
-        public override string Name { get; } = "PWR-1 Magnum";
+        public override string Name { get; } = "RSX .60 Magnum";
         public override string Image { get; } = "Weapons/tirmagnum";
-        public override string ShortDescription { get; } = "The first and greatest of it's kind, the magnum of the future.";
+        public override string ShortDescription { get; } = "Throws slugs that pack a serious wallop. Has a lot of recoil.";
         public override int Accuracy { get; } = 11;
         public override int NumShotsPerAttack { get; } = 2;
         public override int DamagePerHit { get; } = 10;
@@ -162,7 +162,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
     {
         public override string Name { get; } = "SLG Standard Semi";
         public override string Image { get; } = "Weapons/slgstandard";
-        public override string ShortDescription { get; } = "Accurate, effective, timeless, reliable, and simple personal close-range side arm.";
+        public override string ShortDescription { get; } = "Accurate, effective, and reliable personal close-range side arm.";
         public override int Accuracy { get; } = 14;
         public override int NumShotsPerAttack { get; } = 1;
         public override int DamagePerHit { get; } = 15;

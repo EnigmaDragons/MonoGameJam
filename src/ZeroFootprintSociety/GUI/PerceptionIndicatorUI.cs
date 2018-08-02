@@ -4,6 +4,7 @@ using System.Linq;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Themes;
@@ -26,9 +27,8 @@ namespace ZeroFootPrintSociety.GUI
         public void Draw(Transform2 parentTransform)
         {
             _peceptionMarkers.ForEach(
-                x => World.Draw("Effects/perception-marker.png", parentTransform + x, TeamColors.Enemy.Footprints_GlowColor));
+                x => World.Draw("Effects/perception-marker.png", parentTransform + x, TeamColors.Enemy.Footprints_GlowColor.WithAlpha(140)));
         }
-
 
         public void Update(TimeSpan delta)
         {
