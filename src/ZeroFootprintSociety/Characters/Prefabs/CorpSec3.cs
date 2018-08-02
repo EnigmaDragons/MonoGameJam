@@ -14,13 +14,13 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             {
                 Name = "CorpSec Elite",
                 HP = 99,
-                Movement = 8,
-                Accuracy = 7,
+                Movement = 9,
+                Accuracy = 9,
                 Guts = 9,
-                Agility = 13,
+                Agility = 9,
                 Perception = 9,
             },
-            new CharacterGear(WeaponLists.RandomPrimary(), WeaponLists.RandomSecondary()),
+            new CharacterGear(new WarUzi(), WeaponLists.RandomSecondary()),
             Team.Enemy,
             "Characters/CorporationSecurity3/Corporate_Villain_face.png",
             Bust)

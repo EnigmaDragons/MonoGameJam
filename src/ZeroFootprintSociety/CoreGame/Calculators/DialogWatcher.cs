@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.Characters.Prefabs;
@@ -37,6 +38,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                     new Dialog { CharacterImage = Sidechick.Bust, Message = "You don't care about what's good for the world!" },
                     new Dialog { CharacterImage = MainChar.Bust, Message = "All you care about is enslaving it!" },
                     new Dialog { CharacterImage = CorpSec3.Bust, Message = "I don't normally get to enjoy my job, but every once in awhile some problem appears that's paticularly enjoyable to take care of." },
+                    new Dialog { CharacterImage = MainChar.Bust, Message = "*Injects self with healing nanites*" },
+                    new Dialog { CharacterImage = Sidechick.Bust, Message = "*Injects self with healing nanites*" },
                 }
             },
         };
@@ -59,6 +62,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 _shouldShowDialogOnMovementResolved = true;
                 _dialogToShowAtEndOfMovement = _convos[character.CurrentTile.Dialog];
                 _completedDialogs.Add(character.CurrentTile.Dialog);
+                if (character.CurrentTile.Dialog == "boss")
+                    GameWorld.Friendlies.ForEach(x => x.State.RemainingHealth = x.Stats.HP);
             }
         }
 
