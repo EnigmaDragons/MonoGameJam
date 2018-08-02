@@ -10,6 +10,7 @@ using MonoDragons.Core.Render;
 using MonoDragons.Core.Scenes;
 using ZeroFootPrintSociety.Scenes;
 using System;
+using System.Windows.Forms;
 using ZeroFootPrintSociety.Soundtrack;
 using Control = MonoDragons.Core.Inputs.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
@@ -19,13 +20,20 @@ namespace ZeroFootPrintSociety
     public static class Program
     {
         static MetaAppDetails AppMeta = new MetaAppDetails("ZeroFootprintSociety", "0.1", Environment.OSVersion.VersionString);
-        //static ReportErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+#if DEBUG
         static IErrorHandler FatalErrorHandler = new MessageBoxErrorHandler();
+#else
+        static IErrorHandler FatalErrorHandler = new ReportErrorHandler(AppMeta);
+#endif
 
         [STAThread]
         static void Main()
         {
+#if DEBUG
             RunGame("Logo");
+#else
+            RunGame("Logo");
+#endif
         }
 
         private static SceneFactory CreateSceneFactory()
@@ -49,13 +57,19 @@ namespace ZeroFootPrintSociety
         {
             try
             {
-                using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(AppMeta.Name, sceneName, new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), FatalErrorHandler)))
-                    game.Run();
+                using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(AppMeta.Name, sceneName, 
+                    new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), FatalErrorHandler)))
+                        game.Run();
             }
             catch(Exception e)
             {
                 FatalErrorHandler.ResolveError(e);
-                System.Windows.Forms.MessageBox.Show(e.StackTrace);
+                MessageBox.Show($"Your game has crashed, probably due to hacking by ZantoCorp.\n\n" +
+                                                     $"The Fatal Error has been automatically reported.\n\n" +
+                                                     $"Thank you for helping us with Quality Assurance!\n\n" +
+                                                     $"Credits have been automatically deposited into your bank account.\n\n" +
+                                                     $"Error: '{e.Message}'\n" +
+                                                     $"StackTrace: {e.StackTrace}");
             }
         }
 

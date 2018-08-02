@@ -17,22 +17,29 @@ namespace MonoDragons.Core.Errors
 
         public void ResolveError(Exception ex)
         {
-            if (!_reportedFatalError)
-                using (var client = new HttpClient())
-                    client.PostAsync(
-                        "https://hk86vytqs1.execute-api.us-west-2.amazonaws.com/GameMetrics/ReportCrashDetail",
-                        new StringContent(JsonConvert.SerializeObject(new CrashDetail
-                        {
-                            ApplicationName = _appDetails.Name,
-                            ApplicationVersion = _appDetails.Version,
-                            ContextJson = JsonConvert.SerializeObject(new Context
+            try
+            {
+                if (!_reportedFatalError)
+                    using (var client = new HttpClient())
+                        client.PostAsync(
+                            "https://hk86vytqs1.execute-api.us-west-2.amazonaws.com/GameMetrics/ReportCrashDetail",
+                            new StringContent(JsonConvert.SerializeObject(new CrashDetail
                             {
-                                OS = _appDetails.OS,
-                                ErrorMessage = ex.Message
-                            }),
-                            StackTrace = ex.StackTrace
-                        }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
-            _reportedFatalError = true;
+                                ApplicationName = _appDetails.Name,
+                                ApplicationVersion = _appDetails.Version,
+                                ContextJson = JsonConvert.SerializeObject(new Context
+                                {
+                                    OS = _appDetails.OS,
+                                    ErrorMessage = ex.Message
+                                }),
+                                StackTrace = ex.StackTrace
+                            }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
+                _reportedFatalError = true;
+            }
+            catch (Exception e)
+            {
+                // Ignore and keep on Trucking
+            }
         }
 
         private class CrashDetail

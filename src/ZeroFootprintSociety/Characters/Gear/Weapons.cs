@@ -58,6 +58,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
         };
     }
 
+#if DEBUG
     class GoldenGun : RangedWeapon
     {
         public override string Name { get; } = "Golden Gun";
@@ -80,6 +81,7 @@ namespace ZeroFootPrintSociety.Characters.Gear
             { 9, 1f }
         };
     }
+#endif
     
     class WarShotgun : RangedWeapon
     {
