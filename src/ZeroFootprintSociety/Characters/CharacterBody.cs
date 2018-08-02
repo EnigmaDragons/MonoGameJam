@@ -19,8 +19,8 @@ namespace ZeroFootPrintSociety.Characters
     public sealed class CharacterBody : IAutomaton, IVisual
     {
         private const double UnseenEnemySpeed = 9;
-        private const double RunSpeed = 0.38;
-        private const double EnemySpeed = 0.18;
+        private const double RunSpeed = 0.3;
+        private const double EnemySpeed = 0.2;
         private readonly Vector2 _offset;
         private readonly string _characterPath;
         private readonly GlowEffect _glow;
