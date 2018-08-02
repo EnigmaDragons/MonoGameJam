@@ -79,7 +79,7 @@ namespace ZeroFootPrintSociety.GUI
         public void Update(string characterImage, string name, string weaponImage, string weaponName, string hitChance, string bullets, string bulletDamage,
             int maxHP, int health, int damage, Team team)
         {
-            _background.Tint = (team.Equals(Team.Enemy) ? TeamColors.Enemy.Characters_GlowColor : UIColors.Unchanged).WithAlpha(180);
+            _background.Tint = team.Equals(Team.Enemy) ? TeamColors.Enemy.Characters_GlowColor.WithAlpha(150) : UIColors.Unchanged.WithAlpha(180);
             _face.Image = characterImage;
             _name.Text = name;
             _weapon.Image = weaponImage;
