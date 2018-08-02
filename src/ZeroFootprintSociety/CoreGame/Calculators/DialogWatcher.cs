@@ -16,7 +16,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 new List<Dialog>
                 {
                     new Dialog { CharacterImage = MainChar.Bust, Message = "The ZantoCorp building is up ahead. Getting past these ZantoCorp bakebrains should be easy." },
-                    new Dialog { CharacterImage = MainChar.Bust, Message = "We've gotta make past the Elite Guard. " +
+                    new Dialog { CharacterImage = MainChar.Bust, Message = "We've gotta get past the Elite Guard. " +
                                                                            "Then we should be able to use the codes Wilson sent us to access the building." },
                     new Dialog { CharacterImage = Sidechick.Bust, Message = "I wouldn't wanna be on shift as a ZantoCorp guard tonight. Let's go!" },
                 } 

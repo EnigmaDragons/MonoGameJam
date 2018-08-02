@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters;
+using ZeroFootPrintSociety.Characters.Prefabs;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.GUI;
 using ZeroFootPrintSociety.Tiles;
@@ -31,6 +32,7 @@ namespace ZeroFootPrintSociety.CoreGame
         public static DictionaryWithDefault<Point, bool> FriendlyPerception { get; set; } = new DictionaryWithDefault<Point, bool>(false);
         public static bool IsFriendlyTurn => CurrentCharacter.IsFriendly;
         public static CharacterClass MainCharClass { get; set; } = new CharacterClass();
+        public static Character MainCharacter => FriendliesWhere(x => x.Stats.Name.Equals(MainChar.Name)).Single();
         
         private static int _footsteps = 0;
         public static int FootstepsRemaining
