@@ -22,7 +22,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             },
             new CharacterGear(WeaponLists.RandomPrimary(), WeaponLists.RandomSecondary()),
             Team.Enemy,
-            "Characters/placeholder-soldier-face.png",
+            "Characters/CorporationSecurity3/Corporate_Villain_face.png",
             Bust)
         {
             State.MustKill = true;

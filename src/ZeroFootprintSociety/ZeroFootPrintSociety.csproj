@@ -498,6 +498,7 @@
     <Content Include="Content\Characters\CorporationSecurity3\Corporate_Villain_bust.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Characters\CorporationSecurity3\Corporate_Villain_face.png" />
     <Content Include="Content\Characters\CorporationSecurity3\CorporationSecurity3-idle-down-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
