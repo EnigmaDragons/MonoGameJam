@@ -30,7 +30,7 @@ namespace ZeroFootPrintSociety
         static void Main()
         {
 #if DEBUG
-            RunGame("Logo");
+            RunGame("FinalFloor");
 #else
             RunGame("Logo");
 #endif

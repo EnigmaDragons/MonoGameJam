@@ -135,6 +135,7 @@
  </tile>
  <tile id="22">
   <properties>
+   <property name="Dialog" value="boss"/>
    <property name="FX" value=""/>
    <property name="Hide" type="bool" value="true"/>
   </properties>

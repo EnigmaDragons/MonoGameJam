@@ -29,6 +29,16 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                     new Dialog { CharacterImage = Sidechick.Bust, Message = "You know me -- silent as a bomb!" },
                 }
             },
+            {
+                "boss",
+                new List<Dialog>
+                {
+                    new Dialog { CharacterImage = CorpSec3.Bust, Message = "Punks like you don't know what's good for the world." },
+                    new Dialog { CharacterImage = Sidechick.Bust, Message = "You don't care about what's good for the world!" },
+                    new Dialog { CharacterImage = MainChar.Bust, Message = "All you care about is enslaving it!" },
+                    new Dialog { CharacterImage = CorpSec3.Bust, Message = "I don't normally get to enjoy my job, but every once in awhile some problem appears that's paticularly enjoyable to take care of." },
+                }
+            },
         };
 
         private readonly List<string> _completedDialogs = new List<string>();
