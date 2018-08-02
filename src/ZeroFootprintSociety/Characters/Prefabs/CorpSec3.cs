@@ -6,7 +6,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
 {
     public class CorpSec3 : Character
     {
-        public static string Bust = "Characters/Sidechick/Sidechick-bust.png";
+        public static string Bust = "Characters/CorporationSecurity3/Corporate_Villain_bust.png";
 
         public CorpSec3(bool mustKill) : base(
             new CharacterBody("CorporationSecurity3", new Vector2(-13, -42), TeamColors.Enemy.Characters_GlowColor),
@@ -22,7 +22,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             },
             new CharacterGear(WeaponLists.RandomPrimary(), WeaponLists.RandomSecondary()),
             Team.Enemy,
-            "Characters/placeholder-soldier-face.png",
+            "Characters/CorporationSecurity3/Corporate_Villain_face.png",
             Bust)
         {
             State.MustKill = true;

@@ -2092,7 +2092,7 @@
  <tile id="348">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="None"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="349">
