@@ -1,5 +1,7 @@
-﻿using MonoDragons.Core.AudioSystem;
+﻿using System;
+using MonoDragons.Core.AudioSystem;
 using MonoDragons.Core.Common;
+using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
@@ -20,7 +22,25 @@ namespace ZeroFootPrintSociety.Soundtrack
             Event.Subscribe<ActionConfirmed>(OnActionConfirmed, this);
             Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
             Event.Subscribe<ShotFired>(OnShotFired, this);
+            Event.Subscribe<ShotHit>(OnShotHit, this);
+            Event.Subscribe<ShotBlocked>(OnShotBlocked, this);
+            Event.Subscribe<ShotMissed>(OnShotMissed, this);
             Event.Subscribe<Moved>(OnMoved, this);
+        }
+
+        private void OnShotMissed(ShotMissed obj)
+        {
+            Sound.SoundEffect($"SFX/shot-miss-1.wav", 0.8f).Play();
+        }
+        
+        private void OnShotBlocked(ShotBlocked obj)
+        {
+            Sound.SoundEffect($"SFX/shot-miss-1.wav", 0.8f).Play();
+        }
+
+        private void OnShotHit(ShotHit obj)
+        {
+            Sound.SoundEffect($"SFX/shot-hit-1.wav", DefaultVolume).Play();
         }
 
         private void OnMoved(Moved obj)
@@ -58,6 +78,10 @@ namespace ZeroFootPrintSociety.Soundtrack
                 Sound.SoundEffect("SFX/turn-start.wav", DefaultVolume).Play();
             _isFriendlyTurn = newTurnIsFriendly;
         }
-        
+
+        public void Update(TimeSpan delta)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
