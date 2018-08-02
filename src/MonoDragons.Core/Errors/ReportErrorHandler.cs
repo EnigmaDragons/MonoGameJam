@@ -19,6 +19,9 @@ namespace MonoDragons.Core.Errors
         {
             try
             {
+                var inner = ex;
+                while (inner.InnerException != null)
+                    inner = inner.InnerException;
                 if (!_reportedFatalError)
                     using (var client = new HttpClient())
                         client.PostAsync(
@@ -30,9 +33,9 @@ namespace MonoDragons.Core.Errors
                                 ContextJson = JsonConvert.SerializeObject(new Context
                                 {
                                     OS = _appDetails.OS,
-                                    ErrorMessage = ex.Message
+                                    ErrorMessage = inner.Message
                                 }),
-                                StackTrace = ex.StackTrace
+                                StackTrace = inner.StackTrace
                             }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
                 _reportedFatalError = true;
             }
