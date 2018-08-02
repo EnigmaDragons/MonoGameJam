@@ -6,6 +6,6 @@ namespace ZeroFootPrintSociety.AI
 {
     public class AICharacterData
     {
-        public Dictionary<Character, Point> SeenEnemies { get; } = new Dictionary<Character, Point>();
+        public Dictionary<Character, Point> SeenEnemies { get; set; } = new Dictionary<Character, Point>();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters;
@@ -48,6 +49,13 @@ namespace ZeroFootPrintSociety.AI
                 CurrentMood = Mood.Stealth;
                 Event.Publish(new MoodChange { NewMood = CurrentMood });
             }
+            if (e.Character.IsFriendly)
+                _characterData.ForEach(x =>
+                {
+                    var seenEnemies = new Dictionary<Character, Point>();
+                    x.Value.SeenEnemies.Where(enemy => enemy.Key != e.Character).ForEach(enemy => seenEnemies[enemy.Key] = enemy.Value);
+                    x.Value.SeenEnemies = seenEnemies;
+                });
         }
     }
 }
