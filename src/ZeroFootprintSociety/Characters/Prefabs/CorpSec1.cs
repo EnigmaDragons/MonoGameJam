@@ -20,6 +20,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             },
             new CharacterGear(WeaponLists.RandomPrimary(), WeaponLists.RandomSecondary()),
             Team.Enemy,
-            "Characters/placeholder-soldier-face.png") {}
+            "Characters/CorpSec-face.png",
+            "Characters/CorpSec-bust.png") {}
     }
 }

@@ -35,7 +35,7 @@ namespace ZeroFootPrintSociety.Credits
         {
             var titleImage = new UiImage
             {
-                Image = "UI/title-placeholder.png",
+                Image = "UI/title-bg.png",
                 Transform = new Transform2(new Vector2(0.5f.VW() - 338, 0.5f.VH() + 500), new Size2(678, 263))
             };
             titleImage.Transform.Location = new Vector2(titleImage.Transform.Location.X, titleImage.Transform.Location.Y + 800);
