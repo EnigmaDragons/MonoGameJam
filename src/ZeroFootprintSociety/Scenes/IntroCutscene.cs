@@ -27,9 +27,9 @@ namespace ZeroFootPrintSociety.Scenes
             "late 21st century, large corporations capitalized on the power vacuum and \n" +
             "used their vast wealth to wrest control from regional governments.",
             
-            "\n ZantoCorp used bribery, propaganda, and the fears of populace to outmaneuver \n" +
+            "\n ZantoCorp used bribery, propaganda, and the fears of the populace to outmaneuver \n" +
             "their competitors and become the ersatz rulers of most of the Eastern European \n" +
-            "region. Presently, they directly employ 56% of the workforce, making ZantoCorp \n" +
+            "region. Presently, they directly employ 56% of the workforce, giving ZantoCorp \n" +
             "the largest labor monopoly the world has ever seen.",
             
             "\n Using city drones, integrated camera feeds, and data-sniffing, they maintain \n" +
@@ -47,12 +47,21 @@ namespace ZeroFootPrintSociety.Scenes
             "data trail. They are the Zero-Footprint Society.",
             
             "After months of their best efforts, one of ZantoCorp's top agents managed to track \n" +
-            "Zemke down. An agent injected him with tracking Nanites, which will attach \n" +
-            "themsleves to all of his cells, and leave him unable to avoid digital detection any longer. \n \n" +
+            "Zemke down. An agent injected Zemke with tracking Nanites, which will attach \n" +
+            "themselves to all of his cells, and leave him unable to avoid digital detection any longer. \n \n" +
             
             "Once the Nanites embed themselves into his cells and replicate, anyone he comes into \n" +
             "contact with will be permanently under the watchful eye of ZantoCorp. The entire \n" +
-            "Zero-Footprint Society is in grave peril!"
+            "Zero-Footprint Society is in grave peril!",
+            
+            "Cassia Lanthe, a close associate of Zemke, works with some of her contacts from the \n" +
+            "Zero-Footprint Society in devising a plan to disable the nanites before they are \n" +
+            "embedded. Preliminary research indicates that this model is one of the newest \n" +
+            "prototypes, developed locally at ZantoCorp HQ in New Atlantica City. \n \n" +
+            
+            "Zemke and Lanthe set out to infiltrate the building, in hopes of reaching the Nanite \n" +
+            "control center, and disabling the Nanites before it is too late. Moving causes the Nanites \n" +
+            "to circulate faster, so Zemke is on a very tight clock, where every step counts."
         };
         
         public IntroCutscene(string nextScene)
@@ -63,7 +72,7 @@ namespace ZeroFootPrintSociety.Scenes
             {
                 Image = "UI/intro-bg",
                 Transform = new Transform2(new Size2(1.0.VW(), 1.0.VH())),
-                Tint = 100.Alpha()
+                Tint = 90.Alpha()
             };
         }
 
@@ -88,6 +97,8 @@ namespace ZeroFootPrintSociety.Scenes
                 _chatBox.CompletelyDisplayMessage();
             if (_index == 5)
                 _bg.Image = "UI/nanites";
+            if (_index == 6)
+                _bg.Image = "UI/blueprints";
         }
     }
 }

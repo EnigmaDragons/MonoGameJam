@@ -20,6 +20,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                     new Dialog { CharacterImage = MainChar.Bust, Message = "We've gotta get past the Elite Guard. " +
                                                                            "Then we should be able to use the codes Wilson sent us to access the building." },
                     new Dialog { CharacterImage = Sidechick.Bust, Message = "I wouldn't wanna be on shift as a ZantoCorp guard tonight. Let's go!" },
+                    new Dialog { CharacterImage = MainChar.Bust, Message = "Thanks for coming with me on this. We both know it's not gonna be a walk in the park." },
+                    new Dialog { CharacterImage = Sidechick.Bust, Message = "Are you kidding? They don't stand a chance!" },
                 } 
             },
             {
@@ -34,10 +36,11 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 "boss",
                 new List<Dialog>
                 {
-                    new Dialog { CharacterImage = CorpSec3.Bust, Message = "Punks like you don't know what's good for the world." },
+                    new Dialog { CharacterImage = CorpSec3.Bust, Message = "Punks like you don't know what's good for the world! You think the rules don't apply to you." },
                     new Dialog { CharacterImage = Sidechick.Bust, Message = "You don't care about what's good for the world!" },
                     new Dialog { CharacterImage = MainChar.Bust, Message = "All you care about is enslaving it!" },
-                    new Dialog { CharacterImage = CorpSec3.Bust, Message = "I don't normally get to enjoy my job, but every once in awhile some problem appears that's paticularly enjoyable to take care of." },
+                    new Dialog { CharacterImage = CorpSec3.Bust, Message = "I don't normally get to enjoy my job, but every once in awhile some " +
+                                                                           "problem appears that's particularly enjoyable to take care of." },
                     new Dialog { CharacterImage = MainChar.Bust, Message = "*Injects self with healing nanites*" },
                     new Dialog { CharacterImage = Sidechick.Bust, Message = "*Injects self with healing nanites*" },
                 }
