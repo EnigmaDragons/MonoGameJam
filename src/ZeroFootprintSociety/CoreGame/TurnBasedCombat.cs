@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.Characters;
@@ -43,6 +44,10 @@ namespace ZeroFootPrintSociety.CoreGame
 
         public void MoveTo(int x, int y)
         {
+            //TODO: remove hack for avoid switch weapons button
+            var mousePosition = Mouse.GetState().Position;
+            if (mousePosition.X > 700 && mousePosition.Y < 900 && mousePosition.Y > 850)
+                return;
             if (AvailableMoves.Any(move => move.Last().X == x && move.Last().Y == y))
                 Event.Publish(new MovementConfirmed(AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y)));
         }
