@@ -27,7 +27,7 @@ namespace MonoDragons.Core.UserInterface
         public TextButton(Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press)
             : this(area, onClick, text, defaultColor, hover, press, () => true) { }
 
-        public TextButton(Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press, Func<bool> isvisible) : base(area)
+        public TextButton(Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press, Func<bool> isVisible) : base(area)
         {
             _onClick = onClick;
             _text = text;
@@ -35,7 +35,7 @@ namespace MonoDragons.Core.UserInterface
             _hover = new RectangleTexture(hover).Create();
             _press = new RectangleTexture(press).Create();
             _currentRect = _default;
-            _isVisible = isvisible;
+            _isVisible = isVisible;
         }
 
         public override void OnEntered()

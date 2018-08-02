@@ -20,6 +20,7 @@ namespace ZeroFootPrintSociety.Scenes
         public override void Init()
         {
             Input.On(Control.Start, NavigateToMainMenu);
+            Input.On(Control.Select, NavigateToMainMenu);
             AddClickable(new ScreenClickable(NavigateToMainMenu));
             Sound.SoundEffect("SFX/logo-rumble.mp3").Play();
 

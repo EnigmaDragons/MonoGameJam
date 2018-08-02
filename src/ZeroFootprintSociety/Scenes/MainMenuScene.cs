@@ -24,16 +24,17 @@ namespace ZeroFootPrintSociety.Scenes
         public override void Init()
         {
             Input.On(Control.Menu, () => Environment.Exit(0));
+            Input.On(Control.Start, StartNewGame);
+            Input.On(Control.Select, StartNewGame);
             Sound.Music("main-theme").Play();
             Add(new UiImage { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new ColoredRectangle { Color = UIColors.MainMenuScene_Background, Transform = new Transform2(new Size2(1920, 1080)) });
-            Add(new UiImage { Image = "UI/title-placeholder", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });
+            Add(new UiImage { Image = "UI/title-bg", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });
             var button = new TextButton(
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
                 () => {
                     Buttons.PlayClickSound();
-                    GameWorld.Clear();
-                    Scene.NavigateTo(_newGameScene);
+                    StartNewGame();
                 }, 
                 "New Game",
                 UIColors.Buttons_Default,
@@ -57,6 +58,12 @@ namespace ZeroFootPrintSociety.Scenes
             AddClickable(button);
             AddClickable(button2);
             Add(new ScreenFade {Duration = TimeSpan.FromSeconds(1)}.Started());
+        }
+
+        private void StartNewGame()
+        {
+            GameWorld.Clear();
+            Scene.NavigateTo(_newGameScene);
         }
 
         public override void Dispose() { }
