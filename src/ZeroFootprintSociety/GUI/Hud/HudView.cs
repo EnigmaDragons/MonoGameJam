@@ -21,6 +21,9 @@ namespace ZeroFootPrintSociety.GUI
             Add(new ActionOptionsMenu(clickUi));
             Add(new GameOverMenu(clickUi));
             Add(new SwitchWeaponsMenu(clickUi));
+            var dialogs = new GameDialogs();
+            clickUi.Add(dialogs.Branch);
+            Add(dialogs);
         }
     }
 }

@@ -38,7 +38,8 @@ namespace ZeroFootPrintSociety.Tiles
                         tileMap[layerAndTile.Tile.TextureId].CustomBools["Hide"],
                         tileMap[layerAndTile.Tile.TextureId].CustomStrings["FX"],
                         tileMap[layerAndTile.Tile.TextureId].CustomStrings["Character"],
-                        tileMap[layerAndTile.Tile.TextureId].CustomBools["MustKill"])).ToList())).ToList());
+                        tileMap[layerAndTile.Tile.TextureId].CustomBools["MustKill"],
+                        tileMap[layerAndTile.Tile.TextureId].CustomStrings["Dialog"])).ToList())).ToList());
         }
 
 

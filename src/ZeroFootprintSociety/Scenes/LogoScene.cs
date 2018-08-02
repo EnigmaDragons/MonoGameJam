@@ -23,9 +23,9 @@ namespace ZeroFootPrintSociety.Scenes
             AddClickable(new ScreenClickable(NavigateToMainMenu));
             Sound.SoundEffect("SFX/logo-rumble.mp3").Play();
 
-            var anim1 = new ScreenFade() { Duration = TimeSpan.FromSeconds(3.4), FromAlpha = 255, ToAlpha = 0 };
-            var anim2 = new ScreenFade() { Duration = TimeSpan.FromSeconds(1), FromAlpha = 0, ToAlpha = 0 };
-            var anim3 = new ScreenFade() { Duration = TimeSpan.FromSeconds(1), FromAlpha = 0, ToAlpha = 255 };
+            var anim1 = new ScreenFade { Duration = TimeSpan.FromSeconds(3.4), FromAlpha = 255, ToAlpha = 0 };
+            var anim2 = new ScreenFade { Duration = TimeSpan.FromSeconds(1), FromAlpha = 0, ToAlpha = 0 };
+            var anim3 = new ScreenFade { Duration = TimeSpan.FromSeconds(1), FromAlpha = 0, ToAlpha = 255 };
             Add(new UiImage { Image = "Images/Logo/oilsplash", Transform = new Transform2(new Size2(1.0.VW(), 1.0.VH())) });
             Add(anim1);
             Add(anim2);
