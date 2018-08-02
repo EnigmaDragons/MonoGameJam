@@ -71,6 +71,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(perceptionUpdater);
             Add(new FriendlyVisionCalculator());
             Add(new NewEnemySpotter());
+            Add(new DialogWatcher());
             //TODO: trash class here
             Add(new TargetKilledSceneTransition());
             Add(_drawMaster);

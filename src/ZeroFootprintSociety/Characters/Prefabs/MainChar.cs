@@ -6,6 +6,8 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
 {
     class MainChar : Character
     {
+        public static string Bust = "Characters/MainCharacter/MainCharacter-bust.png";
+
         public MainChar() : base(
             new CharacterBody("MainCharacter", new Vector2(-13, -42), TeamColors.Friendly.Characters_GlowColor),
             new CharacterStats
@@ -21,6 +23,6 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterGear(new RsxCarbine(), new GoldenGun()),
             Team.Friendly,
             "Characters/MainCharacter/MainCharacter-face.png",
-            "Characters/MainCharacter/MainCharacter-bust.png") { }
+            Bust) { }
     }
 }

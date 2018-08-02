@@ -124,25 +124,31 @@
  <tile id="20">
   <properties>
    <property name="FX" value=""/>
+   <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="21">
   <properties>
    <property name="FX" value=""/>
+   <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="22">
   <properties>
    <property name="FX" value=""/>
+   <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="23">
   <properties>
+   <property name="Dialog" value="corp"/>
    <property name="FX" value=""/>
+   <property name="Hide" type="bool" value="true"/>
   </properties>
  </tile>
  <tile id="24">
   <properties>
+   <property name="Dialog" value="dark alley"/>
    <property name="FX" value=""/>
    <property name="Hide" type="bool" value="true"/>
   </properties>

@@ -5,6 +5,8 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
 {
     public class Sidechick : Character
     {
+        public static string Bust = "Characters/Sidechick/Sidechick-bust.png";
+
         public Sidechick() : base(
             new CharacterBody("Sidechick", new Vector2(-13, -42), Color.Blue),
             new CharacterStats
@@ -20,7 +22,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
             new CharacterGear(new RsxCarbine(), new GoldenGun()),
             Team.Friendly,
             "Characters/Sidechick/Sidechick-face.png",
-            "Characters/Sidechick/Sidechick-bust.png")
+            Bust)
         { }
     }
 }
