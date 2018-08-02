@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Animations;
 using MonoDragons.Core.AudioSystem;
-using MonoDragons.Core.Engine;
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
@@ -18,7 +17,6 @@ namespace ZeroFootPrintSociety.Scenes
         private readonly string _nextScene;
 
         private readonly ChatBox _chatBox;
-        private readonly IAnimation _fadeOut;
         private int _index;
         private readonly List<string> _texts = new List<string>
         {
@@ -52,7 +50,6 @@ namespace ZeroFootPrintSociety.Scenes
         {
             _nextScene = nextScene;
             _chatBox = new ChatBox(_texts[_index++], 0.7.VW(), GuiFonts.BodySpriteFont, 40, 40) { Position = new Vector2(0.15.VW(), 0.34.VH())};
-            _fadeOut = new ScreenFade { Duration = TimeSpan.FromSeconds(1.5), FromAlpha = 0, ToAlpha = 255};
         }
 
         public override void Init()
@@ -63,14 +60,13 @@ namespace ZeroFootPrintSociety.Scenes
             Add(new UiImage { Image = "UI/intro-bg", Transform = new Transform2(new Size2(1.0.VW(), 1.0.VH())), Tint = 120.Alpha()});
             AddClickable(new ScreenClickable(Advance));
             Add(_chatBox);
-            Add(_fadeOut);
             Add(new ScreenFade { Duration = TimeSpan.FromSeconds(1.5), FromAlpha = 255, ToAlpha = 0}.Started());
         }
 
         private void Advance()
         {
             if (_index == _texts.Count && _chatBox.IsMessageCompletelyDisplayed())
-                _fadeOut.Start(() => Scene.NavigateTo(_nextScene));
+                Scene.NavigateTo(_nextScene);
             else if (_chatBox.IsMessageCompletelyDisplayed())
                 _chatBox.ShowMessage(_texts[_index++]);
             else

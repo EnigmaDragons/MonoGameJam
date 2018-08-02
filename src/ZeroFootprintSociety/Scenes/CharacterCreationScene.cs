@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Animations;
 using MonoDragons.Core.AudioSystem;
+using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
@@ -16,10 +18,13 @@ namespace ZeroFootPrintSociety.Scenes
     {
         private readonly string _nextSceneName;
         private ChoiceUI _activeChoice;
+        private readonly IAnimation _fadeOut;
+        private bool _selected;
 
         public CharacterCreationScene(string nextSceneName)
         {
             _nextSceneName = nextSceneName;
+            _fadeOut = new ScreenFade { Duration = TimeSpan.FromSeconds(1), FromAlpha = 0, ToAlpha = 255};
         }
 
         public override void Init()
@@ -52,12 +57,19 @@ namespace ZeroFootPrintSociety.Scenes
                 Transform = new Transform2(new Vector2(-0.06.VW(), 0.3.VH()), new Size2(0.7.VH(), 0.7.VH()))
             });
             Add(_activeChoice);
+            Add(new ScreenFade {Duration = TimeSpan.FromSeconds(1)}.Started());
+            Add(_fadeOut);
         }
 
         private void Select(WeaponSet set)
         {
+            if (_selected)
+                return;
+            
+            _selected = true;
+            Buttons.PlayClickSound();
             GameWorld.MainCharClass = new CharacterClass { WeaponSet = set };
-            Scene.NavigateTo(_nextSceneName);
+            _fadeOut.Start(() => Scene.NavigateTo(_nextSceneName));
         }
         
         private ChoiceUI CreateWeaponChoice(WeaponSet weaponSet1, WeaponSet weaponSet2, WeaponSet weaponSet3)

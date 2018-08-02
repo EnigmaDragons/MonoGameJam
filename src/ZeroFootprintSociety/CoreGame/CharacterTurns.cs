@@ -51,7 +51,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private void OnCharacterDeath(CharacterDeceased _event)
         {
-            if (GameWorld.Friendlies.All(x => x.State.IsDeceased))
+            if (GameWorld.Friendlies.All(x => x.State.IsDeceased) || GameWorld.MainCharacter.State.IsDeceased)
             {
                 Event.Publish(new GameOver());
                 GameWorld.IsGameOver = true;
