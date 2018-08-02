@@ -526,13 +526,13 @@
  <tile id="87">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="Heavy"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="88">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="Heavy"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="89">
@@ -568,7 +568,7 @@
  <tile id="94">
   <properties>
    <property name="Blocking" type="bool" value="true"/>
-   <property name="Cover" value="Heavy"/>
+   <property name="Cover" value="Light"/>
   </properties>
  </tile>
  <tile id="95">

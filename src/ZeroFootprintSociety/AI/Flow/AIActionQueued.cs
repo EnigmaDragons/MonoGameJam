@@ -10,7 +10,7 @@ namespace ZeroFootPrintSociety.AI
 
         public AIActionQueued(Action action)
             : this(action, GameWorld.FriendlyPerception[GameWorld.CurrentCharacter.CurrentTile.Position] 
-                  ? TimeSpan.FromMilliseconds(750) 
+                  ? TimeSpan.FromMilliseconds(500) 
                   : TimeSpan.FromMilliseconds(0)) { }
 
         public AIActionQueued(Action action, TimeSpan delay)
