@@ -15,11 +15,11 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
                 HP = 125,
                 Movement = 8,
                 Accuracy = 6,
-                Guts = 4,
+                Guts = 5,
                 Agility = 9,
                 Perception = 6
             },
-            new CharacterGear(new PowerMagnum(), new AutoPistol()),
+            new CharacterGear(new PowerMagnum(), new WarShotgun()),
             Team.Friendly,
             "Characters/Sidechick/Sidechick-face.png",
             Bust)
