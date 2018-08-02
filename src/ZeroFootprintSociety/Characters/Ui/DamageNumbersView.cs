@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
 using ZeroFootPrintSociety.GUI;
+using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.Characters.GUI
 {
@@ -58,7 +59,7 @@ namespace ZeroFootPrintSociety.Characters.GUI
         {
             var numbers = _numbers.ToList();
             for (var i = 0; i < numbers.Count; i++)
-                UI.DrawText(numbers[i].Item2, parentTransform.Location + new Vector2(5, -34 - (i * 24)), Color.White);
+                UI.DrawText(numbers[i].Item2, parentTransform.Location + new Vector2(5, -34 - (i * 24)), UIColors.InGame_Text, GuiFonts.Body);
         }
 
         public void Update(TimeSpan delta)

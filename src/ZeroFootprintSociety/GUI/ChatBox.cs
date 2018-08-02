@@ -23,6 +23,7 @@ namespace ZeroFootPrintSociety.GUI
         private long _totalMessageTime;
 
         public Vector2 Position { get; set; }
+        public Color Color { get; set; } = Color.White;
         
         public ChatBox(string message, int maxLineWidth, SpriteFont spriteFont, double millisToCharacter = 35, int lineSpacing = FontLineSpacing)
         {
@@ -63,7 +64,7 @@ namespace ZeroFootPrintSociety.GUI
         public void Draw(Transform2 parentTransform)
         {
             _currentlyDisplayedMessage.Split('\n').ForEachIndex((l, i)
-                => UI.DrawText(l, new Vector2(parentTransform.Location.X, parentTransform.Location.Y + i * _lineSpacing) + Position, Color.White));
+                => UI.DrawText(l, new Vector2(parentTransform.Location.X, parentTransform.Location.Y + i * _lineSpacing) + Position, Color));
         }
 
         private string WrapText(string text)
