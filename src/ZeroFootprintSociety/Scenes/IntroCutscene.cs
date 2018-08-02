@@ -34,7 +34,7 @@ namespace ZeroFootPrintSociety.Scenes
             
             "\n Using city drones, integrated camera feeds, and data-sniffing, they maintain \n" +
             "extensive dossiers on all Euro-Asiatic workers, and have nearly 100% complete \n" +
-            "records on all New Atlantica City residents. Most people live in relatively \n" +
+            "records on all New Atlantica City residents. Most people live in relative \n" +
             "harmony with their corporate overlords. The have never been wealthier or \n" +
             "better fed before.", 
             

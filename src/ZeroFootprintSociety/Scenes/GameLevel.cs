@@ -5,6 +5,7 @@ using MonoDragons.Core.Scenes;
 using MonoTiled.Tiled.TmxLoading;
 using System;
 using System.Linq;
+using MonoDragons.Core.Animations;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
@@ -52,6 +53,7 @@ namespace ZeroFootPrintSociety.Scenes
                     GameWorld.Characters),
                 CameraStartingTile).Initialized());
             Event.Subscribe<MoodChange>(OnMoodChange, this);
+            Add(new ScreenFade {Duration = TimeSpan.FromSeconds(2)}.Started());
         }
 
         private void OnMoodChange(MoodChange change)

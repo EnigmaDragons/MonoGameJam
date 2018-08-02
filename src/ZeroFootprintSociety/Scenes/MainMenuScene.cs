@@ -36,27 +36,27 @@ namespace ZeroFootPrintSociety.Scenes
                     Scene.NavigateTo(_newGameScene);
                 }, 
                 "New Game",
-                UIColors.MainMenuScene_ButtonDefault,
-                UIColors.MainMenuScene_ButtonHover,
-                UIColors.MainMenuScene_ButtonPress
+                UIColors.Buttons_Default,
+                UIColors.Buttons_Hover,
+                UIColors.Buttons_Press
             );
             
             var button2 = new TextButton(
-                new Rectangle(UI.OfScreenWidth(0.5f) - 150, 760, 300, 50),
+                new Rectangle(UI.OfScreenWidth(0.5f) - 150, 780, 300, 50),
                 () => {
                     Buttons.PlayClickSound();
                     GameWorld.Clear();
                     Scene.NavigateTo("Credits");
                 }, 
                 "Credits",
-                UIColors.MainMenuScene_ButtonDefault,
-                UIColors.MainMenuScene_ButtonHover,
-                UIColors.MainMenuScene_ButtonPress
+                UIColors.Buttons_Default,
+                UIColors.Buttons_Hover,
+                UIColors.Buttons_Press
             );
             
-            Add(new ScreenFade {Duration = TimeSpan.FromSeconds(1)}.Started());
             AddClickable(button);
             AddClickable(button2);
+            Add(new ScreenFade {Duration = TimeSpan.FromSeconds(1)}.Started());
         }
 
         public override void Dispose() { }

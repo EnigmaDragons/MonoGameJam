@@ -49,7 +49,7 @@ namespace ZeroFootPrintSociety.Themes
         public static Color OverwatchedTiles_Text { get; } = new Color(248,223,223,1);
         public static Color OverwatchedTiles_OverwatchedByCharacter { get; } = Color.FromNonPremultiplied(100, 0, 0, 31);
 
-        public static Color MainMenuScene_Background { get; } = Color.FromNonPremultiplied(0, 0, 0, 100);
+        public static Color MainMenuScene_Background { get; } = Color.FromNonPremultiplied(0, 0, 0, 130);
         public static Color MainMenuScene_ButtonDefault { get; } = Color.Transparent;
         public static Color MainMenuScene_ButtonHover { get; } = Color.LightBlue;
         public static Color MainMenuScene_ButtonPress { get; } = Color.Blue;
