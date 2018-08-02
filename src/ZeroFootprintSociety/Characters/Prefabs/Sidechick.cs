@@ -14,7 +14,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
                 Name = "Cassia Lanthe",
                 HP = 125,
                 Movement = 8,
-                Accuracy = 5,
+                Accuracy = 6,
                 Guts = 4,
                 Agility = 9,
                 Perception = 6
