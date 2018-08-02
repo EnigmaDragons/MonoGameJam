@@ -95,6 +95,7 @@ namespace ZeroFootPrintSociety.GUI
             private double _distanceTravled = 0;
             private Point _tile;
             public bool IsDone { get; private set; }
+            private bool _publishedEvent;
 
             public MissedShotVisual(Texture2D texture, Transform2 transform, Point shootPoint)
             {
@@ -109,6 +110,12 @@ namespace ZeroFootPrintSociety.GUI
                 _distanceTravled += distance;
                 if (!GameWorld.Map.Exists(_tile) || GameWorld.Map[_tile].Cover == Cover.Heavy)
                     IsDone = true;
+
+                if (!_publishedEvent && (_distanceTravled > 50 || IsDone))
+                {
+                    Event.Publish(new ShotAnimationsFinished());
+                    _publishedEvent = true;
+                }
             }
 
             public void Draw(Transform2 parentTransform)
@@ -139,6 +146,7 @@ namespace ZeroFootPrintSociety.GUI
             private double _distanceTravled = 0;
             private Point _tile;
             public bool IsDone { get; private set; }
+            private bool _publishedEvent;
 
             public HitShotVisual(Texture2D texture, Transform2 transform, Point target)
             {
@@ -153,6 +161,12 @@ namespace ZeroFootPrintSociety.GUI
                 _distanceTravled += distance;
                 if (_tile == _target)
                     IsDone = true;
+
+                if (!_publishedEvent && (_distanceTravled > 50 || IsDone))
+                {
+                    Event.Publish(new ShotAnimationsFinished());
+                    _publishedEvent = true;
+                }
             }
 
             public void Draw(Transform2 parentTransform)
@@ -186,6 +200,7 @@ namespace ZeroFootPrintSociety.GUI
             private double _distanceTravled = 0;
             private Point _tile;
             public bool IsDone { get; private set; }
+            private bool _publishedEvent;
 
             public BlockedShotVisual(Texture2D texture, Transform2 transform, Point target)
             {
@@ -200,6 +215,12 @@ namespace ZeroFootPrintSociety.GUI
                 _distanceTravled += distance;
                 if (_tile == _target)
                     IsDone = true;
+
+                if (!_publishedEvent && (_distanceTravled > 50 || IsDone))
+                {
+                    Event.Publish(new ShotAnimationsFinished());
+                    _publishedEvent = true;
+                }
             }
 
             public void Draw(Transform2 parentTransform)
