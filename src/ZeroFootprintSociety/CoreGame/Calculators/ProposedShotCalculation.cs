@@ -1,4 +1,5 @@
-﻿using ZeroFootPrintSociety.Characters;
+﻿using System;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.Tiles;
 
@@ -28,7 +29,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 Attacker = _attacker,
                 Defender = _defender,
                 AttackerHitChance = new HitChanceCalculation(_attacker.Accuracy, _defenderBlockInfo.BlockChance, _defender.Stats.Agility, _defender.State.IsHiding).Get(),
-                AttackerBulletDamage = (int)(attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]) * (100 - (_defender.Stats.Guts * 5)) / 100,
+                AttackerBulletDamage = (int)Math.Ceiling((attackerWeapon.DamagePerHit * attackerWeapon.EffectiveRanges[distance]) * (100 - (_defender.Stats.Guts * 5)) / 100),
                 AttackerBlockInfo = _attackerBlockInfo,
                 IsAttackerHiding = _attacker.State.IsHiding
             };
@@ -37,7 +38,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 var defenderWeapon = _defender.Gear.EquippedWeapon.AsRanged();
                 proposed.DefenderHitChance = new HitChanceCalculation(_defender.Accuracy, _attackerBlockInfo.BlockChance, _attacker.Stats.Agility, _attacker.State.IsHiding).Get();
                 if (defenderWeapon.EffectiveRanges.ContainsKey(distance))
-                    proposed.DefenderBulletDamage = (int)(defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]) * (100 - (_attacker.Stats.Guts * 5)) / 100;
+                    proposed.DefenderBulletDamage = (int)Math.Ceiling((defenderWeapon.DamagePerHit * defenderWeapon.EffectiveRanges[distance]) * (100 - (_attacker.Stats.Guts * 5)) / 100);
             }
             proposed.AttackerDamage = proposed.DefenderHitChance * proposed.DefenderBullets * proposed.DefenderBulletDamage / 100;
             proposed.DefenderDamage = proposed.AttackerHitChance * proposed.AttackerBullets * proposed.AttackerBulletDamage / 100;
