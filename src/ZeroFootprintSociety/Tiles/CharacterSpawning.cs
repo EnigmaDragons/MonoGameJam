@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ZeroFootPrintSociety.Characters.Prefabs;
+using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.Characters
@@ -15,7 +16,7 @@ namespace ZeroFootPrintSociety.Characters
                 .Select(t =>
                 {
                     if (t.SpawnCharacter.Equals("main", StringComparison.InvariantCultureIgnoreCase))
-                        return new MainChar().Initialized(t);
+                        return new MainChar(GameWorld.MainCharClass).Initialized(t);
                     if (t.SpawnCharacter.Equals("sidechick", StringComparison.InvariantCultureIgnoreCase))
                         return new Sidechick().Initialized(t);
                     if (t.SpawnCharacter.Equals("corpsec1", StringComparison.InvariantCultureIgnoreCase))

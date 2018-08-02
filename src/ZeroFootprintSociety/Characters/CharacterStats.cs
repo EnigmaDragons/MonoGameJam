@@ -14,5 +14,26 @@ namespace ZeroFootPrintSociety.Characters
         public int Guts { get; set; } = 5; // Power in melee combat. 
         public int Agility { get; set; } = 5; // Initiative. Chance to dodge bullets.
         public int Perception { get; set; } = 5; // Range and fidelity of detecting unseen enemy movement. Observe traps.
+
+        public CharacterStats WithMods(CharacterStatsMods cStatMods)
+        {
+            HP += cStatMods.HP;
+            Movement += cStatMods.Movement;
+            Accuracy += cStatMods.Accuracy;
+            Guts += cStatMods.Guts;
+            Agility += cStatMods.Agility;
+            Perception += cStatMods.Perception;
+            return this;
+        }
+    }
+    
+    public sealed class CharacterStatsMods
+    {
+        public int HP { get; set; } 
+        public int Movement { get; set; }
+        public int Accuracy { get; set; }
+        public int Guts { get; set; }
+        public int Agility { get; set; }
+        public int Perception { get; set; }
     }
 }
