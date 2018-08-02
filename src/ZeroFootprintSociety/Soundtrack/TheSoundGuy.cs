@@ -46,7 +46,7 @@ namespace ZeroFootPrintSociety.Soundtrack
         private void OnMoved(Moved obj)
         {
             if (GameWorld.FriendlyPerception[obj.Position])
-                Sound.SoundEffect($"SFX/step-hard-{Rng.Int(1, 6)}.wav", 0.36f).Play();
+                Sound.SoundEffect($"SFX/step-hard-{Rng.Int(1, 6)}.wav", 0.5f).Play();
         }
 
         private void OnShotFired(ShotFired obj)

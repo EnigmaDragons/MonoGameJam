@@ -29,7 +29,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         public override void Init()
         {
-            Sound.Music("customizing").Play();
+            Sound.Music("customizing", 0.38f).Play();
             var classChoice = CreateWeaponChoice(
                 new WeaponSet("Sniper", new RsxCarbine(), new SideArm()),
                 new WeaponSet("Bulleteer", new WarUzi(), new AutoPistol()),
