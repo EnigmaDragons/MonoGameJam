@@ -35,7 +35,7 @@ namespace ZeroFootPrintSociety.GUI
             if (!_shouldRecalc) return;
             
             _peceptionMarkers = GameWorld.Enemies
-                .Where(x => !GameWorld.FriendlyPerception[x.CurrentTile.Position])
+                .Where(x => GameWorld.FriendlyPerception[x.CurrentTile.Position] && !GameWorld.Friendlies.Any(friendly => friendly.State.SeeableTiles[x.CurrentTile.Position]))
                 .Select(x => x.CurrentTile.Transform.WithSize(TileData.RenderSize)).ToList();
             _shouldRecalc = false;
         }
