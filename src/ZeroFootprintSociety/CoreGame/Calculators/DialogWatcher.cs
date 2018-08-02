@@ -15,16 +15,18 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 "dark alley",
                 new List<Dialog>
                 {
-                    new Dialog { CharacterImage = MainChar.Bust, Message = "Up this way is Zanto Corp, we are going to kill the elite guard out front to get his pass to get in." },
-                    new Dialog { CharacterImage = Sidechick.Bust, Message = "I wouldn't wanna be on shift as a Zanto Corp security tonight, let's go!" },
+                    new Dialog { CharacterImage = MainChar.Bust, Message = "The ZantoCorp building is up ahead. Getting past these ZantoCorp bakebrains should be easy." },
+                    new Dialog { CharacterImage = MainChar.Bust, Message = "We've gotta make past the Elite Guard. " +
+                                                                           "Then we should be able to use the codes Wilson sent us to access the building." },
+                    new Dialog { CharacterImage = Sidechick.Bust, Message = "I wouldn't wanna be on shift as a ZantoCorp guard tonight. Let's go!" },
                 } 
             },
             {
                 "corp",
                 new List<Dialog>
                 {
-                    new Dialog { CharacterImage = MainChar.Bust, Message = "The cure is hiding in the back, we are going need to be quiet if we gonna get through." },
-                    new Dialog { CharacterImage = Sidechick.Bust, Message = "Silent as a bomb!" },
+                    new Dialog { CharacterImage = MainChar.Bust, Message = "The Nanite Control Central is hiding in the back, we are going need to be quiet if we're gonna get through." },
+                    new Dialog { CharacterImage = Sidechick.Bust, Message = "You know me -- silent as a bomb!" },
                 }
             },
         };
