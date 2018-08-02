@@ -22,6 +22,7 @@ namespace MonoDragons.Core.UserInterface
         public Action OnEnter { private get; set; } = () => { };
         public Action OnPress { private get; set; } = () => { };
         public string Font { get; set; } = DefaultFont.Name;
+        public Color Color { get; set; } = Color.White;
 
         public TextButton(Rectangle area, Action onClick, string text, Color defaultColor, Color hover, Color press)
             : this(area, onClick, text, defaultColor, hover, press, () => true) { }
@@ -65,8 +66,8 @@ namespace MonoDragons.Core.UserInterface
         {
             if (_isVisible())
             {
-                UI.Draw(_currentRect, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color.White);
-                UI.DrawTextCentered(_text, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color.White, Font);
+                UI.Draw(_currentRect, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color);
+                UI.DrawTextCentered(_text, new Rectangle(Area.Location + parentTransform.Location.ToPoint(), Area.Size), Color, Font);
             }
         }
     }

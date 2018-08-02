@@ -41,7 +41,7 @@ namespace ZeroFootPrintSociety.GUI
                 UIColors.Buttons_Hover,
                 UIColors.Buttons_Press,
                 condition)
-            { Font = "Fonts/12" };
+            { Font = "Fonts/12", Color = UIColors.InGame_Text };
         }
     }
 }

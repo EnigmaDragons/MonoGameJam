@@ -14,7 +14,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
                 HP = 40,
                 Movement = 7,
                 Accuracy = 5,
-                Guts = 7,
+                Guts = 6,
                 Agility = 6,
                 Perception = 8
             },

@@ -28,7 +28,7 @@ namespace ZeroFootPrintSociety.GUI.Menus
         public SwitchWeaponsMenu(ClickUI clickUI)
         {
             _clickUI = clickUI;
-            var ctx = new Buttons.MenuContext { X = _menuX, Y = _menuY, Width = _menuWidth, FirstButtonYOffset = 30 };
+            var ctx = new Buttons.MenuContext { X = _menuX, Y = _menuY, Width = _menuWidth, FirstButtonYOffset = 40 };
             var menu = new UiImage
             {
                 Transform = new Transform2(new Rectangle(_menuX, _menuY, _menuWidth, _menuHeight)),
