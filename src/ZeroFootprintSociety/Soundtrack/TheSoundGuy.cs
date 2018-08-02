@@ -26,7 +26,15 @@ namespace ZeroFootPrintSociety.Soundtrack
             Event.Subscribe<ShotBlocked>(OnShotBlocked, this);
             Event.Subscribe<ShotMissed>(OnShotMissed, this);
             Event.Subscribe<Moved>(OnMoved, this);
+            Event.Subscribe<CharacterDeceased>(OnDeceased, this);
         }
+
+        private void OnDeceased(CharacterDeceased obj)
+        {
+            if (!obj.Character.IsFriendly)
+                Sound.SoundEffect($"SFX/death-1.wav", DefaultVolume).Play();
+        }
+
 
         private void OnShotMissed(ShotMissed obj)
         {
