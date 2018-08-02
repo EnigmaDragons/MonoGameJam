@@ -56,7 +56,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
             _eventQueue.Enqueue(() =>
             {
-                if (e.Proposed.Defender.State.RemainingHealth > 0)
+                if (e.Proposed.Defender.State.RemainingHealth > 0 && e.Proposed.DefenderBulletDamage > 0)
                 {
                     for (var i = 0; i < e.Proposed.DefenderBullets; i++)
                     {
@@ -98,9 +98,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             _eventQueue.Enqueue(() =>
             {
                 Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
-                AdvanceQueue();
+                Event.Publish(new ShotHit {Attacker = attacker, Target = defender, DamageAmount = damage});
             });
-            _eventQueue.Enqueue(() => Event.Publish(new ShotHit { Attacker = attacker, Target = defender, DamageAmount = damage }));
         }
 
         private void ShotMissed(Character attacker, Character defender)
@@ -108,9 +107,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             _eventQueue.Enqueue(() =>
             {
                 Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
-                AdvanceQueue();
+                Event.Publish(new ShotMissed {Attacker = attacker, Target = defender});
             });
-            _eventQueue.Enqueue(() => Event.Publish(new ShotMissed { Attacker = attacker, Target = defender }));
         }
 
         private void ShotBlocked(Character attacker, Character defender, GameTile blocker)
@@ -118,9 +116,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             _eventQueue.Enqueue(() =>
             {
                 Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
-                AdvanceQueue();
+                Event.Publish(new ShotBlocked {Attacker = attacker, Target = defender, Blocker = blocker});
             });
-            _eventQueue.Enqueue(() => Event.Publish(new ShotBlocked { Attacker = attacker, Target = defender, Blocker = blocker }));
         }
     }
 }
