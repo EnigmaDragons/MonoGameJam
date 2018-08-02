@@ -13,7 +13,7 @@ namespace ZeroFootPrintSociety.GUI
         {
             Add(new InGameMenu(clickUi));
             Add(new ActionConfirmMenu(clickUi));
-            Add(new EquippedWeaponView(new Point(UI.OfScreenWidth(0.85f), UI.OfScreenHeight(0.89f))));
+            Add(new EquippedWeaponView(new Point(UI.OfScreenWidth(0.834f), UI.OfScreenHeight(0.86f))));
             Add(new CurrentCharacterView(new Point(UI.OfScreenWidth(0.01f), UI.OfScreenHeight(0.86f))));
             Add(new FootstepsCounterView((new Point(UI.OfScreenWidth(0.82f), UI.OfScreenHeight(0.054f)))));
             Add(new AttackPreview());

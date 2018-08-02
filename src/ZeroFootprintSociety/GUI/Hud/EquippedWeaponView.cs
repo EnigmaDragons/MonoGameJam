@@ -14,21 +14,34 @@ namespace ZeroFootPrintSociety.GUI
     {
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly UiImage _weaponArt;
-        private readonly Label _label;
+        private readonly Label _nameLabel;
+        private readonly Label _rangeLabel;
 
         public EquippedWeaponView(Point position) 
             : base(new Rectangle(position.X, position.Y, 220, 84), true, 1)
         {
-            _weaponArt = new UiImage { Transform = new Transform2(new Rectangle(position.X + 40, position.Y + 8, 150, 42)) };
-            _label = new Label
+            _weaponArt = new UiImage { Transform = new Transform2(new Rectangle(position.X + 60, position.Y + 4, 130, 52)) };
+            _nameLabel = new Label
             {
-                Font = "Fonts/12",
-                Transform = new Transform2(new Rectangle(position.X, position.Y + 40, 220, 60)),
+                Font = GuiFonts.Body,
+                Transform = new Transform2(new Rectangle(position.X, position.Y + 54, 250, 30)),
                 TextColor = UIColors.InGame_Text
             };
-            _visuals.Add(new UiImage { Image = "UI/weapon-panel.png", Tint = 180.Alpha(), Transform = new Transform2(new Rectangle(position.X, position.Y, 220, 88)) });
+            _rangeLabel = new Label
+            {
+                Font = GuiFonts.Body,
+                Transform = new Transform2(new Rectangle(position.X, position.Y + 80, 250, 30)),
+                TextColor = UIColors.InGame_Text
+            };
+            _visuals.Add(new UiImage
+            {
+                Image = "UI/weapon-panel.png", 
+                Tint = 180.Alpha(),
+                Transform = new Transform2(new Rectangle(position.X, position.Y, 250, 114))
+            });
             _visuals.Add(_weaponArt);
-            _visuals.Add(_label);
+            _visuals.Add(_nameLabel);
+            _visuals.Add(_rangeLabel);
         }
 
         public void Draw(Transform2 parentTransform)
@@ -39,8 +52,12 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Update(TimeSpan delta)
         {
-            _weaponArt.Image = GameWorld.CurrentCharacter.Gear.EquippedWeapon.Image;
-            _label.Text = GameWorld.CurrentCharacter.Gear.EquippedWeapon.Name;
+            var w = GameWorld.CurrentCharacter.Gear.EquippedWeapon;
+            _weaponArt.Image = w.Image;
+            _nameLabel.Text = w.Name;
+            _rangeLabel.Text = w.IsRanged 
+                ? $"Rng: {w.AsRanged().Range.ToString()}" 
+                : "";
         }
 
         public override void OnEntered()
