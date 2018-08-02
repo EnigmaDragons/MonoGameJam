@@ -38,6 +38,10 @@ namespace ZeroFootPrintSociety.GUI
         private Point _destination;
         public Point Position { get; private set; }
 
+        //TODO: hacks
+        private bool _shouldWaitASecondBeforeSnappingBack = false;
+        private bool _shouldSnapBack = false;
+
         private bool _shouldFreezeCamera;
         private readonly CameraOptions _cameraOptions;
 
@@ -66,7 +70,11 @@ namespace ZeroFootPrintSociety.GUI
                     if (GameWorld.CurrentCharacter.IsFriendly)
                         CenterOn(GameWorld.Map.TileToWorldTransform(AheadOfPoint(GameWorld.CurrentCharacter.CurrentTile.Position, e.Path.Last())));
                 }, this);
-            Event.Subscribe<EnemySpotted>(e => CenterOn(GameWorld.Map.TileToWorldTransform(e.Enemy.CurrentTile.Position)), this);
+            Event.Subscribe<EnemySpotted>(e =>
+            {
+                CenterOn(GameWorld.Map.TileToWorldTransform(e.Enemy.CurrentTile.Position));
+                _shouldWaitASecondBeforeSnappingBack = true;
+            }, this);
             Event.Subscribe<ShootSelected>(e => CenterOn(GameWorld.CurrentCharacter), this);
             Event.Subscribe<RangedTargetInspected>(e => CenterOn(new Transform2(new Vector2((e.Attacker.CurrentTile.Transform.Location.X + e.Defender.CurrentTile.Transform.Location.X) / 2, (e.Attacker.CurrentTile.Transform.Location.Y + e.Defender.CurrentTile.Transform.Location.Y) / 2))), this);
             Event.Subscribe<MenuRequested>(e => _shouldFreezeCamera = true, this);
@@ -83,6 +91,19 @@ namespace ZeroFootPrintSociety.GUI
             {
                 _transitionCompletion += 0.04f;
                 SetPosition(Vector2.Lerp(Position.ToVector2(), _destination.ToVector2(), _transitionCompletion).ToPoint());
+                //TODO: hacks
+                if (_transitionCompletion >= 1f && _shouldWaitASecondBeforeSnappingBack)
+                {
+                    _shouldWaitASecondBeforeSnappingBack = false;
+                    _shouldSnapBack = true;
+                    MoveTo(Position);
+                }
+                else if (_transitionCompletion >= 1f && _shouldSnapBack)
+                {
+                    _shouldWaitASecondBeforeSnappingBack = false;
+                    _shouldSnapBack = true;
+                    CenterOn(GameWorld.Map.TileToWorldTransform(GameWorld.CurrentCharacter.CurrentTile.Position));
+                }
                 return;
             }
 
