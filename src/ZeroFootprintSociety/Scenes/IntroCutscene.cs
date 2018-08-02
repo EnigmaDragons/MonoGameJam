@@ -5,6 +5,7 @@ using MonoDragons.Core.Animations;
 using MonoDragons.Core.AudioSystem;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.Inputs;
+using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.GUI;
@@ -59,9 +60,11 @@ namespace ZeroFootPrintSociety.Scenes
             Sound.Music("intro").Play();
             Input.On(Control.Start, Advance);
             Input.On(Control.Select, () => Scene.NavigateTo(_nextScene));
+            Add(new UiImage { Image = "UI/intro-bg", Transform = new Transform2(new Size2(1.0.VW(), 1.0.VH())), Tint = 120.Alpha()});
             AddClickable(new ScreenClickable(Advance));
             Add(_chatBox);
             Add(_fadeOut);
+            Add(new ScreenFade { Duration = TimeSpan.FromSeconds(1.5), FromAlpha = 255, ToAlpha = 0}.Started());
         }
 
         private void Advance()
