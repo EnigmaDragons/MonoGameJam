@@ -20,6 +20,7 @@ namespace ZeroFootPrintSociety.Characters
     {
         private const double UnseenEnemySpeed = 9;
         private const double RunSpeed = 0.38;
+        private const double EnemySpeed = 0.18;
         private readonly Vector2 _offset;
         private readonly string _characterPath;
         private readonly GlowEffect _glow;
@@ -115,7 +116,8 @@ namespace ZeroFootPrintSociety.Characters
         {
             double speedModifier = GameWorld.CurrentCharacter.Team != Team.Friendly && !GameWorld.FriendlyPerception[CurrentTile.Position] 
                 ? UnseenEnemySpeed 
-                : RunSpeed;
+                : GameWorld.CurrentCharacter.Team == Team.Friendly 
+                    ? RunSpeed : EnemySpeed;
             _currentAnimation.Update(delta);
             if (Path.Any() && !Stopped)
             {
