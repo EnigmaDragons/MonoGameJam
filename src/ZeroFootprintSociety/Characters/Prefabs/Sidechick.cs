@@ -19,11 +19,7 @@ namespace ZeroFootPrintSociety.Characters.Prefabs
                 Agility = 9,
                 Perception = 6
             },
-<<<<<<< HEAD
-            new CharacterGear(new PowerMagnum(), new AutoPistol()),
-=======
             new CharacterGear(new WarShotgun(), new PowerMagnum()),
->>>>>>> ba14534f2c974df8fe10585b193bbcfb5e0b2eab
             Team.Friendly,
             "Characters/Sidechick/Sidechick-face.png",
             Bust)

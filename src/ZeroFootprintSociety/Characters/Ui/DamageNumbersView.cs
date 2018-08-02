@@ -13,7 +13,7 @@ namespace ZeroFootPrintSociety.Characters.GUI
 {
     class DamageNumbersView : IVisualAutomaton
     {
-        private static readonly TimeSpan DisplayDuration = TimeSpan.FromMilliseconds(900);
+        private static readonly TimeSpan DisplayDuration = TimeSpan.FromMilliseconds(1800);
         private static readonly TimeSpan DelayDuration = TimeSpan.FromMilliseconds(300);
         private readonly Character _owner;
         private readonly List<Tuple<TimeSpan, string>> _numbers = new List<Tuple<TimeSpan, string>>();
@@ -56,17 +56,15 @@ namespace ZeroFootPrintSociety.Characters.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            _numbers.ToList().ForEach(
-                x => UI.DrawText(x.Item2, parentTransform.Location + new Vector2(5, -34), Color.White));
+            var numbers = _numbers.ToList();
+            for (var i = 0; i < numbers.Count; i++)
+                UI.DrawText(numbers[i].Item2, parentTransform.Location + new Vector2(5, -34 - (i * 24)), Color.White);
         }
 
         public void Update(TimeSpan delta)
         {
             if (_isDisplayingDamage && _numbers.Count == 0 && _delayed.Count == 0)
-            {
                 _isDisplayingDamage = false;
-                Event.Publish(new ShotAnimationsFinished());
-            }
             
             var updated =  _delayed.ToList()
                 .Select(x => new Tuple<TimeSpan, string>(x.Item1 - delta, x.Item2)).ToList();

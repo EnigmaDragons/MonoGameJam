@@ -21,7 +21,6 @@ namespace ZeroFootPrintSociety.Characters
 {
     public abstract class Character : IVisualAutomaton
     {
-        private readonly Queue<int> _pendingDmg = new Queue<int>(0);
         private readonly HealthBar _healthBar = new HealthBar(42);
         private readonly DamageNumbersView _damageNumbers;
 
@@ -113,8 +112,6 @@ namespace ZeroFootPrintSociety.Characters
 
         private void OnShotsResolved(ShotAnimationsFinished e)
         {
-            if (_pendingDmg.Any())
-                State.RemainingHealth -= _pendingDmg.Dequeue();
             if (State.RemainingHealth <= 0 && !State.IsDeceased)
             {
                 State.IsDeceased = true;
@@ -157,7 +154,7 @@ namespace ZeroFootPrintSociety.Characters
         private void OnShotHit(ShotHit e)
         {
             if (e.Target.Equals(this))
-                _pendingDmg.Enqueue(e.DamageAmount);
+                State.RemainingHealth -= e.DamageAmount;
         }
 
         public void Draw(Transform2 parentTransform)
