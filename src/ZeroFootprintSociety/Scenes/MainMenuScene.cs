@@ -26,8 +26,7 @@ namespace ZeroFootPrintSociety.Scenes
             Input.On(Control.Menu, () => Environment.Exit(0));
             Input.On(Control.Start, StartNewGame);
             Input.On(Control.Select, StartNewGame);
-            Sound.SoundEffect("SFX/button-press-1.wav", 0f).Play();
-            Sound.Music("main-theme").Play();
+            Sound.Music("main-theme", 0.4f).Play();
             Add(new UiImage { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new ColoredRectangle { Color = UIColors.MainMenuScene_Background, Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new UiImage { Image = "UI/title-bg", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });

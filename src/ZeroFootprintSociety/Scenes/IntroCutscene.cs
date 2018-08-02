@@ -78,7 +78,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         public override void Init()
         {
-            Sound.Music("intro").Play();
+            Sound.Music("intro", 0.6f).Play();
             Input.On(Control.Start, Advance);
             Input.On(Control.Select, () => Scene.NavigateTo(_nextScene));
             Add(_bg);
