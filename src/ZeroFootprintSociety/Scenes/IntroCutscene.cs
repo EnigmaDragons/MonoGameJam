@@ -55,7 +55,7 @@ namespace ZeroFootPrintSociety.Scenes
             "Zero-Footprint Society is in grave peril!",
             
             "Cassia Lanthe, a close associate of Zemke, works with some of her contacts from the \n" +
-            "Zero-Footprint Society in devising a plan to disable the nanites before they are \n" +
+            "Zero-Footprint Society in devising a plan to disable the Nanites before they are \n" +
             "embedded. Preliminary research indicates that this model is one of the newest \n" +
             "prototypes, developed locally at ZantoCorp HQ in New Atlantica City. \n \n" +
             

@@ -41,8 +41,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                     new Dialog { CharacterImage = MainChar.Bust, Message = "All you care about is enslaving it!" },
                     new Dialog { CharacterImage = CorpSec3.Bust, Message = "I don't normally get to enjoy my job, but every once in awhile some " +
                                                                            "problem appears that's particularly enjoyable to take care of." },
-                    new Dialog { CharacterImage = MainChar.Bust, Message = "*Injects self with healing nanites*" },
-                    new Dialog { CharacterImage = Sidechick.Bust, Message = "*Injects self with healing nanites*" },
+                    new Dialog { CharacterImage = Sidechick.Bust, Message = "Most people don't enjoy pain. That's all you're gonna get!" },
+                    new Dialog { CharacterImage = MainChar.Bust, Message = "*Chugs an energy drink*" },
                 }
             },
         };
