@@ -18,6 +18,7 @@ namespace ZeroFootPrintSociety.Scenes
 
         private readonly ChatBox _chatBox;
         private int _index;
+        private readonly UiImage _bg;
         private readonly List<string> _texts = new List<string>
         {
             "\n 2174 - New Atlantica City \n \n" +
@@ -44,12 +45,26 @@ namespace ZeroFootPrintSociety.Scenes
             "is to live in the New Atlantica City as ghosts. They use sophisticated \n" +
             "electronic countermeasures to remain unseen by cameras, and to leave no lasting \n" +
             "data trail. They are the Zero-Footprint Society.",
+            
+            "After months of their best efforts, one of ZantoCorp's top agents managed to track \n" +
+            "Zemke down. An agent injected him with tracking Nanites, which will attach \n" +
+            "themsleves to all of his cells, and leave him unable to avoid digital detection any longer. \n \n" +
+            
+            "Once the Nanites embed themselves into his cells and replicate, anyone he comes into \n" +
+            "contact with will be permanently under the watchful eye of ZantoCorp. The entire \n" +
+            "Zero-Footprint Society is in grave peril!"
         };
         
         public IntroCutscene(string nextScene)
         {
             _nextScene = nextScene;
             _chatBox = new ChatBox(_texts[_index++], 0.7.VW(), GuiFonts.BodySpriteFont, 40, 40) { Position = new Vector2(0.15.VW(), 0.34.VH())};
+            _bg = new UiImage
+            {
+                Image = "UI/intro-bg",
+                Transform = new Transform2(new Size2(1.0.VW(), 1.0.VH())),
+                Tint = 100.Alpha()
+            };
         }
 
         public override void Init()
@@ -57,7 +72,7 @@ namespace ZeroFootPrintSociety.Scenes
             Sound.Music("intro").Play();
             Input.On(Control.Start, Advance);
             Input.On(Control.Select, () => Scene.NavigateTo(_nextScene));
-            Add(new UiImage { Image = "UI/intro-bg", Transform = new Transform2(new Size2(1.0.VW(), 1.0.VH())), Tint = 120.Alpha()});
+            Add(_bg);
             AddClickable(new ScreenClickable(Advance));
             Add(_chatBox);
             Add(new ScreenFade { Duration = TimeSpan.FromSeconds(1.5), FromAlpha = 255, ToAlpha = 0}.Started());
@@ -71,6 +86,8 @@ namespace ZeroFootPrintSociety.Scenes
                 _chatBox.ShowMessage(_texts[_index++]);
             else
                 _chatBox.CompletelyDisplayMessage();
+            if (_index == 5)
+                _bg.Image = "UI/nanites";
         }
     }
 }
