@@ -80,7 +80,9 @@ namespace ZeroFootPrintSociety.GUI
         {
             var shotFrom = attacker.CurrentTile.Transform.Center() + new Vector2(0, -24);
             var rotation = Convert.ToSingle(Math.Atan2(shotTo.Y - shotFrom.Y, shotTo.X - shotFrom.X) + rotationModifier);
-            return new Transform2(shotFrom, new Rotation2(rotation), new Size2(1, 24), 1);
+            var result = new Transform2(shotFrom, new Rotation2(rotation), new Size2(1, 24), 1);
+            result.Location = result.Location.MoveInDirection(result.Rotation.Value, 52);;
+            return result;
         }
 
         private interface IShotVisual : IVisualAutomaton

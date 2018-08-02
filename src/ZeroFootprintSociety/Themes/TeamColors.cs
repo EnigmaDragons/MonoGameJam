@@ -14,8 +14,8 @@ namespace ZeroFootPrintSociety.Themes
         public static TeamColorTheme Enemy { get; } = new TeamColorTheme()
         {
             Characters_GlowColor = Color.Red,
-            TeamTurnHudDecor_Text = Color.FromNonPremultiplied(255, 0, 0, 180),
-            Footprints_GlowColor = Color.FromNonPremultiplied(255, 0, 0, 255),
+            TeamTurnHudDecor_Text = Color.FromNonPremultiplied(255, 0, 80, 160),
+            Footprints_GlowColor = Color.FromNonPremultiplied(255, 0, 80, 255),
         };
 
         public static TeamColorTheme Neutral { get; } = new TeamColorTheme()
