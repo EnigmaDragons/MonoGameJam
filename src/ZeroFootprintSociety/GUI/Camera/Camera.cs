@@ -68,6 +68,7 @@ namespace ZeroFootPrintSociety.GUI
                 }, this);
             Event.Subscribe<EnemySpotted>(e => CenterOn(GameWorld.Map.TileToWorldTransform(e.Enemy.CurrentTile.Position)), this);
             Event.Subscribe<ShootSelected>(e => CenterOn(GameWorld.CurrentCharacter), this);
+            Event.Subscribe<RangedTargetInspected>(e => CenterOn(new Transform2(new Vector2((e.Attacker.CurrentTile.Transform.Location.X + e.Defender.CurrentTile.Transform.Location.X) / 2, (e.Attacker.CurrentTile.Transform.Location.Y + e.Defender.CurrentTile.Transform.Location.Y) / 2))), this);
             Event.Subscribe<MenuRequested>(e => _shouldFreezeCamera = true, this);
             Event.Subscribe<MenuDismissed>(e => _shouldFreezeCamera = false, this);
             Input.On(Control.Select, () => CenterOn(GameWorld.CurrentCharacter.CurrentTile.Transform));
