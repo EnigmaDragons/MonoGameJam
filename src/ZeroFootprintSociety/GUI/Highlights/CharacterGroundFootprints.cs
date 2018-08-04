@@ -45,6 +45,9 @@ namespace ZeroFootPrintSociety.GUI
 
         private void Add(Moved e)
         {
+            if (!GameWorld.FriendlyPerception[e.Character.CurrentTile.Position])
+                return;
+
             var color = e.Character.Theme.Footprints_GlowColor;
             var image = new WorldImage
             {

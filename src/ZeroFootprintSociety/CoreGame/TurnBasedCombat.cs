@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
+using MonoDragons.Core.Render;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Resolution;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
@@ -46,7 +47,8 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             //TODO: remove hack for avoid switch weapons button
             var mousePosition = Mouse.GetState().Position;
-            if (mousePosition.X > 700 && mousePosition.Y < 900 && mousePosition.Y > 850)
+            var scaledMousePosition = new Point((int)Math.Round(mousePosition.X / CurrentDisplay.Scale), (int)Math.Round(mousePosition.Y / CurrentDisplay.Scale));
+            if (scaledMousePosition.X > 700 && scaledMousePosition.Y < 900 && scaledMousePosition.Y > 850)
                 return;
             if (AvailableMoves.Any(move => move.Last().X == x && move.Last().Y == y))
                 Event.Publish(new MovementConfirmed(AvailableMoves.First(move => move.Last().X == x && move.Last().Y == y)));

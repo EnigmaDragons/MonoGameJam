@@ -1,6 +1,7 @@
 ﻿using MonoDragons.Core.EventSystem;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
@@ -12,7 +13,11 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         public ActionProposal()
         {
             Event.Subscribe<ActionReadied>(Set, this);
-            Event.Subscribe<ActionConfirmed>(e => _proposed.Dequeue().Invoke(), this);
+            Event.Subscribe<ActionConfirmed>(e =>
+            {
+                if (_proposed.Any())
+                    _proposed.Dequeue().Invoke();
+            }, this);
             Event.Subscribe<ActionCancelled>(e => _proposed.Clear(), this);
         }
 

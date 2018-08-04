@@ -84,7 +84,7 @@ namespace ZeroFootPrintSociety.GUI
             if (!_availableTargetsMap.ContainsKey(_hoveredPoint))
             {
                 _availableTargetsMap[_hoveredPoint] = GameWorld.LivingCharacters.Where(CanShoot).ToList();
-                _availableTargetsMap[_hoveredPoint].Where(x => !_attackTargetVisualMap.ContainsKey(x)).ForEach(x =>
+                _availableTargetsMap[_hoveredPoint].Where(x => !_attackTargetVisualMap.ContainsKey(x) && GameWorld.FriendlyPerception[x.CurrentTile.Position]).ForEach(x =>
                 {
                     _attackTargetVisualMap[x] = new List<IVisual>();
                     _attackTargetAutomataMap[x] = new List<IAutomaton>();

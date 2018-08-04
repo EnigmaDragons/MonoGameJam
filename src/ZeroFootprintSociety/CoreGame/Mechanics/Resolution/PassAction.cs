@@ -15,7 +15,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             EventQueue.Instance.Add(new ActionReadied(() =>
             {
-                EventQueue.Instance.Add(new ActionResolved());
+                Event.Publish(new ActionResolved());
             }));
         }
     }

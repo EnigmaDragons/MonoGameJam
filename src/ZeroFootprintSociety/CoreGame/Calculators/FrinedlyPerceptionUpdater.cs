@@ -15,13 +15,13 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         public void UpdatePerception()
         {
-            var frienlyPerception = new DictionaryWithDefault<Point, bool>(false);
+            var friendlyPerception = new DictionaryWithDefault<Point, bool>(false);
             GameWorld.Friendlies.ForEach(friendly =>
             {
-                friendly.State.SeeableTiles.ForEach(tile => frienlyPerception[tile.Key] = true);
-                friendly.State.PercievedTiles.ForEach(tile => frienlyPerception[tile.Key] = true);
+                friendly.State.SeeableTiles.ForEach(tile => friendlyPerception[tile.Key] = true);
+                friendly.State.PercievedTiles.ForEach(tile => friendlyPerception[tile.Key] = true);
             });
-            GameWorld.FriendlyPerception = frienlyPerception;
+            GameWorld.FriendlyPerception = friendlyPerception;
         }
     }
 }
