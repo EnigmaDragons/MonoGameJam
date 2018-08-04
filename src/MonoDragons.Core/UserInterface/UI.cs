@@ -262,7 +262,7 @@ namespace MonoDragons.Core.UserInterface
             return new Vector2(area.Location.X + area.Width - size.X, area.Location.Y + (area.Height / 2) - (size.Y / 2));
         }
 
-        private static Rectangle ScaleRectangle(Rectangle rectangle)
+        public static Rectangle ScaleRectangle(Rectangle rectangle)
         {
             return new Rectangle(ScalePoint(rectangle.Location), ScalePoint(rectangle.Size));
         }

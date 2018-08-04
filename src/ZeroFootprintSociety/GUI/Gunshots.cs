@@ -130,7 +130,7 @@ namespace ZeroFootPrintSociety.GUI
                     IsDone = true;
                 modifiedTransform += parentTransform;
                 UI.SpriteBatch.Draw(texture: _texture,
-                    destinationRectangle: modifiedTransform.ToRectangle(),
+                    destinationRectangle: UI.ScaleRectangle(modifiedTransform.ToRectangle()),
                     sourceRectangle: null,
                     color: UIColors.Gunshot_MissedShot,
                     rotation: _transform.Rotation.Value - (float)(Math.PI / 2),
@@ -184,7 +184,7 @@ namespace ZeroFootPrintSociety.GUI
                     IsDone = true;
                 modifiedTransform += parentTransform;
                 UI.SpriteBatch.Draw(texture: _texture,
-                    destinationRectangle: modifiedTransform.ToRectangle(),
+                    destinationRectangle: UI.ScaleRectangle(modifiedTransform.ToRectangle()),
                     sourceRectangle: null,
                     color: UIColors.Gunshot_TargetedShotVisual,
                     rotation: _transform.Rotation.Value - (float) (Math.PI / 2),
@@ -235,7 +235,7 @@ namespace ZeroFootPrintSociety.GUI
                     IsDone = true;
                 modifiedTransform += parentTransform;
                 UI.SpriteBatch.Draw(texture: _texture,
-                    destinationRectangle: modifiedTransform.ToRectangle(),
+                    destinationRectangle: UI.ScaleRectangle(modifiedTransform.ToRectangle()),
                     sourceRectangle: null,
                     color: UIColors.Gunshot_TargetedShotVisual,
                     rotation: _transform.Rotation.Value - (float)(Math.PI / 2),

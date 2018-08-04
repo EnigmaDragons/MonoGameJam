@@ -121,7 +121,7 @@ namespace MonoDragons.Core.Engine
             _darken.Draw(Transform2.Zero);
         }
 
-        private static Rectangle ScaleRectangle(Rectangle rectangle)
+        public static Rectangle ScaleRectangle(Rectangle rectangle)
         {
             return new Rectangle(ScalePoint(rectangle.Location), ScalePoint(rectangle.Size));
         }
@@ -131,12 +131,12 @@ namespace MonoDragons.Core.Engine
             return ScalePoint(new Vector2(x, y));
         }
 
-        private static Point ScalePoint(Vector2 vector)
+        public static Point ScalePoint(Vector2 vector)
         {
             return new Point((int)Math.Round(vector.X * CurrentDisplay.Scale), (int)Math.Round(vector.Y * CurrentDisplay.Scale));
         }
 
-        private static Point ScalePoint(Point point)
+        public static Point ScalePoint(Point point)
         {
             return ScalePoint(point.ToVector2());
         }

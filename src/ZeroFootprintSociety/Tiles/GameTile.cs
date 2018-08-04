@@ -57,7 +57,7 @@ namespace ZeroFootPrintSociety.Tiles
                 Details.Where(x => x.ZIndex == layer)
                     .Where(x => x.IsVisible)
                     .ForEach(x =>
-                        World.SpriteBatch.Draw(x.Texture, (parentTransform + Transform).ToRectangle(), x.SourceRect,
+                        World.SpriteBatch.Draw(x.Texture, World.ScaleRectangle((parentTransform + Transform).ToRectangle()), x.SourceRect,
                             tint));
         }
     }

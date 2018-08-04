@@ -58,7 +58,7 @@ namespace ZeroFootPrintSociety
             try
             {
                 using (var game = Perf.Time("Startup", () => new NeedlesslyComplexMainGame(AppMeta.Name, sceneName, 
-                    new Display(1600, 900, false), SetupScene(), CreateKeyboardController(), FatalErrorHandler)))
+                    new Display(1600, 900, true), SetupScene(), CreateKeyboardController(), FatalErrorHandler)))
                         game.Run();
             }
             catch(Exception e)

@@ -6,6 +6,7 @@ using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
+using MonoDragons.Core.Render;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.AI;
@@ -14,6 +15,7 @@ using ZeroFootPrintSociety.CoreGame.Mechanics.Events;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Resolution;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.GUI;
+using Camera = ZeroFootPrintSociety.GUI.Camera;
 
 
 namespace ZeroFootPrintSociety.CoreGame
@@ -107,7 +109,7 @@ namespace ZeroFootPrintSociety.CoreGame
             var mouse = Mouse.GetState();
             if (CurrentGame.TheGame.IsActive)
             {
-                var positionOnMap = mouse.Position + _camera.Position;
+                var positionOnMap = new Point((int)Math.Round(mouse.Position.X / CurrentDisplay.Scale), (int)Math.Round(mouse.Position.Y / CurrentDisplay.Scale)) + _camera.Position;
                 var tilePoint = GameWorld.Map.MapPositionToTile(positionOnMap.ToVector2());
                 GameWorld.HoveredTile = tilePoint;
 
