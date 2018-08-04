@@ -87,7 +87,7 @@ namespace ZeroFootPrintSociety.GUI
             if (_shouldFreezeCamera)
                 return;
 
-            if (_transitionCompletion < 1f)
+            if (_transitionCompletion < 1.6f)
             {
                 _transitionCompletion += 0.04f;
                 SetPosition(Vector2.Lerp(Position.ToVector2(), _destination.ToVector2(), _transitionCompletion).ToPoint());
@@ -100,8 +100,7 @@ namespace ZeroFootPrintSociety.GUI
                 }
                 else if (_transitionCompletion >= 1f && _shouldSnapBack)
                 {
-                    _shouldWaitASecondBeforeSnappingBack = false;
-                    _shouldSnapBack = true;
+                    _shouldSnapBack = false;
                     CenterOn(GameWorld.Map.TileToWorldTransform(GameWorld.CurrentCharacter.CurrentTile.Position));
                 }
                 return;

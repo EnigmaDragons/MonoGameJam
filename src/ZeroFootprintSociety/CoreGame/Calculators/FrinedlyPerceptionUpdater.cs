@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using MonoDragons.Core.Common;
 using MonoDragons.Core.EventSystem;
-using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.CoreGame.Calculators
