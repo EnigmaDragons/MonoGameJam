@@ -38,7 +38,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Advance();
             while (CurrentCharacter.State.IsDeceased)
                 Advance();
-            Event.Publish(new TurnBegun());
+            EventQueue.Instance.Add(new TurnBegun());
         }
 
         private void Advance()
@@ -53,12 +53,12 @@ namespace ZeroFootPrintSociety.CoreGame
         {
             if (GameWorld.Friendlies.All(x => x.State.IsDeceased) || GameWorld.MainCharacter.State.IsDeceased)
             {
-                Event.Publish(new GameOver());
+                EventQueue.Instance.Add(new GameOver());
                 GameWorld.IsGameOver = true;
             }
             else if (CurrentCharacter == _event.Character)
             {
-                Event.Publish(new ActionResolved());
+                EventQueue.Instance.Add(new ActionResolved());
             }
         }
     }

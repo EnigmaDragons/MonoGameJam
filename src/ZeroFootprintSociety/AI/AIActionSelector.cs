@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.AI
 {
@@ -23,17 +24,17 @@ namespace ZeroFootPrintSociety.AI
             {
                 var o = e.Options;
                 if (o.ContainsKey(ActionType.Shoot))
-                    Event.Publish(new AIActionQueued(() => o[ActionType.Shoot].Invoke()));
+                    EventQueue.Instance.Add(new AIActionQueued(() => o[ActionType.Shoot].Invoke()));
                 else if (Data.SeenEnemies.Count == 0 && o.ContainsKey(ActionType.Pass))
-                    Event.Publish(new AIActionQueued(() => o[ActionType.Pass].Invoke()));
+                    EventQueue.Instance.Add(new AIActionQueued(() => o[ActionType.Pass].Invoke()));
                 else if (o.ContainsKey(ActionType.Hide) && new SpotHasGoodCoverCalculation(Data, Char.CurrentTile.Position).Calculate())
-                    Event.Publish(new AIActionQueued(() => o[ActionType.Hide].Invoke()));
+                    EventQueue.Instance.Add(new AIActionQueued(() => o[ActionType.Hide].Invoke()));
                 else if (o.ContainsKey(ActionType.Overwatch))
-                    Event.Publish(new AIActionQueued(() => o[ActionType.Overwatch].Invoke()));
+                    EventQueue.Instance.Add(new AIActionQueued(() => o[ActionType.Overwatch].Invoke()));
                 else if (o.ContainsKey(ActionType.Hide))
-                    Event.Publish(new AIActionQueued(() => o[ActionType.Hide].Invoke()));
+                    EventQueue.Instance.Add(new AIActionQueued(() => o[ActionType.Hide].Invoke()));
                 else if (o.ContainsKey(ActionType.Pass))
-                    Event.Publish(new AIActionQueued(() => o[ActionType.Pass].Invoke()));
+                    EventQueue.Instance.Add(new AIActionQueued(() => o[ActionType.Pass].Invoke()));
                 else
                     throw new Exception("No AI possible actions.");
             });

@@ -1,7 +1,7 @@
-﻿using MonoDragons.Core.EventSystem;
-using System;
+﻿using System;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
+using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.AI
 {
@@ -12,7 +12,7 @@ namespace ZeroFootPrintSociety.AI
         protected void IfAITurn(Action queueAction)
         {
             if (Char.Team.IsIncludedIn(TeamGroup.NeutralsAndEnemies))
-                Event.Publish(new AIActionQueued(queueAction));            
+                EventQueue.Instance.Add(new AIActionQueued(queueAction));            
         }
     }
 }

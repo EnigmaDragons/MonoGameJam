@@ -23,11 +23,11 @@ namespace ZeroFootPrintSociety.AI
 
         private void ChooseMoveIfApplicable(MovementOptionsAvailable e)
         {
-            IfAITurn(() => Event.Publish(new AIActionQueued(() =>
+            IfAITurn(() => EventQueue.Instance.Add(new AIActionQueued(() =>
             {
                 if (Char.Team != Team.Enemy)
                     return;
-                Event.Publish(new MovementConfirmed(GetBestMovement(e.AvailableMoves)));
+                EventQueue.Instance.Add(new MovementConfirmed(GetBestMovement(e.AvailableMoves)));
             })));
         }
 

@@ -13,8 +13,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         private void PreviewShot(RangedTargetInspected e)
         {
             var proposed = new ProposedShotCalculation(e.Attacker, e.Defender, e.AttackerBlockInfo, e.DefenderBlockInfo).CalculateShot();
-            Event.Publish(new ActionReadied(() => Event.Publish(new ShotConfirmed { Proposed = proposed, OnFinished = () => Event.Publish(new ActionResolved()) })));
-            Event.Publish(proposed);
+            EventQueue.Instance.Add(new ActionReadied(() => EventQueue.Instance.Add(new ShotConfirmed { Proposed = proposed, OnFinished = () => EventQueue.Instance.Add(new ActionResolved()) })));
+            EventQueue.Instance.Add(proposed);
         }
     }
 }

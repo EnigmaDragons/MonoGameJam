@@ -34,7 +34,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         void CalculateMovement()
         {
             var basePath = new List<Point> { GameWorld.Turns.CurrentCharacter.CurrentTile.Position };
-            Event.Publish(new MovementOptionsAvailable
+            EventQueue.Instance.Add(new MovementOptionsAvailable
             {
                 AvailableMoves = RandomizeBetweenDuplicates(
                     EliminateDuplicatesThatCrossOverOverwatchedTiles(

@@ -97,8 +97,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             _eventQueue.Enqueue(() =>
             {
-                Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
-                Event.Publish(new ShotHit {Attacker = attacker, Target = defender, DamageAmount = damage});
+                EventQueue.Instance.Add(new ShotFired {Attacker = attacker, Target = defender});
+                EventQueue.Instance.Add(new ShotHit {Attacker = attacker, Target = defender, DamageAmount = damage});
             });
         }
 
@@ -106,8 +106,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             _eventQueue.Enqueue(() =>
             {
-                Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
-                Event.Publish(new ShotMissed {Attacker = attacker, Target = defender});
+                EventQueue.Instance.Add(new ShotFired {Attacker = attacker, Target = defender});
+                EventQueue.Instance.Add(new ShotMissed {Attacker = attacker, Target = defender});
             });
         }
 
@@ -115,8 +115,8 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         {
             _eventQueue.Enqueue(() =>
             {
-                Event.Publish(new ShotFired {Attacker = attacker, Target = defender});
-                Event.Publish(new ShotBlocked {Attacker = attacker, Target = defender, Blocker = blocker});
+                EventQueue.Instance.Add(new ShotFired {Attacker = attacker, Target = defender});
+                EventQueue.Instance.Add(new ShotBlocked {Attacker = attacker, Target = defender, Blocker = blocker});
             });
         }
     }

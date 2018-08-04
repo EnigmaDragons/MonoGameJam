@@ -28,7 +28,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 options[ActionType.Overwatch] = () => Select(new OverwatchSelected());
             options[ActionType.Pass] = () => Select(new PassSelected());
 
-            Event.Publish(new ActionOptionsAvailable { Options = options });
+            EventQueue.Instance.Add(new ActionOptionsAvailable { Options = options });
         }
 
         private bool CanHide(Character character)
@@ -46,8 +46,8 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         
         private void Select(object selection)
         {
-            Event.Publish(new ActionSelected(selection.GetType().Name.Replace("Selected", "")));
-            Event.Publish(selection);
+            EventQueue.Instance.Add(new ActionSelected(selection.GetType().Name.Replace("Selected", "")));
+            EventQueue.Instance.Add(selection);
         }
     }
 }

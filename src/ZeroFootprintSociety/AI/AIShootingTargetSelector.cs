@@ -25,7 +25,7 @@ namespace ZeroFootPrintSociety.AI
 
         private void Shoot(Target target)
         {
-            Event.Publish(new RangedTargetInspected
+            EventQueue.Instance.Add(new RangedTargetInspected
             {
                 Attacker = GameWorld.CurrentCharacter,
                 Defender = target.Character,

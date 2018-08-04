@@ -30,7 +30,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                             : new ShotCoverInfo(new List<CoverProvided>())
                     }).ToList()
             };
-            Event.Publish(targetsAvailable);
+            EventQueue.Instance.Add(targetsAvailable);
         }
 
         private bool CanShoot(Character attacker, Character target)

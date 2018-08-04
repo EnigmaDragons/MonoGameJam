@@ -68,11 +68,11 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                         x.State.OverwatchedTiles[_moved.Position]).CalculateShot()
                 })
                 .ToList();
-            Action action = () => Event.Publish(new MoveResolved { Character = _moved.Character });
+            Action action = () => EventQueue.Instance.Add(new MoveResolved { Character = _moved.Character });
             shots.ForEach(x =>
             {
                 x.OnFinished = action;
-                action = () => Event.Publish(x);
+                action = () => EventQueue.Instance.Add(x);
             });
             action();
         }

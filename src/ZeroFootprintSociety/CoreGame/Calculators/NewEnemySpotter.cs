@@ -21,7 +21,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 && GameWorld.Friendlies.Any(x => GameWorld.FriendlyPerception[character.CurrentTile.Position]))
             {
                 _hasSeen[character] = true;
-                Event.Publish(new EnemySpotted { Enemy = character });
+                EventQueue.Instance.Add(new EnemySpotted { Enemy = character });
             }
             else if (character.Team == Team.Friendly)
             {
@@ -29,7 +29,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                     .ForEach(x =>
                     {
                         _hasSeen[x] = true;
-                        Event.Publish(new EnemySpotted { Enemy = x });
+                        EventQueue.Instance.Add(new EnemySpotted { Enemy = x });
                     });
             }
         }

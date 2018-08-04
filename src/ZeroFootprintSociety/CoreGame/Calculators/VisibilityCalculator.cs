@@ -13,7 +13,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         public void UpdateSight(Character character)
         {
-            Event.Publish(new TilesSeen { Character = character, SeeableTiles = new VisibilityCalculation(character).Calculate() });
+            EventQueue.Instance.Add(new TilesSeen { Character = character, SeeableTiles = new VisibilityCalculation(character).Calculate() });
         }
     }
 }

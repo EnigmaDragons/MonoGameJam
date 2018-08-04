@@ -39,7 +39,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private void OnActionResolved(ActionResolved obj)
         {
-            Event.Publish(new TurnEnded());
+            EventQueue.Instance.Add(new TurnEnded());
         }
 
         public void MoveTo(int x, int y)

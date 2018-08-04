@@ -76,6 +76,7 @@ namespace ZeroFootPrintSociety.CoreGame
             Add(new DialogWatcher());
             //TODO: trash class here
             Add(new TargetKilledSceneTransition());
+            Add(EventQueue.Instance);
             Add(_drawMaster);
             Add(_combat);
             Add(_camera);

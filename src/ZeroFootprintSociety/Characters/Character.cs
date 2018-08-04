@@ -68,9 +68,9 @@ namespace ZeroFootPrintSociety.Characters
             if (this is MainChar && obj.Character.Equals(this))
                 if (GameWorld.FootstepsRemaining-- == 0)
                 {
-                    Event.Publish(new OutOfFootsteps());
+                    EventQueue.Instance.Add(new OutOfFootsteps());
                     GameWorld.IsGameOver = true;
-                    Event.Publish(new GameOver());
+                    EventQueue.Instance.Add(new GameOver());
                 }
         }
 
@@ -81,7 +81,7 @@ namespace ZeroFootPrintSociety.Characters
                 Body.Stopped = false;
                 Body.Path.RemoveAt(0);
                 if (!Body.Path.Any() && !e.Character.State.IsDeceased)
-                    Event.Publish(new MovementFinished());
+                    EventQueue.Instance.Add(new MovementFinished());
             }
         }
 
@@ -91,7 +91,7 @@ namespace ZeroFootPrintSociety.Characters
             {
                 Body.Path = movement.Path.Skip(1).ToList();
                 if (!Body.Path.Any())
-                    Event.Publish(new MovementFinished());
+                    EventQueue.Instance.Add(new MovementFinished());
             }
         }
 
@@ -115,7 +115,7 @@ namespace ZeroFootPrintSociety.Characters
             if (State.RemainingHealth <= 0 && !State.IsDeceased)
             {
                 State.IsDeceased = true;
-                Event.Publish(new CharacterDeceased { Character = this });
+                EventQueue.Instance.Add(new CharacterDeceased { Character = this });
             }
         }
 

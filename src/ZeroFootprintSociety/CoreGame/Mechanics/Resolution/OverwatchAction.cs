@@ -28,12 +28,12 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
                     if (new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, shot.BlockChance).Get() > 0)
                         overwatchedTiles[x] = shot;
                 });
-                Event.Publish(new OverwatchTilesAvailable { OverwatchedTiles = overwatchedTiles });
+                EventQueue.Instance.Add(new OverwatchTilesAvailable { OverwatchedTiles = overwatchedTiles });
             }
-            Event.Publish(new ActionReadied(() =>
+            EventQueue.Instance.Add(new ActionReadied(() =>
             {
                 GameWorld.CurrentCharacter.State.IsOverwatching = true;
-                Event.Publish(new ActionResolved());
+                EventQueue.Instance.Add(new ActionResolved());
             }));
         }
 

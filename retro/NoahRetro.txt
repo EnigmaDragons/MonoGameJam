@@ -1,0 +1,26 @@
+The Good: 
+
+I think our eventing did make it extremely easy to add new systems
+I loved how fun our fellow jammers were
+We kept on adjusting focus remaining flexible about what we were building
+We had much better participation in ticket and committing often than previous jams
+
+The Bad: 
+
+Non-Thread Safe data access (immutable structures)
+Our base library does not have good samples
+Event-Chains on the same update loop
+Scoped too large as per usual
+Doing logic in the draw loop
+Some of the team bailed on us
+We shipped with a critical bug
+The build got broken multiple times
+Our Error Handling when we started
+The spritesheets in tiled games need astandarized way to pack
+
+The Action: 
+
+Eventing is terrific but consumers of events should only queue up there events
+Don’t make modifications to lists reset them instead
+Don’t logic in the draw loop
+Always click play before pushing

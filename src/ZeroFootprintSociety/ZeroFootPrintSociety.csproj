@@ -72,6 +72,7 @@
     <Compile Include="CoreGame\Mechanics\Resolution\TargetKilledSceneTransition.cs" />
     <Compile Include="CoreGame\StateEvents\DialogStarted.cs" />
     <Compile Include="CoreGame\StateEvents\EnemySpotted.cs" />
+    <Compile Include="CoreGame\StateEvents\EventQueue.cs" />
     <Compile Include="CoreGame\StateEvents\MoodChange.cs" />
     <Compile Include="GUI\ChatBox.cs" />
     <Compile Include="GUI\Highlights\MoveAttackTargetsView.cs" />

@@ -14,7 +14,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         public void UpdatePerception(Character character)
         {
-            Event.Publish(new TilesPercieved
+            EventQueue.Instance.Add(new TilesPercieved
             {
                 Character = character,
                 Tiles = new PointRadiusCalculation(character.CurrentTile.Position, character.Stats.Perception).Calculate()

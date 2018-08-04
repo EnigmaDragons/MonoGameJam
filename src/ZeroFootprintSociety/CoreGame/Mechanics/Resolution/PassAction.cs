@@ -13,9 +13,9 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
 
         private void OnPassSelected(PassSelected e)
         {
-            Event.Publish(new ActionReadied(() =>
+            EventQueue.Instance.Add(new ActionReadied(() =>
             {
-                Event.Publish(new ActionResolved());
+                EventQueue.Instance.Add(new ActionResolved());
             }));
         }
     }

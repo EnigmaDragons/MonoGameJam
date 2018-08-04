@@ -38,7 +38,7 @@ namespace ZeroFootPrintSociety.AI
             if (CurrentMood == Mood.Stealth && _characterData.Where(x => !x.Key.State.IsDeceased).Any(x => x.Value.SeenEnemies.Any()))
             {
                 CurrentMood = Mood.Battle;
-                Event.Publish(new MoodChange { NewMood = CurrentMood });
+                EventQueue.Instance.Add(new MoodChange { NewMood = CurrentMood });
             }
         }
 
@@ -47,7 +47,7 @@ namespace ZeroFootPrintSociety.AI
             if (CurrentMood == Mood.Battle && !_characterData.Where(x => !x.Key.State.IsDeceased).Any(x => x.Value.SeenEnemies.Any()))
             {
                 CurrentMood = Mood.Stealth;
-                Event.Publish(new MoodChange { NewMood = CurrentMood });
+                EventQueue.Instance.Add(new MoodChange { NewMood = CurrentMood });
             }
             if (e.Character.IsFriendly)
                 _characterData.ForEach(x =>

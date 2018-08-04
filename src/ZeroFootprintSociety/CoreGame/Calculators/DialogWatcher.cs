@@ -74,7 +74,7 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
         {
             if (_shouldShowDialogOnMovementResolved)
             {
-                Event.Publish(new DialogStarted { Dialogs = _dialogToShowAtEndOfMovement });
+                EventQueue.Instance.Add(new DialogStarted { Dialogs = _dialogToShowAtEndOfMovement });
                 _shouldShowDialogOnMovementResolved = false;
             }
         }
