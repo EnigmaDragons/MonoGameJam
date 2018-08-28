@@ -1,0 +1,28 @@
+Future Design Roadmap
+
+---------------------------------------------
+
+- Game should be combat-centric, not stealth-oriented
+- Add Alarms
+- Once alarm is triggered, it becomes a pure combat level
+- View character status/equipment screen
+- Characters should have stat growth, based on class plus innate
+- Characters should be able to bring consumables
+- After the early levels, player should be able to select his team and equip them before deploying for a mission
+- Characters should be able to wear armor
+- Armor should impact sound, movement and damage reduction
+- Weapons should have accuracy ranges impacted by distance
+- Characters should be able to equip perks later in the game
+- Levels should have interactables
+- Some interactables will grant new equipment, or power-up consumables, or currency
+- After the early levels, players should have access to a shop, in between missions
+- Game should have character perma-death
+
+---------------------------------------------
+
+Level 1
+
+3 Friendlies
+
+8 Enemies
+
