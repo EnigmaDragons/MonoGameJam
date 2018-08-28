@@ -33,7 +33,7 @@ namespace ZeroFootPrintSociety.GUI
                     var visuals = x.State.OverwatchedTiles.Select(tile => new ColoredRectangle
                     {
                         Transform = GameWorld.Map[tile.Key].Transform,
-                        Color = UIColors.OverwatchedTiles_OverwatchedByCharacter
+                        Color = UiColors.OverwatchedTiles_OverwatchedByCharacter
                     }).Cast<IVisual>().ToList();
 
                     _visuals[x] = visuals;

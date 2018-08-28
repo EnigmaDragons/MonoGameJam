@@ -56,7 +56,7 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Transform = new Transform2(new Rectangle(_menuX, _menuY + 20, _menuWidth, 52)),
                 BackgroundColor = Color.Transparent,
-                TextColor = UIColors.InGame_Text,
+                TextColor = UiColors.InGame_Text,
                 Font = GuiFonts.Body,
             };
 

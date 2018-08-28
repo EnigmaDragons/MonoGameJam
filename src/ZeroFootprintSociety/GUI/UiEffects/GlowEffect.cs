@@ -11,7 +11,7 @@ namespace ZeroFootPrintSociety.GUI
     {
         private readonly Transform2 _transform;
 
-        public Color Tint { get; set; } = UIColors.GlowEffect_DefaultTint;
+        public Color Tint { get; set; } = UiColors.GlowEffect_DefaultTint;
 
         public GlowEffect(Size2 size)
         {

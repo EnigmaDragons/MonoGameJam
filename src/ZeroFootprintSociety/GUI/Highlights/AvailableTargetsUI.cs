@@ -39,7 +39,7 @@ namespace ZeroFootPrintSociety.GUI
                 x.CoverToThem.Covers.SelectMany(c => c.Providers).GroupBy(p => p.Position).ForEach(g =>
                 {
                     _targetVisuals[x.Character.CurrentTile.Position].Add(new UiImage { Tint = 100.Alpha(), Image = "UI/shield-placeholder-" + g.Count(), Transform = g.First().Transform });
-                    _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = UIColors.AvailableTargetsUI_CoverPercentText, Transform = g.First().Transform });
+                    _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { TextColor = UiColors.AvailableTargetsUI_CoverPercentText, Transform = g.First().Transform });
                 });
                 _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(GameWorld.CurrentCharacter.Accuracy, x.CoverToThem.BlockChance, x.Character.Stats.Agility, x.Character.State.IsHiding).Get()}%", Transform = x.Character.CurrentTile.Transform });
                 _targetVisuals[x.Character.CurrentTile.Position].Add(new Label { Text = $"{new HitChanceCalculation(x.Character.Accuracy, x.CoverFromThem.BlockChance, GameWorld.CurrentCharacter.Stats.Agility, GameWorld.CurrentCharacter.State.IsHiding).Get()}% ", Transform = GameWorld.CurrentCharacter.CurrentTile.Transform });

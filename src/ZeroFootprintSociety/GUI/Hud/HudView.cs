@@ -4,6 +4,7 @@ using MonoDragons.Core.UserInterface;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.GUI.Hud;
 using ZeroFootPrintSociety.GUI.Menus;
+using ZeroFootPrintSociety.GUI.Views;
 
 namespace ZeroFootPrintSociety.GUI
 {
@@ -21,7 +22,8 @@ namespace ZeroFootPrintSociety.GUI
             Add(new ActionOptionsMenu(clickUi));
             Add(new GameOverMenu(clickUi));
             Add(new SwitchWeaponsMenu(clickUi));
-            var dialogs = new GameDialogs();
+            Add(new CharacterStatusView(new Point(UI.OfScreenWidth(0.33f), UI.OfScreenHeight(0.17f))));
+            var dialogs = new InGameDialogueLayout();
             clickUi.Add(dialogs.Branch);
             Add(dialogs);
         }

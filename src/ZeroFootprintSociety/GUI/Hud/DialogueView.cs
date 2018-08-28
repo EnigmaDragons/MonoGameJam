@@ -9,17 +9,17 @@ using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.GUI.Hud
 {
-    public class GameDialog : IVisualAutomaton
+    public class DialogueView : IVisualAutomaton
     {
         private readonly UiImage _dialogBox;
         private readonly ChatBox _chatBox;
         private readonly UiImage _faceImage;
         private int _index;
-        private readonly List<Dialog> _dialogs;
+        private readonly List<Dialogue> _dialogs;
         public bool IsDone { get; private set; }
         public ClickUIBranch Branch { get; } = new ClickUIBranch("Dialog", 10);
 
-        public GameDialog(List<Dialog> dialogs)
+        public DialogueView(List<Dialogue> dialogs)
         {
             _dialogs = dialogs;
             _dialogBox = new UiImage
@@ -27,7 +27,7 @@ namespace ZeroFootPrintSociety.GUI.Hud
                 Image = "UI/weapon-panel.png",
                 Transform = new Transform2(new Rectangle(350, 200, 900, 300))
             };
-            _chatBox = new ChatBox(_dialogs[_index].Message, 400, GuiFonts.BodySpriteFont, 40, 40) { Position = new Vector2(625, 245), Color = UIColors.InGame_Text};
+            _chatBox = new ChatBox(_dialogs[_index].Message, 400, GuiFonts.BodySpriteFont, 40, 40) { Position = new Vector2(625, 245), Color = UiColors.InGame_Text};
             _faceImage = new UiImage { Image = _dialogs[_index].CharacterImage, Transform = new Transform2(new Rectangle(375, 225, 250, 250))};
             Input.On(Control.Start, Advance);
             Branch.Add(new ScreenClickable(Advance));
@@ -57,7 +57,7 @@ namespace ZeroFootPrintSociety.GUI.Hud
         }
     }
 
-    public class Dialog
+    public class Dialogue
     {
         public string Message { get; set; }
         public string CharacterImage { get; set; }

@@ -23,6 +23,9 @@ namespace ZeroFootPrintSociety.GUI
             public int FirstButtonYOffset { get; set; }
         }
 
+        public static TextButton Text(MenuContext ctx, int index, string text, Action action) 
+            => Text(ctx, index, text, action, () => true);
+
         public static TextButton Text(MenuContext ctx, int index, string text, Action action, Func<bool> condition)
         {
             return new TextButton(
@@ -37,11 +40,11 @@ namespace ZeroFootPrintSociety.GUI
                     action();
                 },
                 text,
-                UIColors.Buttons_Default,
-                UIColors.Buttons_Hover,
-                UIColors.Buttons_Press,
+                UiColors.Buttons_Default,
+                UiColors.Buttons_Hover,
+                UiColors.Buttons_Press,
                 condition)
-            { Font = "Fonts/12", Color = UIColors.InGame_Text };
+            { Font = "Fonts/12", Color = UiColors.InGame_Text };
         }
     }
 }

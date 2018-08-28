@@ -42,7 +42,7 @@ namespace ZeroFootPrintSociety.GUI
                 {
                     Image = "Effects/Cover_Gray",
                     Transform = GameWorld.Map.TileToWorldTransform(x.Last()).WithSize(TileData.RenderSize),
-                    Tint = UIColors.AvailableMovesView_Rectangles
+                    Tint = UiColors.AvailableMovesView_Rectangles
                 });
             });
             _visuals = visuals;

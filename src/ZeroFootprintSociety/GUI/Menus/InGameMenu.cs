@@ -6,7 +6,7 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.Scenes;
 using MonoDragons.Core.UserInterface;
 using System.Collections.Generic;
-
+using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Themes;
 
 namespace ZeroFootPrintSociety.GUI
@@ -37,19 +37,24 @@ namespace ZeroFootPrintSociety.GUI
                 Image = "UI/menu-wide-panel.png"
             };
 
-            var mainMenuButton = Buttons.Text(ctx, 3, "Return to Main Menu", () =>  Scene.NavigateTo("MainMenu"), () => true);
+            var mainMenuButton = Buttons.Text(ctx, 4, "Return to Main Menu", () =>  Scene.NavigateTo("MainMenu"), () => true);
+            var characterStatus = Buttons.Text(ctx, 3, "Character Status", () => Event.Publish(new DisplayCharacterStatusRequested(GameWorld.CurrentCharacter)), () => true);
 
             _visuals.Add(new ColoredRectangle
             {
-                Color = UIColors.InGameMenu_FullScreenRectangle, 
+                Color = UiColors.InGameMenu_FullScreenRectangle, 
                 Transform = new Transform2(new Size2(1920, 1080))
             });
             _visuals.Add(menu);
             _visuals.Add(mainMenuButton);
+            _visuals.Add(characterStatus);
             _interceptLayer.Add(new ScreenClickable(HideDisplay));
             _branch.Add(mainMenuButton);
+            _branch.Add(characterStatus);
             Input.On(Control.Menu, ToggleMenu);
             Event.Subscribe(EventSubscription.Create<MenuRequested>(x => PresentOptions(), this));
+            Event.Subscribe(EventSubscription.Create<SubviewRequested>(x => HideDisplay(), this));
+            Event.Subscribe(EventSubscription.Create<SubviewDismissed>(x => PresentOptions(), this));
         }
 
         public void ToggleMenu()

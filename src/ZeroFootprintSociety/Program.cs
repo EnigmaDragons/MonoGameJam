@@ -30,7 +30,7 @@ namespace ZeroFootPrintSociety
         static void Main()
         {
 #if DEBUG
-            RunGame("MainMenu");
+            RunGame("DarkAlley");
 #else
             RunGame("Logo");
 #endif

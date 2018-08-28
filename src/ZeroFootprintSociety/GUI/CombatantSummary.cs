@@ -35,7 +35,7 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Font = GuiFonts.Large,
                 Transform = new Transform2(new Rectangle(25, yOff, width, 50)), 
-                TextColor = UIColors.InGame_Text
+                TextColor = UiColors.InGame_Text
             };
             yOff += 60;
             
@@ -48,13 +48,13 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Font = GuiFonts.Large,
                 Transform = new Transform2(new Rectangle(130, yOff + 25, 220, 50)),
-                TextColor = UIColors.InGame_Text
+                TextColor = UiColors.InGame_Text
             };
             _bullets = new Label
             {
                 Font = GuiFonts.Large,
                 Transform = new Transform2(new Rectangle(130, yOff + 60, 220, 50)),
-                TextColor = UIColors.InGame_Text
+                TextColor = UiColors.InGame_Text
             };
             yOff += 140;
             
@@ -71,7 +71,7 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Font = GuiFonts.Body,
                 Transform = new Transform2(new Rectangle(25, yOff, width, textHeight)), 
-                TextColor = UIColors.InGame_Text
+                TextColor = UiColors.InGame_Text
             };
             yOff += textHeight;
         }
@@ -79,7 +79,7 @@ namespace ZeroFootPrintSociety.GUI
         public void Update(string characterImage, string name, string weaponImage, string weaponName, string hitChance, string bullets, string bulletDamage,
             int maxHP, int health, int damage, Team team)
         {
-            _background.Tint = team.Equals(Team.Enemy) ? TeamColors.Enemy.Characters_GlowColor.WithAlpha(150) : UIColors.Unchanged.WithAlpha(180);
+            _background.Tint = team.Equals(Team.Enemy) ? TeamColors.Enemy.Characters_GlowColor.WithAlpha(150) : UiColors.Unchanged.WithAlpha(180);
             _face.Image = characterImage;
             _name.Text = name;
             _weapon.Image = weaponImage;

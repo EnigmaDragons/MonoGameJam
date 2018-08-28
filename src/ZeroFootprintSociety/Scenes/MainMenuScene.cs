@@ -28,7 +28,7 @@ namespace ZeroFootPrintSociety.Scenes
             Input.On(Control.Select, StartNewGame);
             Sound.Music("main-theme", 0.4f).Play();
             Add(new UiImage { Image = "Backgrounds/mainmenu-bg", Transform = new Transform2(new Size2(1920, 1080)) });
-            Add(new ColoredRectangle { Color = UIColors.MainMenuScene_Background, Transform = new Transform2(new Size2(1920, 1080)) });
+            Add(new ColoredRectangle { Color = UiColors.MainMenuScene_Background, Transform = new Transform2(new Size2(1920, 1080)) });
             Add(new UiImage { Image = "UI/title-bg", Transform = new Transform2(new Vector2(UI.OfScreenWidth(0.5f) - 452, 180), new Size2(904, 313)) });
             var button = new TextButton(
                 new Rectangle(UI.OfScreenWidth(0.5f) - 150, 700, 300, 50),
@@ -37,9 +37,9 @@ namespace ZeroFootPrintSociety.Scenes
                     StartNewGame();
                 }, 
                 "New Game",
-                UIColors.Buttons_Default,
-                UIColors.Buttons_Hover,
-                UIColors.Buttons_Press
+                UiColors.Buttons_Default,
+                UiColors.Buttons_Hover,
+                UiColors.Buttons_Press
             );
             
             var button2 = new TextButton(
@@ -50,9 +50,9 @@ namespace ZeroFootPrintSociety.Scenes
                     Scene.NavigateTo("Credits");
                 }, 
                 "Credits",
-                UIColors.Buttons_Default,
-                UIColors.Buttons_Hover,
-                UIColors.Buttons_Press
+                UiColors.Buttons_Default,
+                UiColors.Buttons_Hover,
+                UiColors.Buttons_Press
             );
             
             AddClickable(button);

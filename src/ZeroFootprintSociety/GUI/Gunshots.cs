@@ -47,7 +47,7 @@ namespace ZeroFootPrintSociety.GUI
         private void OnShotHit(ShotHit e)
         {
             _shots.Add(new HitShotVisual(
-                new RectangleTexture(UIColors.Gunshot).Create(), 
+                new RectangleTexture(UiColors.Gunshot).Create(), 
                 CalculateTransform(e.Attacker, e.Target, _random.Next(-10, 10) * 0.001), 
                 e.Target.CurrentTile.Position));
         }
@@ -55,7 +55,7 @@ namespace ZeroFootPrintSociety.GUI
         private void OnShotMissed(ShotMissed e)
         {
             _shots.Add(new MissedShotVisual(
-                new RectangleTexture(UIColors.Gunshot).Create(), 
+                new RectangleTexture(UiColors.Gunshot).Create(), 
                 CalculateTransform(e.Attacker, e.Target, (_random.Next(0, 1) == 0 ? -1 : 1) * _random.Next(2, 5) * 0.1),
                 e.Attacker.CurrentTile.Position));
         }
@@ -63,7 +63,7 @@ namespace ZeroFootPrintSociety.GUI
         private void OnShotBlocked(ShotBlocked e)
         {
             _shots.Add(new BlockedShotVisual(
-                new RectangleTexture(UIColors.Gunshot).Create(),
+                new RectangleTexture(UiColors.Gunshot).Create(),
                 CalculateTransform(
                     e.Attacker, 
                     e.Blocker.Transform.Center(), 
@@ -132,7 +132,7 @@ namespace ZeroFootPrintSociety.GUI
                 UI.SpriteBatch.Draw(texture: _texture,
                     destinationRectangle: UI.ScaleRectangle(modifiedTransform.ToRectangle()),
                     sourceRectangle: null,
-                    color: UIColors.Gunshot_MissedShot,
+                    color: UiColors.Gunshot_MissedShot,
                     rotation: _transform.Rotation.Value - (float)(Math.PI / 2),
                     origin: new Vector2(1, 1),
                     effects: SpriteEffects.None,
@@ -186,7 +186,7 @@ namespace ZeroFootPrintSociety.GUI
                 UI.SpriteBatch.Draw(texture: _texture,
                     destinationRectangle: UI.ScaleRectangle(modifiedTransform.ToRectangle()),
                     sourceRectangle: null,
-                    color: UIColors.Gunshot_TargetedShotVisual,
+                    color: UiColors.Gunshot_TargetedShotVisual,
                     rotation: _transform.Rotation.Value - (float) (Math.PI / 2),
                     origin: new Vector2(1, 1),
                     effects: SpriteEffects.None,
@@ -237,7 +237,7 @@ namespace ZeroFootPrintSociety.GUI
                 UI.SpriteBatch.Draw(texture: _texture,
                     destinationRectangle: UI.ScaleRectangle(modifiedTransform.ToRectangle()),
                     sourceRectangle: null,
-                    color: UIColors.Gunshot_TargetedShotVisual,
+                    color: UiColors.Gunshot_TargetedShotVisual,
                     rotation: _transform.Rotation.Value - (float)(Math.PI / 2),
                     origin: new Vector2(1, 1),
                     effects: SpriteEffects.None,

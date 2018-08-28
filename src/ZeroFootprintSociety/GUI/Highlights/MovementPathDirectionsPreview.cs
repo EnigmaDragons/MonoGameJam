@@ -28,7 +28,7 @@ namespace ZeroFootPrintSociety.GUI
         private readonly IVisual _highlight = new ColoredRectangle
         {
             Transform = new Transform2(TileData.RenderSize),
-            Color = UIColors.MovementPathDirectionsPreview_Tile
+            Color = UiColors.MovementPathDirectionsPreview_Tile
         };
 
         public MovementPathDirectionsPreview()

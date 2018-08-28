@@ -41,9 +41,9 @@ namespace ZeroFootPrintSociety.GUI
                 visuals.Add(new ColoredRectangle
                 {
                     Transform = x.Character.CurrentTile.Transform, 
-                    Color = UIColors.AvailableTargetsView_Rectanges
+                    Color = UiColors.AvailableTargetsView_Rectanges
                 });
-                var anim = new TileRotatingEdgesAnim(x.Character.CurrentTile.Position, UIColors.AvailableTargetsView_TileRotatingEdgesAnim);
+                var anim = new TileRotatingEdgesAnim(x.Character.CurrentTile.Position, UiColors.AvailableTargetsView_TileRotatingEdgesAnim);
                 anim.Init();
                 visuals.Add(anim);
                 automata.Add(anim);

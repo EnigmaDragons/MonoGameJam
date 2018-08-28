@@ -13,7 +13,7 @@ namespace ZeroFootPrintSociety.Tiles
     public class GameTile
     {
         private const int FogLayer = 99;
-        private static readonly ColoredRectangle _lightFog = new ColoredRectangle { Color = UIColors.FogColor, Transform = new Transform2(TileData.RenderSize)};
+        private static readonly ColoredRectangle _lightFog = new ColoredRectangle { Color = UiColors.FogColor, Transform = new Transform2(TileData.RenderSize)};
         
         public static GameTile None { get; } = new GameTile(-1, -1, Transform2.Zero, new List<GameTileDetail> { GameTileDetail.None });
 
@@ -44,7 +44,7 @@ namespace ZeroFootPrintSociety.Tiles
 
         public void Draw(int layer, Transform2 parentTransform)
         {
-            Draw(layer, parentTransform, UIColors.Unchanged);
+            Draw(layer, parentTransform, UiColors.Unchanged);
         }
 
         public void Draw(int layer, Transform2 parentTransform, Color tint)

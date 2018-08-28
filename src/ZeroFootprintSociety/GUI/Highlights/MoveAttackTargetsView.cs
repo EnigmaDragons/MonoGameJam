@@ -91,9 +91,9 @@ namespace ZeroFootPrintSociety.GUI
                     _attackTargetVisualMap[x].Add(new ColoredRectangle
                     {
                         Transform = x.CurrentTile.Transform,
-                        Color = UIColors.AvailableTargetsView_Rectanges
+                        Color = UiColors.AvailableTargetsView_Rectanges
                     });
-                    var anim = new TileRotatingEdgesAnim(x.CurrentTile.Position, UIColors.AvailableTargetsView_TileRotatingEdgesAnim);
+                    var anim = new TileRotatingEdgesAnim(x.CurrentTile.Position, UiColors.AvailableTargetsView_TileRotatingEdgesAnim);
                     anim.Init();
                     _attackTargetVisualMap[x].Add(anim);
                     _attackTargetAutomataMap[x].Add(anim);

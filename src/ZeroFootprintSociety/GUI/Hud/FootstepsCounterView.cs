@@ -35,7 +35,7 @@ namespace ZeroFootPrintSociety.GUI.Hud
             _stepsLabel = new Label
             {
                 Font = GuiFonts.Header,
-                TextColor = UIColors.InGame_Text,
+                TextColor = UiColors.InGame_Text,
                 Text = GameWorld.FootstepsRemaining.ToString("d2"),
                 Transform = new Transform2(new Rectangle(position.X + 80, position.Y, 160, 50))
             };
@@ -44,7 +44,7 @@ namespace ZeroFootPrintSociety.GUI.Hud
             _visuals.Add(new Label
             {
                 Font = GuiFonts.Body,
-                TextColor = UIColors.InGame_Text,
+                TextColor = UiColors.InGame_Text,
                 Text = "Steps Before Nano-Embed",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Transform = new Transform2(new Rectangle(position.X + 80, position.Y + 42, 160, 50))

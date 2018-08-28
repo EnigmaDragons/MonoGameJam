@@ -10,12 +10,12 @@ namespace ZeroFootPrintSociety.GUI
 {
     class TileFXCollection
     {
-        private static readonly DictionaryWithDefault<string, Color> _colors = new DictionaryWithDefault<string, Color>(UIColors.TileFXCollection_Default)
+        private static readonly DictionaryWithDefault<string, Color> _colors = new DictionaryWithDefault<string, Color>(UiColors.TileFXCollection_Default)
         {
-            { "blue", UIColors.TileFXCollection_Blue },
-            { "turqoise", UIColors.TileFXCollection_Turquoise },
-            { "red", UIColors.TileFXCollection_Red },
-            { "green", UIColors.TileFXCollection_Green }
+            { "blue", UiColors.TileFXCollection_Blue },
+            { "turqoise", UiColors.TileFXCollection_Turquoise },
+            { "red", UiColors.TileFXCollection_Red },
+            { "green", UiColors.TileFXCollection_Green }
         };
         
         public void Draw(Transform2 parentTransform, GameTile tile)

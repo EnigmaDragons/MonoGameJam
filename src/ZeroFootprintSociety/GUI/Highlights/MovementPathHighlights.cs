@@ -41,7 +41,7 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Image = "Effects/Cover_Gray",
                 Transform = GameWorld.Map.TileToWorldTransform(destination).WithSize(TileData.RenderSize),
-                Tint = UIColors.AvailableMovesView_Rectangles
+                Tint = UiColors.AvailableMovesView_Rectangles
             });
             var anim = new TileRotatingEdgesAnim(destination, Color.FromNonPremultiplied(110, 170, 255, 255)).Initialized();
             visuals.Add(anim);

@@ -10,7 +10,7 @@ using ZeroFootPrintSociety.Tiles;
 
 namespace ZeroFootPrintSociety.Themes
 {
-    public static class UIColors
+    public static class UiColors
     {
         public static Color Unchanged { get; } = Color.White;
 

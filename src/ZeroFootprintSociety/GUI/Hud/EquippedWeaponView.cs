@@ -25,13 +25,13 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Font = GuiFonts.Body,
                 Transform = new Transform2(new Rectangle(position.X, position.Y + 54, 250, 30)),
-                TextColor = UIColors.InGame_Text
+                TextColor = UiColors.InGame_Text
             };
             _rangeLabel = new Label
             {
                 Font = GuiFonts.Body,
                 Transform = new Transform2(new Rectangle(position.X, position.Y + 80, 250, 30)),
-                TextColor = UIColors.InGame_Text
+                TextColor = UiColors.InGame_Text
             };
             _visuals.Add(new UiImage
             {

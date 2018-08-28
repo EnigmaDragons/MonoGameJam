@@ -41,14 +41,14 @@ namespace ZeroFootPrintSociety.Scenes
             {
                 Text = "Weldon Zemke",
                 Font = GuiFonts.Header,
-                TextColor = UIColors.InGame_Text,
+                TextColor = UiColors.InGame_Text,
                 Transform = new Transform2(new Vector2(0.02.VW(), 0.2.VH()), new Size2(0.20.VW(), 80))
             });
             Add(new Label
             {
                 Text = "Leader of ZFS",
                 Font = GuiFonts.Large,
-                TextColor = UIColors.InGame_Text,
+                TextColor = UiColors.InGame_Text,
                 Transform = new Transform2(new Vector2(0.02.VW(), 0.25.VH()), new Size2(0.20.VW(), 80))
             });
             Add(new UiImage
@@ -91,7 +91,7 @@ namespace ZeroFootPrintSociety.Scenes
                 offset,
                 () => Select(weaponSet),
                 new Label { 
-                    TextColor = UIColors.InGame_Text, 
+                    TextColor = UiColors.InGame_Text, 
                     Text = weaponSet.Primary.Name, 
                     Font = "Fonts/16",
                     Transform = new Transform2(new Vector2(xMar + 10, 85), new Size2(tWidth, 50)) 
@@ -103,7 +103,7 @@ namespace ZeroFootPrintSociety.Scenes
                 },
                 new Label 
                 { 
-                    TextColor = UIColors.InGame_Text, 
+                    TextColor = UiColors.InGame_Text, 
                     Text = weaponSet.Primary.ShortDescription, 
                     Font = GuiFonts.Body,
                     Transform = new Transform2(new Vector2(xMar + 10, 240), new Size2(tWidth, 50)) 
@@ -111,7 +111,7 @@ namespace ZeroFootPrintSociety.Scenes
                 
                 new Label 
                 { 
-                    TextColor = UIColors.InGame_Text, 
+                    TextColor = UiColors.InGame_Text, 
                     Text = weaponSet.Secondary.Name, 
                     Font = "Fonts/16",
                     Transform = new Transform2(new Vector2(xMar + 10, 333), new Size2(tWidth, 50)) 
@@ -123,7 +123,7 @@ namespace ZeroFootPrintSociety.Scenes
                 },
                 new Label 
                 { 
-                    TextColor = UIColors.InGame_Text, 
+                    TextColor = UiColors.InGame_Text, 
                     Text = weaponSet.Secondary.ShortDescription, 
                     Font = GuiFonts.Body,
                     Transform = new Transform2(new Vector2(xMar + 10, 493), new Size2(tWidth, 50)) 

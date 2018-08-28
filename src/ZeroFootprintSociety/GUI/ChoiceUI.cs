@@ -26,11 +26,11 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Text = title,
                 Font = GuiFonts.Header,
-                TextColor = UIColors.InGame_Text, 
+                TextColor = UiColors.InGame_Text, 
                 Transform = new Transform2(new Vector2(0.22.VW(), 0.1.VH()), new Size2(0.75.VW(), 80))
             };
             _options = options.ToList();
-            _backButton = new TextButton(new Rectangle(700, 800, 200, 35), backAction, "Back", UIColors.Buttons_Default, UIColors.Buttons_Hover, UIColors.Buttons_Press, () => backButtonActive);
+            _backButton = new TextButton(new Rectangle(700, 800, 200, 35), backAction, "Back", UiColors.Buttons_Default, UiColors.Buttons_Hover, UiColors.Buttons_Press, () => backButtonActive);
             Branch = new ClickUIBranch("Choice", 2);
             Branch.Add(_backButton);
             _options.ForEach(x => Branch.Add(x));

@@ -9,9 +9,9 @@ namespace ZeroFootPrintSociety.GUI
 {
     public class AttackedHealthBar : IVisual
     {
-        private readonly ColoredRectangle _background = new ColoredRectangle { Color = UIColors.AttackedHealthBar_Background, Transform = new Transform2(new Size2(250, 25)) };
-        private readonly ColoredRectangle _healthRemaining = new ColoredRectangle { Color = UIColors.AttackedHealthBar_HealthRemaining };
-        private readonly ColoredRectangle _predictedDamage = new ColoredRectangle { Color = UIColors.AttackedHealthBar_PredictedDamage };
+        private readonly ColoredRectangle _background = new ColoredRectangle { Color = UiColors.AttackedHealthBar_Background, Transform = new Transform2(new Size2(250, 25)) };
+        private readonly ColoredRectangle _healthRemaining = new ColoredRectangle { Color = UiColors.AttackedHealthBar_HealthRemaining };
+        private readonly ColoredRectangle _predictedDamage = new ColoredRectangle { Color = UiColors.AttackedHealthBar_PredictedDamage };
 
         public void Update(int maxHealth, int health, int damage)
         {

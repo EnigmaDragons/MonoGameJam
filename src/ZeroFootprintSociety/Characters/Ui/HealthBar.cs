@@ -22,8 +22,8 @@ namespace ZeroFootPrintSociety.Characters.GUI
         public HealthBar(int maxWidth)
         {
             MaxWidth = maxWidth;
-            HealthRectangle = new ColoredRectangle() {Color = UIColors.HealthBar_Health, Transform = _MakeHealthTransform()};
-            DamageRectangle = new ColoredRectangle() {Color = UIColors.HealthBar_Damage, Transform = _MakeDamageTranform()};
+            HealthRectangle = new ColoredRectangle() {Color = UiColors.HealthBar_Health, Transform = _MakeHealthTransform()};
+            DamageRectangle = new ColoredRectangle() {Color = UiColors.HealthBar_Damage, Transform = _MakeDamageTranform()};
         }
 
         public void Init()

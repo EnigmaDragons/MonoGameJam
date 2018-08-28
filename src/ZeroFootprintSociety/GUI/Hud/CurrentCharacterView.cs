@@ -24,13 +24,13 @@ namespace ZeroFootPrintSociety.GUI
             {
                 Font = "Fonts/12",
                 Transform = new Transform2(new Rectangle(position.X + 80, position.Y + 75, 170, 30)),
-                TextColor = UIColors.InGame_Text
+                TextColor = UiColors.InGame_Text
             };
             _hp = new Label
             {
                 Font = "Fonts/12",
                 Transform = new Transform2(new Rectangle(position.X + 80, position.Y + 44, 170, 30)),
-                TextColor = UIColors.InGame_Text
+                TextColor = UiColors.InGame_Text
             };
             _visuals.Add(new UiImage
             {

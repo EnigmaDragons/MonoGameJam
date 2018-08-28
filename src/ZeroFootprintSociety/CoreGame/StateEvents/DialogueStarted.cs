@@ -3,8 +3,8 @@ using ZeroFootPrintSociety.GUI.Hud;
 
 namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
-    public class DialogStarted
+    public class DialogueStarted
     {
-        public List<Dialog> Dialogs { get; set; }
+        public List<Dialogue> Dialogs { get; set; }
     }
 }
