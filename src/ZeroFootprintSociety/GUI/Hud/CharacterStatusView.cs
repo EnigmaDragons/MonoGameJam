@@ -17,6 +17,7 @@ namespace ZeroFootPrintSociety.GUI.Views
         private readonly IReadOnlyList<IVisual> _visuals;
 
         private readonly UiImage _face;
+        private readonly Label _level;
         private readonly Label _name;
         private readonly Label _maxHp;
         private readonly Label _movement;
@@ -43,12 +44,20 @@ namespace ZeroFootPrintSociety.GUI.Views
                 Transform = new Transform2(new Rectangle(position.X + 20, position.Y + 0.02.VH(), _viewWidth, 50)),
                 TextColor = UiColors.InGame_Text
             });
-            _maxHp = visuals.Added(StatLabel(position, 0));
-            _movement = visuals.Added(StatLabel(position, 1));
-            _accuracy = visuals.Added(StatLabel(position, 2));
-            _guts = visuals.Added(StatLabel(position, 3));
-            _agility = visuals.Added(StatLabel(position, 4));
-            _perception = visuals.Added(StatLabel(position, 5));
+            _level = visuals.Added(new Label
+            {
+                Font = GuiFonts.Large,
+                Transform = new Transform2(new Rectangle(position.X + 10, position.Y + 0.02.VH() + 240, _viewWidth / 2, 50)),
+                TextColor = UiColors.InGame_Text
+            });
+            
+            var index = -1;
+            _maxHp = visuals.Added(StatLabel(position, ++index));
+            _movement = visuals.Added(StatLabel(position, ++index));
+            _accuracy = visuals.Added(StatLabel(position, ++index));
+            _guts = visuals.Added(StatLabel(position, ++index));
+            _agility = visuals.Added(StatLabel(position, ++index));
+            _perception = visuals.Added(StatLabel(position, ++index));
             
             _visuals = visuals;
             Event.Subscribe<DisplayCharacterStatusRequested>(DisplayCharacter, this);
@@ -59,8 +68,8 @@ namespace ZeroFootPrintSociety.GUI.Views
             return new Label
             {
                 Font = GuiFonts.Medium,
-                Transform = new Transform2(new Rectangle(position.X + 20,
-                    position.Y + 0.02.VH() + 270 + (index) * 40, _viewWidth / 2, 30)),
+                Transform = new Transform2(new Rectangle(position.X + 10,
+                    position.Y + 0.02.VH() + 300 + (index) * 40, _viewWidth / 2, 30)),
                 TextColor = UiColors.InGame_Text
             };
         }
@@ -70,6 +79,7 @@ namespace ZeroFootPrintSociety.GUI.Views
             Event.Publish(new SubviewRequested());
             var c = e.Character;
             _face.Image = c.FaceImage;
+            _level.Text = $"Level {c.Stats.Level}";
             _name.Text = c.Stats.Name;
             _maxHp.Text = $"HP: {c.Stats.HP}";
             _movement.Text = $"MOV: {c.Stats.Movement}";

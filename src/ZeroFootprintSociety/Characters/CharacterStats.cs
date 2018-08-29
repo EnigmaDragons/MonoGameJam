@@ -7,6 +7,7 @@ namespace ZeroFootPrintSociety.Characters
         private static int _unnamedCharacterNumber = 1;
 
         public string Name { get; set; } = $"Character {Interlocked.Increment(ref _unnamedCharacterNumber)}";
+        public int Level { get; set; } = 1;
         public int HP { get; set; } = 30; // Hit Points until dead
         public int Movement { get; set; } = 5; // Number of movement tiles
         public int Accuracy { get; set; } = 5; // % = Accuracy * 5
@@ -17,6 +18,7 @@ namespace ZeroFootPrintSociety.Characters
 
         public CharacterStats WithMods(CharacterStatsMods cStatMods)
         {
+            Level += cStatMods.Level;
             HP += cStatMods.HP;
             Movement += cStatMods.Movement;
             Accuracy += cStatMods.Accuracy;
@@ -29,6 +31,7 @@ namespace ZeroFootPrintSociety.Characters
     
     public sealed class CharacterStatsMods
     {
+        public int Level { get; set; }
         public int HP { get; set; } 
         public int Movement { get; set; }
         public int Accuracy { get; set; }
