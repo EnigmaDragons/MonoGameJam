@@ -18,7 +18,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
         public RangedAction()
         {
             Event.Subscribe(EventSubscription.Create<ShotConfirmed>(ResolveShot, this));
-            Event.Subscribe(EventSubscription.Create<ShotAnimationsFinished>(_ => AdvanceQueue(), this));
+            Event.Subscribe(EventSubscription.Create<AttackAnimationsFinished>(_ => AdvanceQueue(), this));
         }
 
         private void AdvanceQueue()

@@ -16,6 +16,7 @@ namespace ZeroFootPrintSociety.CoreGame
     public class TurnBasedCombat : IAutomaton
     {
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
+        private readonly List<object> _effectResolvers = GameEffectResolvers.CreateAll();
         
         public GameMap Map { get; }
         public IReadOnlyList<IReadOnlyList<Point>> AvailableMoves { get; private set; }

@@ -69,6 +69,9 @@
     <Compile Include="CoreGame\Calculators\NewEnemySpotter.cs" />
     <Compile Include="CoreGame\Mechanics\Events\FootstepCounted.cs" />
     <Compile Include="CoreGame\Mechanics\Events\OutOfFootsteps.cs" />
+    <Compile Include="CoreGame\Mechanics\Events\XpGained.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\GainXpOnEnemyDeath.cs" />
+    <Compile Include="CoreGame\Mechanics\Resolution\GameEffectResolvers.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\TargetKilledSceneTransition.cs" />
     <Compile Include="CoreGame\StateEvents\DialogueStarted.cs" />
     <Compile Include="CoreGame\StateEvents\EnemySpotted.cs" />
@@ -197,7 +200,7 @@
     <Compile Include="GUI\UiEvents\MenuDismissed.cs" />
     <Compile Include="GUI\UiEvents\MenuRequested.cs" />
     <Compile Include="Characters\Gear\RangedWeapon.cs" />
-    <Compile Include="GUI\UiEvents\ShotAnimationsFinished.cs" />
+    <Compile Include="GUI\UiEvents\AttackAnimationsFinished.cs" />
     <Compile Include="Credits\BasicJamCreditsSegment.cs" />
     <Compile Include="Credits\CreditsSegments.cs" />
     <Compile Include="Credits\JamScene.cs" />

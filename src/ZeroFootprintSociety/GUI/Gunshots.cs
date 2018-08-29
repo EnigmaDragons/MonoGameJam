@@ -49,7 +49,8 @@ namespace ZeroFootPrintSociety.GUI
             _shots.Add(new HitShotVisual(
                 new RectangleTexture(UiColors.Gunshot).Create(), 
                 CalculateTransform(e.Attacker, e.Target, _random.Next(-10, 10) * 0.001), 
-                e.Target.CurrentTile.Position));
+                e.Attacker,
+                e.Target));
         }
 
         private void OnShotMissed(ShotMissed e)
@@ -115,7 +116,7 @@ namespace ZeroFootPrintSociety.GUI
 
                 if (!_publishedEvent && (_distanceTravled > 50 || IsDone))
                 {
-                    Event.Publish(new ShotAnimationsFinished());
+                    Event.Publish(new AttackAnimationsFinished());
                     _publishedEvent = true;
                 }
             }
@@ -144,16 +145,20 @@ namespace ZeroFootPrintSociety.GUI
         {
             private readonly Texture2D _texture;
             private readonly Transform2 _transform;
-            private readonly Point _target;
+            private readonly Point _destination;
+            private readonly Character _attacker;
+            private readonly Character _target;
             private double _distanceTravled = 0;
             private Point _tile;
             public bool IsDone { get; private set; }
             private bool _publishedEvent;
 
-            public HitShotVisual(Texture2D texture, Transform2 transform, Point target)
+            public HitShotVisual(Texture2D texture, Transform2 transform, Character attacker, Character target)
             {
                 _texture = texture;
                 _transform = transform;
+                _destination = target.CurrentTile.Position;
+                _attacker = attacker;
                 _target = target;
             }
 
@@ -161,12 +166,12 @@ namespace ZeroFootPrintSociety.GUI
             {
                 var distance = delta.TotalMilliseconds * TravelSpeed;
                 _distanceTravled += distance;
-                if (_tile == _target)
+                if (_tile == _destination)
                     IsDone = true;
 
                 if (!_publishedEvent && (_distanceTravled > 50 || IsDone))
                 {
-                    Event.Publish(new ShotAnimationsFinished());
+                    Event.Publish(new AttackAnimationsFinished { Attacker = _attacker, Target = _target });
                     _publishedEvent = true;
                 }
             }
@@ -199,7 +204,7 @@ namespace ZeroFootPrintSociety.GUI
             private readonly Texture2D _texture;
             private readonly Transform2 _transform;
             private readonly Point _target;
-            private double _distanceTravled = 0;
+            private double _distanceTraveled = 0;
             private Point _tile;
             public bool IsDone { get; private set; }
             private bool _publishedEvent;
@@ -214,13 +219,13 @@ namespace ZeroFootPrintSociety.GUI
             public void Update(TimeSpan delta)
             {
                 var distance = delta.TotalMilliseconds * TravelSpeed;
-                _distanceTravled += distance;
+                _distanceTraveled += distance;
                 if (_tile == _target)
                     IsDone = true;
 
-                if (!_publishedEvent && (_distanceTravled > 50 || IsDone))
+                if (!_publishedEvent && (_distanceTraveled > 50 || IsDone))
                 {
-                    Event.Publish(new ShotAnimationsFinished());
+                    Event.Publish(new AttackAnimationsFinished());
                     _publishedEvent = true;
                 }
             }
@@ -228,7 +233,7 @@ namespace ZeroFootPrintSociety.GUI
             public void Draw(Transform2 parentTransform)
             {
                 var modifiedTransform = _transform;
-                modifiedTransform.Location = modifiedTransform.Location.MoveInDirection(_transform.Rotation.Value, _distanceTravled);
+                modifiedTransform.Location = modifiedTransform.Location.MoveInDirection(_transform.Rotation.Value, _distanceTraveled);
                 if (GameWorld.Map.Exists(GameWorld.Map.MapPositionToTile(modifiedTransform.Location)))
                     _tile = GameWorld.Map.MapPositionToTile(modifiedTransform.Location);
                 else

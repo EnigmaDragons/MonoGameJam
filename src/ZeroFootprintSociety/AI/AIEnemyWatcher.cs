@@ -49,11 +49,11 @@ namespace ZeroFootPrintSociety.AI
                 CurrentMood = Mood.Stealth;
                 EventQueue.Instance.Add(new MoodChange { NewMood = CurrentMood });
             }
-            if (e.Character.IsFriendly)
+            if (e.Victim.IsFriendly)
                 _characterData.ForEach(x =>
                 {
                     var seenEnemies = new Dictionary<Character, Point>();
-                    x.Value.SeenEnemies.Where(enemy => enemy.Key != e.Character).ForEach(enemy => seenEnemies[enemy.Key] = enemy.Value);
+                    x.Value.SeenEnemies.Where(enemy => enemy.Key != e.Victim).ForEach(enemy => seenEnemies[enemy.Key] = enemy.Value);
                     x.Value.SeenEnemies = seenEnemies;
                 });
         }

@@ -31,7 +31,7 @@ namespace ZeroFootPrintSociety.Soundtrack
 
         private void OnDeceased(CharacterDeceased obj)
         {
-            if (!obj.Character.IsFriendly)
+            if (!obj.Victim.IsFriendly)
                 Sound.SoundEffect($"SFX/death-1.wav", DefaultVolume).Play();
         }
 

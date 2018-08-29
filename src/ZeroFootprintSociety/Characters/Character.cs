@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using MonoDragons.Core.Common;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
@@ -38,6 +39,7 @@ namespace ZeroFootPrintSociety.Characters
         public bool IsFriendly => Team.IsIncludedIn(TeamGroup.Friendlies);
         public GameTile CurrentTile => Body.CurrentTile;
         public int Accuracy => Gear.EquippedWeapon.IsRanged ? Stats.AccuracyPercent + Gear.EquippedWeapon.AsRanged().AccuracyPercent : 0;
+        public int Level => Stats.Level;
 
         public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team = Team.Neutral, string faceImage = "", string bustImage = "")
         {
@@ -52,10 +54,11 @@ namespace ZeroFootPrintSociety.Characters
 
             _damageNumbers = new DamageNumbersView(this);
 
+            // TODO: Characters should be directly notified of things the impact them.
             Event.Subscribe<TurnBegun>(OnTurnBegan, this);
             Event.Subscribe<OverwatchTilesAvailable>(UpdateOverwatch, this);
             Event.Subscribe<ShotHit>(OnShotHit, this);
-            Event.Subscribe<ShotAnimationsFinished>(OnShotsResolved, this);
+            Event.Subscribe<AttackAnimationsFinished>(OnShotsResolved, this);
             Event.Subscribe<TilesSeen>(OnTilesSeen, this);
             Event.Subscribe<TilesPercieved>(OnTilesPercieved, this);
             Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
@@ -63,6 +66,9 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<Moved>(FootstepsIfMainChar, this);
         }
 
+        public void Notify(XpGained e) => State.Xp += e.XpAmount;
+        public void Notify(object obj) => Logger.WriteLine($"Character {Stats.Name} Received Unknown Notification {obj.GetType()}");
+        
         private void FootstepsIfMainChar(Moved obj)
         {
             if (this is MainChar && obj.Character.Equals(this))
@@ -110,12 +116,12 @@ namespace ZeroFootPrintSociety.Characters
             }
         }
 
-        private void OnShotsResolved(ShotAnimationsFinished e)
+        private void OnShotsResolved(AttackAnimationsFinished e)
         {
             if (State.RemainingHealth <= 0 && !State.IsDeceased)
             {
                 State.IsDeceased = true;
-                EventQueue.Instance.Add(new CharacterDeceased { Character = this });
+                EventQueue.Instance.Add(new CharacterDeceased { Victim = e.Target, Killer = e.Attacker });
             }
         }
 

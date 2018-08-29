@@ -2,8 +2,9 @@
 
 namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
-    public class CharacterDeceased
+    public sealed class CharacterDeceased
     {
-        public Character Character { get; set; }
+        public Character Victim { get; set; }
+        public Character Killer { get; set; }
     }
 }

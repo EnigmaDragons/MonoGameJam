@@ -56,7 +56,7 @@ namespace ZeroFootPrintSociety.CoreGame
                 EventQueue.Instance.Add(new GameOver());
                 GameWorld.IsGameOver = true;
             }
-            else if (CurrentCharacter == _event.Character)
+            else if (CurrentCharacter == _event.Victim)
             {
                 EventQueue.Instance.Add(new ActionResolved());
             }
