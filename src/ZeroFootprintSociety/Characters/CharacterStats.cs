@@ -27,6 +27,21 @@ namespace ZeroFootPrintSociety.Characters
             Perception += cStatMods.Perception;
             return this;
         }
+
+        public CharacterStats Snapshot()
+        {
+            return new CharacterStats
+            {
+                Name = Name,
+                Level = Level,
+                HP = HP,
+                Movement = Movement,
+                Accuracy = Accuracy,
+                Guts = Guts,
+                Agility = Agility,
+                Perception = Perception
+            };
+        }
     }
     
     public sealed class CharacterStatsMods

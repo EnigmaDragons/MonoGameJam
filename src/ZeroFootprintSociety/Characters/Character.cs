@@ -28,7 +28,7 @@ namespace ZeroFootPrintSociety.Characters
         public bool IsInitialized { get; internal set; }
 
         public CharacterBody Body { get; }
-        public CharacterStats Stats { get; }
+        public CharacterStats Stats { get; private set; }
         public CharacterGear Gear { get; }
         public CharacterState State { get; }
         public string FaceImage { get; }
@@ -66,7 +66,18 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<Moved>(FootstepsIfMainChar, this);
         }
 
-        public void Notify(XpGained e) => State.Xp += e.XpAmount;
+        public void Notify(XpGained e)
+        {
+            State.Xp += e.XpAmount;
+            while (State.Xp > 100)
+            {
+                var oldStats = Stats.Snapshot();
+                Stats = Stats.WithMods(new CharacterStatsMods { Level = 1 });
+                State.Xp -= 100;
+                Event.Publish(new LevelledUp { Character = this, OldStats = oldStats });
+            }
+        } 
+        
         public void Notify(object obj) => Logger.WriteLine($"Character {Stats.Name} Received Unknown Notification {obj.GetType()}");
         
         private void FootstepsIfMainChar(Moved obj)
