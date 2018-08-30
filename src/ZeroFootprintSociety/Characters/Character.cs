@@ -40,6 +40,7 @@ namespace ZeroFootPrintSociety.Characters
         public GameTile CurrentTile => Body.CurrentTile;
         public int Accuracy => Gear.EquippedWeapon.IsRanged ? Stats.AccuracyPercent + Gear.EquippedWeapon.AsRanged().AccuracyPercent : 0;
         public int Level => Stats.Level;
+        public int Xp => State.Xp;
 
         public Character(CharacterBody body, CharacterStats stats, CharacterGear gear, Team team = Team.Neutral, string faceImage = "", string bustImage = "")
         {

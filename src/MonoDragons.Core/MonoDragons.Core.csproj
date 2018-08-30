@@ -61,6 +61,7 @@
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\MathExtensions.cs" />
     <Compile Include="Common\Metric.cs" />
+    <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Development\DevTextColor.cs" />
     <Compile Include="Development\RecentEventDebugLogView.cs" />
     <Compile Include="Engine\IInitializable.cs" />
