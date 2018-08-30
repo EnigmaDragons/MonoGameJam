@@ -69,7 +69,6 @@
     <Compile Include="CoreGame\Calculators\NewEnemySpotter.cs" />
     <Compile Include="CoreGame\Mechanics\Events\FootstepCounted.cs" />
     <Compile Include="CoreGame\Mechanics\Events\LevelledUp.cs" />
-    <Compile Include="CoreGame\Mechanics\Events\OutOfFootsteps.cs" />
     <Compile Include="CoreGame\Mechanics\Events\XpGained.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\GainXpOnEnemyDeath.cs" />
     <Compile Include="CoreGame\Mechanics\Resolution\GameEffectResolvers.cs" />
@@ -90,7 +89,6 @@
     <Compile Include="GUI\UiEvents\SubviewDismissed.cs" />
     <Compile Include="GUI\UiEvents\SubviewRequested.cs" />
     <Compile Include="MessageBoxErrorHandler.cs" />
-    <Compile Include="GUI\Hud\FootstepsCounterView.cs" />
     <Compile Include="Scenes\GameLevel.cs" />
     <Compile Include="Scenes\IntroCutscene.cs" />
     <Compile Include="Scenes\LogoScene.cs" />

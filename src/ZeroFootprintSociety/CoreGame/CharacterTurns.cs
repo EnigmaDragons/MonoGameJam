@@ -27,7 +27,7 @@ namespace ZeroFootPrintSociety.CoreGame
             if (_characters.Any(x => x.IsFriendly))
                 while (!CurrentCharacter.IsFriendly)
                     Advance();
-            Event.Publish(new TurnBegun());
+            PublishTurnBegun();
         }
 
         private void BeginNextTurn(TurnEnded e)
@@ -38,9 +38,18 @@ namespace ZeroFootPrintSociety.CoreGame
             Advance();
             while (CurrentCharacter.State.IsDeceased)
                 Advance();
-            EventQueue.Instance.Add(new TurnBegun());
+            
+            PublishTurnBegun();
+        }
+        
+        private void PublishTurnBegun()
+        {
+            var e = new TurnBegun { Character = CurrentCharacter };
+            CurrentCharacter.Notify(e);
+            EventQueue.Instance.Add(e);
         }
 
+        
         private void Advance()
         {
             _activeCharacterIndex++;

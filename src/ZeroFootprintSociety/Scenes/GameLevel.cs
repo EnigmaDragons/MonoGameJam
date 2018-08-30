@@ -44,7 +44,6 @@ namespace ZeroFootPrintSociety.Scenes
             Music.Play(MusicType.Ambient);
             LoadMap();
             SpawnCharacters();
-            SetRemainingFootstepsCounter();
             Add(new TheSoundGuy());
 
             Add(new TacticsGame(
@@ -64,14 +63,6 @@ namespace ZeroFootPrintSociety.Scenes
                 Music.Play(MusicType.Action);
             if (change.NewMood == Mood.Boss)
                 Music.Play(MusicType.Boss);
-        }
-
-        private void SetRemainingFootstepsCounter()
-        {
-            if (GameWorld.FootstepsRemaining == 0)
-            {
-                GameWorld.FootstepsRemaining = 500; 
-            }
         }
 
         private void LoadMap()

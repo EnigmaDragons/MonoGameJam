@@ -34,17 +34,6 @@ namespace ZeroFootPrintSociety.CoreGame
         public static CharacterClass MainCharClass { get; set; } = new CharacterClass();
         public static Character MainCharacter => FriendliesWhere(x => x.Stats.Name.Equals(MainChar.Name)).Single();
         
-        private static int _footsteps = 0;
-        public static int FootstepsRemaining
-        {
-            get => _footsteps;
-            set
-            {
-                _footsteps = value;
-                Event.Publish(new FootstepCounted {Steps = value});
-            }
-        }
-
         internal static void Clear()
         {
             Map = null;
@@ -54,7 +43,6 @@ namespace ZeroFootPrintSociety.CoreGame
             HighHighlights = null;
             FriendlyPerception = new DictionaryWithDefault<Point, bool>(false);
             HoveredTile = Point.Zero;
-            _footsteps = 0;
         }
     }
 }

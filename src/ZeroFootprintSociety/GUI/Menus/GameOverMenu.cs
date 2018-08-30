@@ -59,7 +59,6 @@ namespace ZeroFootPrintSociety.GUI
             _interceptLayer.Add(new ScreenClickable(() => { }));
             _branch.Add(mainMenuButton);
             Event.Subscribe(EventSubscription.Create<GameOver>(e => Enable(), this));
-            Event.Subscribe(EventSubscription.Create<OutOfFootsteps>(e => Enable(), this));
         }
 
         private void Enable()

@@ -56,7 +56,6 @@ namespace ZeroFootPrintSociety.Characters
             _damageNumbers = new DamageNumbersView(this);
 
             // TODO: Characters should be directly notified of things the impact them.
-            Event.Subscribe<TurnBegun>(OnTurnBegan, this);
             Event.Subscribe<OverwatchTilesAvailable>(UpdateOverwatch, this);
             Event.Subscribe<ShotHit>(OnShotHit, this);
             Event.Subscribe<AttackAnimationsFinished>(OnShotsResolved, this);
@@ -64,7 +63,6 @@ namespace ZeroFootPrintSociety.Characters
             Event.Subscribe<TilesPercieved>(OnTilesPercieved, this);
             Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
             Event.Subscribe<MoveResolved>(ContinueMoving, this);
-            Event.Subscribe<Moved>(FootstepsIfMainChar, this);
         }
 
         public void Notify(XpGained e)
@@ -80,17 +78,6 @@ namespace ZeroFootPrintSociety.Characters
         } 
         
         public void Notify(object obj) => Logger.WriteLine($"Character {Stats.Name} Received Unknown Notification {obj.GetType()}");
-        
-        private void FootstepsIfMainChar(Moved obj)
-        {
-            if (this is MainChar && obj.Character.Equals(this))
-                if (GameWorld.FootstepsRemaining-- == 0)
-                {
-                    EventQueue.Instance.Add(new OutOfFootsteps());
-                    GameWorld.IsGameOver = true;
-                    EventQueue.Instance.Add(new GameOver());
-                }
-        }
 
         private void ContinueMoving(MoveResolved e)
         {
@@ -153,14 +140,11 @@ namespace ZeroFootPrintSociety.Characters
             return this;
         }
 
-        public void OnTurnBegan(TurnBegun e)
+        public void Notify(TurnBegun e)
         {
-            if (GameWorld.CurrentCharacter == this)
-            {
-                State.IsHiding = false;
-                State.IsOverwatching = false;
-                State.OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
-            }
+            State.IsHiding = false;
+            State.IsOverwatching = false;
+            State.OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
         }
 
         public void UpdateOverwatch(OverwatchTilesAvailable e)
