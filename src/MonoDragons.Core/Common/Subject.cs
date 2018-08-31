@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace MonoDragons.Core.Common
+namespace MonoDragons.Core
 {
     public abstract class Subject<T> : ISubject<T>
     {

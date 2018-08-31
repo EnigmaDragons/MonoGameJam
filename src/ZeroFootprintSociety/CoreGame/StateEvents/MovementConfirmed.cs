@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
-    class MovementConfirmed
+    public class MovementConfirmed
     {
         public IReadOnlyList<Point> Path { get; }
 

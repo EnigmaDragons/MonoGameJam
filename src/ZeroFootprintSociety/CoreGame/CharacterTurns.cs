@@ -44,11 +44,8 @@ namespace ZeroFootPrintSociety.CoreGame
         
         private void PublishTurnBegun()
         {
-            var e = new TurnBegun { Character = CurrentCharacter };
-            CurrentCharacter.Notify(e);
-            EventQueue.Instance.Add(e);
+            EventQueue.Instance.Add(new TurnBegun { Character = CurrentCharacter });
         }
-
         
         private void Advance()
         {

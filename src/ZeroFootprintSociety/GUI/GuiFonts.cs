@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using MonoDragons.Core.Memory;
 
 namespace ZeroFootPrintSociety.GUI

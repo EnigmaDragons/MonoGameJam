@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoDragons.Core.Common
+namespace MonoDragons.Core
 {
     public sealed class SubscriptionAction<T> : ISubscription<T>
     {

@@ -19,7 +19,6 @@ namespace ZeroFootPrintSociety.GUI.Menus
         private readonly int _menuY = 0.90.VH();
         private readonly List<IVisual> _visuals = new List<IVisual>();
         private readonly ClickUIBranch _branch = new ClickUIBranch("SwitchWeapons", 2);
-        private readonly Label _titleLabel;
         private readonly TextButton _switchWeaponsButton;
         private readonly ClickUI _clickUI;
 

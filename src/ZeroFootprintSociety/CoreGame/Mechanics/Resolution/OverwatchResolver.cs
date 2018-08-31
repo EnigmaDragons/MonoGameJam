@@ -21,7 +21,7 @@ namespace ZeroFootPrintSociety.CoreGame.Mechanics.Resolution
             Event.Subscribe<TurnBegun>(x => UpdateOverwatchersAndReset(), this);
             Event.Subscribe<Moved>(OnMovement, this);
             Event.Subscribe<TilesSeen>(_ => OnSightUpdate(), this);
-            Event.Subscribe<TilesPercieved>(_ => OnPerceptionUpdate(), this);
+            Event.Subscribe<TilesPerceived>(_ => OnPerceptionUpdate(), this);
         }
 
         private void UpdateOverwatchersAndReset()

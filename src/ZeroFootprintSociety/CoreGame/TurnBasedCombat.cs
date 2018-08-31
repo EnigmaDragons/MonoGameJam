@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MonoDragons.Core;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Render;
@@ -17,6 +18,7 @@ namespace ZeroFootPrintSociety.CoreGame
     {
         private readonly List<object> _actionResolvers = ActionResolvers.CreateAll();
         private readonly List<object> _effectResolvers = GameEffectResolvers.CreateAll();
+        private readonly List<object> _characterResolvers = new List<object> { new CharacterEventProcessing() };
         
         public GameMap Map { get; }
         public IReadOnlyList<IReadOnlyList<Point>> AvailableMoves { get; private set; }

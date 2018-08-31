@@ -51,6 +51,7 @@
     <Compile Include="AI\EnemyAI.cs" />
     <Compile Include="AI\SpotHasGoodCoverCalculation.cs" />
     <Compile Include="Characters\CharacterClass.cs" />
+    <Compile Include="Characters\CharacterEventProcessing.cs" />
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
     <Compile Include="Characters\Direction.cs" />
@@ -133,7 +134,7 @@
     <Compile Include="CoreGame\Mechanics\Resolution\OverwatchResolver.cs" />
     <Compile Include="CoreGame\StateEvents\ActionSelected.cs" />
     <Compile Include="CoreGame\StateEvents\GameOver.cs" />
-    <Compile Include="CoreGame\StateEvents\TilesPercieved.cs" />
+    <Compile Include="CoreGame\StateEvents\TilesPerceived.cs" />
     <Compile Include="CoreGame\StateEvents\TilesSeen.cs" />
     <Compile Include="GUI\Camera\CameraArrowKeysControl.cs" />
     <Compile Include="GUI\Camera\CameraControl.cs" />

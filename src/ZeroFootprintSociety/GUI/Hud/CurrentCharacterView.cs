@@ -4,7 +4,7 @@ using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using System;
 using System.Collections.Generic;
-using MonoDragons.Core.Common;
+using MonoDragons.Core;
 using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.Themes;

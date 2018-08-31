@@ -134,7 +134,6 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
                 return currentCover;
             }
 
-
             var currentPreciseX = aggressorVector.X;
             var currentPreciseY = aggressorVector.Y;
             var distanceX = (victimX - currentX) / 2;

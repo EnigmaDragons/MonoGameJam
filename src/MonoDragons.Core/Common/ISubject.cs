@@ -1,4 +1,4 @@
-﻿namespace MonoDragons.Core.Common
+﻿namespace MonoDragons.Core
 {
     public interface ISubject<T>
     {

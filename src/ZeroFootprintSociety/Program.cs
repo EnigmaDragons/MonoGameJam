@@ -1,5 +1,5 @@
 ﻿using MonoDragons.Core.AudioSystem;
-using MonoDragons.Core.Common;
+
 using MonoDragons.Core.Development;
 using MonoDragons.Core.EngimaDragons;
 using MonoDragons.Core.Engine;
@@ -11,6 +11,7 @@ using MonoDragons.Core.Scenes;
 using ZeroFootPrintSociety.Scenes;
 using System;
 using System.Windows.Forms;
+using MonoDragons.Core;
 using ZeroFootPrintSociety.Soundtrack;
 using Control = MonoDragons.Core.Inputs.Control;
 using Keys = Microsoft.Xna.Framework.Input.Keys;

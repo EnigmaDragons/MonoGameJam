@@ -2,7 +2,7 @@
 
 namespace ZeroFootPrintSociety.CoreGame.ActionEvents
 {
-    class ShotHit
+    public class ShotHit
     {
         public Character Target { get; set; }
         public Character Attacker { get; set; }

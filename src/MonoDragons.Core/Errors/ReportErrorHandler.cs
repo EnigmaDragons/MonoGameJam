@@ -39,7 +39,7 @@ namespace MonoDragons.Core.Errors
                             }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult();
                 _reportedFatalError = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Ignore and keep on Trucking
             }

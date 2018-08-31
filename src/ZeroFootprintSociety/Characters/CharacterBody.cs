@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -37,8 +38,8 @@ namespace ZeroFootPrintSociety.Characters
 
         private SpriteAnimation _currentAnimation;
 
-        public List<Point> Path = new List<Point>();
-        public bool Stopped = false;
+        public Queue<Point> Path { get; set; } = new Queue<Point>();
+        public bool ShouldContinue = false;
         public Direction Facing;
 
         public Vector2 CurrentTileLocation { get; private set; }
@@ -50,7 +51,6 @@ namespace ZeroFootPrintSociety.Characters
             _glow = new GlowEffect(new Size2(60, 100)) { Tint = Color.FromNonPremultiplied(glowColor.R, glowColor.G, glowColor.B, 18) };
             _characterPath = characterPath;
             _offset = offset;
-            Event.Subscribe(EventSubscription.Create<ShotFired>(UpdateFacing, this));
         }
 
         public void Init(GameTile currentTile)
@@ -114,33 +114,36 @@ namespace ZeroFootPrintSociety.Characters
 
         public void Update(TimeSpan delta)
         {
-            double speedModifier = GameWorld.CurrentCharacter.Team != Team.Friendly && !GameWorld.FriendlyPerception[CurrentTile.Position] 
-                ? UnseenEnemySpeed 
-                : GameWorld.CurrentCharacter.Team == Team.Friendly 
-                    ? RunSpeed : EnemySpeed;
             _currentAnimation.Update(delta);
-            if (Path.Any() && !Stopped)
+
+            if (Path.Any() && ShouldContinue)
             {
-                var targetLocation = GameWorld.Map[Path.First()].Transform.Location;
+                double speedModifier = GameWorld.CurrentCharacter.Team != Team.Friendly && !GameWorld.FriendlyPerception[CurrentTile.Position]
+                    ? UnseenEnemySpeed
+                    : GameWorld.CurrentCharacter.Team == Team.Friendly
+                        ? RunSpeed : EnemySpeed;
+
+                var target = Path.First();
+                var targetLocation = GameWorld.Map[target].Transform.Location;
                 var pastLocation = CurrentTileLocation;
                 CurrentTileLocation = CurrentTileLocation.MoveTowards(targetLocation, delta.TotalMilliseconds * speedModifier);
                 SetRunningFacing(pastLocation);
                 if (CurrentTileLocation.X == targetLocation.X && CurrentTileLocation.Y == targetLocation.Y)
                 {
-                    Stopped = true;
+                    ShouldContinue = false;
                     SetFacing(pastLocation);
-                    Event.Publish(new Moved { Character = GameWorld.CurrentCharacter, Position = Path.First() });
+                    Event.Publish(new Moved { Character = GameWorld.CurrentCharacter, Position = target });
                 }
             }
         }
-
-        private void UpdateFacing(ShotFired obj)
+        
+        public void Draw(Transform2 parentTransform)
         {
-            if (obj.Attacker.Body.Equals(this))
-                FaceToward(obj.Target);
+            _glow.Draw(parentTransform + Transform + CurrentTileLocation + _glowOff);
+            _currentAnimation.Draw(parentTransform + Transform + CurrentTileLocation + _offset);
         }
-
-        private void FaceToward(Character other)
+        
+        public void FaceToward(Character other)
         {
             var delta = other.CurrentTile.Position - CurrentTile.Position;
             var useDeltaY = Math.Abs(delta.Y) > Math.Abs(delta.X);
@@ -187,17 +190,6 @@ namespace ZeroFootPrintSociety.Characters
                 Facing = Direction.Down;
             if (pastLocation.Y > CurrentTileLocation.Y)
                 Facing = Direction.Up;
-        }
-
-        public Transform2 GetTransform()
-        {
-            return Transform + _offset + CurrentTileLocation;
-        }
-
-        public void Draw(Transform2 parentTransform)
-        {
-            _glow.Draw(parentTransform + Transform + CurrentTileLocation + _glowOff);
-            _currentAnimation.Draw(parentTransform + GetTransform());
         }
     }
 }

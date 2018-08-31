@@ -1,8 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
-
-// ReSharper disable InconsistentNaming
-// ReSharper disable UnusedMember.Global
 
 namespace ZeroFootPrintSociety.Themes
 {

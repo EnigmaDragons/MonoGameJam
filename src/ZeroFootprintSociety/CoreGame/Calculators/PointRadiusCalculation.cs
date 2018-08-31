@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
 
 namespace ZeroFootPrintSociety.CoreGame.Calculators
 {

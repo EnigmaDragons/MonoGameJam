@@ -4,7 +4,7 @@ using ZeroFootPrintSociety.Characters;
 
 namespace ZeroFootPrintSociety.CoreGame.StateEvents
 {
-    public class TilesPercieved
+    public class TilesPerceived
     {
         public Character Character { get; set; }
         public List<Point> Tiles { get; set; }

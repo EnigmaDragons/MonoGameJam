@@ -1,6 +1,5 @@
 ﻿
 using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
 
 namespace MonoDragons.Core.Graphics
 {

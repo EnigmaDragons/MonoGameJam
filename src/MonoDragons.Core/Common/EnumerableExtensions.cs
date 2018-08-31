@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MonoDragons.Core.Common
+namespace MonoDragons.Core
 {
     public static class EnumerableExtensions
     {
-
+        public static List<T> AsList<T>(this T item) => new List<T> {item};
+        
         public static TItem Added<TCollectionItem, TItem>(this List<TCollectionItem> list, TItem item)
             where TItem : TCollectionItem
         {

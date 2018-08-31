@@ -1,5 +1,5 @@
 ﻿
-namespace MonoDragons.Core.Common
+namespace MonoDragons.Core
 {
     public sealed class MustInit<T>
     {

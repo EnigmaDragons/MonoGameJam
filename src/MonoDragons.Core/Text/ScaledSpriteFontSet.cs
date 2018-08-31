@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using MonoDragons.Core.Common;
+﻿using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Collections;
 using Microsoft.Xna.Framework;
@@ -14,12 +12,10 @@ namespace MonoDragons.Core.Text
         private Dictionary<float, SpriteFont> _fonts;
         public SpriteFont this[float index] => _fonts[index];
 
-
         public ScaledSpriteFontSet(SpriteFont defaultFont, Dictionary<float, SpriteFont> allFonts)
         {
             DefaultFont = defaultFont;
             _fonts = allFonts;
-
         }
 
         public bool Contains(float scale)

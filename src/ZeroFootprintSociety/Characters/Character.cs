@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
+using MonoDragons.Core;
 using MonoDragons.Core.Engine;
-using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.PhysicsEngine;
 using ZeroFootPrintSociety.Characters.GUI;
-using ZeroFootPrintSociety.Characters.Prefabs;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
 using ZeroFootPrintSociety.CoreGame.ActionEvents;
@@ -25,7 +23,7 @@ namespace ZeroFootPrintSociety.Characters
         private readonly HealthBar _healthBar = new HealthBar(42);
         private readonly DamageNumbersView _damageNumbers;
 
-        public bool IsInitialized { get; internal set; }
+        public bool IsInitialized { get; private set; }
 
         public CharacterBody Body { get; }
         public CharacterStats Stats { get; private set; }
@@ -54,18 +52,19 @@ namespace ZeroFootPrintSociety.Characters
             Theme = IsFriendly ? TeamColors.Friendly : TeamColors.Enemy;
 
             _damageNumbers = new DamageNumbersView(this);
-
-            // TODO: Characters should be directly notified of things the impact them.
-            Event.Subscribe<OverwatchTilesAvailable>(UpdateOverwatch, this);
-            Event.Subscribe<ShotHit>(OnShotHit, this);
-            Event.Subscribe<AttackAnimationsFinished>(OnShotsResolved, this);
-            Event.Subscribe<TilesSeen>(OnTilesSeen, this);
-            Event.Subscribe<TilesPercieved>(OnTilesPercieved, this);
-            Event.Subscribe<MovementConfirmed>(OnMovementConfirmed, this);
-            Event.Subscribe<MoveResolved>(ContinueMoving, this);
         }
-
-        public void Notify(XpGained e)
+        
+        public Character Initialized(GameTile tile)
+        {
+            Body.Init(tile);
+            State.Init();
+            _healthBar.Init();
+            State.SeeableTiles = new VisibilityCalculation(this).Calculate();
+            IsInitialized = true;
+            return this;
+        }
+        
+        internal void Notify(XpGained e)
         {
             State.Xp += e.XpAmount;
             while (State.Xp > 100)
@@ -73,49 +72,35 @@ namespace ZeroFootPrintSociety.Characters
                 var oldStats = Stats.Snapshot();
                 Stats = Stats.WithMods(new CharacterStatsMods { Level = 1 });
                 State.Xp -= 100;
-                Event.Publish(new LevelledUp { Character = this, OldStats = oldStats });
+                EventQueue.Instance.Add(new LevelledUp { Character = this, OldStats = oldStats });
             }
         } 
+
+        internal void Notify(MoveResolved e)
+        {
+            Body.Path.Dequeue();
+            Body.ShouldContinue = true;
+            if (!Body.Path.Any() && !e.Character.State.IsDeceased)
+                EventQueue.Instance.Add(new MovementFinished());
+        }
+
+        internal void Notify(MovementConfirmed movement)
+        {
+            Body.Path = new Queue<Point>(movement.Path.Skip(1).ToList());
+            Body.ShouldContinue = true;
+            if (!Body.Path.Any())
+                EventQueue.Instance.Add(new MovementFinished());
+        }
+
+        internal void Notify(TilesSeen e) => State.SeeableTiles = e.SeeableTiles;
         
-        public void Notify(object obj) => Logger.WriteLine($"Character {Stats.Name} Received Unknown Notification {obj.GetType()}");
-
-        private void ContinueMoving(MoveResolved e)
+        internal void Notify(TilesPerceived e)
         {
-            if (e.Character == this)
-            {
-                Body.Stopped = false;
-                Body.Path.RemoveAt(0);
-                if (!Body.Path.Any() && !e.Character.State.IsDeceased)
-                    EventQueue.Instance.Add(new MovementFinished());
-            }
+            State.PerceivedTiles.Clear();
+            e.Tiles.ForEach(x => State.PerceivedTiles[x] = true);
         }
 
-        private void OnMovementConfirmed(MovementConfirmed movement)
-        {
-            if (GameWorld.Turns.CurrentCharacter == this)
-            {
-                Body.Path = movement.Path.Skip(1).ToList();
-                if (!Body.Path.Any())
-                    EventQueue.Instance.Add(new MovementFinished());
-            }
-        }
-
-        private void OnTilesSeen(TilesSeen e)
-        {
-            if (e.Character == this)
-                State.SeeableTiles = e.SeeableTiles;
-        }
-
-        private void OnTilesPercieved(TilesPercieved e)
-        {
-            if (e.Character == this)
-            {
-                State.PercievedTiles.Clear();
-                e.Tiles.ForEach(x => State.PercievedTiles[x] = true);
-            }
-        }
-
-        private void OnShotsResolved(AttackAnimationsFinished e)
+        internal void Notify(AttackAnimationsFinished e)
         {
             if (State.RemainingHealth <= 0 && !State.IsDeceased)
             {
@@ -124,63 +109,48 @@ namespace ZeroFootPrintSociety.Characters
             }
         }
 
-        public void Init(GameTile tile)
-        {
-            Body.Init(tile);
-            State.Init();
-            _healthBar.Init();
-
-            IsInitialized = true;
-        }
-
-        public Character Initialized(GameTile tile)
-        {
-            Init(tile);
-            State.SeeableTiles = new VisibilityCalculation(this).Calculate();
-            return this;
-        }
-
-        public void Notify(TurnBegun e)
+        internal void Notify(TurnBegun e)
         {
             State.IsHiding = false;
             State.IsOverwatching = false;
             State.OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
         }
 
-        public void UpdateOverwatch(OverwatchTilesAvailable e)
-        {
-            if (GameWorld.CurrentCharacter == this)
-                State.OverwatchedTiles = e.OverwatchedTiles;
-        }
+        internal void Notify(OverwatchTilesAvailable e) => State.OverwatchedTiles = e.OverwatchedTiles;
+        internal void Notify(ShotHit e) => State.RemainingHealth -= e.DamageAmount;
+        internal void Notify(ShotFired e) => Body.FaceToward(e.Target);
 
-        private void OnShotHit(ShotHit e)
+        internal void Notify(object obj) => Logger.WriteLine($"Character {Stats.Name} Received Unknown Notification {obj.GetType()}");
+        
+        private bool ShouldDraw { get; set; }   
+        
+        public void Update(TimeSpan delta)
         {
-            if (e.Target.Equals(this))
-                State.RemainingHealth -= e.DamageAmount;
+            ShouldDraw = !(State.IsDeceased || 
+                         Team == Team.Enemy && !GameWorld.Friendlies.Any(x => x.State.SeeableTiles.ContainsKey(CurrentTile.Position)));
+            if (State.IsDeceased)
+                return;
+            
+            Body.Update(delta);
+            _healthBar.Update(State.PercentLeft);
+            _damageNumbers.Update(delta);
         }
-
+        
         public void Draw(Transform2 parentTransform)
         {
-            if (State.IsDeceased || (Team == Team.Enemy && !GameWorld.Friendlies.Any(x => x.State.SeeableTiles.ContainsKey(CurrentTile.Position))))
+            if (!ShouldDraw)
                 return;
+            
             Body.Draw(parentTransform);
         }
 
         public void DrawUI(Transform2 parentTransform)
         {
-            if (State.IsDeceased || (Team == Team.Enemy && !GameWorld.Friendlies.Any(x => x.State.SeeableTiles.ContainsKey(CurrentTile.Position))))
+            if (!ShouldDraw)
                 return;
+            
             _healthBar.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
             _damageNumbers.Draw(parentTransform + Body.CurrentTileLocation + new Vector2(3, -Body.Transform.Size.Height - 2));
-        }
-
-        public void Update(TimeSpan delta)
-        {
-            if (State.IsDeceased)
-                return;
-            Body.Update(delta);
-            _healthBar.Update(State.PercentLeft);
-            _damageNumbers.Update(delta);
         }
     }
 }

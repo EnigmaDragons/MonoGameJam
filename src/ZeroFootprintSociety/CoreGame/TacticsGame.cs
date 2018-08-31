@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MonoDragons.Core.Common;
+using MonoDragons.Core;
 using MonoDragons.Core.Development;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
@@ -16,7 +16,6 @@ using ZeroFootPrintSociety.CoreGame.Mechanics.Resolution;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.GUI;
 using Camera = ZeroFootPrintSociety.GUI.Camera;
-
 
 namespace ZeroFootPrintSociety.CoreGame
 {

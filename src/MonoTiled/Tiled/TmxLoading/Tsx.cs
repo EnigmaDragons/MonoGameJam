@@ -38,7 +38,6 @@ namespace MonoTiled.Tiled.TmxLoading
                 Tiles.Add(tileMap.ContainsKey(i) ? tileMap[i] : new TsxTile(i, GetTileRectangle(i)));
         }
 
-
         private Rectangle GetTileRectangle(int tile)
         {
             var column = tile % Columns;

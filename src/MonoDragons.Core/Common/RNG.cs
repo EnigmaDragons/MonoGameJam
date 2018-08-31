@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MonoDragons.Core.Common
+namespace MonoDragons.Core
 {
     public static class Rng
     {
@@ -52,7 +52,6 @@ namespace MonoDragons.Core.Common
         {
             return list[Int(list.Count)];
         }
-        
         
         public static T Random<T>(this IReadOnlyList<T> list)
         {

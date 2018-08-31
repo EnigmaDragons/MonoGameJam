@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.PhysicsEngine;
 using System.Linq;
-using MonoDragons.Core.Common;
 
 namespace MonoDragons.Core.UserInterface
 {
@@ -27,7 +26,6 @@ namespace MonoDragons.Core.UserInterface
             _items = items;
             _margin = margin;
         }
-
 
         public override void OnEntered()
         {

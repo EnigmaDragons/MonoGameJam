@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using MonoDragons.Core.Animations;
-using MonoDragons.Core.Common;
+
 using MonoDragons.Core.Inputs;
 using MonoDragons.Core.PhysicsEngine;
 using MonoDragons.Core.UserInterface;
 using System;
 using System.Collections.Generic;
+using MonoDragons.Core;
 using ZeroFootPrintSociety.GUI;
 
 namespace ZeroFootPrintSociety.Credits

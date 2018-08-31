@@ -1,6 +1,7 @@
 ﻿using System;
+using MonoDragons.Core;
 using MonoDragons.Core.AudioSystem;
-using MonoDragons.Core.Common;
+
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using ZeroFootPrintSociety.CoreGame;
@@ -34,7 +35,6 @@ namespace ZeroFootPrintSociety.Soundtrack
             if (!obj.Victim.IsFriendly)
                 Sound.SoundEffect($"SFX/death-1.wav", DefaultVolume).Play();
         }
-
 
         private void OnShotMissed(ShotMissed obj)
         {
@@ -85,11 +85,6 @@ namespace ZeroFootPrintSociety.Soundtrack
             if (!_isFriendlyTurn && newTurnIsFriendly)
                 Sound.SoundEffect("SFX/turn-start.wav", DefaultVolume).Play();
             _isFriendlyTurn = newTurnIsFriendly;
-        }
-
-        public void Update(TimeSpan delta)
-        {
-            throw new NotImplementedException();
         }
     }
 }

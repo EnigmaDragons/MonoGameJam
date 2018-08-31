@@ -84,7 +84,6 @@ namespace ZeroFootPrintSociety.Scenes
         private OptionUI CreateWeaponOption(WeaponSet weaponSet, Vector2 offset)
         {
             var xMar = 25;
-            var width = 300;
             var tWidth = 280;
             return new OptionUI(
                 weaponSet.Name, 

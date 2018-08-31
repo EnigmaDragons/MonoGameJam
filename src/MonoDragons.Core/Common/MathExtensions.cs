@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace MonoDragons.Core.Common
+namespace MonoDragons.Core
 {
     public static class MathExtensions
     {

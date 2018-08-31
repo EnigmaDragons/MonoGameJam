@@ -33,7 +33,6 @@ namespace ZeroFootPrintSociety.Characters
                 isFrAndNe = teamGroup == TeamGroup.FriendliesAndNeutrals,
                 isNeAndEn = teamGroup == TeamGroup.NeutralsAndEnemies;
 
-
             if (isAll || teamGroup == TeamGroup.Friendlies || isFrAndEn || isFrAndNe)
                 teamList.Add(Team.Friendly);
             if (isAll || teamGroup == TeamGroup.Neutrals || isFrAndNe || isNeAndEn)

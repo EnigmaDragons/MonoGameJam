@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
+using MonoDragons.Core;
 using ZeroFootPrintSociety.Characters;
 
 namespace ZeroFootPrintSociety.CoreGame.StateEvents

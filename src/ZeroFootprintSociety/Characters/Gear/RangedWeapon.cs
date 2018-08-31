@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using MonoDragons.Core.Common;
+using MonoDragons.Core;
 
 namespace ZeroFootPrintSociety.Characters.Gear
 {

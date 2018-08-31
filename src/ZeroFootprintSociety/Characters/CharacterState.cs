@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using MonoDragons.Core.Common;
-using MonoDragons.Core.EventSystem;
+using MonoDragons.Core;
 using ZeroFootPrintSociety.CoreGame.Mechanics.Covors;
-using ZeroFootPrintSociety.CoreGame.StateEvents;
 
 namespace ZeroFootPrintSociety.Characters
 {
@@ -17,8 +15,8 @@ namespace ZeroFootPrintSociety.Characters
         public bool IsDeceased { get; set; } = false;
         public Dictionary<Point, ShotCoverInfo> OverwatchedTiles = new Dictionary<Point, ShotCoverInfo>();
         public DictionaryWithDefault<Point, bool> SeeableTiles = new DictionaryWithDefault<Point, bool>(false);
-        public ConcurrentDictionaryWithDefault<Point, bool> PercievedTiles = new ConcurrentDictionaryWithDefault<Point, bool>(false);
-        public bool CanPercieve(Point point) => SeeableTiles[point] || PercievedTiles[point];
+        public ConcurrentDictionaryWithDefault<Point, bool> PerceivedTiles { get; set; } = new ConcurrentDictionaryWithDefault<Point, bool>(false);
+        public bool CanPercieve(Point point) => SeeableTiles[point] || PerceivedTiles[point];
         //TODO: garbage properties
         public bool MustKill { get; set; }
         public string NextScene { get; set; }
