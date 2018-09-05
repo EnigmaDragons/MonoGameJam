@@ -51,6 +51,7 @@
     <Compile Include="AI\EnemyAI.cs" />
     <Compile Include="AI\SpotHasGoodCoverCalculation.cs" />
     <Compile Include="Characters\CharacterClass.cs" />
+    <Compile Include="Characters\CharacterData.cs" />
     <Compile Include="Characters\CharacterEventProcessing.cs" />
     <Compile Include="Characters\CharactersListExtensions.cs" />
     <Compile Include="Characters\CharacterState.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="CoreGame\StateEvents\EnemySpotted.cs" />
     <Compile Include="CoreGame\StateEvents\EventQueue.cs" />
     <Compile Include="CoreGame\StateEvents\MoodChange.cs" />
+    <Compile Include="CoreGame\State\GameData.cs" />
+    <Compile Include="CoreGame\State\LevelState.cs" />
     <Compile Include="GUI\ChatBox.cs" />
     <Compile Include="GUI\Highlights\MoveAttackTargetsView.cs" />
     <Compile Include="GUI\Highlights\CharacterGroundFootprints.cs" />

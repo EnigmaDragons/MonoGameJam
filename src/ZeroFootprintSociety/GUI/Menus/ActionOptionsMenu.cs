@@ -56,6 +56,7 @@ namespace ZeroFootPrintSociety.GUI
             Event.Subscribe<ActionSelected>(e => HideDisplay(), this);
             Event.Subscribe<ActionCancelled>(x => PresentOptions(), this);
             Event.Subscribe<ActionConfirmed>(x => _options.Clear(), this);
+            Event.Subscribe<GameOver>(e => HideDisplay(), this);
         }
 
         private void Select(ActionType actionType)
@@ -90,7 +91,7 @@ namespace ZeroFootPrintSociety.GUI
 
         public void Draw(Transform2 parentTransform)
         {
-            if (GameWorld.IsGameOver || !_showingOptions)
+            if (!_showingOptions)
                 return;
             _visuals.ForEach(x => x.Draw(parentTransform));
         }

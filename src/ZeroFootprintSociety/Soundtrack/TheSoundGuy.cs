@@ -64,7 +64,7 @@ namespace ZeroFootPrintSociety.Soundtrack
 
         private void OnMovementConfirmed(MovementConfirmed obj)
         {
-            if (GameWorld.IsFriendlyTurn)
+            if (_isFriendlyTurn)
                 Sound.SoundEffect("SFX/button-press-1.wav", DefaultVolume).Play();
         }
 
@@ -75,13 +75,13 @@ namespace ZeroFootPrintSociety.Soundtrack
         
         private void OnActionConfirmed(ActionConfirmed obj)
         {
-            if (GameWorld.IsFriendlyTurn)
+            if (_isFriendlyTurn)
                 Sound.SoundEffect("SFX/button-press-1.wav", DefaultVolume).Play();
         }
 
         private void OnTurnBegun(TurnBegun e)
         {
-            var newTurnIsFriendly = GameWorld.IsFriendlyTurn;
+            var newTurnIsFriendly = e.Character.IsFriendly;
             if (!_isFriendlyTurn && newTurnIsFriendly)
                 Sound.SoundEffect("SFX/turn-start.wav", DefaultVolume).Play();
             _isFriendlyTurn = newTurnIsFriendly;

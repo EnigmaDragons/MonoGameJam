@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MonoDragons.Core;
 using MonoDragons.Core.Engine;
 using MonoDragons.Core.EventSystem;
 using MonoDragons.Core.Render;
@@ -33,12 +32,11 @@ namespace ZeroFootPrintSociety.CoreGame
             Event.Subscribe(EventSubscription.Create<ActionResolved>(OnActionResolved, this));
             Event.Subscribe(EventSubscription.Create<MovementOptionsAvailable>(x => AvailableMoves = x.AvailableMoves, this));
             Event.Subscribe(EventSubscription.Create<RangedTargetsAvailable>(x => Targets = x.Targets, this));
-            GameWorld.Turns = new CharacterTurns(characters);
         }
 
         public void Init()
         {
-            GameWorld.Turns.Init();
+            GameWorld.InitLevel();
         }
 
         private void OnActionResolved(ActionResolved obj)

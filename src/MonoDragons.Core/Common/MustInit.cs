@@ -20,5 +20,6 @@ namespace MonoDragons.Core
 
         public void Init(T value) => _value = value;
         public void Set(T value) => Init(value);
+        public void Clear() => Init(default(T));
     }
 }

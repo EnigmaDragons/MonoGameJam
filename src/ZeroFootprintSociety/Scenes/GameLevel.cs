@@ -4,9 +4,11 @@ using MonoDragons.Core.Engine;
 using MonoDragons.Core.Scenes;
 using MonoTiled.Tiled.TmxLoading;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using MonoDragons.Core.Animations;
 using MonoDragons.Core.EventSystem;
+using ZeroFootPrintSociety.Characters;
 using ZeroFootPrintSociety.CoreGame;
 using ZeroFootPrintSociety.CoreGame.StateEvents;
 using ZeroFootPrintSociety.Soundtrack;
@@ -37,21 +39,23 @@ namespace ZeroFootPrintSociety.Scenes
             CameraStartingTile = CameraStartingTile;
             Music = music;
             Add(Music);
+            Event.Subscribe<MoodChange>(OnMoodChange, this);
         }            
 
         public override void Init()
         {
             Music.Play(MusicType.Ambient);
-            LoadMap();
-            SpawnCharacters();
-            Add(new TheSoundGuy());
+            var map = LoadMap();
+            GameWorld.PartialLoad(map);
 
+            var chars = GetMapCharacters(map);
+            GameWorld.Load(new LevelState(map, chars, new CharacterTurns(chars)));
             Add(new TacticsGame(
                 new TurnBasedCombat(
-                    GameWorld.Map,
-                    GameWorld.Characters),
+                    map,
+                    chars),
                 CameraStartingTile).Initialized());
-            Event.Subscribe<MoodChange>(OnMoodChange, this);
+            Add(new TheSoundGuy());
             Add(new ScreenFade {Duration = TimeSpan.FromSeconds(2)}.Started());
         }
 
@@ -65,20 +69,20 @@ namespace ZeroFootPrintSociety.Scenes
                 Music.Play(MusicType.Boss);
         }
 
-        private void LoadMap()
+        private GameMap LoadMap()
         {
-            GameWorld.Map = Perf.Time("Loaded Map", 
+            return Perf.Time("Loaded Map", 
                 () => new GameMapFactory().CreateGameMap(
                     new Tmx(CurrentGame.GraphicsDevice, MapDir, MapFileName), 
                     TileData.RenderSize));
         }
 
-        private void SpawnCharacters()
+        private IReadOnlyList<Character> GetMapCharacters(GameMap map)
         {
-            var characters = GameWorld.Map.GetStartingCharacters();
+            var characters = map.GetStartingCharacters();
             if (!characters.Any())
                 throw new InvalidOperationException($"Map '{MapDir}/{MapFileName}' has no characters.");
-            GameWorld.Characters = characters;
+            return characters;
         }
 
         public override void Dispose() { }

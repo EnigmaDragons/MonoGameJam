@@ -20,13 +20,13 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
             var targetsAvailable = new RangedTargetsAvailable
             {
                 Targets = GameWorld.LivingCharacters
-                    .Where(x => x != GameWorld.Turns.CurrentCharacter && CanShoot(GameWorld.Turns.CurrentCharacter, x))
+                    .Where(x => x != GameWorld.CurrentCharacter && CanShoot(GameWorld.CurrentCharacter, x))
                     .Select(x => new Target
                     {
                         Character = x,
-                        CoverToThem = new ShotCalculation(GameWorld.Turns.CurrentCharacter.CurrentTile, x.CurrentTile).GetBestShot(),
-                        CoverFromThem = CanShoot(x, GameWorld.Turns.CurrentCharacter)
-                            ? new ShotCalculation(x.CurrentTile, GameWorld.Turns.CurrentCharacter.CurrentTile).GetBestShot()
+                        CoverToThem = new ShotCalculation(GameWorld.CurrentCharacter.CurrentTile, x.CurrentTile).GetBestShot(),
+                        CoverFromThem = CanShoot(x, GameWorld.CurrentCharacter)
+                            ? new ShotCalculation(x.CurrentTile, GameWorld.CurrentCharacter.CurrentTile).GetBestShot()
                             : new ShotCoverInfo(new List<CoverProvided>())
                     }).ToList()
             };

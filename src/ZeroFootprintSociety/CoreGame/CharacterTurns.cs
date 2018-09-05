@@ -11,7 +11,8 @@ namespace ZeroFootPrintSociety.CoreGame
     {
         private int _activeCharacterIndex;
         private readonly List<Character> _characters;
-
+        private bool _isGameOver;
+        
         public Character CurrentCharacter { get; private set; }
 
         public CharacterTurns(IReadOnlyList<Character> characters)
@@ -32,7 +33,7 @@ namespace ZeroFootPrintSociety.CoreGame
 
         private void BeginNextTurn(TurnEnded e)
         {
-            if (GameWorld.IsGameOver)
+            if (_isGameOver)
                 return;
 
             Advance();
@@ -55,14 +56,14 @@ namespace ZeroFootPrintSociety.CoreGame
             CurrentCharacter = _characters[_activeCharacterIndex];
         }
 
-        private void OnCharacterDeath(CharacterDeceased _event)
+        private void OnCharacterDeath(CharacterDeceased e)
         {
             if (GameWorld.Friendlies.All(x => x.State.IsDeceased) || GameWorld.MainCharacter.State.IsDeceased)
             {
                 EventQueue.Instance.Add(new GameOver());
-                GameWorld.IsGameOver = true;
+                _isGameOver = true;
             }
-            else if (CurrentCharacter == _event.Victim)
+            else if (CurrentCharacter == e.Victim)
             {
                 EventQueue.Instance.Add(new ActionResolved());
             }

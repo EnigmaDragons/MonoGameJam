@@ -33,12 +33,12 @@ namespace ZeroFootPrintSociety.CoreGame.Calculators
 
         void CalculateMovement()
         {
-            var basePath = new List<Point> { GameWorld.Turns.CurrentCharacter.CurrentTile.Position };
+            var basePath = new List<Point> { GameWorld.CurrentCharacter.CurrentTile.Position };
             EventQueue.Instance.Add(new MovementOptionsAvailable
             {
                 AvailableMoves = RandomizeBetweenDuplicates(
                     EliminateDuplicatesThatCrossOverOverwatchedTiles(
-                        TakeSteps(basePath, GameWorld.Turns.CurrentCharacter.Stats.Movement)))
+                        TakeSteps(basePath, GameWorld.CurrentCharacter.Stats.Movement)))
                     .Concat(new List<List<Point>> { basePath }).ToList()
             });
         }
